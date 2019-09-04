@@ -208,8 +208,8 @@ span.exturl {
 }
 a:hover,
 span.exturl:hover {
-  border-bottom-color: #222;
-  color: #222;
+  border-bottom-color: #8ca4cf;
+  color: #8ca4cf;
 }
 iframe,
 img,
@@ -840,8 +840,8 @@ pre .javascript .function {
   transition-property: background-color;
 }
 .btn:hover {
-  background: #222;
-  border-color: #222;
+  background: #8ca4cf;
+  border-color: #8ca4cf;
   color: #fff;
 }
 .btn + .btn {
@@ -899,7 +899,7 @@ pre .javascript .function {
 .pagination .prev:hover,
 .pagination .next:hover,
 .pagination .page-number:hover {
-  border-top-color: #222;
+  border-top-color: #8ca4cf;
 }
 .pagination .space {
   margin: 0;
@@ -931,7 +931,7 @@ pre .javascript .function {
   .pagination .prev:hover,
   .pagination .next:hover,
   .pagination .page-number:hover {
-    border-bottom-color: #222;
+    border-bottom-color: #8ca4cf;
   }
 }
 .comments {
@@ -948,8 +948,8 @@ pre .javascript .function {
   margin: 0.1em 0.2em;
 }
 .comment-button-group .comment-button.active {
-  background: #222;
-  border-color: #222;
+  background: #8ca4cf;
+  border-color: #8ca4cf;
   color: #fff;
 }
 .comment-position {
@@ -970,7 +970,7 @@ pre .javascript .function {
   padding-top: 0;
 }
 .back-to-top {
-  background: #222;
+  background: #8ca4cf;
   bottom: -100px;
   box-sizing: border-box;
   color: #fff;
@@ -1004,13 +1004,13 @@ pre .javascript .function {
   }
 }
 .header {
-  background: transparent;
+  background: #f7cac9;
 }
 .header-inner {
   position: relative;
 }
 .headband {
-  background: #222;
+  background: #8ca4cf;
   height: 3px;
 }
 .site-meta {
@@ -1023,7 +1023,7 @@ pre .javascript .function {
   }
 }
 .brand {
-  background: #222;
+  background: #8ca4cf;
   border-bottom: none;
   color: #fff;
   display: inline-block;
@@ -1123,7 +1123,7 @@ pre .javascript .function {
 }
 .menu-item a:hover,
 .menu-item span.exturl:hover {
-  border-bottom-color: #222;
+  border-bottom-color: #8ca4cf;
 }
 .menu-item .fa {
   margin-right: 5px;
@@ -1262,7 +1262,7 @@ pre .javascript .function {
   border-bottom-color: #666;
 }
 .posts-collapse .post-header:hover::before {
-  background: #222;
+  background: #8ca4cf;
 }
 .posts-collapse .post-title {
   font-size: 1em;
@@ -1481,7 +1481,7 @@ article:last-child .post-eof {
 }
 .post-nav-item a:hover {
   border-bottom: none;
-  color: #222;
+  color: #8ca4cf;
 }
 .post-nav-item a:active {
   top: 2px;
@@ -1594,7 +1594,7 @@ article:last-child .post-eof {
   height: 30px;
 }
 .sidebar {
-  background: #222;
+  background: #8ca4cf;
   bottom: 0;
   box-shadow: inset 0 2px 6px #000;
   position: fixed;
@@ -1649,7 +1649,7 @@ article:last-child .post-eof {
   border-radius: 50%;
 }
 .site-author-name {
-  color: #222;
+  color: #8ca4cf;
   font-weight: 600;
   margin: 0;
   text-align: center;
@@ -1674,7 +1674,7 @@ article:last-child .post-eof {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #eb830e;
+  background: #772b0e;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -1787,7 +1787,7 @@ article:last-child .post-eof {
   display: block;
 }
 .sidebar-toggle {
-  background: #222;
+  background: #8ca4cf;
   bottom: 45px;
   cursor: pointer;
   height: 14px;
@@ -2020,11 +2020,11 @@ article:last-child .post-eof {
   padding: 0px;
 }
 #event-list hr {
-  background: #222;
+  background: #8ca4cf;
   margin: 20px 0 45px 0;
 }
 #event-list hr::after {
-  background: #222;
+  background: #8ca4cf;
   color: #fff;
   content: 'NOW';
   display: inline-block;
@@ -2096,7 +2096,7 @@ article:last-child .post-eof {
   color: #dfdfdf;
 }
 #event-list li.event-now {
-  background: #222;
+  background: #8ca4cf;
   color: #fff;
   padding: 15px 0 15px 10px;
 }
@@ -2108,7 +2108,7 @@ article:last-child .post-eof {
   color: #fff !important;
 }
 #event-list li.event-future {
-  background: #222;
+  background: #8ca4cf;
   color: #fff;
   padding: 15px 0 15px 10px;
 }
@@ -2185,7 +2185,7 @@ ul.breadcrumb li + li:last-child {
   margin: 10px;
 }
 .tag-cloud a:hover {
-  color: #222 !important;
+  color: #8ca4cf !important;
 }
 .header {
   margin: 0 auto;
@@ -2304,7 +2304,7 @@ ul.breadcrumb li + li:last-child {
   position: relative;
 }
 .site-meta {
-  background: #222;
+  background: #8ca4cf;
   color: #fff;
   padding: 20px 0;
 }
@@ -2453,8 +2453,8 @@ ul.breadcrumb li + li:last-child {
 }
 .sidebar a:hover,
 .sidebar span.exturl:hover {
-  border-bottom-color: #222;
-  color: #222;
+  border-bottom-color: #8ca4cf;
+  color: #8ca4cf;
 }
 .sidebar-inner {
   background: #fff;
