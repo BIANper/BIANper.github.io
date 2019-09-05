@@ -1671,7 +1671,7 @@ article:last-child .post-eof {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #ff1606;
+  background: #c941ff;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -2399,14 +2399,21 @@ ul.breadcrumb li + li:last-child {
     width: auto;
   }
 }
-.back-to-top {
-  left: auto;
-  right: 30px;
+.header-inner {
+  right: 0;
 }
-@media (max-width: 991px) {
-  .back-to-top {
-    right: 20px;
-  }
+.content-wrap {
+  float: left;
+}
+.sidebar {
+  float: right;
+}
+.book-mark-link {
+  left: 30px;
+}
+.footer-inner {
+  padding-left: 0;
+  padding-right: 260px;
 }
 .site-brand-container {
   position: relative;
