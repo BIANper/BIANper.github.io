@@ -1,6 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[关于静态成员]]></title>
+    <url>%2F2019%2F09%2F06%2F%E5%85%B3%E4%BA%8E%E9%9D%99%E6%80%81%E6%88%90%E5%91%98%2F</url>
+    <content type="text"><![CDATA[静态成员：属于类本身，不属于类的实例，在程序加载时至程序结束时一直存在，用类名直接调用（不需要实例对象） 非静态成员：属于类的实例的，不属于类本身 因此，静态的成员，不能访问非静态成员（毕竟两者无关系）。但是实例方法在类中可以访问静态字段 静态成员函数与普通成员函数的差别在于缺少this，静态成员在类加载时就存在于内存（堆）中共享，与全局函数相比，这样可以减少内存开销]]></content>
+      <categories>
+        <category>JAVA</category>
+      </categories>
+      <tags>
+        <tag>静态</tag>
+        <tag>思路</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[各种类型的比较方法]]></title>
+    <url>%2F2019%2F09%2F06%2F%E5%90%84%E7%A7%8D%E7%B1%BB%E5%9E%8B%E7%9A%84%E6%AF%94%E8%BE%83%E6%96%B9%E6%B3%95%2F</url>
+    <content type="text"><![CDATA[内存地址比较用 equalsstring 类型与 null 比较用 ==string 类型与空字符串 “” 比较用 equals乱入12String str1 = null; //str引用为空 String str2 = ""; //str引用为空串相关如果 str1=null; 这个的写法错误⬇： 123if(str1.equals("")||str1==null)&#123; //如果str1没有值，则返回false &#125; 正确的写法是： 123if(str1==null||str1.equals(""))&#123; //先判断是不是对象，如果是，再判断是不是空字符串 &#125;]]></content>
+      <categories>
+        <category>JAVA</category>
+      </categories>
+      <tags>
+        <tag>思路</tag>
+        <tag>基础</tag>
+        <tag>比较</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[变量赋值与构造函数的执行顺序]]></title>
+    <url>%2F2019%2F09%2F06%2F%E5%8F%98%E9%87%8F%E8%B5%8B%E5%80%BC%E4%B8%8E%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E7%9A%84%E6%89%A7%E8%A1%8C%E9%A1%BA%E5%BA%8F%2F</url>
+    <content type="text"><![CDATA[子类给成员变量分配空间，在栈中默认初始化成0 调用子类构造函数，因为继承，调用super(); 调用父类构造函数，因为覆盖，执行子类方法 执行父类构造函数其他语句 父类构造函数结束弹栈 子类对成员变量显示初始化(赋值) 调用子类构造函数其他语句 检验 123456789101112131415161718192021222324252627282930class Fu&#123; Fu() &#123; this.getNum(); &#125; public void getNum() &#123; System.out.println("父类"); &#125;&#125; class Zi extends Fu&#123; int num=4; public Zi() &#123; super(); System.out.println("子类构造函数中"+this.num); &#125; public void getNum() &#123; System.out.println("getNum方法"+this.num); &#125;&#125; public class learn&#123; public static void main(String[] args) &#123; new Zi(); &#125;&#125;]]></content>
+      <categories>
+        <category>JAVA</category>
+      </categories>
+      <tags>
+        <tag>思路</tag>
+        <tag>基础</tag>
+        <tag>构造函数</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[对象实例化过程]]></title>
     <url>%2F2019%2F09%2F06%2F%E5%AF%B9%E8%B1%A1%E5%AE%9E%E4%BE%8B%E5%8C%96%E8%BF%87%E7%A8%8B%2F</url>
     <content type="text"><![CDATA[1Test t = new Test; JVM读取Test.class文件并加载进内存，加载Test的父类(如果有) 堆内存中开辟空间，分配地址 在对象空间中，对对象中的属性进行默认初始化 调用对应的构造函数进行初始化 在构造函数中，先调用父类的构造函数进行初始化 父类初始化完毕后，对子类的属性进行显示初始化（super();和第二句之间的动作） 进行子类构造函数的特定初始化 初始化完毕，将地址值赋值给引用变量]]></content>
@@ -8,8 +46,10 @@
         <category>JAVA</category>
       </categories>
       <tags>
-        <tag>基础</tag>
         <tag>思路</tag>
+        <tag>基础</tag>
+        <tag>构造函数</tag>
+        <tag>实例化</tag>
       </tags>
   </entry>
   <entry>
