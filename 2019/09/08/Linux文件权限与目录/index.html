@@ -57,19 +57,19 @@
   };
 </script>
 
-  <meta name="description" content="1Test t = new Test;   JVM 读取 Test.class 文件并加载进内存，加载 Test 的父类(如果有) 堆内存中开辟空间，分配地址 在对象空间中，对对象中的属性进行默认初始化 调用对应的构造函数进行初始化">
-<meta name="keywords" content="基础,思路,构造函数,实例化">
+  <meta name="description" content="文件属性示例1-rw-r--r-- 1 root root 63428 Sep 8 19:24 xxxxx.md  第一列 第一位 [d] 目录 [-] 文件 [l] 连接文件 linkfile [b] 可供存储的设备 是设备文件 [c] 串行端口设备 是设备文件  第一列 第二~九位三个一组，分别为   文件所有者权限">
+<meta name="keywords" content="笔记,基础">
 <meta property="og:type" content="article">
-<meta property="og:title" content="对象实例化过程">
-<meta property="og:url" content="http://yoursite.com/2019/09/06/对象实例化过程/index.html">
+<meta property="og:title" content="Linux文件属性与目录">
+<meta property="og:url" content="http://yoursite.com/2019/09/08/Linux文件权限与目录/index.html">
 <meta property="og:site_name" content="卑微的 YuYu">
-<meta property="og:description" content="1Test t = new Test;   JVM 读取 Test.class 文件并加载进内存，加载 Test 的父类(如果有) 堆内存中开辟空间，分配地址 在对象空间中，对对象中的属性进行默认初始化 调用对应的构造函数进行初始化">
+<meta property="og:description" content="文件属性示例1-rw-r--r-- 1 root root 63428 Sep 8 19:24 xxxxx.md  第一列 第一位 [d] 目录 [-] 文件 [l] 连接文件 linkfile [b] 可供存储的设备 是设备文件 [c] 串行端口设备 是设备文件  第一列 第二~九位三个一组，分别为   文件所有者权限">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-09-08T11:19:34.865Z">
+<meta property="og:updated_time" content="2019-09-08T12:57:10.530Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="对象实例化过程">
-<meta name="twitter:description" content="1Test t = new Test;   JVM 读取 Test.class 文件并加载进内存，加载 Test 的父类(如果有) 堆内存中开辟空间，分配地址 在对象空间中，对对象中的属性进行默认初始化 调用对应的构造函数进行初始化">
-  <link rel="canonical" href="http://yoursite.com/2019/09/06/对象实例化过程/">
+<meta name="twitter:title" content="Linux文件属性与目录">
+<meta name="twitter:description" content="文件属性示例1-rw-r--r-- 1 root root 63428 Sep 8 19:24 xxxxx.md  第一列 第一位 [d] 目录 [-] 文件 [l] 连接文件 linkfile [b] 可供存储的设备 是设备文件 [c] 串行端口设备 是设备文件  第一列 第二~九位三个一组，分别为   文件所有者权限">
+  <link rel="canonical" href="http://yoursite.com/2019/09/08/Linux文件权限与目录/">
 
 
 <script id="page-configurations">
@@ -83,7 +83,7 @@
   };
 </script>
 
-  <title>对象实例化过程 | 卑微的 YuYu</title>
+  <title>Linux文件属性与目录 | 卑微的 YuYu</title>
   <meta name="generator" content="Hexo 3.9.0">
   
 
@@ -261,7 +261,7 @@
   
   
   <div class="post-block post">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/06/对象实例化过程/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/08/Linux文件权限与目录/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Sun YuYu">
@@ -273,7 +273,7 @@
       <meta itemprop="name" content="卑微的 YuYu">
     </span>
       <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">对象实例化过程
+        <h1 class="post-title" itemprop="name headline">Linux文件属性与目录
 
           
         </h1>
@@ -289,19 +289,11 @@
                 
               
 
-              <time title="创建时间：2019-09-06 15:51:43" itemprop="dateCreated datePublished" datetime="2019-09-06T15:51:43+08:00">2019-09-06</time>
+              <time title="创建时间：2019-09-08 19:24:50 / 修改时间：20:57:10" itemprop="dateCreated datePublished" datetime="2019-09-08T19:24:50+08:00">2019-09-08</time>
             </span>
           
             
 
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-09-08 19:19:34" itemprop="dateModified" datetime="2019-09-08T19:19:34+08:00">2019-09-08</time>
-              </span>
             
           
             <span class="post-meta-item">
@@ -310,7 +302,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/JAVA/" itemprop="url" rel="index"><span itemprop="name">JAVA</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a></span>
 
                 
                 
@@ -329,18 +321,62 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Test t = <span class="keyword">new</span> Test;</span><br></pre></td></tr></table></figure>
+        <h1 id="文件属性"><a href="#文件属性" class="headerlink" title="文件属性"></a>文件属性</h1><h2 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">-rw-r--r-- 1 root root 63428 Sep 8 19:24 xxxxx.md</span><br></pre></td></tr></table></figure>
 
-<ol>
-<li>JVM 读取 Test.class 文件并加载进内存，加载 Test 的父类(如果有)</li>
-<li>堆内存中开辟空间，分配地址</li>
-<li>在对象空间中，对对象中的属性进行默认初始化</li>
-<li>调用对应的构造函数进行初始化<a id="more"></a></li>
-<li>在构造函数中，先调用父类的构造函数进行初始化</li>
-<li>父类初始化完毕后，对子类的属性进行显示初始化<br>（ super(); 和第二句之间的动作）</li>
-<li>进行子类构造函数的特定初始化</li>
-<li>初始化完毕，将地址值赋值给引用变量</li>
-</ol>
+<h3 id="第一列-第一位"><a href="#第一列-第一位" class="headerlink" title="第一列 第一位"></a>第一列 第一位</h3><ul>
+<li>[d] 目录</li>
+<li>[-] 文件</li>
+<li>[l] 连接文件 linkfile</li>
+<li>[b] 可供存储的设备 是设备文件</li>
+<li>[c] 串行端口设备 是设备文件</li>
+</ul>
+<h3 id="第一列-第二-九位"><a href="#第一列-第二-九位" class="headerlink" title="第一列 第二~九位"></a>第一列 第二~九位</h3><p>三个一组，分别为 </p>
+<ul>
+<li>文件所有者权限<a id="more"></a></li>
+<li>同用户组权限</li>
+<li>其他用户权限</li>
+</ul>
+<p>每组三个参数依次为 r读-4 w写-2 x执行-1<br>Linux 中文件的可执行性与文件名无绝对关系<br>文件与目录的权限<strong>意义不同</strong></p>
+<h3 id="第二列"><a href="#第二列" class="headerlink" title="第二列"></a>第二列</h3><p>链接到此节点 i-node 的不同文件名数<br>&ensp;&ensp;文件名集合权限与属性记录到文件系统的 i-node 中</p>
+<h3 id="第六列"><a href="#第六列" class="headerlink" title="第六列"></a>第六列</h3><p>创建日期或最近修改日期<br>显示完整时间格式：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># ls -l --full-time</span><br></pre></td></tr></table></figure>
+
+<p>&ensp;&ensp;中文无法在终端显示所以：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># LANG= en_US</span><br></pre></td></tr></table></figure>
+
+<h2 id="改变文件属性"><a href="#改变文件属性" class="headerlink" title="改变文件属性"></a>改变文件属性</h2><blockquote>
+<p>复制行为 cp 不会更改源文件的属性</p>
+</blockquote>
+<h3 id="chgrp-改变所属用户组"><a href="#chgrp-改变所属用户组" class="headerlink" title="chgrp 改变所属用户组"></a>chgrp 改变所属用户组</h3><p>change group</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># chgrp [-R] groupname dirname/filename</span><br></pre></td></tr></table></figure>
+
+<p>组名在 /etc/group 中，否则报错</p>
+<h3 id="chown-改变所有者"><a href="#chown-改变所有者" class="headerlink" title="chown 改变所有者"></a>chown 改变所有者</h3><p>change owner</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># chown [-R] ownername dirname/filename</span><br><span class="line"># chown [-R] ownername:groupname dirname/filename</span><br></pre></td></tr></table></figure>
+
+<p>组名在 /etc/passwd 中，否则报错<br>ownername:groupname 同时更改 owner 和 group，不要用 . 防止误判</p>
+<h3 id="chmod-改变权限"><a href="#chmod-改变权限" class="headerlink" title="chmod 改变权限"></a>chmod 改变权限</h3><p>change modify</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># chmod [-R] xyz dirname/filename</span><br><span class="line"># chmod u/g/o/a +/-/= r/w/x dirname/filename</span><br></pre></td></tr></table></figure>
+
+<h1 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h1><p>记录文件名<strong>列表</strong></p>
+<h2 id="权限之于目录"><a href="#权限之于目录" class="headerlink" title="权限之于目录"></a>权限之于目录</h2><ul>
+<li>r read contents in directory<br>读取目录结构列表的权限，即<ul>
+<li>文件名数据，可利用 ls 查询内容列表</li>
+</ul>
+</li>
+<li>w modify contents in directory<br>读取目录结构列表的权限，即<ul>
+<li>新建新的文件和目录</li>
+<li>删除已存在的文件与目录（无视其它权限）</li>
+<li>重命名已存在的文件与目录</li>
+<li>转移目录内的文件与目录位置</li>
+</ul>
+</li>
+<li>x access directory<br>用户进入该目录成为工作目录的权限<ul>
+<li>目前所在的目录</li>
+</ul>
+</li>
+</ul>
+<p>例：r– 用户访问 rwx root 的文件<br>仅可查询目录下的文件名列表但不能切换到此目录，无法执行任何该目录下的命令</p>
 
     </div>
 
@@ -356,13 +392,9 @@
           
           <div class="post-tags">
             
+              <a href="/tags/笔记/" rel="tag"># 笔记</a>
+            
               <a href="/tags/基础/" rel="tag"># 基础</a>
-            
-              <a href="/tags/思路/" rel="tag"># 思路</a>
-            
-              <a href="/tags/构造函数/" rel="tag"># 构造函数</a>
-            
-              <a href="/tags/实例化/" rel="tag"># 实例化</a>
             
           </div>
         
@@ -372,8 +404,8 @@
           <div class="post-nav">
             <div class="post-nav-next post-nav-item">
               
-                <a href="/2019/09/04/hello-world/" rel="next" title="Hello World">
-                  <i class="fa fa-chevron-left"></i> Hello World
+                <a href="/2019/09/08/19-09碎碎念/" rel="next" title="19-09碎碎念">
+                  <i class="fa fa-chevron-left"></i> 19-09碎碎念
                 </a>
               
             </div>
@@ -381,10 +413,6 @@
             <span class="post-nav-divider"></span>
 
             <div class="post-nav-prev post-nav-item">
-              
-                <a href="/2019/09/06/变量赋值与构造函数的执行顺序/" rel="prev" title="变量赋值与构造函数的执行顺序">
-                  变量赋值与构造函数的执行顺序 <i class="fa fa-chevron-right"></i>
-                </a>
               
             </div>
           </div>
@@ -440,6 +468,8 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#文件属性"><span class="nav-number">1.</span> <span class="nav-text">文件属性</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#示例"><span class="nav-number">1.1.</span> <span class="nav-text">示例</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#第一列-第一位"><span class="nav-number">1.1.1.</span> <span class="nav-text">第一列 第一位</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第一列-第二-九位"><span class="nav-number">1.1.2.</span> <span class="nav-text">第一列 第二~九位</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第二列"><span class="nav-number">1.1.3.</span> <span class="nav-text">第二列</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第六列"><span class="nav-number">1.1.4.</span> <span class="nav-text">第六列</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#改变文件属性"><span class="nav-number">1.2.</span> <span class="nav-text">改变文件属性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#chgrp-改变所属用户组"><span class="nav-number">1.2.1.</span> <span class="nav-text">chgrp 改变所属用户组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#chown-改变所有者"><span class="nav-number">1.2.2.</span> <span class="nav-text">chown 改变所有者</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#chmod-改变权限"><span class="nav-number">1.2.3.</span> <span class="nav-text">chmod 改变权限</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#目录"><span class="nav-number">2.</span> <span class="nav-text">目录</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#权限之于目录"><span class="nav-number">2.1.</span> <span class="nav-text">权限之于目录</span></a></li></ol></li></ol></div>
+        
       </div>
       <!--/noindex-->
 
