@@ -57,19 +57,19 @@
   };
 </script>
 
-  <meta name="description" content="内存地址比较用 equalsstring 类型与 null 比较用 ==string 类型与空字符串 “” 比较用 equals乱入12String str1 = null; //str引用为空   String str2 = &quot;&quot;; //str引用为空串相关如果 str1=null; 这个的写法错误⬇：">
-<meta name="keywords" content="基础,思路,比较">
+  <meta name="description" content="虽然啥都没干，真是辛苦自己啦">
+<meta name="keywords" content="笔记,基础">
 <meta property="og:type" content="article">
-<meta property="og:title" content="各种类型的比较方法">
-<meta property="og:url" content="http://yoursite.com/2019/09/06/各种类型的比较方法/index.html">
+<meta property="og:title" content="Linux文件与目录操作">
+<meta property="og:url" content="http://yoursite.com/2019/09/09/Linux文件与目录操作/index.html">
 <meta property="og:site_name" content="卑微的 YuYu">
-<meta property="og:description" content="内存地址比较用 equalsstring 类型与 null 比较用 ==string 类型与空字符串 “” 比较用 equals乱入12String str1 = null; //str引用为空   String str2 = &quot;&quot;; //str引用为空串相关如果 str1=null; 这个的写法错误⬇：">
+<meta property="og:description" content="虽然啥都没干，真是辛苦自己啦">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-09-06T09:19:51.464Z">
+<meta property="og:updated_time" content="2019-09-09T01:55:06.813Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="各种类型的比较方法">
-<meta name="twitter:description" content="内存地址比较用 equalsstring 类型与 null 比较用 ==string 类型与空字符串 “” 比较用 equals乱入12String str1 = null; //str引用为空   String str2 = &quot;&quot;; //str引用为空串相关如果 str1=null; 这个的写法错误⬇：">
-  <link rel="canonical" href="http://yoursite.com/2019/09/06/各种类型的比较方法/">
+<meta name="twitter:title" content="Linux文件与目录操作">
+<meta name="twitter:description" content="虽然啥都没干，真是辛苦自己啦">
+  <link rel="canonical" href="http://yoursite.com/2019/09/09/Linux文件与目录操作/">
 
 
 <script id="page-configurations">
@@ -83,7 +83,7 @@
   };
 </script>
 
-  <title>各种类型的比较方法 | 卑微的 YuYu</title>
+  <title>Linux文件与目录操作 | 卑微的 YuYu</title>
   <meta name="generator" content="Hexo 3.9.0">
   
 
@@ -261,7 +261,7 @@
   
   
   <div class="post-block post">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/06/各种类型的比较方法/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/09/Linux文件与目录操作/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Sun YuYu">
@@ -273,7 +273,7 @@
       <meta itemprop="name" content="卑微的 YuYu">
     </span>
       <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">各种类型的比较方法
+        <h1 class="post-title" itemprop="name headline">Linux文件与目录操作
 
           
         </h1>
@@ -289,7 +289,7 @@
                 
               
 
-              <time title="创建时间：2019-09-06 17:07:26 / 修改时间：17:19:51" itemprop="dateCreated datePublished" datetime="2019-09-06T17:07:26+08:00">2019-09-06</time>
+              <time title="创建时间：2019-09-09 09:54:19 / 修改时间：09:55:06" itemprop="dateCreated datePublished" datetime="2019-09-09T09:54:19+08:00">2019-09-09</time>
             </span>
           
             
@@ -302,7 +302,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/JAVA/" itemprop="url" rel="index"><span itemprop="name">JAVA</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a></span>
 
                 
                 
@@ -321,17 +321,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>内存地址比较用 equals<br>string 类型与 null 比较用 ==<br>string 类型与空字符串 “” 比较用 equals</p><p><u>乱入</u></p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">String str1 = <span class="keyword">null</span>; <span class="comment">//str引用为空   </span></span><br><span class="line">String str2 = <span class="string">""</span>; <span class="comment">//str引用为空串</span></span><br></pre></td></tr></table></figure><p><u>相关</u><br>如果 str1=null; 这个的写法错误⬇：</p><a id="more"></a>
-
-
-
-
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(str1.equals(<span class="string">""</span>)||str1==<span class="keyword">null</span>)&#123;  </span><br><span class="line"><span class="comment">//如果str1没有值，则返回false  </span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>正确的写法是：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(str1==<span class="keyword">null</span>||str1.equals(<span class="string">""</span>))&#123;   </span><br><span class="line"><span class="comment">//先判断是不是对象，如果是，再判断是不是空字符串   </span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
+        
     </div>
 
     
@@ -346,11 +336,9 @@
           
           <div class="post-tags">
             
+              <a href="/tags/笔记/" rel="tag"># 笔记</a>
+            
               <a href="/tags/基础/" rel="tag"># 基础</a>
-            
-              <a href="/tags/思路/" rel="tag"># 思路</a>
-            
-              <a href="/tags/比较/" rel="tag"># 比较</a>
             
           </div>
         
@@ -360,8 +348,8 @@
           <div class="post-nav">
             <div class="post-nav-next post-nav-item">
               
-                <a href="/2019/09/06/变量赋值与构造函数的执行顺序/" rel="next" title="变量赋值与构造函数的执行顺序">
-                  <i class="fa fa-chevron-left"></i> 变量赋值与构造函数的执行顺序
+                <a href="/2019/09/08/Linux文件权限与目录/" rel="next" title="Linux文件与目录概念">
+                  <i class="fa fa-chevron-left"></i> Linux文件与目录概念
                 </a>
               
             </div>
@@ -369,10 +357,6 @@
             <span class="post-nav-divider"></span>
 
             <div class="post-nav-prev post-nav-item">
-              
-                <a href="/2019/09/06/关于静态成员/" rel="prev" title="关于静态成员">
-                  关于静态成员 <i class="fa fa-chevron-right"></i>
-                </a>
               
             </div>
           </div>
