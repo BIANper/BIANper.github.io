@@ -1,13 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title><![CDATA[默认权限和隐藏权限]]></title>
-    <url>%2F2019%2F09%2F11%2FLinux%E6%9D%83%E9%99%90%E4%B8%8E%E5%91%BD%E4%BB%A4%E8%A1%A5%E5%85%85%2F</url>
-    <content type="text"></content>
-  </entry>
-  <entry>
-    <title><![CDATA[Linux权限与命令补充]]></title>
-    <url>%2F2019%2F09%2F11%2F%E9%BB%98%E8%AE%A4%E6%9D%83%E9%99%90%E5%92%8C%E9%9A%90%E8%97%8F%E6%9D%83%E9%99%90%2F</url>
+    <title><![CDATA[Linux权限和命令补充]]></title>
+    <url>%2F2019%2F09%2F11%2FLinux%E6%9D%83%E9%99%90%E5%92%8C%E5%91%BD%E4%BB%A4%E8%A1%A5%E5%85%85%2F</url>
     <content type="text"><![CDATA[默认权限 文件默认没有可执行权限，即最大为 666 目录默认有所有权限，即 777 umask 指定目前用户新建文件或目录时的权限默认值 查看 12# umask [-S]-S ：以字母显示默认权限，否则是数字 其数字结果是该默认值要被拿掉的权限 设置 1# umask xyz root 默认是 022，一般用户是 002用字母进行计算更准确，如 (-rw-rw-rw-) - (——–wx) = -rw-rw-r–,而非 666 - 003 = 663 隐藏属性chattr设置文件的隐藏属性仅在 Ext2/Ext3 的文件系统生效 1234567891011# chattr [+-=][ASacdistu] dirname/filname+ ：仅增加某一个参数- ：仅减少某一个参数= ：仅有后面指定的参数A ：访问此文件/目录时，访问时间 atime 将不会被修改S ：对文件的修改将 同步 写入磁盘a ：root 限定，只能增加数据不能删改c ：文件将被自动压缩，读取时自动解压，存储时先压缩再存储d ：dump 程序被执行时，该文件/目录不会被 dump 备份i ：root 限定，该文件无法被增删改和设置连接 lsattr显示文件的隐藏属性 1234# lsattr [-adR] filname/dirname-a 包括隐藏文件-d 目录属性而非内容-R 递归，子目录数据也显示 特殊权限]]></content>
       <categories>
         <category>Linux</category>
