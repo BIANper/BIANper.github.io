@@ -1,6 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[默认权限和隐藏权限]]></title>
+    <url>%2F2019%2F09%2F11%2FLinux%E6%9D%83%E9%99%90%E4%B8%8E%E5%91%BD%E4%BB%A4%E8%A1%A5%E5%85%85%2F</url>
+    <content type="text"></content>
+  </entry>
+  <entry>
+    <title><![CDATA[Linux权限与命令补充]]></title>
+    <url>%2F2019%2F09%2F11%2F%E9%BB%98%E8%AE%A4%E6%9D%83%E9%99%90%E5%92%8C%E9%9A%90%E8%97%8F%E6%9D%83%E9%99%90%2F</url>
+    <content type="text"><![CDATA[默认权限 文件默认没有可执行权限，即最大为 666 目录默认有所有权限，即 777 umask 指定目前用户新建文件或目录时的权限默认值 查看 12# umask [-S]-S ：以字母显示默认权限，否则是数字 其数字结果是该默认值要被拿掉的权限 设置 1# umask xyz root 默认是 022，一般用户是 002用字母进行计算更准确，如 (-rw-rw-rw-) - (——–wx) = -rw-rw-r–,而非 666 - 003 = 663 隐藏属性chattr设置文件的隐藏属性仅在 Ext2/Ext3 的文件系统生效 1234567891011# chattr [+-=][ASacdistu] dirname/filname+ ：仅增加某一个参数- ：仅减少某一个参数= ：仅有后面指定的参数A ：访问此文件/目录时，访问时间 atime 将不会被修改S ：对文件的修改将 同步 写入磁盘a ：root 限定，只能增加数据不能删改c ：文件将被自动压缩，读取时自动解压，存储时先压缩再存储d ：dump 程序被执行时，该文件/目录不会被 dump 备份i ：root 限定，该文件无法被增删改和设置连接 lsattr显示文件的隐藏属性 1234# lsattr [-adR] filname/dirname-a 包括隐藏文件-d 目录属性而非内容-R 递归，子目录数据也显示 特殊权限]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>笔记</tag>
+        <tag>基础</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Linux文件与目录操作]]></title>
     <url>%2F2019%2F09%2F09%2FLinux%E6%96%87%E4%BB%B6%E4%B8%8E%E7%9B%AE%E5%BD%95%E6%93%8D%E4%BD%9C%2F</url>
     <content type="text"><![CDATA[目录处理cd change directory 切换目录 1# cd - 返回之前的目录 pwd print working directory 显示当前目录 1# pwd -p 获得实际路径而非连接路径 mkdir 新建目录 123# mkdir [-mp] dirname-m ：新建自定义权限的目录 如 mkdir -m xyz test-p ：递归创建 如 mkdir -p test1/test2/test3 rmdir 删除空目录 1# rmdir [-p] dirname 同上 文件处理 cp copy 123456789# cp [-adfilprsu] source destination-a ：同-pdr-d ：若源文件是连接文件则复制连接文件而非本身-i ：若目标文件存在，询问是否覆盖-l ：创建硬连接的连接文件-p ：连同文件属性复制，常用于备份-r ：递归复制，用于目录的复制行为-s ：创建符号连接文件，即快捷方式-u ：源文件新才 update 默认情况下目的文件的所有者是命令操作者 没有参数时 cp 复制的是源文件而非连接文件 rm remove 1234# rm [-fir] dirname/filename-f : force 强制，忽略不存在的文件且不警告-i ：删除前进行询问-r ：递归删除 目录名以 - 开头会造成误判，可以用 ./ 避免 mv move 1234# mv [-fiu] source destination-f ：force 若目标文件已存在则直接覆盖不询问-i ：若目标文件存在，询问是否覆盖-u ：源文件新才 update 多个源文件或目录要移动时，最后一个（即目标文件）一定是目录 废话 文件内容查阅直接查看 cat concatenate 从第一行开始显示文件内容 1234# cat [-AbEnTv]-A ：相当 -vET 整合，特殊字符 断行字符$ Tab键＾I-b ：列出行号，空白行不标号-n ：列出行号，包括空白行 tac cat 反写，功能也是 nl 添加行号显示 123456789# nl [-bnw]-b ：行号的指定方式 a 空行也显示，类似 cat -n t 空行不显示行号，默认值-n ：行号的表示方法 ln 行号字段最左显示 rn 行号字段的最右显示，不加 0 rz 行号字段的最右显示，加 0-w ：行号字段的位数，默认六位 翻页查看 more Space ：向后翻一页 Enter ：向下滚动一行 /字符串 ：当前页向下查询，n 继续查询 :f ：显示出文件名以及目前显示的行数 b/ctrl+b ：回翻，仅限文件，FIFO无效 less Space/PageDown ：向后翻一页 PageUp ：向前翻一页 ?字符串 ：当前页向上查询，n 继续查询 N ：反向继续查询 数据选取head 取出前几行，默认显示十行 12# head [-n num] file 取前 num 行# head [-n -num] file 取 num 行之前，第二个是减号ao（x tail 取后面几行 123# tail [-n num] file 取后 num 行# tail [-n +num] file 取 num 行之后-f 持续监测，应对数据随时写入 od 非纯文本文件 1234# od [-t TYPE] 文件TYPE a ：默认字符输出 c ：ASCII 字符输出 dfox ：十进制 浮点数 八进制 十六进制 文件时间处理1# ls -l --time=?time filname mtime modification time内容数据更改时更新，ls 默认值 ctime status time状态改变时更新，如权限与属性 atime access time内容被取用访问时更新 123456# touch [-acdmt] file-a ：修改 atime-c ：修改文件时间，文件不存不创建新文件-d ：修改 atime mtime，ctime 不变-m ：修改 mtime-t ：修改 atime mtime，ctime 记录当前时间，格式 YYMMDDhhmm 默认将三个时间更新为当前，若文件不存在创建新文件]]></content>
