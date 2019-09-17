@@ -57,17 +57,19 @@
   };
 </script>
 
-  <meta name="description" content="虽然啥都没干，真是辛苦自己啦">
-<meta property="og:type" content="website">
-<meta property="og:title" content="卑微的 YuYu">
-<meta property="og:url" content="http://yoursite.com/tags/构造函数/index.html">
+  <meta name="description" content="默认权限 文件默认没有可执行权限，即最大为 666 目录默认有所有权限，即 777  umask 指定目前用户新建文件或目录时的权限默认值  查看 12# umask [-S]-S ：以字母显示默认权限，否则是数字  其数字结果是该默认值要被拿掉的权限">
+<meta name="keywords" content="笔记,基础">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux文件目录的权限和命令补充">
+<meta property="og:url" content="http://yoursite.com/2019/09/11/Linux文件目录的权限和命令补充/index.html">
 <meta property="og:site_name" content="卑微的 YuYu">
-<meta property="og:description" content="虽然啥都没干，真是辛苦自己啦">
+<meta property="og:description" content="默认权限 文件默认没有可执行权限，即最大为 666 目录默认有所有权限，即 777  umask 指定目前用户新建文件或目录时的权限默认值  查看 12# umask [-S]-S ：以字母显示默认权限，否则是数字  其数字结果是该默认值要被拿掉的权限">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-09-11T13:19:29.996Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="卑微的 YuYu">
-<meta name="twitter:description" content="虽然啥都没干，真是辛苦自己啦">
-  <link rel="canonical" href="http://yoursite.com/tags/构造函数/">
+<meta name="twitter:title" content="Linux文件目录的权限和命令补充">
+<meta name="twitter:description" content="默认权限 文件默认没有可执行权限，即最大为 666 目录默认有所有权限，即 777  umask 指定目前用户新建文件或目录时的权限默认值  查看 12# umask [-S]-S ：以字母显示默认权限，否则是数字  其数字结果是该默认值要被拿掉的权限">
+  <link rel="canonical" href="http://yoursite.com/2019/09/11/Linux文件目录的权限和命令补充/">
 
 
 <script id="page-configurations">
@@ -75,13 +77,13 @@
   CONFIG.page = {
     sidebar: "",
     isHome: false,
-    isPost: false,
+    isPost: true,
     isPage: false,
     isArchive: false
   };
 </script>
 
-  <title>标签: 构造函数 | 卑微的 YuYu</title>
+  <title>Linux文件目录的权限和命令补充 | 卑微的 YuYu</title>
   <meta name="generator" content="Hexo 3.9.0">
   
 
@@ -250,117 +252,163 @@
         <div class="content-wrap">
             
 
-    
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-    
-
-  
-
           <div id="content" class="content">
             
 
+  <div id="posts" class="posts-expand">
+      <article itemscope itemtype="http://schema.org/Article">
   
   
   
-  <div class="post-block tag">
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h1 class="collection-header">构造函数<small>标签</small>
+  <div class="post-block post">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/11/Linux文件目录的权限和命令补充/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Sun YuYu">
+      <meta itemprop="description" content="虽然啥都没干，真是辛苦自己啦">
+      <meta itemprop="image" content="/images/logo.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="卑微的 YuYu">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">Linux文件目录的权限和命令补充
+
+          
         </h1>
-      </div>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2019-09-11 21:10:07 / 修改时间：21:19:29" itemprop="dateCreated datePublished" datetime="2019-09-11T21:10:07+08:00">2019-09-11</time>
+            </span>
+          
+            
+
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
+        <h1 id="默认权限"><a href="#默认权限" class="headerlink" title="默认权限"></a>默认权限</h1><ul>
+<li>文件<br>默认没有可执行权限，即最大为 666</li>
+<li>目录<br>默认有所有权限，即 777</li>
+</ul>
+<p>umask 指定目前用户新建文件或目录时的权限默认值</p>
+<ul>
+<li><p>查看</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># umask [-S]</span><br><span class="line">-S ：以字母显示默认权限，否则是数字</span><br></pre></td></tr></table></figure>
 
-  
-  
+<p>其数字结果是该默认值要被拿掉的权限</p>
+<a id="more"></a></li>
+<li><p>设置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># umask xyz</span><br></pre></td></tr></table></figure>
 
-  
+<p>root 默认是 022，一般用户是 002<br>用字母进行计算更准确，如 (-rw-rw-rw-) - (——–wx) = -rw-rw-r–,而非 666 - 003 = 663</p>
+</li>
+</ul>
+<h1 id="隐藏属性"><a href="#隐藏属性" class="headerlink" title="隐藏属性"></a>隐藏属性</h1><h2 id="chattr"><a href="#chattr" class="headerlink" title="chattr"></a>chattr</h2><p>设置文件的隐藏属性<br>仅在 Ext2/Ext3 的文件系统生效</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"># chattr [+-=][ASacdistu] dirname/filname</span><br><span class="line">+ ：仅增加某一个参数</span><br><span class="line">- ：仅减少某一个参数</span><br><span class="line">= ：仅有后面指定的参数</span><br><span class="line"></span><br><span class="line">A ：访问此文件/目录时，访问时间 atime 将不会被修改</span><br><span class="line">S ：对文件的修改将 同步 写入磁盘</span><br><span class="line">a ：root 限定，只能增加数据不能删改</span><br><span class="line">c ：文件将被自动压缩，读取时自动解压，存储时先压缩再存储</span><br><span class="line">d ：dump 程序被执行时，该文件/目录不会被 dump 备份</span><br><span class="line">i ：root 限定，该文件无法被增删改和设置连接</span><br></pre></td></tr></table></figure>
+
+<h2 id="lsattr"><a href="#lsattr" class="headerlink" title="lsattr"></a>lsattr</h2><p>显示文件的隐藏属性</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># lsattr [-adR] filname/dirname</span><br><span class="line">-a 包括隐藏文件</span><br><span class="line">-d 目录属性而非内容</span><br><span class="line">-R 递归，子目录数据也显示</span><br></pre></td></tr></table></figure>
+
+<h1 id="特殊权限"><a href="#特殊权限" class="headerlink" title="特殊权限"></a>特殊权限</h1><p>学习账号 进程后再记</p>
+<h2 id="SUID"><a href="#SUID" class="headerlink" title="SUID"></a>SUID</h2><h2 id="SGID"><a href="#SGID" class="headerlink" title="SGID"></a>SGID</h2><h2 id="SBIT"><a href="#SBIT" class="headerlink" title="SBIT"></a>SBIT</h2>
+    </div>
+
     
-    <div class="collection-year">
-      <h1 class="collection-header">2019</h1>
-    </div>
-  
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
+    
+    
         
-          <a class="post-title-link" href="/2019/09/06/变量赋值与构造函数的执行顺序/" itemprop="url">
-            <span itemprop="name">变量赋值与构造函数的执行顺序</span>
-          </a>
+      
+
+      <footer class="post-footer">
+          
+            
+          
+          <div class="post-tags">
+            
+              <a href="/tags/笔记/" rel="tag"># 笔记</a>
+            
+              <a href="/tags/基础/" rel="tag"># 基础</a>
+            
+          </div>
         
-      </h2>
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2019-09-06T16:56:41+08:00"
-              content="2019-09-06">
-          09-06
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-  
-  
-
-  
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
         
-          <a class="post-title-link" href="/2019/09/06/对象实例化过程/" itemprop="url">
-            <span itemprop="name">对象实例化过程</span>
-          </a>
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+              
+                <a href="/2019/09/09/Linux文件与目录操作/" rel="next" title="Linux文件与目录操作">
+                  <i class="fa fa-chevron-left"></i> Linux文件与目录操作
+                </a>
+              
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+              
+                <a href="/2019/09/11/Linux权限和命令补充/" rel="prev" title="Linux文件目录的权限和命令补充">
+                  Linux文件目录的权限和命令补充 <i class="fa fa-chevron-right"></i>
+                </a>
+              
+            </div>
+          </div>
         
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2019-09-06T15:51:43+08:00"
-              content="2019-09-06">
-          09-06
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    </div>
+      </footer>
+    
   </div>
   
   
   
+  </article>
 
-  
-
+  </div>
 
 
           </div>
           
+    
+    
+  <div class="comments" id="comments">
+    <div id="lv-container" data-id="city" data-uid="MTAyMC80NjQ5NC8yMzAwNA=="></div>
+  </div>
+  
+  
 
         </div>
           
@@ -375,6 +423,11 @@
 
   <aside class="sidebar">
     <div class="sidebar-inner">
+        
+        
+        
+        
+      
 
       <ul class="sidebar-nav motion-element">
         <li class="sidebar-nav-toc">
@@ -387,6 +440,8 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#默认权限"><span class="nav-number">1.</span> <span class="nav-text">默认权限</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#隐藏属性"><span class="nav-number">2.</span> <span class="nav-text">隐藏属性</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#chattr"><span class="nav-number">2.1.</span> <span class="nav-text">chattr</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#lsattr"><span class="nav-number">2.2.</span> <span class="nav-text">lsattr</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#特殊权限"><span class="nav-number">3.</span> <span class="nav-text">特殊权限</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#SUID"><span class="nav-number">3.1.</span> <span class="nav-text">SUID</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SGID"><span class="nav-number">3.2.</span> <span class="nav-text">SGID</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SBIT"><span class="nav-number">3.3.</span> <span class="nav-text">SBIT</span></a></li></ol></li></ol></div>
+        
       </div>
       <!--/noindex-->
 
@@ -594,6 +649,19 @@
 
   
 
+<script>
+  window.livereOptions = {
+    refer: location.pathname.replace(CONFIG.root, '').replace('index.html', '')
+  };
+  (function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+    if (typeof LivereTower === 'function') { return; }
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+    e.parentNode.insertBefore(j, e);
+  })(document, 'script');
+</script>
 
 <script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
 </html>

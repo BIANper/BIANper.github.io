@@ -57,18 +57,18 @@
   };
 </script>
 
-  <meta name="description" content="默认权限 文件默认没有可执行权限，即最大为 666 目录默认有所有权限，即 777 umask 指定目前用户新建文件或目录时的权限默认值 查看 12# umask [-S]-S ：以字母显示默认权限，否则是数字  其数字结果是该默认值要被拿掉的权限  设置 1# umask xyz  root 默认是 022，一般用户是 002用字母进行计算更准确，如 (-rw-rw-rw-) - (——–wx)">
+  <meta name="description" content="默认权限 文件默认没有可执行权限，即最大为 666 目录默认有所有权限，即 777  umask 指定目前用户新建文件或目录时的权限默认值  查看 12# umask [-S]-S ：以字母显示默认权限，否则是数字  其数字结果是该默认值要被拿掉的权限">
 <meta name="keywords" content="笔记,基础">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Linux权限和命令补充">
+<meta property="og:title" content="Linux文件目录的权限和命令补充">
 <meta property="og:url" content="http://yoursite.com/2019/09/11/Linux权限和命令补充/index.html">
 <meta property="og:site_name" content="卑微的 YuYu">
-<meta property="og:description" content="默认权限 文件默认没有可执行权限，即最大为 666 目录默认有所有权限，即 777 umask 指定目前用户新建文件或目录时的权限默认值 查看 12# umask [-S]-S ：以字母显示默认权限，否则是数字  其数字结果是该默认值要被拿掉的权限  设置 1# umask xyz  root 默认是 022，一般用户是 002用字母进行计算更准确，如 (-rw-rw-rw-) - (——–wx)">
+<meta property="og:description" content="默认权限 文件默认没有可执行权限，即最大为 666 目录默认有所有权限，即 777  umask 指定目前用户新建文件或目录时的权限默认值  查看 12# umask [-S]-S ：以字母显示默认权限，否则是数字  其数字结果是该默认值要被拿掉的权限">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-09-11T13:11:17.324Z">
+<meta property="og:updated_time" content="2019-09-16T12:45:52.421Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Linux权限和命令补充">
-<meta name="twitter:description" content="默认权限 文件默认没有可执行权限，即最大为 666 目录默认有所有权限，即 777 umask 指定目前用户新建文件或目录时的权限默认值 查看 12# umask [-S]-S ：以字母显示默认权限，否则是数字  其数字结果是该默认值要被拿掉的权限  设置 1# umask xyz  root 默认是 022，一般用户是 002用字母进行计算更准确，如 (-rw-rw-rw-) - (——–wx)">
+<meta name="twitter:title" content="Linux文件目录的权限和命令补充">
+<meta name="twitter:description" content="默认权限 文件默认没有可执行权限，即最大为 666 目录默认有所有权限，即 777  umask 指定目前用户新建文件或目录时的权限默认值  查看 12# umask [-S]-S ：以字母显示默认权限，否则是数字  其数字结果是该默认值要被拿掉的权限">
   <link rel="canonical" href="http://yoursite.com/2019/09/11/Linux权限和命令补充/">
 
 
@@ -83,7 +83,7 @@
   };
 </script>
 
-  <title>Linux权限和命令补充 | 卑微的 YuYu</title>
+  <title>Linux文件目录的权限和命令补充 | 卑微的 YuYu</title>
   <meta name="generator" content="Hexo 3.9.0">
   
 
@@ -273,7 +273,7 @@
       <meta itemprop="name" content="卑微的 YuYu">
     </span>
       <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">Linux权限和命令补充
+        <h1 class="post-title" itemprop="name headline">Linux文件目录的权限和命令补充
 
           
         </h1>
@@ -289,11 +289,19 @@
                 
               
 
-              <time title="创建时间：2019-09-11 21:10:07 / 修改时间：21:11:17" itemprop="dateCreated datePublished" datetime="2019-09-11T21:10:07+08:00">2019-09-11</time>
+              <time title="创建时间：2019-09-11 21:10:07" itemprop="dateCreated datePublished" datetime="2019-09-11T21:10:07+08:00">2019-09-11</time>
             </span>
           
             
 
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-09-16 20:45:52" itemprop="dateModified" datetime="2019-09-16T20:45:52+08:00">2019-09-16</time>
+              </span>
             
           
             <span class="post-meta-item">
@@ -324,27 +332,61 @@
         <h1 id="默认权限"><a href="#默认权限" class="headerlink" title="默认权限"></a>默认权限</h1><ul>
 <li>文件<br>默认没有可执行权限，即最大为 666</li>
 <li>目录<br>默认有所有权限，即 777</li>
-</ul><p>umask 指定目前用户新建文件或目录时的权限默认值</p><ul>
+</ul>
+<p>umask 指定目前用户新建文件或目录时的权限默认值</p>
+<ul>
 <li><p>查看</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># umask [-S]</span><br><span class="line">-S ：以字母显示默认权限，否则是数字</span><br></pre></td></tr></table></figure>
 
 <p>其数字结果是该默认值要被拿掉的权限</p>
-</li>
+<a id="more"></a></li>
 <li><p>设置</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># umask xyz</span><br></pre></td></tr></table></figure>
 
 <p>root 默认是 022，一般用户是 002<br>用字母进行计算更准确，如 (-rw-rw-rw-) - (——–wx) = -rw-rw-r–,而非 666 - 003 = 663</p>
 </li>
-</ul><a id="more"></a>
-
-
+</ul>
 <h1 id="隐藏属性"><a href="#隐藏属性" class="headerlink" title="隐藏属性"></a>隐藏属性</h1><h2 id="chattr"><a href="#chattr" class="headerlink" title="chattr"></a>chattr</h2><p>设置文件的隐藏属性<br>仅在 Ext2/Ext3 的文件系统生效</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"># chattr [+-=][ASacdistu] dirname/filname</span><br><span class="line">+ ：仅增加某一个参数</span><br><span class="line">- ：仅减少某一个参数</span><br><span class="line">= ：仅有后面指定的参数</span><br><span class="line"></span><br><span class="line">A ：访问此文件/目录时，访问时间 atime 将不会被修改</span><br><span class="line">S ：对文件的修改将 同步 写入磁盘</span><br><span class="line">a ：root 限定，只能增加数据不能删改</span><br><span class="line">c ：文件将被自动压缩，读取时自动解压，存储时先压缩再存储</span><br><span class="line">d ：dump 程序被执行时，该文件/目录不会被 dump 备份</span><br><span class="line">i ：root 限定，该文件无法被增删改和设置连接</span><br></pre></td></tr></table></figure>
 
 <h2 id="lsattr"><a href="#lsattr" class="headerlink" title="lsattr"></a>lsattr</h2><p>显示文件的隐藏属性</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># lsattr [-adR] filname/dirname</span><br><span class="line">-a 包括隐藏文件</span><br><span class="line">-d 目录属性而非内容</span><br><span class="line">-R 递归，子目录数据也显示</span><br></pre></td></tr></table></figure>
 
-<h1 id="特殊权限"><a href="#特殊权限" class="headerlink" title="特殊权限"></a>特殊权限</h1>
+<h1 id="特殊权限"><a href="#特殊权限" class="headerlink" title="特殊权限"></a>特殊权限</h1><h2 id="SUID-4-u-s"><a href="#SUID-4-u-s" class="headerlink" title="SUID 4 u+s"></a>SUID 4 u+s</h2><p>SetUID 只对文件有效，文件所有者的 x 权限为 s</p>
+<ul>
+<li>仅对二进制程序有效，对于 shell script 无效，靠看其根本的二进制文件设置</li>
+<li>执行者对改程序有 x 权限 <font color="#D3D3D3">废话</font></li>
+<li>仅在执行过程 run-time 中有效</li>
+<li>执行者将拥有 owner 的权限</li>
+</ul>
+<p>例：/etc/shadow 记录了所有账号的密码，<strong>-rwsr-xr-x root root</strong> 仅有 root 可读可强制写入，但用户也能修改自己的密码</p>
+<h2 id="SGID-2-g-s"><a href="#SGID-2-g-s" class="headerlink" title="SGID 2 g+s"></a>SGID 2 g+s</h2><p>SetGID 用户组的 x 权限为 s<br>文件同 SUID<br>目录</p>
+<ul>
+<li>用户对此目录有 r 与 x 权限时可进入</li>
+<li>用户在此目录下的有效用户组将变成该目录的用户组</li>
+<li>若在此目录下有 w 权限，则新文件的用户组和此目录的用户组相同</li>
+<li><h2 id="SBIT-1-o-t"><a href="#SBIT-1-o-t" class="headerlink" title="SBIT 1 o+t"></a>SBIT 1 o+t</h2>StickyBit 只对目录有效，other 的 x 的权限为 x，仅用户自己和 root 有权利删除该目录下的文件/目录</li>
+</ul>
+<h1 id="查询文件"><a href="#查询文件" class="headerlink" title="查询文件"></a>查询文件</h1><h2 id="脚本文件名"><a href="#脚本文件名" class="headerlink" title="脚本文件名"></a>脚本文件名</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># which [-a] command</span><br><span class="line">-a 列出所有 PATH 目录中可以找到的同名命令，否者显示找到的第一个</span><br></pre></td></tr></table></figure>
+
+<p>根据 PATH 环境变量规范的路径查找，查不到 bash 内置的命令</p>
+<h2 id="文件名"><a href="#文件名" class="headerlink" title="文件名"></a>文件名</h2><ul>
+<li><p>whereis寻找特定文件 数据库</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># whereis [-bmsu] filname/filname</span><br><span class="line">-b 仅找二进制文件</span><br><span class="line">-m 仅找说明文件 manual 路径下的文件</span><br><span class="line">-s 仅找 source 源文件</span><br><span class="line">-u 其它特殊文件</span><br></pre></td></tr></table></figure>
+
+<p>查找文件，故不在 PATH 中也能找到；利用数据库，速度快但结果有延迟</p>
+</li>
+<li><p>locate 数据库</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># locate [-ir] keyword</span><br><span class="line">-i 忽略大小写</span><br><span class="line">-r 允许接正则表达式</span><br></pre></td></tr></table></figure>
+
+<p>可以只输入文件的部分名称(包括路径中)，根据 /var/lib/mlocate/ 中的数据，默认每天更新一次可能有延迟，可手动 updatedb 更新</p>
+</li>
+<li><p>find 硬盘</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># find [PATH] [option] [action]</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+
     </div>
 
     
@@ -371,8 +413,8 @@
           <div class="post-nav">
             <div class="post-nav-next post-nav-item">
               
-                <a href="/2019/09/09/Linux文件与目录操作/" rel="next" title="Linux文件与目录操作">
-                  <i class="fa fa-chevron-left"></i> Linux文件与目录操作
+                <a href="/2019/09/11/Linux文件目录的权限和命令补充/" rel="next" title="Linux文件目录的权限和命令补充">
+                  <i class="fa fa-chevron-left"></i> Linux文件目录的权限和命令补充
                 </a>
               
             </div>
@@ -435,7 +477,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#默认权限"><span class="nav-number">1.</span> <span class="nav-text">默认权限</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#隐藏属性"><span class="nav-number">2.</span> <span class="nav-text">隐藏属性</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#chattr"><span class="nav-number">2.1.</span> <span class="nav-text">chattr</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#lsattr"><span class="nav-number">2.2.</span> <span class="nav-text">lsattr</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#特殊权限"><span class="nav-number">3.</span> <span class="nav-text">特殊权限</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#默认权限"><span class="nav-number">1.</span> <span class="nav-text">默认权限</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#隐藏属性"><span class="nav-number">2.</span> <span class="nav-text">隐藏属性</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#chattr"><span class="nav-number">2.1.</span> <span class="nav-text">chattr</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#lsattr"><span class="nav-number">2.2.</span> <span class="nav-text">lsattr</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#特殊权限"><span class="nav-number">3.</span> <span class="nav-text">特殊权限</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#SUID-4-u-s"><span class="nav-number">3.1.</span> <span class="nav-text">SUID 4 u+s</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SGID-2-g-s"><span class="nav-number">3.2.</span> <span class="nav-text">SGID 2 g+s</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SBIT-1-o-t"><span class="nav-number">3.3.</span> <span class="nav-text">SBIT 1 o+t</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#查询文件"><span class="nav-number">4.</span> <span class="nav-text">查询文件</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#脚本文件名"><span class="nav-number">4.1.</span> <span class="nav-text">脚本文件名</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文件名"><span class="nav-number">4.2.</span> <span class="nav-text">文件名</span></a></li></ol></li></ol></div>
         
       </div>
       <!--/noindex-->
@@ -453,7 +495,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">9</span>
+          <span class="site-state-item-count">10</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

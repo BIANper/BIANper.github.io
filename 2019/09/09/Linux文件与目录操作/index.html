@@ -65,7 +65,7 @@
 <meta property="og:site_name" content="卑微的 YuYu">
 <meta property="og:description" content="目录处理cd change directory 切换目录 1# cd -          返回之前的目录  pwd print working directory 显示当前目录 1# pwd -p        获得实际路径而非连接路径  mkdir 新建目录 123# mkdir [-mp] dirname-m ：新建自定义权限的目录 如 mkdir -m xyz test-p ：递归创建 如">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-09-11T13:10:50.855Z">
+<meta property="og:updated_time" content="2019-09-11T13:18:18.267Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux文件与目录操作">
 <meta name="twitter:description" content="目录处理cd change directory 切换目录 1# cd -          返回之前的目录  pwd print working directory 显示当前目录 1# pwd -p        获得实际路径而非连接路径  mkdir 新建目录 123# mkdir [-mp] dirname-m ：新建自定义权限的目录 如 mkdir -m xyz test-p ：递归创建 如">
@@ -300,7 +300,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-09-11 21:10:50" itemprop="dateModified" datetime="2019-09-11T21:10:50+08:00">2019-09-11</time>
+                <time title="修改时间：2019-09-11 21:18:18" itemprop="dateModified" datetime="2019-09-11T21:18:18+08:00">2019-09-11</time>
               </span>
             
           
@@ -387,7 +387,7 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># touch [-acdmt] file</span><br><span class="line">-a ：修改 atime</span><br><span class="line">-c ：修改文件时间，文件不存不创建新文件</span><br><span class="line">-d ：修改 atime mtime，ctime 不变</span><br><span class="line">-m ：修改 mtime</span><br><span class="line">-t ：修改 atime mtime，ctime 记录当前时间，格式 YYMMDDhhmm</span><br></pre></td></tr></table></figure>
 
 <p>默认将三个时间更新为当前，若文件不存在创建新文件</p>
-
+<h1 id="文件类型查看"><a href="#文件类型查看" class="headerlink" title="文件类型查看"></a>文件类型查看</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># file filename</span><br></pre></td></tr></table></figure>
     </div>
 
     
@@ -424,8 +424,8 @@
 
             <div class="post-nav-prev post-nav-item">
               
-                <a href="/2019/09/11/Linux权限和命令补充/" rel="prev" title="Linux权限和命令补充">
-                  Linux权限和命令补充 <i class="fa fa-chevron-right"></i>
+                <a href="/2019/09/11/Linux文件目录的权限和命令补充/" rel="prev" title="Linux文件目录的权限和命令补充">
+                  Linux文件目录的权限和命令补充 <i class="fa fa-chevron-right"></i>
                 </a>
               
             </div>
@@ -482,7 +482,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#目录处理"><span class="nav-number">1.</span> <span class="nav-text">目录处理</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#文件处理"><span class="nav-number">2.</span> <span class="nav-text">文件处理</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#文件内容查阅"><span class="nav-number">3.</span> <span class="nav-text">文件内容查阅</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#直接查看"><span class="nav-number">3.1.</span> <span class="nav-text">直接查看</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#翻页查看"><span class="nav-number">3.2.</span> <span class="nav-text">翻页查看</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据选取"><span class="nav-number">3.3.</span> <span class="nav-text">数据选取</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#文件时间处理"><span class="nav-number">4.</span> <span class="nav-text">文件时间处理</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#目录处理"><span class="nav-number">1.</span> <span class="nav-text">目录处理</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#文件处理"><span class="nav-number">2.</span> <span class="nav-text">文件处理</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#文件内容查阅"><span class="nav-number">3.</span> <span class="nav-text">文件内容查阅</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#直接查看"><span class="nav-number">3.1.</span> <span class="nav-text">直接查看</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#翻页查看"><span class="nav-number">3.2.</span> <span class="nav-text">翻页查看</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据选取"><span class="nav-number">3.3.</span> <span class="nav-text">数据选取</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#文件时间处理"><span class="nav-number">4.</span> <span class="nav-text">文件时间处理</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#文件类型查看"><span class="nav-number">5.</span> <span class="nav-text">文件类型查看</span></a></li></ol></div>
         
       </div>
       <!--/noindex-->
@@ -500,7 +500,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">9</span>
+          <span class="site-state-item-count">10</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
