@@ -1,9 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[汇编课程记录]]></title>
+    <url>%2F2019%2F09%2F23%2F%E6%B1%87%E7%BC%96%E8%AF%BE%E7%A8%8B%E8%AE%B0%E5%BD%95%2F</url>
+    <content type="text"><![CDATA[存储器为了区分不同的内存单元（一字节），每个单元会分配一个存储器地址；地址在计算机中用无符号二进制数表示，可简写成十六进制而字，双字，四字数据类型占用多个单元，在低地址中存放低位字节数据，高地址存放高位字节数据，访问时根据最低单元的地址依此存取后续字节 MSB (Most Significant Byte)，最高有效字节，是一个数据中权值最大的那一个字节LSB (Least Significant Byte)，最低有效字节，是一个数据中权值最小的那一个字节Little-Endian，是指数据的高字节(MSB)保存在内存的高地址中，而数据的低字节(LSB)保存在内存的低地址中，这种存储模式将地址的高低和数据位权有效地结合起来，高地址部分权值高，低地址部分权值低例如：整型数 0x1A2B3C4D 在内存中存储的方式如下: 实模式本身意义是代表真实的物理地址8086CPU 的数据总线为 16 位，一次最多读取 2^16=64KB 数据（故实模式每个段最大64KB），但地址总线为 20 位，最大寻址能力是 2^20=1MB将若干个地址连续的内存单元看做是一个段，通过将一个段地址左移 4 位形成基地址，再通过这个基地址来定位这个段的起始地址，然后，再通过偏移地址便可以精确定位到段中的内存单元了10H × 段基址 + 偏移量 = 物理地址]]></content>
+      <categories>
+        <category>汇编</category>
+      </categories>
+      <tags>
+        <tag>课程整理</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Linux文件系统概念]]></title>
     <url>%2F2019%2F09%2F18%2FLinux%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%2F</url>
-    <content type="text"><![CDATA[回顾硬盘分区磁盘分区指定分区的起始与结束柱面，分区的柱面范围记录在第一个扇区的分区表里面硬盘的第一个扇区中有主引导记录 MBR 446bytes 和分区表 partition table 64bytes，由于大小限制最多只能记录四条分区的记录，即主分区或扩展分区 GPT + UEFI 则扫描整块磁盘上的分区，读取 EFI 分区里的引导文件，所以不再限制在扇区开头的 512bytes 中 硬盘限制主分区和扩展分区最多可以有四个，操作系统限制扩展分区只能有一个，无法被格式化即无法作为数据访问，但扩展分区可以再分出逻辑分区 格式化文件系统通过格式化将 inode 和 block 规划好，并不再变动；不同文件系统格式化方法不同，所以不能相互识别利用 inode 记录文件属性和此文件的数据所在的 block，一个文件占用一个 inode block 实际记录文件内容，可占用多个 super block 记录此文件系统的整体信息，如 inode/block 总量使用量剩余量，文件系统的格式等 碎片整理即因为文件写入的 block 过于离散，影响文件读取性能，需要将它们汇合到一起；这针对没有 inode 的 FAT 系统，Linux 的索引式文件系统基本不需要 文件系统inode当 inode 和 block 数量极大时不容易管理，Ext2 在格式化时区分为多个块组 block group，每个块组有独立的 inode/block/superblock 系统boot sector 启动扇区在文件系统最前面，用于安装引导装载程序，这样不用覆盖整块硬盘唯一的 MBR，制作多重引导环境 data block 数据块放置文件内容，每个 block 最多放置一个文件的数据，若有剩余空间则浪费；Ext2 支持 1KB 2KB 4KB 三种 block 大小，其决定最大总容量和最大单一文件容量]]></content>
+    <content type="text"><![CDATA[回顾硬盘分区磁盘分区指定分区的起始与结束柱面，分区的柱面范围记录在第一个扇区的分区表里面硬盘的第一个扇区中有主引导记录 MBR 446bytes 和分区表 partition table 64bytes，由于大小限制最多只能记录四条分区的记录，即主分区或扩展分区 GPT + UEFI 则扫描整块磁盘上的分区，读取 EFI 分区里的引导文件，所以不再限制在扇区开头的 512bytes 中 硬盘限制主分区和扩展分区最多可以有四个，操作系统限制扩展分区只能有一个，无法被格式化即无法作为数据访问，但扩展分区可以再分出逻辑分区 格式化文件系统通过格式化将 inode 和 block 规划好，并不再变动；不同文件系统格式化方法不同，所以不能相互识别利用 inode 记录文件属性和此文件的数据所在的 block，一个文件占用一个 inode block 实际记录文件内容，可占用多个 super block 记录此文件系统的整体信息，如 inode/block 总量使用量剩余量，文件系统的格式等 碎片整理即因为文件写入的 block 过于离散，影响文件读取性能，需要将它们汇合到一起；这针对没有 inode 的 FAT 系统，Linux 的索引式文件系统基本不需要 文件系统当 inode 和 block 数量极大时不容易管理，Ext2 在格式化时区分为多个块组 block group，每个块组有独立的 inode/block/superblock 系统boot sector 启动扇区在文件系统最前面，用于安装引导装载程序，这样不用覆盖整块硬盘唯一的 MBR，制作多重引导环境 data block 数据块放置文件内容，每个 block 最多放置一个文件的数据，若有剩余空间则浪费；Ext2 支持 1KB 2KB 4KB 三种 block 大小，其决定最大总容量和最大单一文件容量 inodetable至少记录访问模式 所有者和组 大小 ctime atime mtime 内容指向 文件特性，系统读取文件时会先分析 inode 所记录的权限与用户是否符合；每个文件占用一个inode，所以文件系统能创建的文件数量与 inode 数量有关inode 大小固定为 128bytes，当文件较大则不足以记录下所有的 block 编号，故定义了 12 个直接，一个间接，一个双间接，一个三间接记录区 用一个 block 来记录额外的编号，若依然不够则用一个 block 指出下一个记录编号的 block，依此最多三层；以 1KB 大小的 block 计算，12*1K + 256*1K + 256*256*1K + 256*256*256*1K = 16GB，即该文件系统最大容量 superblock一般为 1024bytes，除了第一个 blockgroup 中含有 superblock 外，后面的不一定含有，若有则为备份 文件系统描述 File system Dscription描述每个 blockgroup 的开始与结束编号，说明每个区段介于哪个 block 之间 区段指 superblock bitmap inodemap datablock block bitmap 标记/修改某个 block 是否被使用 inode bitmap同上 查询文件系统1234# df &lt;== 查询目前挂载的设备# dumpe2fs [-bh] devname-b ：列出坏道部分-h ：仅列出 superblock 数据]]></content>
       <categories>
         <category>Linux</category>
       </categories>

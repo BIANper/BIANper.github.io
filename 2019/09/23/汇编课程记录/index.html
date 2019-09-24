@@ -57,19 +57,21 @@
   };
 </script>
 
-  <meta name="description" content="子类给成员变量分配空间，在栈中默认初始化成0 调用子类构造函数，因为继承，调用 super(); 调用父类构造函数，因为覆盖，执行子类方法 执行父类构造函数其他语句 父类构造函数结束弹栈 子类对成员变量显示初始化(赋值) 调用子类构造函数其他语句">
-<meta name="keywords" content="基础,思路,构造函数">
+  <meta name="description" content="存储器为了区分不同的内存单元（一字节），每个单元会分配一个存储器地址；地址在计算机中用无符号二进制数表示，可简写成十六进制而字，双字，四字数据类型占用多个单元，在低地址中存放低位字节数据，高地址存放高位字节数据，访问时根据最低单元的地址依此存取后续字节 MSB (Most Significant Byte)，最高有效字节，是一个数据中权值最大的那一个字节LSB (Least Significant">
+<meta name="keywords" content="课程整理">
 <meta property="og:type" content="article">
-<meta property="og:title" content="变量赋值与构造函数的执行顺序">
-<meta property="og:url" content="http://yoursite.com/2019/09/06/变量赋值与构造函数的执行顺序/index.html">
+<meta property="og:title" content="汇编课程记录">
+<meta property="og:url" content="http://yoursite.com/2019/09/23/汇编课程记录/index.html">
 <meta property="og:site_name" content="卑微的 YuYu">
-<meta property="og:description" content="子类给成员变量分配空间，在栈中默认初始化成0 调用子类构造函数，因为继承，调用 super(); 调用父类构造函数，因为覆盖，执行子类方法 执行父类构造函数其他语句 父类构造函数结束弹栈 子类对成员变量显示初始化(赋值) 调用子类构造函数其他语句">
+<meta property="og:description" content="存储器为了区分不同的内存单元（一字节），每个单元会分配一个存储器地址；地址在计算机中用无符号二进制数表示，可简写成十六进制而字，双字，四字数据类型占用多个单元，在低地址中存放低位字节数据，高地址存放高位字节数据，访问时根据最低单元的地址依此存取后续字节 MSB (Most Significant Byte)，最高有效字节，是一个数据中权值最大的那一个字节LSB (Least Significant">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-09-08T11:19:04.097Z">
+<meta property="og:image" content="http://yoursite.com/2019/09/23/汇编课程记录/%E5%AD%98%E5%82%A8%E5%99%A81.jpg">
+<meta property="og:updated_time" content="2019-09-24T11:25:20.718Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="变量赋值与构造函数的执行顺序">
-<meta name="twitter:description" content="子类给成员变量分配空间，在栈中默认初始化成0 调用子类构造函数，因为继承，调用 super(); 调用父类构造函数，因为覆盖，执行子类方法 执行父类构造函数其他语句 父类构造函数结束弹栈 子类对成员变量显示初始化(赋值) 调用子类构造函数其他语句">
-  <link rel="canonical" href="http://yoursite.com/2019/09/06/变量赋值与构造函数的执行顺序/">
+<meta name="twitter:title" content="汇编课程记录">
+<meta name="twitter:description" content="存储器为了区分不同的内存单元（一字节），每个单元会分配一个存储器地址；地址在计算机中用无符号二进制数表示，可简写成十六进制而字，双字，四字数据类型占用多个单元，在低地址中存放低位字节数据，高地址存放高位字节数据，访问时根据最低单元的地址依此存取后续字节 MSB (Most Significant Byte)，最高有效字节，是一个数据中权值最大的那一个字节LSB (Least Significant">
+<meta name="twitter:image" content="http://yoursite.com/2019/09/23/汇编课程记录/%E5%AD%98%E5%82%A8%E5%99%A81.jpg">
+  <link rel="canonical" href="http://yoursite.com/2019/09/23/汇编课程记录/">
 
 
 <script id="page-configurations">
@@ -83,7 +85,7 @@
   };
 </script>
 
-  <title>变量赋值与构造函数的执行顺序 | 卑微的 YuYu</title>
+  <title>汇编课程记录 | 卑微的 YuYu</title>
   <meta name="generator" content="Hexo 3.9.0">
   
 
@@ -261,7 +263,7 @@
   
   
   <div class="post-block post">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/06/变量赋值与构造函数的执行顺序/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/23/汇编课程记录/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Sun YuYu">
@@ -273,7 +275,7 @@
       <meta itemprop="name" content="卑微的 YuYu">
     </span>
       <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">变量赋值与构造函数的执行顺序
+        <h1 class="post-title" itemprop="name headline">汇编课程记录
 
           
         </h1>
@@ -289,7 +291,7 @@
                 
               
 
-              <time title="创建时间：2019-09-06 16:56:41" itemprop="dateCreated datePublished" datetime="2019-09-06T16:56:41+08:00">2019-09-06</time>
+              <time title="创建时间：2019-09-23 18:57:29" itemprop="dateCreated datePublished" datetime="2019-09-23T18:57:29+08:00">2019-09-23</time>
             </span>
           
             
@@ -300,7 +302,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-09-08 19:19:04" itemprop="dateModified" datetime="2019-09-08T19:19:04+08:00">2019-09-08</time>
+                <time title="修改时间：2019-09-24 19:25:20" itemprop="dateModified" datetime="2019-09-24T19:25:20+08:00">2019-09-24</time>
               </span>
             
           
@@ -310,7 +312,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/JAVA/" itemprop="url" rel="index"><span itemprop="name">JAVA</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/汇编/" itemprop="url" rel="index"><span itemprop="name">汇编</span></a></span>
 
                 
                 
@@ -329,18 +331,12 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <ol>
-<li>子类给成员变量分配空间，在栈中默认初始化成0</li>
-<li>调用子类构造函数，因为继承，调用 super();</li>
-<li>调用父类构造函数，因为覆盖，执行子类方法</li>
-<li>执行父类构造函数其他语句</li>
-<li>父类构造函数结束弹栈</li>
-<li>子类对成员变量显示初始化(赋值)</li>
-<li>调用子类构造函数其他语句   </li>
-</ol>
-<a id="more"></a>
-<p><strong>检验</strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Fu</span></span>&#123;</span><br><span class="line">    Fu()</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">this</span>.getNum();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">getNum</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"父类"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Zi</span> <span class="keyword">extends</span> <span class="title">Fu</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> num=<span class="number">4</span>;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Zi</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>();</span><br><span class="line">        System.out.println(<span class="string">"子类构造函数中"</span>+<span class="keyword">this</span>.num);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">getNum</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"getNum方法"</span>+<span class="keyword">this</span>.num);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">learn</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">new</span> Zi();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        <h1 id="存储器"><a href="#存储器" class="headerlink" title="存储器"></a>存储器</h1><p>为了区分不同的内存单元（一字节），每个单元会分配一个存储器地址；地址在计算机中用无符号二进制数表示，可简写成十六进制<br>而字，双字，四字数据类型占用多个单元，在低地址中存放低位字节数据，高地址存放高位字节数据，访问时根据最低单元的地址依此存取后续字节</p><blockquote>
+<p>MSB (Most Significant Byte)，最高有效字节，是一个数据中权值最大的那一个字节<br>LSB (Least Significant Byte)，最低有效字节，是一个数据中权值最小的那一个字节<br>Little-Endian，是指数据的高字节(MSB)保存在内存的高地址中，而数据的低字节(LSB)保存在内存的低地址中，这种存储模式将地址的高低和数据位权有效地结合起来，高地址部分权值高，低地址部分权值低<br>例如：整型数 0x1A2B3C4D 在内存中存储的方式如下:<br><img src="%E5%AD%98%E5%82%A8%E5%99%A81.jpg" alt="avatar"></p>
+</blockquote><a id="more"></a>
+
+<h1 id="实模式"><a href="#实模式" class="headerlink" title="实模式"></a>实模式</h1><p>本身意义是代表真实的物理地址<br>8086CPU 的数据总线为 16 位，一次最多读取 2^16=64KB 数据（故实模式每个段最大64KB），但地址总线为 20 位，最大寻址能力是 2^20=1MB<br>将若干个地址连续的内存单元看做是一个段，通过将一个段地址左移 4 位形成基地址，再通过这个基地址来定位这个段的起始地址，然后，再通过偏移地址便可以精确定位到段中的内存单元了<br><strong>10H × 段基址 + 偏移量 = 物理地址</strong></p>
+
     </div>
 
     
@@ -355,11 +351,7 @@
           
           <div class="post-tags">
             
-              <a href="/tags/基础/" rel="tag"># 基础</a>
-            
-              <a href="/tags/思路/" rel="tag"># 思路</a>
-            
-              <a href="/tags/构造函数/" rel="tag"># 构造函数</a>
+              <a href="/tags/课程整理/" rel="tag"># 课程整理</a>
             
           </div>
         
@@ -369,8 +361,8 @@
           <div class="post-nav">
             <div class="post-nav-next post-nav-item">
               
-                <a href="/2019/09/06/对象实例化过程/" rel="next" title="对象实例化过程">
-                  <i class="fa fa-chevron-left"></i> 对象实例化过程
+                <a href="/2019/09/18/Linux文件系统/" rel="next" title="Linux文件系统概念">
+                  <i class="fa fa-chevron-left"></i> Linux文件系统概念
                 </a>
               
             </div>
@@ -378,10 +370,6 @@
             <span class="post-nav-divider"></span>
 
             <div class="post-nav-prev post-nav-item">
-              
-                <a href="/2019/09/06/各种类型的比较方法/" rel="prev" title="各种类型的比较方法">
-                  各种类型的比较方法 <i class="fa fa-chevron-right"></i>
-                </a>
               
             </div>
           </div>
@@ -437,6 +425,8 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#存储器"><span class="nav-number">1.</span> <span class="nav-text">存储器</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#实模式"><span class="nav-number">2.</span> <span class="nav-text">实模式</span></a></li></ol></div>
+        
       </div>
       <!--/noindex-->
 
