@@ -57,18 +57,18 @@
   };
 </script>
 
-  <meta name="description" content="虽然啥都没干，真是辛苦自己啦">
-<meta name="keywords" content="基础,概念">
+  <meta name="description" content="df du根据 super block 中的信息12345678# df [-ahikHTm] [filenamedirname]-a : 列出所有文件系统，比默认多显示如内存中的  文件系统-k : 以 KB 显示各文件系统-m : 同上-h : 自行以易阅读的单位显示-H : 以 1M=1000K 计算-T : 增加显示文件系统名称 type-i : 以 inode 数量显示">
+<meta name="keywords" content="概念,查,文件系统,连接文件">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Linux文件系统操作">
 <meta property="og:url" content="http://yoursite.com/2019/09/28/Linux文件系统操作/index.html">
 <meta property="og:site_name" content="卑微的 YuYu">
-<meta property="og:description" content="虽然啥都没干，真是辛苦自己啦">
+<meta property="og:description" content="df du根据 super block 中的信息12345678# df [-ahikHTm] [filenamedirname]-a : 列出所有文件系统，比默认多显示如内存中的  文件系统-k : 以 KB 显示各文件系统-m : 同上-h : 自行以易阅读的单位显示-H : 以 1M=1000K 计算-T : 增加显示文件系统名称 type-i : 以 inode 数量显示">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-09-28T15:08:49.879Z">
+<meta property="og:updated_time" content="2019-10-10T04:29:06.444Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux文件系统操作">
-<meta name="twitter:description" content="虽然啥都没干，真是辛苦自己啦">
+<meta name="twitter:description" content="df du根据 super block 中的信息12345678# df [-ahikHTm] [filenamedirname]-a : 列出所有文件系统，比默认多显示如内存中的  文件系统-k : 以 KB 显示各文件系统-m : 同上-h : 自行以易阅读的单位显示-H : 以 1M=1000K 计算-T : 增加显示文件系统名称 type-i : 以 inode 数量显示">
   <link rel="canonical" href="http://yoursite.com/2019/09/28/Linux文件系统操作/">
 
 
@@ -289,11 +289,19 @@
                 
               
 
-              <time title="创建时间：2019-09-28 23:08:20 / 修改时间：23:08:49" itemprop="dateCreated datePublished" datetime="2019-09-28T23:08:20+08:00">2019-09-28</time>
+              <time title="创建时间：2019-09-28 23:08:20" itemprop="dateCreated datePublished" datetime="2019-09-28T23:08:20+08:00">2019-09-28</time>
             </span>
           
             
 
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-10-10 12:29:06" itemprop="dateModified" datetime="2019-10-10T12:29:06+08:00">2019-10-10</time>
+              </span>
             
           
             <span class="post-meta-item">
@@ -321,7 +329,27 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        
+        <h1 id="df-du"><a href="#df-du" class="headerlink" title="df du"></a>df du</h1><p>根据 super block 中的信息</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># df [-ahikHTm] [filenamedirname]</span><br><span class="line">-a : 列出所有文件系统，比默认多显示如内存中的  文件系统</span><br><span class="line">-k : 以 KB 显示各文件系统</span><br><span class="line">-m : 同上</span><br><span class="line">-h : 自行以易阅读的单位显示</span><br><span class="line">-H : 以 1M=1000K 计算</span><br><span class="line">-T : 增加显示文件系统名称 type</span><br><span class="line">-i : 以 inode 数量显示</span><br></pre></td></tr></table></figure><a id="more"></a>
+
+
+<p>/proc 这个挂载点在内存中，没有占用任何硬盘空间故大小为 0<br>/dev/shm 是利用内存虚拟的磁盘空间</p>
+<hr>
+<p>通过搜索文件计算每个的大小然后累加</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># du [-ahskm] filenamedirname</span><br><span class="line">-a : 列出所有文件和目录容量，默认仅统计目录</span><br><span class="line">-hkm : 同 df</span><br><span class="line">-s : 仅显示最后加总的值</span><br><span class="line">-S : 类似 -s 不包括子目录的大小</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># du –hs xxx          显示目录总大小，不会列出目录中的每一个文件</span><br><span class="line"># du –hs xxx/*        列出 xxx 下每个目录和文件所占容量</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>du 能看到的文件是当前存在没有被删除的，删除一个文件的时候，这个文件不是马上就在文件系统当中消失了，而是暂时消失了，当所有程序都不用时，才会根据OS的规则释放掉已经删除的文件<br><strong>不要直接执行 du 命令，它会遍历并列出目录下的所有文件</strong></p>
+</blockquote>
+<h1 id="连接文件"><a href="#连接文件" class="headerlink" title="连接文件"></a>连接文件</h1><p>hard link 硬连接/实际连接<br>新建一个文件名连接到 inode 上</p>
+<ul>
+<li>文件内容和 inode 有关</li>
+<li>通过文件名指向到对应 inode 读取文件</li>
+</ul>
+<p>所以 hard link 和源文件除了文件名，相关信息完全一样，若将其中一个文件删除，因为 inode 还有连接故实际还存在<br>不能跨文件系统，不能连接到目录（因为会产生大量连接造成开销）</p>
+<p>symbolic link 符号连接/快捷方式<br>创建一个独立文件让数据读取指向连接的文件名<br>所以源文件删除后 symbolic link 将无法打开，两个文件指向不同的 indoe<br>目录快捷方式时将同步删除等，新建目录连接至少产生三个：本身 . .. 而上层目录连接数会加一，新目录连接数为二</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># ln [-sf] 源文件 目标文件</span><br><span class="line">-s ：symbolic link，不加参数为 hard link</span><br><span class="line">-f ：目标文件若存在则先删除再创建</span><br></pre></td></tr></table></figure>
     </div>
 
     
@@ -336,9 +364,13 @@
           
           <div class="post-tags">
             
-              <a href="/tags/基础/" rel="tag"># 基础</a>
-            
               <a href="/tags/概念/" rel="tag"># 概念</a>
+            
+              <a href="/tags/查/" rel="tag"># 查</a>
+            
+              <a href="/tags/文件系统/" rel="tag"># 文件系统</a>
+            
+              <a href="/tags/连接文件/" rel="tag"># 连接文件</a>
             
           </div>
         
@@ -357,6 +389,10 @@
             <span class="post-nav-divider"></span>
 
             <div class="post-nav-prev post-nav-item">
+              
+                <a href="/2019/10/06/汇编课程记录2/" rel="prev" title="汇编课程记录2">
+                  汇编课程记录2 <i class="fa fa-chevron-right"></i>
+                </a>
               
             </div>
           </div>
@@ -412,6 +448,8 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#df-du"><span class="nav-number">1.</span> <span class="nav-text">df du</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#连接文件"><span class="nav-number">2.</span> <span class="nav-text">连接文件</span></a></li></ol></div>
+        
       </div>
       <!--/noindex-->
 
@@ -428,7 +466,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">12</span>
+          <span class="site-state-item-count">13</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -486,7 +524,33 @@
         
           
         
-        <span class="site-state-item-count">10</span>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">23</span>
         <span class="site-state-item-name">标签</span>
         </a>
       </div>

@@ -1,15 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[汇编课程记录2]]></title>
+    <url>%2F2019%2F10%2F06%2F%E6%B1%87%E7%BC%96%E8%AF%BE%E7%A8%8B%E8%AE%B0%E5%BD%952%2F</url>
+    <content type="text"></content>
+      <categories>
+        <category>汇编</category>
+      </categories>
+      <tags>
+        <tag>汇编语句</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Linux文件系统操作]]></title>
     <url>%2F2019%2F09%2F28%2FLinux%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E6%93%8D%E4%BD%9C%2F</url>
-    <content type="text"></content>
+    <content type="text"><![CDATA[df du根据 super block 中的信息12345678# df [-ahikHTm] [filenamedirname]-a : 列出所有文件系统，比默认多显示如内存中的 文件系统-k : 以 KB 显示各文件系统-m : 同上-h : 自行以易阅读的单位显示-H : 以 1M=1000K 计算-T : 增加显示文件系统名称 type-i : 以 inode 数量显示 /proc 这个挂载点在内存中，没有占用任何硬盘空间故大小为 0/dev/shm 是利用内存虚拟的磁盘空间 通过搜索文件计算每个的大小然后累加 12345# du [-ahskm] filenamedirname-a : 列出所有文件和目录容量，默认仅统计目录-hkm : 同 df-s : 仅显示最后加总的值-S : 类似 -s 不包括子目录的大小 12# du –hs xxx 显示目录总大小，不会列出目录中的每一个文件# du –hs xxx/* 列出 xxx 下每个目录和文件所占容量 du 能看到的文件是当前存在没有被删除的，删除一个文件的时候，这个文件不是马上就在文件系统当中消失了，而是暂时消失了，当所有程序都不用时，才会根据OS的规则释放掉已经删除的文件不要直接执行 du 命令，它会遍历并列出目录下的所有文件 连接文件hard link 硬连接/实际连接新建一个文件名连接到 inode 上 文件内容和 inode 有关 通过文件名指向到对应 inode 读取文件 所以 hard link 和源文件除了文件名，相关信息完全一样，若将其中一个文件删除，因为 inode 还有连接故实际还存在不能跨文件系统，不能连接到目录（因为会产生大量连接造成开销） symbolic link 符号连接/快捷方式创建一个独立文件让数据读取指向连接的文件名所以源文件删除后 symbolic link 将无法打开，两个文件指向不同的 indoe目录快捷方式时将同步删除等，新建目录连接至少产生三个：本身 . .. 而上层目录连接数会加一，新目录连接数为二 123# ln [-sf] 源文件 目标文件-s ：symbolic link，不加参数为 hard link-f ：目标文件若存在则先删除再创建]]></content>
       <categories>
         <category>Linux</category>
       </categories>
       <tags>
-        <tag>基础</tag>
         <tag>概念</tag>
+        <tag>查</tag>
+        <tag>文件系统</tag>
+        <tag>连接文件</tag>
       </tags>
   </entry>
   <entry>
@@ -20,7 +33,8 @@
         <category>汇编</category>
       </categories>
       <tags>
-        <tag>课程整理</tag>
+        <tag>Little-Endian</tag>
+        <tag>实模式</tag>
       </tags>
   </entry>
   <entry>
@@ -31,8 +45,12 @@
         <category>Linux</category>
       </categories>
       <tags>
-        <tag>基础</tag>
         <tag>概念</tag>
+        <tag>目录树</tag>
+        <tag>格式化</tag>
+        <tag>日志</tag>
+        <tag>硬盘</tag>
+        <tag>文件系统</tag>
       </tags>
   </entry>
   <entry>
@@ -44,8 +62,11 @@
       </categories>
       <tags>
         <tag>操作</tag>
-        <tag>基础</tag>
+        <tag>文件</tag>
+        <tag>目录</tag>
         <tag>概念</tag>
+        <tag>属性权限</tag>
+        <tag>查</tag>
       </tags>
   </entry>
   <entry>
@@ -57,7 +78,9 @@
       </categories>
       <tags>
         <tag>操作</tag>
-        <tag>基础</tag>
+        <tag>增删查</tag>
+        <tag>文件</tag>
+        <tag>目录</tag>
       </tags>
   </entry>
   <entry>
@@ -68,8 +91,10 @@
         <category>Linux</category>
       </categories>
       <tags>
-        <tag>基础</tag>
+        <tag>文件</tag>
+        <tag>目录</tag>
         <tag>概念</tag>
+        <tag>属性权限</tag>
       </tags>
   </entry>
   <entry>
@@ -103,8 +128,8 @@
         <category>JAVA</category>
       </categories>
       <tags>
-        <tag>基础</tag>
         <tag>思路</tag>
+        <tag>基础</tag>
         <tag>比较</tag>
       </tags>
   </entry>
@@ -116,7 +141,6 @@
         <category>JAVA</category>
       </categories>
       <tags>
-        <tag>基础</tag>
         <tag>思路</tag>
         <tag>构造函数</tag>
       </tags>
@@ -129,9 +153,9 @@
         <category>JAVA</category>
       </categories>
       <tags>
-        <tag>基础</tag>
         <tag>思路</tag>
         <tag>构造函数</tag>
+        <tag>基础</tag>
         <tag>实例化</tag>
       </tags>
   </entry>

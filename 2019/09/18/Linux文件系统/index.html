@@ -58,7 +58,7 @@
 </script>
 
   <meta name="description" content="回顾硬盘分区磁盘分区指定分区的起始与结束柱面，分区的柱面范围记录在第一个扇区的分区表里面硬盘的第一个扇区中有主引导记录 MBR 446bytes 和分区表 partition table 64bytes，由于大小限制最多只能记录四条分区的记录，即主分区或扩展分区 GPT + UEFI 则扫描整块磁盘上的分区，读取 EFI 分区里的引导文件，所以不再限制在扇区开头的 512bytes 中">
-<meta name="keywords" content="基础,概念">
+<meta name="keywords" content="概念,目录树,格式化,日志,硬盘,文件系统">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Linux文件系统概念">
 <meta property="og:url" content="http://yoursite.com/2019/09/18/Linux文件系统/index.html">
@@ -66,7 +66,7 @@
 <meta property="og:description" content="回顾硬盘分区磁盘分区指定分区的起始与结束柱面，分区的柱面范围记录在第一个扇区的分区表里面硬盘的第一个扇区中有主引导记录 MBR 446bytes 和分区表 partition table 64bytes，由于大小限制最多只能记录四条分区的记录，即主分区或扩展分区 GPT + UEFI 则扫描整块磁盘上的分区，读取 EFI 分区里的引导文件，所以不再限制在扇区开头的 512bytes 中">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://cn.linux.vbird.org/linux_basic/0230filesystem_files/ext2_filesystem.jpg">
-<meta property="og:updated_time" content="2019-09-28T15:06:18.623Z">
+<meta property="og:updated_time" content="2019-10-10T04:28:29.594Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux文件系统概念">
 <meta name="twitter:description" content="回顾硬盘分区磁盘分区指定分区的起始与结束柱面，分区的柱面范围记录在第一个扇区的分区表里面硬盘的第一个扇区中有主引导记录 MBR 446bytes 和分区表 partition table 64bytes，由于大小限制最多只能记录四条分区的记录，即主分区或扩展分区 GPT + UEFI 则扫描整块磁盘上的分区，读取 EFI 分区里的引导文件，所以不再限制在扇区开头的 512bytes 中">
@@ -302,7 +302,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-09-28 23:06:18" itemprop="dateModified" datetime="2019-09-28T23:06:18+08:00">2019-09-28</time>
+                <time title="修改时间：2019-10-10 12:28:29" itemprop="dateModified" datetime="2019-10-10T12:28:29+08:00">2019-10-10</time>
               </span>
             
           
@@ -402,9 +402,17 @@
           
           <div class="post-tags">
             
-              <a href="/tags/基础/" rel="tag"># 基础</a>
-            
               <a href="/tags/概念/" rel="tag"># 概念</a>
+            
+              <a href="/tags/目录树/" rel="tag"># 目录树</a>
+            
+              <a href="/tags/格式化/" rel="tag"># 格式化</a>
+            
+              <a href="/tags/日志/" rel="tag"># 日志</a>
+            
+              <a href="/tags/硬盘/" rel="tag"># 硬盘</a>
+            
+              <a href="/tags/文件系统/" rel="tag"># 文件系统</a>
             
           </div>
         
@@ -500,7 +508,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">12</span>
+          <span class="site-state-item-count">13</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -558,7 +566,33 @@
         
           
         
-        <span class="site-state-item-count">10</span>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">23</span>
         <span class="site-state-item-name">标签</span>
         </a>
       </div>
