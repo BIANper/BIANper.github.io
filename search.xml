@@ -3,7 +3,7 @@
   <entry>
     <title><![CDATA[temp]]></title>
     <url>%2F2019%2F10%2F21%2Ftemp%2F</url>
-    <content type="text"><![CDATA[12345678910111213141516171819202122232425262728293031void main()&#123; int a, b, fin; cin &gt;&gt; a &gt;&gt; b; //略 if (b &gt; a) &#123; a = a + b; b = a - b; a = a - b; &#125; //获得最大值备用； //若最大值为 b 则互换两者，使最大值永远为 a； //该方法不需要第三个变量，但要注意 a = a + b; 后 a 是否超出 int 范围； for (int i = a*b; i &gt;= a ; i--)&#123; //从公约数最大值（两者的积）开始； //到公约数最小值（其中大的那个数本身，即 a ）结束； if (i % a == 0 &amp;&amp; i % b == 0) //当一个数同时被 a b 整除则通过； //即两者取余（ % ）都（ &amp;&amp; ）为 0 ； fin = i; //因为是从大向小枚举，最后一个符合的值才是最小的公约数； //同理若是从小到大，则第一个符合的值就是最小公约数； //所以需要 break; 结束，否则会被后面符合的数覆盖； &#125; cout &lt;&lt; fin &lt;&lt; endl; return 0;&#125;]]></content>
+    <content type="text"><![CDATA[12345678910111213141516171819202122232425262728293031void main()&#123; int a, b, fin; cin &gt;&gt; a &gt;&gt; b; //略 if (b &gt; a) &#123; a = a + b; b = a - b; a = a - b; &#125; //获得最大值备用； //若最大值为 b 则互换两者，使最大值永远为 a； //该方法不需要第三个变量，但要注意 a = a + b; 后 a 是否超出 int 范围； for (int i = a*b; i &gt;= a ; i--)&#123; //从公约数最大值（两者的积）开始； //到公约数最小值（其中大的那个数本身，即 a ）结束； if (i % a == 0 &amp;&amp; i % b == 0) //当一个数同时被 a b 整除则通过； //即两者取余（ % ）都（ &amp;&amp; ）为 0 ； fin = i; //因为是从大向小枚举，最后一个符合的值才是最小的公约数； //同理若是从小到大，则第一个符合的值就是最小公约数； //所以需要 break; 结束，否则会被后面符合的数覆盖； &#125; cout &lt;&lt; fin &lt;&lt; endl; return 0;&#125; 二： 12345678for (int i = a; i &lt;= a * b; i++) &#123;//将起始和结束条件互换，i 由减变增 if (i % a == 0 &amp;&amp; i % b == 0) &#123; fin = i; break; //需要在第一次符合就结束 &#125; &#125;]]></content>
   </entry>
   <entry>
     <title><![CDATA[Linux磁盘管理]]></title>
@@ -78,11 +78,11 @@
         <category>Linux</category>
       </categories>
       <tags>
-        <tag>概念</tag>
+        <tag>操作</tag>
         <tag>文件</tag>
         <tag>目录</tag>
+        <tag>概念</tag>
         <tag>属性权限</tag>
-        <tag>操作</tag>
         <tag>查</tag>
       </tags>
   </entry>
@@ -94,10 +94,10 @@
         <category>Linux</category>
       </categories>
       <tags>
-        <tag>文件</tag>
-        <tag>目录</tag>
         <tag>操作</tag>
         <tag>增删查</tag>
+        <tag>文件</tag>
+        <tag>目录</tag>
       </tags>
   </entry>
   <entry>
@@ -108,9 +108,9 @@
         <category>Linux</category>
       </categories>
       <tags>
-        <tag>概念</tag>
         <tag>文件</tag>
         <tag>目录</tag>
+        <tag>概念</tag>
         <tag>属性权限</tag>
       </tags>
   </entry>
@@ -133,8 +133,8 @@
         <category>JAVA</category>
       </categories>
       <tags>
-        <tag>思路</tag>
         <tag>静态</tag>
+        <tag>思路</tag>
       </tags>
   </entry>
   <entry>
