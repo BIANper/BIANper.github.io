@@ -1,6 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[temp]]></title>
+    <url>%2F2019%2F10%2F21%2Ftemp%2F</url>
+    <content type="text"><![CDATA[12345678910111213141516171819202122232425262728293031void main()&#123; int a, b, fin; cin &gt;&gt; a &gt;&gt; b; //略 if (b &gt; a) &#123; a = a + b; b = a - b; a = a - b; &#125; //获得最大值备用； //若最大值为 b 则互换两者，使最大值永远为 a； //该方法不需要第三个变量，但要注意 a = a + b; 后 a 是否超出 int 范围； for (int i = a*b; i &gt;= a ; i--)&#123; //从公约数最大值（两者的积）开始； //到公约数最小值（其中大的那个数本身，即 a ）结束； if (i % a == 0 &amp;&amp; i % b == 0) //当一个数同时被 a b 整除则通过； //即两者取余（ % ）都（ &amp;&amp; ）为 0 ； fin = i; //因为是从大向小枚举，最后一个符合的值才是最小的公约数； //同理若是从小到大，则第一个符合的值就是最小公约数； //所以需要 break; 结束，否则会被后面符合的数覆盖； &#125; cout &lt;&lt; fin &lt;&lt; endl; return 0;&#125;]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[Linux磁盘管理]]></title>
+    <url>%2F2019%2F10%2F10%2FLinux%E7%A3%81%E7%9B%98%E7%AE%A1%E7%90%86%2F</url>
+    <content type="text"><![CDATA[磁盘分区程序1234567# fdisk [-l] 设备名称-l ：输出对应设备的所有的分区，未指定设备则显示系统内能找到的所有分区相关命令 m 查看cylinder 可以通过 +sizeM 让系统自动分配# partprobe &lt;==强制内核重新读取分区表（不重启更新分区表信息）无法处理 2TB 以上的磁盘分区，使用 parted 命令设备名称不应该加上数字如 /dev/hdc1 因为分区针对的是整个硬盘设备 磁盘格式化1# mkfs [-t 文件系统格式] 设备文件名 磁盘检验12# fsck [-t 文件系统] [-ACay] 设备名称-t ：Linux 会通过 super block 分辨文件系统，可省略 检查文件系统是否出错，可能会造成部分损坏，故执行 fsck 时被检查分区需要在卸载状态 1# badblocks [-svw] 设备名称 检查扇区是否有坏轨 磁盘挂载与卸载被挂载的目录理论上应该是空目录，否则原有内容会隐藏到新分区卸载 放弃磁盘，这部分还是面向谷歌吧x]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>操作</tag>
+        <tag>硬盘</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[汇编课程记录2]]></title>
     <url>%2F2019%2F10%2F06%2F%E6%B1%87%E7%BC%96%E8%AF%BE%E7%A8%8B%E8%AE%B0%E5%BD%952%2F</url>
     <content type="text"></content>
@@ -61,11 +78,11 @@
         <category>Linux</category>
       </categories>
       <tags>
-        <tag>操作</tag>
+        <tag>概念</tag>
         <tag>文件</tag>
         <tag>目录</tag>
-        <tag>概念</tag>
         <tag>属性权限</tag>
+        <tag>操作</tag>
         <tag>查</tag>
       </tags>
   </entry>
@@ -77,10 +94,10 @@
         <category>Linux</category>
       </categories>
       <tags>
-        <tag>操作</tag>
-        <tag>增删查</tag>
         <tag>文件</tag>
         <tag>目录</tag>
+        <tag>操作</tag>
+        <tag>增删查</tag>
       </tags>
   </entry>
   <entry>
@@ -91,9 +108,9 @@
         <category>Linux</category>
       </categories>
       <tags>
+        <tag>概念</tag>
         <tag>文件</tag>
         <tag>目录</tag>
-        <tag>概念</tag>
         <tag>属性权限</tag>
       </tags>
   </entry>
@@ -116,8 +133,8 @@
         <category>JAVA</category>
       </categories>
       <tags>
-        <tag>静态</tag>
         <tag>思路</tag>
+        <tag>静态</tag>
       </tags>
   </entry>
   <entry>
