@@ -25,7 +25,7 @@
   <entry>
     <title><![CDATA[汇编课程记录3]]></title>
     <url>%2F2019%2F10%2F27%2F%E6%B1%87%E7%BC%96%E8%AF%BE%E7%A8%8B%E8%AE%B0%E5%BD%953%2F</url>
-    <content type="text"><![CDATA[这节也昏迷了…立即数寻址操作数直接存放于指令1MOV AX,1234H ;即1234H寄存器寻址操作数存放于 CPU 的某个寄存器中，不需访问存储器速度快8 位操作数寄存器可以是 AH AL BH BL CH CL DH DL16 位操作数寄存器可以是 AX BX CX DX SP BP SI DI 1MOV AX,BX 存储器直接寻址 数据在存储器中，存储单元的有效地址（偏移地址 EA）由指令直接给出，计算机通过段基址和有效地址获得物理地址（左移四位 + 偏移量balabala），段基址默认为 DS 数据段 1234MOV AX,[100H]MOV AX,A1MOV AX,[A1] ;和上面那条等效MOV AX,ES:[100H] ;取 ES 段段基址，加偏移量 100H 寄存器间接寻址 操作数在存储器中，操作数的有效地址在某个寄存器中 仅可使用这些寄存器 BX BP SI DI，其中 BP 默认段是 SS 段 1MOV AX,[SI] 寄存器相对寻址操作数的有效地址是一个基址寄存器（BX/BP）或变址寄存器（SI/DI）内容与指定 8/16 位偏移量之和 允许的寄存器同间接寻址方式 12345MOV AX,100H[SI]MOV AX,[SI+100H] ;和上面那条等效MOV AX,COUNT[SI];COUNT 为 16 位位移量的符号地址，设 (DS)=3000H (SI)=2000H COUNT=3000H (35000H)=5678H;物理地址 = 30000H + 2000H + 3000H = 35000H 即(AX)=5678H 基址变址寻址操作数的有效地址由一个基址寄存器和一个变址寄存器的内容相加组成，BX 默认段为 DS，BP 默认段是 SS 相对基址变址寻址基址变址寻址的基础上再加一个 8/16 位位移量 待更新]]></content>
+    <content type="text"><![CDATA[这节也昏迷了…（艹，原来这边还没上数据寻址方式立即数寻址操作数直接存放于指令1MOV AX,1234H ;即1234H寄存器寻址操作数存放于 CPU 的某个寄存器中，不需访问存储器速度快8 位操作数寄存器可以是 AH AL BH BL CH CL DH DL16 位操作数寄存器可以是 AX BX CX DX SP BP SI DI 1MOV AX,BX 存储器直接寻址数据在存储器中，存储单元的有效地址（偏移地址 EA）由指令直接给出，计算机通过段基址和有效地址获得物理地址（左移四位 + 偏移量balabala），段基址默认为 DS 数据段 1234MOV AX,[100H]MOV AX,A1MOV AX,[A1] ;和上面那条等效MOV AX,ES:[100H] ;取 ES 段段基址，加偏移量 100H 寄存器间接寻址操作数在存储器中，操作数的有效地址在某个寄存器中 仅可使用这些寄存器 BX BP SI DI，其中 BP 默认段是 SS 段 1MOV AX,[SI] 寄存器相对寻址操作数的有效地址是一个基址寄存器（BX/BP）或变址寄存器（SI/DI）内容与指定 8/16 位偏移量之和 允许的寄存器同间接寻址方式 12345MOV AX,100H[SI]MOV AX,[SI+100H] ;和上面那条等效MOV AX,COUNT[SI];COUNT 为 16 位位移量的符号地址，设 (DS)=3000H (SI)=2000H COUNT=3000H (35000H)=5678H;物理地址 = 30000H + 2000H + 3000H = 35000H 即(AX)=5678H 基址变址寻址操作数的有效地址由一个基址寄存器和一个变址寄存器的内容相加组成，BX 默认段为 DS，BP 默认段是 SS，适用于数组或表格处理，首地址存放在基址寄存器中，用变址寄存器访问数组的元素 1MOV AX,[BX][DI] 相对基址变址寻址基址变址寻址的基础上再加一个 8/16 位位移量，适用于二维数组，偏移量指向文件首，基址寄存器指向某记录，变址寄存器指向记录中的元素 1MOV AX,MASK[BX][SI] 程序转移寻址方式程序的执行由指令的地址指针（CS 和 IP）决定，IP 的内容会自动改变指向下一条指令的地址； 段内转移仅改变 IP 地址，段间转移因为不在同一个代码段同时要改变 CS 的值 段内直接寻址转向的有效地址是相对于当前 IP 值的 8/16 位位移量，即 IP 寄存器内容与指定位移量之和，唯一支持条件转移指令，位移量仅允许 8 位，用于无条件转移指令时，8 位称短跳转，16 位称近跳转 1234JMP SHORT ADDR2 ;无条件转移 JMPADDR2:...JMP NEAR PTR ADDR1 段内间接寻址转向的有效地址是一个寄存器或一个存储单元的内容，通过除立即数寻址以外的任何寻址方式获得，然后取代 IP 寄存器的内容 12JMP BXJMP WORD PTR [BX+ADDR] ;WORD PTR 指出其后的地址长度为一个字 段间直接寻址在指令中直接提供转向地址和偏移地址，分别取代 CS 和 IP 寄存器的内容 1JMP FAR PTR ADDR 段间间接寻址用存储器中两个相继字的内容取代 IP 和 CS 的内容，通过除立即数寻址和寄存器寻址以外的任何寻址方式获得，有效地址的第一个字作为转移偏移地址送 IP 寄存器，第二个字节作为转移段地址送 CS 寄存器 1JMP DWORD PTR [ADDR+BX]]]></content>
       <categories>
         <category>汇编</category>
       </categories>
@@ -46,8 +46,8 @@
         <category>Linux</category>
       </categories>
       <tags>
-        <tag>硬盘</tag>
         <tag>操作</tag>
+        <tag>硬盘</tag>
       </tags>
   </entry>
   <entry>
@@ -70,8 +70,8 @@
       </categories>
       <tags>
         <tag>概念</tag>
-        <tag>文件系统</tag>
         <tag>查</tag>
+        <tag>文件系统</tag>
         <tag>连接文件</tag>
       </tags>
   </entry>
@@ -112,10 +112,10 @@
       </categories>
       <tags>
         <tag>概念</tag>
-        <tag>操作</tag>
         <tag>文件</tag>
         <tag>目录</tag>
         <tag>属性权限</tag>
+        <tag>操作</tag>
         <tag>查</tag>
       </tags>
   </entry>
@@ -127,10 +127,10 @@
         <category>Linux</category>
       </categories>
       <tags>
-        <tag>操作</tag>
-        <tag>增删查</tag>
         <tag>文件</tag>
         <tag>目录</tag>
+        <tag>操作</tag>
+        <tag>增删查</tag>
       </tags>
   </entry>
   <entry>
@@ -166,8 +166,8 @@
         <category>JAVA</category>
       </categories>
       <tags>
-        <tag>思路</tag>
         <tag>静态</tag>
+        <tag>思路</tag>
       </tags>
   </entry>
   <entry>
