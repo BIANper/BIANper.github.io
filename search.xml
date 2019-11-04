@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[汇编课程记录4]]></title>
+    <url>%2F2019%2F11%2F04%2F%E6%B1%87%E7%BC%96%E8%AF%BE%E7%A8%8B%E8%AE%B0%E5%BD%954%2F</url>
+    <content type="text"><![CDATA[嗯这周也继续昏迷x 数据传送指令]]></content>
+      <categories>
+        <category>汇编</category>
+      </categories>
+      <tags>
+        <tag>汇编语句</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[vim的乱七八糟]]></title>
     <url>%2F2019%2F10%2F27%2Fvim%E7%9A%84%E4%B9%B1%E4%B8%83%E5%85%AB%E7%B3%9F%2F</url>
     <content type="text"><![CDATA[文件vim 编辑文件时会新建 .filename.swp 文件，记录所作操作，当 vim 被不正常中断（或他人正在编辑）时暂存文件不会消失，继续编辑时允许如下操作： R 加载暂存文件的内容，恢复未保存的工作，记得离开 vim 后手动删掉暂存文件 D 确定暂存文件无用，删除并新建本次使用的 .swp O 以只读打开，不进行编辑行为，用于他人正在编辑 环境记录文件~/.viminfo 环境配置文件/etc/vimrc，建议创建 ~/.vimrc| - | - ||—————|:————–|| :setnu :set nonu | 行号 ||:set all|当前环境参数||:set|与默认不同的参数| 操作1.块选择 一般模式下 [ctrl]-v 选择，y 复制，p 粘贴 2.多窗口| 新窗口 | 光标向下 | 光标向上 ||—————|:————–|:————–:|| :sp / :sp{filename} | [ctrl]-w+j | [ctrl]-w+k | 3.多文件| 当前打开的文件 | 下一个 | 上一个 ||—————|:————–|:————–:|| :files | :n | :N | 注意中文编码 1234567# LANG=zh_CN.xxx# iconv --list# iconv -f 原编码 -t 新编码 filename [-o newfile]-f from-t to-o newfile 保留原本文件 断行符 DOS ：^M$，即 CR 和 LF Linux ：$，仅 LF 1234# dos2UNIX [-kn] file [newfile]# UNIX2dos [-kn] file [newfile]-k 不修改 mtime-n 输出到新文件]]></content>
@@ -36,7 +47,7 @@
   <entry>
     <title><![CDATA[temp]]></title>
     <url>%2F2019%2F10%2F21%2Ftemp%2F</url>
-    <content type="text"><![CDATA[12345678910111213141516171819202122232425262728293031void main()&#123; int a, b, fin; cin &gt;&gt; a &gt;&gt; b; //略 if (b &gt; a) &#123; a = a + b; b = a - b; a = a - b; &#125; //获得最大值备用； //若最大值为 b 则互换两者，使最大值永远为 a； //该方法不需要第三个变量，但要注意 a = a + b; 后 a 是否超出 int 范围； for (int i = a*b; i &gt;= a ; i--)&#123; //从公约数最大值（两者的积）开始； //到公约数最小值（其中大的那个数本身，即 a ）结束； if (i % a == 0 &amp;&amp; i % b == 0) //当一个数同时被 a b 整除则通过； //即两者取余（ % ）都（ &amp;&amp; ）为 0 ； fin = i; //因为是从大向小枚举，最后一个符合的值才是最小的公约数； //同理若是从小到大，则第一个符合的值就是最小公约数； //所以需要 break; 结束，否则会被后面符合的数覆盖； &#125; cout &lt;&lt; fin &lt;&lt; endl; return 0;&#125; 二： 12345678for (int i = a; i &lt;= a * b; i++) &#123;//将起始和结束条件互换，i 由减变增 if (i % a == 0 &amp;&amp; i % b == 0) &#123; fin = i; break; //需要在第一次符合就结束 &#125; &#125;]]></content>
+    <content type="text"><![CDATA[19-11-04123456789101112131415161718192021#include&lt;iostream&gt;using namespace std;void sum(int);int main() &#123; sum(5); return 0;&#125;int factorial(int num) &#123; if (num == 1) return 1; else return num * factorial(num - 1);&#125;void sum(int num) &#123; int sum = 0; for (int i = 1; i &lt;= num; i++) &#123; factorial(i); sum += factorial(i); cout &lt;&lt;i&lt;&lt; &quot;!=&quot;&lt;&lt;factorial(i) &lt;&lt; endl; &#125; cout&lt;&lt;&quot;阶乘的和为：&quot;&lt;&lt;sum&lt;&lt;endl;&#125; 12345678910111213141516171819202122232425262728#include&lt;iostream&gt;using namespace std;void godbah();bool prime(int);int main()&#123; godbah(); return 0;&#125;void godbah() &#123; int n; cout &lt;&lt; &quot;输入不小于 6 的偶数：&quot; &lt;&lt; endl; cin &gt;&gt; n; for (int i = 3; i &lt;= n; i++) &#123; if (prime(i) &amp;&amp; prime(n - i)) &#123; cout &lt;&lt; n &lt;&lt; &quot;=&quot; &lt;&lt; i &lt;&lt; &quot;+&quot; &lt;&lt; n - i &lt;&lt; endl; break; &#125; &#125;&#125;bool prime(int num) &#123; int i; for (i = 2; i &lt; num; i += 2) &#123; if (num % i == 0) return false; &#125; if (i == num) return true;&#125;]]></content>
   </entry>
   <entry>
     <title><![CDATA[Linux磁盘管理]]></title>
@@ -71,8 +82,8 @@
       <tags>
         <tag>概念</tag>
         <tag>查</tag>
-        <tag>文件系统</tag>
         <tag>连接文件</tag>
+        <tag>文件系统</tag>
       </tags>
   </entry>
   <entry>
@@ -96,11 +107,11 @@
       </categories>
       <tags>
         <tag>概念</tag>
+        <tag>文件系统</tag>
         <tag>目录树</tag>
         <tag>格式化</tag>
         <tag>日志</tag>
         <tag>硬盘</tag>
-        <tag>文件系统</tag>
       </tags>
   </entry>
   <entry>
@@ -111,12 +122,12 @@
         <category>Linux</category>
       </categories>
       <tags>
-        <tag>概念</tag>
+        <tag>操作</tag>
         <tag>文件</tag>
         <tag>目录</tag>
-        <tag>属性权限</tag>
-        <tag>操作</tag>
+        <tag>概念</tag>
         <tag>查</tag>
+        <tag>属性权限</tag>
       </tags>
   </entry>
   <entry>
@@ -127,10 +138,10 @@
         <category>Linux</category>
       </categories>
       <tags>
-        <tag>文件</tag>
-        <tag>目录</tag>
         <tag>操作</tag>
         <tag>增删查</tag>
+        <tag>文件</tag>
+        <tag>目录</tag>
       </tags>
   </entry>
   <entry>
@@ -141,9 +152,9 @@
         <category>Linux</category>
       </categories>
       <tags>
-        <tag>概念</tag>
         <tag>文件</tag>
         <tag>目录</tag>
+        <tag>概念</tag>
         <tag>属性权限</tag>
       </tags>
   </entry>

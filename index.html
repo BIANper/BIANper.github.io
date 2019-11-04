@@ -258,6 +258,92 @@
   
   
   <div class="post-block home">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/04/汇编课程记录4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Sun YuYu">
+      <meta itemprop="description" content="虽然啥都没干，真是辛苦自己啦">
+      <meta itemprop="image" content="/images/logo.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="卑微的 YuYu">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+            
+            <a href="/2019/11/04/汇编课程记录4/" class="post-title-link" itemprop="url">汇编课程记录4</a>
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2019-11-04 11:52:22 / 修改时间：11:55:49" itemprop="dateCreated datePublished" datetime="2019-11-04T11:52:22+08:00">2019-11-04</time>
+            </span>
+          
+            
+
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/汇编/" itemprop="url" rel="index"><span itemprop="name">汇编</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>嗯这周也继续昏迷x</p>
+<h1 id="数据传送指令"><a href="#数据传送指令" class="headerlink" title="数据传送指令"></a>数据传送指令</h1>
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+        <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block home">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/27/vim的乱七八糟/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -585,11 +671,19 @@
                 
               
 
-              <time title="创建时间：2019-10-21 20:32:40 / 修改时间：20:42:41" itemprop="dateCreated datePublished" datetime="2019-10-21T20:32:40+08:00">2019-10-21</time>
+              <time title="创建时间：2019-10-21 20:32:40" itemprop="dateCreated datePublished" datetime="2019-10-21T20:32:40+08:00">2019-10-21</time>
             </span>
           
             
 
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-11-04 19:30:13" itemprop="dateModified" datetime="2019-11-04T19:30:13+08:00">2019-11-04</time>
+              </span>
             
           
 
@@ -604,7 +698,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">void main()</span><br><span class="line">&#123;</span><br><span class="line">	int a, b, fin;</span><br><span class="line">	cin &gt;&gt; a &gt;&gt; b;</span><br><span class="line">	//略</span><br><span class="line"></span><br><span class="line">	if (b &gt; a) &#123;</span><br><span class="line">		a = a + b;</span><br><span class="line">		b = a - b;</span><br><span class="line">		a = a - b;</span><br><span class="line">	&#125;</span><br><span class="line">	//获得最大值备用；</span><br><span class="line">	//若最大值为 b 则互换两者，使最大值永远为 a；</span><br><span class="line">	//该方法不需要第三个变量，但要注意 a = a + b; 后 a 是否超出 int 范围；</span><br><span class="line">	</span><br><span class="line">	for (int i = a*b; i &gt;= a ; i--)&#123;</span><br><span class="line">	//从公约数最大值（两者的积）开始；</span><br><span class="line">	//到公约数最小值（其中大的那个数本身，即 a ）结束；</span><br><span class="line">		if (i % a == 0 &amp;&amp; i % b == 0)</span><br><span class="line">		//当一个数同时被 a b 整除则通过；</span><br><span class="line">		//即两者取余（ % ）都（ &amp;&amp; ）为 0 ；</span><br><span class="line">			fin = i;</span><br><span class="line">			//因为是从大向小枚举，最后一个符合的值才是最小的公约数；</span><br><span class="line">			//同理若是从小到大，则第一个符合的值就是最小公约数；</span><br><span class="line">			//所以需要 break; 结束，否则会被后面符合的数覆盖；</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	cout &lt;&lt; fin &lt;&lt; endl;</span><br><span class="line">    </span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          <h2 id="19-11-04"><a href="#19-11-04" class="headerlink" title="19-11-04"></a>19-11-04</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;iostream&gt;</span><br><span class="line">using namespace std;</span><br><span class="line">void sum(int);</span><br><span class="line"></span><br><span class="line">int main() &#123;</span><br><span class="line">	sum(5);</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br><span class="line">int factorial(int num) &#123;</span><br><span class="line">	if (num == 1)	return 1;</span><br><span class="line">	else	return num * factorial(num - 1);</span><br><span class="line">&#125;</span><br><span class="line">void sum(int num) &#123;</span><br><span class="line">	int sum = 0;</span><br><span class="line">	for (int i = 1; i &lt;= num; i++) &#123;</span><br><span class="line">		factorial(i);</span><br><span class="line">		sum += factorial(i);</span><br><span class="line">		cout &lt;&lt;i&lt;&lt; &quot;!=&quot;&lt;&lt;factorial(i) &lt;&lt; endl;</span><br><span class="line">	&#125;</span><br><span class="line">	cout&lt;&lt;&quot;阶乘的和为：&quot;&lt;&lt;sum&lt;&lt;endl;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
           <!--noindex-->
           
             <div class="post-button text-center">
@@ -1160,117 +1254,6 @@
   </article>
 
     
-        <article itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/11/Linux文件目录的权限和命令补充/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Sun YuYu">
-      <meta itemprop="description" content="虽然啥都没干，真是辛苦自己啦">
-      <meta itemprop="image" content="/images/logo.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="卑微的 YuYu">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-            
-            <a href="/2019/09/11/Linux文件目录的权限和命令补充/" class="post-title-link" itemprop="url">Linux文件目录的权限和命令补充</a>
-          
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              
-                
-              
-
-              <time title="创建时间：2019-09-11 21:10:07" itemprop="dateCreated datePublished" datetime="2019-09-11T21:10:07+08:00">2019-09-11</time>
-            </span>
-          
-            
-
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-10-10 12:31:19" itemprop="dateModified" datetime="2019-10-10T12:31:19+08:00">2019-10-10</time>
-              </span>
-            
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="默认权限"><a href="#默认权限" class="headerlink" title="默认权限"></a>默认权限</h1><ul>
-<li>文件<br>默认没有可执行权限，即最大为 666</li>
-<li>目录<br>默认有所有权限，即 777</li>
-</ul>
-<p>umask 指定目前用户新建文件或目录时的权限默认值</p>
-<ul>
-<li><p>查看</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># umask [-S]</span><br><span class="line">-S ：以字母显示默认权限，否则是数字</span><br></pre></td></tr></table></figure>
-
-<p>其数字结果是该默认值要被拿掉的权限</p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/09/11/Linux文件目录的权限和命令补充/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-          <div class="post-eof"></div>
-        
-      </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
   </div>
 
   
@@ -1323,7 +1306,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">18</span>
+          <span class="site-state-item-count">19</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
