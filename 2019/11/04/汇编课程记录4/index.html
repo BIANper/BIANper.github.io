@@ -57,18 +57,18 @@
   };
 </script>
 
-  <meta name="description" content="嗯这周也继续昏迷x 数据传送指令">
+  <meta name="description" content="嗯这周也继续昏迷x通用数据传送指令1MOV DST,SRC ;传送指令操作数与目的长度必须为 8/16 位目不能为 CS IP 或立即数存储单元和段寄存器之间不能直接传送数据，要用通用寄存器为桥梁立即数不能直接送到段寄存器123456PUSH SRC ;进栈指令;(SP) ⬅ (SP) -2;((SP+1), (SP)) ⬅ (SRC)POP DST ;出栈指令;(DST) ⬅ ((SP+1),">
 <meta name="keywords" content="汇编语句">
 <meta property="og:type" content="article">
 <meta property="og:title" content="汇编课程记录4">
 <meta property="og:url" content="http://yoursite.com/2019/11/04/汇编课程记录4/index.html">
 <meta property="og:site_name" content="卑微的 YuYu">
-<meta property="og:description" content="嗯这周也继续昏迷x 数据传送指令">
+<meta property="og:description" content="嗯这周也继续昏迷x通用数据传送指令1MOV DST,SRC ;传送指令操作数与目的长度必须为 8/16 位目不能为 CS IP 或立即数存储单元和段寄存器之间不能直接传送数据，要用通用寄存器为桥梁立即数不能直接送到段寄存器123456PUSH SRC ;进栈指令;(SP) ⬅ (SP) -2;((SP+1), (SP)) ⬅ (SRC)POP DST ;出栈指令;(DST) ⬅ ((SP+1),">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-11-04T03:55:49.642Z">
+<meta property="og:updated_time" content="2019-11-05T15:22:39.300Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="汇编课程记录4">
-<meta name="twitter:description" content="嗯这周也继续昏迷x 数据传送指令">
+<meta name="twitter:description" content="嗯这周也继续昏迷x通用数据传送指令1MOV DST,SRC ;传送指令操作数与目的长度必须为 8/16 位目不能为 CS IP 或立即数存储单元和段寄存器之间不能直接传送数据，要用通用寄存器为桥梁立即数不能直接送到段寄存器123456PUSH SRC ;进栈指令;(SP) ⬅ (SP) -2;((SP+1), (SP)) ⬅ (SRC)POP DST ;出栈指令;(DST) ⬅ ((SP+1),">
   <link rel="canonical" href="http://yoursite.com/2019/11/04/汇编课程记录4/">
 
 
@@ -289,11 +289,19 @@
                 
               
 
-              <time title="创建时间：2019-11-04 11:52:22 / 修改时间：11:55:49" itemprop="dateCreated datePublished" datetime="2019-11-04T11:52:22+08:00">2019-11-04</time>
+              <time title="创建时间：2019-11-04 11:52:22" itemprop="dateCreated datePublished" datetime="2019-11-04T11:52:22+08:00">2019-11-04</time>
             </span>
           
             
 
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-11-05 23:22:39" itemprop="dateModified" datetime="2019-11-05T23:22:39+08:00">2019-11-05</time>
+              </span>
             
           
             <span class="post-meta-item">
@@ -321,8 +329,33 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>嗯这周也继续昏迷x</p>
-<h1 id="数据传送指令"><a href="#数据传送指令" class="headerlink" title="数据传送指令"></a>数据传送指令</h1>
+        <p>嗯这周也继续昏迷x</p><h1 id="通用数据传送指令"><a href="#通用数据传送指令" class="headerlink" title="通用数据传送指令"></a>通用数据传送指令</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">MOV DST,SRC ;传送指令</span><br></pre></td></tr></table></figure><p>操作数与目的长度必须为 8/16 位<br>目不能为 CS IP 或立即数<br>存储单元和段寄存器之间不能直接传送数据，要用通用寄存器为桥梁<br>立即数不能直接送到段寄存器</p><hr><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">PUSH SRC ;进栈指令</span><br><span class="line">;(SP) ⬅ (SP) -2</span><br><span class="line">;((SP+1), (SP)) ⬅ (SRC)</span><br><span class="line">POP DST ;出栈指令</span><br><span class="line">;(DST) ⬅ ((SP+1), (SP))</span><br><span class="line">;(SP) ⬅ (SP) +2</span><br></pre></td></tr></table></figure><a id="more"></a>
+
+
+
+
+
+
+<p>PUSH 操作数为 16 位的寄存器，存储器，不允许立即数，避免 PUSH SP，因为 8086/8088 和 80286 对此的处理方式不同<br>POP 目为 16 位的寄存器（不允许 CS 段寄存器），存储器<br>堆栈的存取必须以字为单位，PUSH 和 POP 只能做字操作</p>
+<hr>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">XCHG DST, SCR ;交换指令</span><br></pre></td></tr></table></figure>
+
+<p>两个操作数必须有一个在寄存器中，且不允许段寄存器，允许字或字节操作（长度 8/16 位），不允许立即数寻址</p>
+<h1 id="累加器专用传送指令"><a href="#累加器专用传送指令" class="headerlink" title="累加器专用传送指令"></a>累加器专用传送指令</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">IN AL, PORT ;长格式-字节</span><br><span class="line">IN AX, PORT ;长格式-字</span><br><span class="line">IN AL, DX ;短格式-字节</span><br><span class="line">IN AX, DX ;短格式-字</span><br></pre></td></tr></table></figure>
+
+<p>将外部设备的信息输入到 CPU 的累加器 AL/AX 中，源操作数是外部设备端口地址，通过 DX 寄存器指明的地址可以间接寻址 65536 个端口，而用立即数直接指明的地址只能寻址 256 个</p>
+<hr>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">OUT PORT, AL ;长格式-字节</span><br><span class="line">OUT PORT, AX ;长格式-字</span><br><span class="line">OUT DX, AL ;短格式-字节</span><br><span class="line">OUT DX, AX ;短格式-字</span><br></pre></td></tr></table></figure>
+
+<p>将 CPU 累加器中的信息输出到外部设备，基本和 IN 反过来</p>
+<h1 id="地址传送指令"><a href="#地址传送指令" class="headerlink" title="地址传送指令"></a>地址传送指令</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">LEA REG, SRC ;有效地址送寄存器指令</span><br><span class="line"></span><br><span class="line">LEA BX, TABLE</span><br><span class="line">MOV BX, OFFSET TABLE</span><br><span class="line">;两个功能相同，MOV 执行速度比 LEA 快，但 OFFSET 只能用简单符号地址</span><br><span class="line">;与 MOV DST,SRC 区别，此处得到的是有效地址而非存储单元的内容</span><br></pre></td></tr></table></figure>
+
+<p>REG 寄存器，将源操作数的有效地址送到指定寄存器，且必须为 16 位通用寄存器</p>
+<hr>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">LDS REG, SRC ;送寄存器和 DS 指令</span><br><span class="line">LES REG, SRC ;送寄存器和 ES 指令</span><br><span class="line">;(REG) ⬅ (SRC)</span><br><span class="line">;(SREG) ⬅ (SRC+2)</span><br><span class="line">;将存储单元中存放的 16 位偏移地址（即 SRC 的内容）装入</span><br><span class="line">;指定寄存器，然后将（SRC+2）中的 16 位段地址装入指定的</span><br><span class="line">;段寄存器</span><br></pre></td></tr></table></figure>
+
+<p>SREG DS 或 ES，源操作数只能用存储器寻址，目不允许段寄存器</p>
+<h1 id="类型转换指令"><a href="#类型转换指令" class="headerlink" title="类型转换指令"></a>类型转换指令</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">CBW ;字节转字</span><br><span class="line">;将 AL 中的内容扩展到 AH，若 (AL) 最高有效位为 0，</span><br><span class="line">;则 (AH) 为 0，为 1，则 (AH) =0FFH</span><br><span class="line">CWD ;字转双字</span><br><span class="line">;将 AX 中的内容扩展到 DX，形成 DX:AX 双字，</span><br><span class="line">;若 (AX) 最高有效位为 0，则 (DX) 为 0，为 1，则 (DX) =0FFFFH</span><br></pre></td></tr></table></figure>
     </div>
 
     
@@ -411,7 +444,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#数据传送指令"><span class="nav-number">1.</span> <span class="nav-text">数据传送指令</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#通用数据传送指令"><span class="nav-number">1.</span> <span class="nav-text">通用数据传送指令</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#累加器专用传送指令"><span class="nav-number">2.</span> <span class="nav-text">累加器专用传送指令</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#地址传送指令"><span class="nav-number">3.</span> <span class="nav-text">地址传送指令</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#类型转换指令"><span class="nav-number">4.</span> <span class="nav-text">类型转换指令</span></a></li></ol></div>
         
       </div>
       <!--/noindex-->

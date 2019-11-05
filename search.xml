@@ -3,7 +3,7 @@
   <entry>
     <title><![CDATA[汇编课程记录4]]></title>
     <url>%2F2019%2F11%2F04%2F%E6%B1%87%E7%BC%96%E8%AF%BE%E7%A8%8B%E8%AE%B0%E5%BD%954%2F</url>
-    <content type="text"><![CDATA[嗯这周也继续昏迷x 数据传送指令]]></content>
+    <content type="text"><![CDATA[嗯这周也继续昏迷x通用数据传送指令1MOV DST,SRC ;传送指令操作数与目的长度必须为 8/16 位目不能为 CS IP 或立即数存储单元和段寄存器之间不能直接传送数据，要用通用寄存器为桥梁立即数不能直接送到段寄存器123456PUSH SRC ;进栈指令;(SP) ⬅ (SP) -2;((SP+1), (SP)) ⬅ (SRC)POP DST ;出栈指令;(DST) ⬅ ((SP+1), (SP));(SP) ⬅ (SP) +2 PUSH 操作数为 16 位的寄存器，存储器，不允许立即数，避免 PUSH SP，因为 8086/8088 和 80286 对此的处理方式不同POP 目为 16 位的寄存器（不允许 CS 段寄存器），存储器堆栈的存取必须以字为单位，PUSH 和 POP 只能做字操作 1XCHG DST, SCR ;交换指令 两个操作数必须有一个在寄存器中，且不允许段寄存器，允许字或字节操作（长度 8/16 位），不允许立即数寻址 累加器专用传送指令1234IN AL, PORT ;长格式-字节IN AX, PORT ;长格式-字IN AL, DX ;短格式-字节IN AX, DX ;短格式-字 将外部设备的信息输入到 CPU 的累加器 AL/AX 中，源操作数是外部设备端口地址，通过 DX 寄存器指明的地址可以间接寻址 65536 个端口，而用立即数直接指明的地址只能寻址 256 个 1234OUT PORT, AL ;长格式-字节OUT PORT, AX ;长格式-字OUT DX, AL ;短格式-字节OUT DX, AX ;短格式-字 将 CPU 累加器中的信息输出到外部设备，基本和 IN 反过来 地址传送指令123456LEA REG, SRC ;有效地址送寄存器指令LEA BX, TABLEMOV BX, OFFSET TABLE;两个功能相同，MOV 执行速度比 LEA 快，但 OFFSET 只能用简单符号地址;与 MOV DST,SRC 区别，此处得到的是有效地址而非存储单元的内容 REG 寄存器，将源操作数的有效地址送到指定寄存器，且必须为 16 位通用寄存器 1234567LDS REG, SRC ;送寄存器和 DS 指令LES REG, SRC ;送寄存器和 ES 指令;(REG) ⬅ (SRC);(SREG) ⬅ (SRC+2);将存储单元中存放的 16 位偏移地址（即 SRC 的内容）装入;指定寄存器，然后将（SRC+2）中的 16 位段地址装入指定的;段寄存器 SREG DS 或 ES，源操作数只能用存储器寻址，目不允许段寄存器 类型转换指令123456CBW ;字节转字;将 AL 中的内容扩展到 AH，若 (AL) 最高有效位为 0，;则 (AH) 为 0，为 1，则 (AH) =0FFHCWD ;字转双字;将 AX 中的内容扩展到 DX，形成 DX:AX 双字，;若 (AX) 最高有效位为 0，则 (DX) 为 0，为 1，则 (DX) =0FFFFH]]></content>
       <categories>
         <category>汇编</category>
       </categories>
@@ -126,8 +126,8 @@
         <tag>文件</tag>
         <tag>目录</tag>
         <tag>概念</tag>
-        <tag>查</tag>
         <tag>属性权限</tag>
+        <tag>查</tag>
       </tags>
   </entry>
   <entry>
