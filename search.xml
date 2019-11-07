@@ -3,7 +3,7 @@
   <entry>
     <title><![CDATA[Linux bash]]></title>
     <url>%2F2019%2F11%2F06%2FLinux-bash%2F</url>
-    <content type="text"><![CDATA[shell用户默认取得的 shell 记录于 /etc/passwd，默认是 bash上一次登录的历史命令记录在 ~/.bash_histroy，本次登录的会在注销后记录进去内置命令和外部命令123# type [-ta] name-t 仅显示执行时的依据-a 显示所有含 name 的命令内置命令是 shell 解释程序内建的，由 shell 直接执行，不需要派生新的进程；外部命令 shel会创建一个新的进程，新的进程在 PATH 变量内所列出的目录中寻找特定命令执行，默认 shell 将等待直到该进程结束 变量设置规则不能以数字开头，连接的 = 两边不能直接接空格，变量内容若有空格使用 “ 或 ‘ “ 可以保持特殊字符的特性 如 var=lang is $LANG 相当于 lang is en_US ‘ 仅为纯文本 `命令` 和 $(命令) 转义字符 / 将特殊符号变成一般符号，命令过长可以 /[enter] 换行]]></content>
+    <content type="text"><![CDATA[shell用户默认取得的 shell 记录于 /etc/passwd，默认是 bash上一次登录的历史命令记录在 ~/.bash_histroy，本次登录的会在注销后记录进去内置命令和外部命令123# type [-ta] name-t 仅显示执行时的依据-a 显示所有含 name 的命令内置命令是 shell 解释程序内建的，由 shell 直接执行，不需要派生新的进程；外部命令 shel会创建一个新的进程，新的进程在 PATH 变量内所列出的目录中寻找特定命令执行，默认 shell 将等待直到该进程结束 变量env 查看当前 shell 环境下的环境变量和内容set 查看所有变量，包含环境变量和自定义变量 设置规则不能以数字开头，连接的 = 两边不能直接接空格，变量内容若有空格使用 “ 或 ‘，必须成对 “ 可以保持特殊字符的特性，如 var=lang is $LANG 相当于 lang is en_US ‘ 仅为纯文本 `命令` 和 $(命令) 用于在命令中使用其他命令的值，如 echo $version $变量名称 ${变量名称} 用于显示变量或增加变量内容，如 PATH=”$PATH”:/home/bin 转义字符 / 将特殊符号变成一般符号，命令过长可以 /[enter] 换行 若变量需要在子进程进行需要用 export 变成环境变量 unset 取消变量]]></content>
       <categories>
         <category>Linux</category>
       </categories>
@@ -92,8 +92,8 @@
       <tags>
         <tag>概念</tag>
         <tag>查</tag>
-        <tag>连接文件</tag>
         <tag>文件系统</tag>
+        <tag>连接文件</tag>
       </tags>
   </entry>
   <entry>
@@ -117,11 +117,11 @@
       </categories>
       <tags>
         <tag>概念</tag>
-        <tag>文件系统</tag>
         <tag>目录树</tag>
         <tag>格式化</tag>
         <tag>日志</tag>
         <tag>硬盘</tag>
+        <tag>文件系统</tag>
       </tags>
   </entry>
   <entry>
@@ -132,11 +132,11 @@
         <category>Linux</category>
       </categories>
       <tags>
-        <tag>概念</tag>
+        <tag>操作</tag>
         <tag>文件</tag>
         <tag>目录</tag>
+        <tag>概念</tag>
         <tag>属性权限</tag>
-        <tag>操作</tag>
         <tag>查</tag>
       </tags>
   </entry>
@@ -148,10 +148,10 @@
         <category>Linux</category>
       </categories>
       <tags>
-        <tag>文件</tag>
-        <tag>目录</tag>
         <tag>操作</tag>
         <tag>增删查</tag>
+        <tag>文件</tag>
+        <tag>目录</tag>
       </tags>
   </entry>
   <entry>
@@ -162,9 +162,9 @@
         <category>Linux</category>
       </categories>
       <tags>
-        <tag>概念</tag>
         <tag>文件</tag>
         <tag>目录</tag>
+        <tag>概念</tag>
         <tag>属性权限</tag>
       </tags>
   </entry>
@@ -187,8 +187,8 @@
         <category>JAVA</category>
       </categories>
       <tags>
-        <tag>静态</tag>
         <tag>思路</tag>
+        <tag>静态</tag>
       </tags>
   </entry>
   <entry>

@@ -64,7 +64,7 @@
 <meta property="og:site_name" content="卑微的 YuYu">
 <meta property="og:description" content="shell用户默认取得的 shell 记录于 /etc/passwd，默认是 bash上一次登录的历史命令记录在 ~/.bash_histroy，本次登录的会在注销后记录进去内置命令和外部命令123# type [-ta] name-t 仅显示执行时的依据-a 显示所有含 name 的命令内置命令是 shell 解释程序内建的，由 shell 直接执行，不需要派生新的进程；外部命令 shel会创建">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-11-07T05:34:37.971Z">
+<meta property="og:updated_time" content="2019-11-07T07:57:19.477Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux bash">
 <meta name="twitter:description" content="shell用户默认取得的 shell 记录于 /etc/passwd，默认是 bash上一次登录的历史命令记录在 ~/.bash_histroy，本次登录的会在注销后记录进去内置命令和外部命令123# type [-ta] name-t 仅显示执行时的依据-a 显示所有含 name 的命令内置命令是 shell 解释程序内建的，由 shell 直接执行，不需要派生新的进程；外部命令 shel会创建">
@@ -299,7 +299,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-11-07 13:34:37" itemprop="dateModified" datetime="2019-11-07T13:34:37+08:00">2019-11-07</time>
+                <time title="修改时间：2019-11-07 15:57:19" itemprop="dateModified" datetime="2019-11-07T15:57:19+08:00">2019-11-07</time>
               </span>
             
           
@@ -332,12 +332,16 @@
 
 
 
-<h1 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h1><p>设置规则<br>不能以数字开头，连接的 = 两边不能直接接空格，变量内容若有空格使用 “ 或 ‘ </p>
+<h1 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h1><p>env 查看当前 shell 环境下的环境变量和内容<br>set 查看所有变量，包含环境变量和自定义变量</p>
+<p>设置规则<br>不能以数字开头，连接的 = 两边不能直接接空格，变量内容若有空格使用 “ 或 ‘，必须成对</p>
 <ul>
-<li>“ 可以保持特殊字符的特性 如 var=lang is $LANG 相当于 lang is en_US<br>  ‘ 仅为纯文本</li>
+<li>“ 可以保持特殊字符的特性，如 var=lang is $LANG 相当于 lang is en_US<br>  ‘ 仅为纯文本</li>
+<li>`命令` 和 $(命令) 用于在命令中使用其他命令的值，如 echo $version<br>  $变量名称 ${变量名称} 用于显示变量或增加变量内容，如 PATH=”$PATH”:/home/bin</li>
 </ul>
-<p>`命令` 和 $(命令)</p>
 <p>转义字符 / 将特殊符号变成一般符号，命令过长可以 /[enter] 换行</p>
+<p>若变量需要在子进程进行需要用 export 变成环境变量</p>
+<p>unset 取消变量</p>
+<hr>
 
     </div>
 
