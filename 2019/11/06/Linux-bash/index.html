@@ -57,19 +57,18 @@
   };
 </script>
 
-  <meta name="description" content="1Test t = new Test;   JVM 读取 Test.class 文件并加载进内存，加载 Test 的父类(如果有) 堆内存中开辟空间，分配地址 在对象空间中，对对象中的属性进行默认初始化 调用对应的构造函数进行初始化">
-<meta name="keywords" content="思路,构造函数,基础,实例化">
+  <meta name="description" content="shell用户默认取得的 shell 记录于 /etc/passwd，默认是 bash上一次登录的历史命令记录在 ~/.bash_histroy，本次登录的会在注销后记录进去内置命令和外部命令123# type [-ta] name-t 仅显示执行时的依据-a 显示所有含 name 的命令内置命令是 shell 解释程序内建的，由 shell 直接执行，不需要派生新的进程；外部命令 shel会创建">
 <meta property="og:type" content="article">
-<meta property="og:title" content="对象实例化过程">
-<meta property="og:url" content="http://yoursite.com/2019/09/06/对象实例化过程/index.html">
+<meta property="og:title" content="Linux bash">
+<meta property="og:url" content="http://yoursite.com/2019/11/06/Linux-bash/index.html">
 <meta property="og:site_name" content="卑微的 YuYu">
-<meta property="og:description" content="1Test t = new Test;   JVM 读取 Test.class 文件并加载进内存，加载 Test 的父类(如果有) 堆内存中开辟空间，分配地址 在对象空间中，对对象中的属性进行默认初始化 调用对应的构造函数进行初始化">
+<meta property="og:description" content="shell用户默认取得的 shell 记录于 /etc/passwd，默认是 bash上一次登录的历史命令记录在 ~/.bash_histroy，本次登录的会在注销后记录进去内置命令和外部命令123# type [-ta] name-t 仅显示执行时的依据-a 显示所有含 name 的命令内置命令是 shell 解释程序内建的，由 shell 直接执行，不需要派生新的进程；外部命令 shel会创建">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-09-08T11:19:34.865Z">
+<meta property="og:updated_time" content="2019-11-07T05:34:37.971Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="对象实例化过程">
-<meta name="twitter:description" content="1Test t = new Test;   JVM 读取 Test.class 文件并加载进内存，加载 Test 的父类(如果有) 堆内存中开辟空间，分配地址 在对象空间中，对对象中的属性进行默认初始化 调用对应的构造函数进行初始化">
-  <link rel="canonical" href="http://yoursite.com/2019/09/06/对象实例化过程/">
+<meta name="twitter:title" content="Linux bash">
+<meta name="twitter:description" content="shell用户默认取得的 shell 记录于 /etc/passwd，默认是 bash上一次登录的历史命令记录在 ~/.bash_histroy，本次登录的会在注销后记录进去内置命令和外部命令123# type [-ta] name-t 仅显示执行时的依据-a 显示所有含 name 的命令内置命令是 shell 解释程序内建的，由 shell 直接执行，不需要派生新的进程；外部命令 shel会创建">
+  <link rel="canonical" href="http://yoursite.com/2019/11/06/Linux-bash/">
 
 
 <script id="page-configurations">
@@ -83,7 +82,7 @@
   };
 </script>
 
-  <title>对象实例化过程 | 卑微的 YuYu</title>
+  <title>Linux bash | 卑微的 YuYu</title>
   <meta name="generator" content="Hexo 3.9.0">
   
 
@@ -261,7 +260,7 @@
   
   
   <div class="post-block post">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/06/对象实例化过程/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/06/Linux-bash/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Sun YuYu">
@@ -273,7 +272,7 @@
       <meta itemprop="name" content="卑微的 YuYu">
     </span>
       <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">对象实例化过程
+        <h1 class="post-title" itemprop="name headline">Linux bash
 
           
         </h1>
@@ -289,7 +288,7 @@
                 
               
 
-              <time title="创建时间：2019-09-06 15:51:43" itemprop="dateCreated datePublished" datetime="2019-09-06T15:51:43+08:00">2019-09-06</time>
+              <time title="创建时间：2019-11-06 17:23:39" itemprop="dateCreated datePublished" datetime="2019-11-06T17:23:39+08:00">2019-11-06</time>
             </span>
           
             
@@ -300,7 +299,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-09-08 19:19:34" itemprop="dateModified" datetime="2019-09-08T19:19:34+08:00">2019-09-08</time>
+                <time title="修改时间：2019-11-07 13:34:37" itemprop="dateModified" datetime="2019-11-07T13:34:37+08:00">2019-11-07</time>
               </span>
             
           
@@ -310,7 +309,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/JAVA/" itemprop="url" rel="index"><span itemprop="name">JAVA</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a></span>
 
                 
                 
@@ -329,18 +328,16 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Test t = <span class="keyword">new</span> Test;</span><br></pre></td></tr></table></figure>
+        <h1 id="shell"><a href="#shell" class="headerlink" title="shell"></a>shell</h1><p>用户默认取得的 shell 记录于 /etc/passwd，默认是 bash<br>上一次登录的历史命令记录在 ~/.bash_histroy，本次登录的会在注销后记录进去<br>内置命令和外部命令</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># type [-ta] name</span><br><span class="line">-t 仅显示执行时的依据</span><br><span class="line">-a 显示所有含 name 的命令</span><br></pre></td></tr></table></figure><p>内置命令是 shell 解释程序内建的，由 shell 直接执行，不需要派生新的进程；外部命令 shel会创建一个新的进程，新的进程在 PATH 变量内所列出的目录中寻找特定命令执行，默认 shell 将等待直到该进程结束</p><a id="more"></a>
 
-<ol>
-<li>JVM 读取 Test.class 文件并加载进内存，加载 Test 的父类(如果有)</li>
-<li>堆内存中开辟空间，分配地址</li>
-<li>在对象空间中，对对象中的属性进行默认初始化</li>
-<li>调用对应的构造函数进行初始化<a id="more"></a></li>
-<li>在构造函数中，先调用父类的构造函数进行初始化</li>
-<li>父类初始化完毕后，对子类的属性进行显示初始化<br>（ super(); 和第二句之间的动作）</li>
-<li>进行子类构造函数的特定初始化</li>
-<li>初始化完毕，将地址值赋值给引用变量</li>
-</ol>
+
+
+<h1 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h1><p>设置规则<br>不能以数字开头，连接的 = 两边不能直接接空格，变量内容若有空格使用 “ 或 ‘ </p>
+<ul>
+<li>“ 可以保持特殊字符的特性 如 var=lang is $LANG 相当于 lang is en_US<br>  ‘ 仅为纯文本</li>
+</ul>
+<p>`命令` 和 $(命令)</p>
+<p>转义字符 / 将特殊符号变成一般符号，命令过长可以 /[enter] 换行</p>
 
     </div>
 
@@ -351,29 +348,14 @@
       
 
       <footer class="post-footer">
-          
-            
-          
-          <div class="post-tags">
-            
-              <a href="/tags/思路/" rel="tag"># 思路</a>
-            
-              <a href="/tags/构造函数/" rel="tag"># 构造函数</a>
-            
-              <a href="/tags/基础/" rel="tag"># 基础</a>
-            
-              <a href="/tags/实例化/" rel="tag"># 实例化</a>
-            
-          </div>
-        
 
         
 
           <div class="post-nav">
             <div class="post-nav-next post-nav-item">
               
-                <a href="/2019/09/04/hello-world/" rel="next" title="Hello World">
-                  <i class="fa fa-chevron-left"></i> Hello World
+                <a href="/2019/11/04/汇编课程记录4/" rel="next" title="汇编课程记录4">
+                  <i class="fa fa-chevron-left"></i> 汇编课程记录4
                 </a>
               
             </div>
@@ -381,10 +363,6 @@
             <span class="post-nav-divider"></span>
 
             <div class="post-nav-prev post-nav-item">
-              
-                <a href="/2019/09/06/变量赋值与构造函数的执行顺序/" rel="prev" title="变量赋值与构造函数的执行顺序">
-                  变量赋值与构造函数的执行顺序 <i class="fa fa-chevron-right"></i>
-                </a>
               
             </div>
           </div>
@@ -440,6 +418,8 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#shell"><span class="nav-number">1.</span> <span class="nav-text">shell</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#变量"><span class="nav-number">2.</span> <span class="nav-text">变量</span></a></li></ol></div>
+        
       </div>
       <!--/noindex-->
 

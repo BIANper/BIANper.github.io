@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Linux bash]]></title>
+    <url>%2F2019%2F11%2F06%2FLinux-bash%2F</url>
+    <content type="text"><![CDATA[shell用户默认取得的 shell 记录于 /etc/passwd，默认是 bash上一次登录的历史命令记录在 ~/.bash_histroy，本次登录的会在注销后记录进去内置命令和外部命令123# type [-ta] name-t 仅显示执行时的依据-a 显示所有含 name 的命令内置命令是 shell 解释程序内建的，由 shell 直接执行，不需要派生新的进程；外部命令 shel会创建一个新的进程，新的进程在 PATH 变量内所列出的目录中寻找特定命令执行，默认 shell 将等待直到该进程结束 变量设置规则不能以数字开头，连接的 = 两边不能直接接空格，变量内容若有空格使用 “ 或 ‘ “ 可以保持特殊字符的特性 如 var=lang is $LANG 相当于 lang is en_US ‘ 仅为纯文本 `命令` 和 $(命令) 转义字符 / 将特殊符号变成一般符号，命令过长可以 /[enter] 换行]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+  </entry>
+  <entry>
     <title><![CDATA[汇编课程记录4]]></title>
     <url>%2F2019%2F11%2F04%2F%E6%B1%87%E7%BC%96%E8%AF%BE%E7%A8%8B%E8%AE%B0%E5%BD%954%2F</url>
     <content type="text"><![CDATA[嗯这周也继续昏迷x通用数据传送指令1MOV DST,SRC ;传送指令操作数与目的长度必须为 8/16 位目不能为 CS IP 或立即数存储单元和段寄存器之间不能直接传送数据，要用通用寄存器为桥梁立即数不能直接送到段寄存器123456PUSH SRC ;进栈指令;(SP) ⬅ (SP) -2;((SP+1), (SP)) ⬅ (SRC)POP DST ;出栈指令;(DST) ⬅ ((SP+1), (SP));(SP) ⬅ (SP) +2 PUSH 操作数为 16 位的寄存器，存储器，不允许立即数，避免 PUSH SP，因为 8086/8088 和 80286 对此的处理方式不同POP 目为 16 位的寄存器（不允许 CS 段寄存器），存储器堆栈的存取必须以字为单位，PUSH 和 POP 只能做字操作 1XCHG DST, SCR ;交换指令 两个操作数必须有一个在寄存器中，且不允许段寄存器，允许字或字节操作（长度 8/16 位），不允许立即数寻址 累加器专用传送指令1234IN AL, PORT ;长格式-字节IN AX, PORT ;长格式-字IN AL, DX ;短格式-字节IN AX, DX ;短格式-字 将外部设备的信息输入到 CPU 的累加器 AL/AX 中，源操作数是外部设备端口地址，通过 DX 寄存器指明的地址可以间接寻址 65536 个端口，而用立即数直接指明的地址只能寻址 256 个 1234OUT PORT, AL ;长格式-字节OUT PORT, AX ;长格式-字OUT DX, AL ;短格式-字节OUT DX, AX ;短格式-字 将 CPU 累加器中的信息输出到外部设备，基本和 IN 反过来 地址传送指令123456LEA REG, SRC ;有效地址送寄存器指令LEA BX, TABLEMOV BX, OFFSET TABLE;两个功能相同，MOV 执行速度比 LEA 快，但 OFFSET 只能用简单符号地址;与 MOV DST,SRC 区别，此处得到的是有效地址而非存储单元的内容 REG 寄存器，将源操作数的有效地址送到指定寄存器，且必须为 16 位通用寄存器 1234567LDS REG, SRC ;送寄存器和 DS 指令LES REG, SRC ;送寄存器和 ES 指令;(REG) ⬅ (SRC);(SREG) ⬅ (SRC+2);将存储单元中存放的 16 位偏移地址（即 SRC 的内容）装入;指定寄存器，然后将（SRC+2）中的 16 位段地址装入指定的;段寄存器 SREG DS 或 ES，源操作数只能用存储器寻址，目不允许段寄存器 类型转换指令123456CBW ;字节转字;将 AL 中的内容扩展到 AH，若 (AL) 最高有效位为 0，;则 (AH) 为 0，为 1，则 (AH) =0FFHCWD ;字转双字;将 AX 中的内容扩展到 DX，形成 DX:AX 双字，;若 (AX) 最高有效位为 0，则 (DX) 为 0，为 1，则 (DX) =0FFFFH]]></content>
@@ -14,12 +22,14 @@
   <entry>
     <title><![CDATA[vim的乱七八糟]]></title>
     <url>%2F2019%2F10%2F27%2Fvim%E7%9A%84%E4%B9%B1%E4%B8%83%E5%85%AB%E7%B3%9F%2F</url>
-    <content type="text"><![CDATA[文件vim 编辑文件时会新建 .filename.swp 文件，记录所作操作，当 vim 被不正常中断（或他人正在编辑）时暂存文件不会消失，继续编辑时允许如下操作： R 加载暂存文件的内容，恢复未保存的工作，记得离开 vim 后手动删掉暂存文件 D 确定暂存文件无用，删除并新建本次使用的 .swp O 以只读打开，不进行编辑行为，用于他人正在编辑 环境记录文件~/.viminfo 环境配置文件/etc/vimrc，建议创建 ~/.vimrc| - | - ||—————|:————–|| :setnu :set nonu | 行号 ||:set all|当前环境参数||:set|与默认不同的参数| 操作1.块选择 一般模式下 [ctrl]-v 选择，y 复制，p 粘贴 2.多窗口| 新窗口 | 光标向下 | 光标向上 ||—————|:————–|:————–:|| :sp / :sp{filename} | [ctrl]-w+j | [ctrl]-w+k | 3.多文件| 当前打开的文件 | 下一个 | 上一个 ||—————|:————–|:————–:|| :files | :n | :N | 注意中文编码 1234567# LANG=zh_CN.xxx# iconv --list# iconv -f 原编码 -t 新编码 filename [-o newfile]-f from-t to-o newfile 保留原本文件 断行符 DOS ：^M$，即 CR 和 LF Linux ：$，仅 LF 1234# dos2UNIX [-kn] file [newfile]# UNIX2dos [-kn] file [newfile]-k 不修改 mtime-n 输出到新文件]]></content>
+    <content type="text"><![CDATA[文件vim 编辑文件时会新建 .filename.swp 文件，记录所作操作，当 vim 被不正常中断（或他人正在编辑）时暂存文件不会消失，继续编辑时允许如下操作： R 加载暂存文件的内容，恢复未保存的工作，记得离开 vim 后手动删掉暂存文件 D 确定暂存文件无用，删除并新建本次使用的 .swp O 以只读打开，不进行编辑行为，用于他人正在编辑 环境记录文件~/.viminfo 环境配置文件/etc/vimrc，建议创建 ~/.vimrc - - :setnu :set nonu 行号 :set all 当前环境参数 :set 与默认不同的参数 操作1.块选择 一般模式下 [ctrl]-v 选择，y 复制，p 粘贴 2.多窗口 新窗口 光标向下 光标向上 :sp / :sp{filename} [ctrl]-w+j [ctrl]-w+k 3.多文件| 当前打开的文件 | 下一个 | 上一个 ||—————|:————–|:————–:|| :files | :n | :N | 注意中文编码 1234567# LANG=zh_CN.xxx# iconv --list# iconv -f 原编码 -t 新编码 filename [-o newfile]-f from-t to-o newfile 保留原本文件 断行符DOS ：^M$，即 CR 和 LFLinux ：$，仅 LF 1234# dos2UNIX [-kn] file [newfile]# UNIX2dos [-kn] file [newfile]-k 不修改 mtime-n 输出到新文件]]></content>
       <categories>
         <category>Linux</category>
       </categories>
       <tags>
         <tag>vim</tag>
+        <tag>编码乱码</tag>
+        <tag>断行符</tag>
       </tags>
   </entry>
   <entry>
@@ -122,11 +132,11 @@
         <category>Linux</category>
       </categories>
       <tags>
-        <tag>操作</tag>
+        <tag>概念</tag>
         <tag>文件</tag>
         <tag>目录</tag>
-        <tag>概念</tag>
         <tag>属性权限</tag>
+        <tag>操作</tag>
         <tag>查</tag>
       </tags>
   </entry>
@@ -138,10 +148,10 @@
         <category>Linux</category>
       </categories>
       <tags>
-        <tag>操作</tag>
-        <tag>增删查</tag>
         <tag>文件</tag>
         <tag>目录</tag>
+        <tag>操作</tag>
+        <tag>增删查</tag>
       </tags>
   </entry>
   <entry>
@@ -152,9 +162,9 @@
         <category>Linux</category>
       </categories>
       <tags>
+        <tag>概念</tag>
         <tag>文件</tag>
         <tag>目录</tag>
-        <tag>概念</tag>
         <tag>属性权限</tag>
       </tags>
   </entry>
