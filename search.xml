@@ -127,8 +127,8 @@
       <tags>
         <tag>概念</tag>
         <tag>查</tag>
-        <tag>连接文件</tag>
         <tag>文件系统</tag>
+        <tag>连接文件</tag>
       </tags>
   </entry>
   <entry>
@@ -152,11 +152,11 @@
       </categories>
       <tags>
         <tag>概念</tag>
-        <tag>文件系统</tag>
         <tag>目录树</tag>
         <tag>格式化</tag>
         <tag>日志</tag>
         <tag>硬盘</tag>
+        <tag>文件系统</tag>
       </tags>
   </entry>
   <entry>
