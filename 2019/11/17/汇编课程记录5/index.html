@@ -65,7 +65,7 @@
 <meta property="og:site_name" content="卑微的 YuYu">
 <meta property="og:description" content="算术运算指令双操作数指令必须有一个操作数在寄存器中（除源操作数是立即数的情况）单操作数指令不允许使用立即数条件标志位CF 有进位为 1 无进位为 0ZF 结果为零SF 符号OF 溢出，若两个操作数符号相同而结果的符号与之相反时为 1加法指令1234567ADD DST,SRCADC DST,SRC;(DST) ← (SRC)+(DST)+CF;带进位加法指令INC OPR;(OPR) ← (OPR">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-11-17T12:04:30.018Z">
+<meta property="og:updated_time" content="2019-11-21T03:55:52.829Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="汇编课程记录5">
 <meta name="twitter:description" content="算术运算指令双操作数指令必须有一个操作数在寄存器中（除源操作数是立即数的情况）单操作数指令不允许使用立即数条件标志位CF 有进位为 1 无进位为 0ZF 结果为零SF 符号OF 溢出，若两个操作数符号相同而结果的符号与之相反时为 1加法指令1234567ADD DST,SRCADC DST,SRC;(DST) ← (SRC)+(DST)+CF;带进位加法指令INC OPR;(OPR) ← (OPR">
@@ -289,11 +289,19 @@
                 
               
 
-              <time title="创建时间：2019-11-17 20:03:23 / 修改时间：20:04:30" itemprop="dateCreated datePublished" datetime="2019-11-17T20:03:23+08:00">2019-11-17</time>
+              <time title="创建时间：2019-11-17 20:03:23" itemprop="dateCreated datePublished" datetime="2019-11-17T20:03:23+08:00">2019-11-17</time>
             </span>
           
             
 
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-11-21 11:55:52" itemprop="dateModified" datetime="2019-11-21T11:55:52+08:00">2019-11-21</time>
+              </span>
             
           
             <span class="post-meta-item">
@@ -444,6 +452,10 @@
 <td align="center">小于等于/不大于时转移</td>
 </tr>
 </tbody></table>
+<p><strong>测试 CX 的值为 0 则转移</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">JCXZ 地址标号</span><br><span class="line">;若 CX 寄存器的内容为零，则转移到指定地址标号</span><br></pre></td></tr></table></figure>
+
+<p>循环控制指令见下节</p>
 
     </div>
 
@@ -479,7 +491,7 @@
 
             <div class="post-nav-prev post-nav-item">
               
-                <a href="/2019/11/18/汇编课程记录6/" rel="prev" title="汇编课程记录6">
+                <a href="/2019/11/17/汇编课程记录6/" rel="prev" title="汇编课程记录6">
                   汇编课程记录6 <i class="fa fa-chevron-right"></i>
                 </a>
               
