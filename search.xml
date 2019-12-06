@@ -1,219 +1,237 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title><![CDATA[Git-基础]]></title>
-    <url>%2F2019%2F12%2F04%2FGit-%E5%9F%BA%E7%A1%80%2F</url>
+    <title><![CDATA[Git-基础杂烩]]></title>
+    <url>%2F2019%2F12%2F04%2FGit-%E5%9F%BA%E7%A1%80%E6%9D%82%E7%83%A9%2F</url>
     <content type="text"><![CDATA[Git 有三种状态：已提交（committed）、已修改（modified）和已暂存（staged）。 已提交表示数据已保存在本地数据库中。 已修改表示修改了文件，但还没保存到数据库中。 已暂存表示对一个已修改文件的当前版本做了标记，使之包含在下次提交的快照中。 Git 仓库目录是 Git 用来保存项目的元数据和对象数据库的地方。 从其它计算机克隆仓库时，拷贝的就是这里的数据。工作目录是对项目的某个版本独立提取出来的内容。 这些从 Git 仓库的压缩数据库中提取出来的文件，放在磁盘上供你使用或修改。暂存区域是一个文件，保存了下次将提交的文件列表信息，一般在 Git 仓库目录中。 有时候也被称作“索引”。 基本的 Git 工作流程如下： 在工作目录中修改文件。 暂存文件，将文件的快照放入暂存区域。 提交更新，找到暂存区域的文件，将快照永久性存储到 Git 仓库目录。 工作目录下的每一个文件都不外乎这两种状态：已跟踪或未跟踪。已跟踪的文件是指那些被纳入了版本控制的文件，在上一次快照中有它们的记录，在工作一段时间后，它们的状态可能处于未修改，已修改或已放入暂存区。工作目录中除已跟踪文件以外的所有其它文件都属于未跟踪文件，它们既不存在于上次快照的记录中，也没有放入暂存区。 进入该项目目录并输入： git init 该命令将创建一个名为 .git 的子目录，这个子目录含有你初始化的 Git 仓库中所有的必须文件。 使用命令 git add 开始跟踪一个文件，如果参数是目录的路径，该命令将递归地跟踪该目录下的所有文件。若已跟踪文件的内容发生了变化，但还没有放到暂存区。 要暂存这次更新，需要运行 git add 命令。 这是个多功能命令：可以用它开始跟踪新文件，或者把已跟踪的文件放到暂存区，还能用于合并时把有冲突的文件标记为已解决状态等。将这个命令理解为“添加内容到下一次提交中”而不是“将一个文件添加到项目中”要更加合适。 要查看哪些文件处于什么状态，可以用 git status 命令。使用 git status -s 命令或 git status–short 命令，你将得到一种更为紧凑的格式输出：新添加的未跟踪文件前面有 ?? 标记，新添加到暂存区中的文件前面有 A 标记，修改过的文件前面有 M 标记。 出现在右边的 M 表示该文件被修改了但是还没放入暂存区，出现在靠左边的 M 表示该文件被修改了并放入了暂存区。 想知道具体修改了什么地方，可以用 git diff 命令。此命令比较的是工作目录中当前文件和暂存区域快照之间的差异， 也就是修改之后还没有暂存起来的变化内容。查看尚未暂存的文件更新了哪些部分，不加参数直接输入 git diff。要查看已暂存的将要添加到下次提交里的内容，可以用 git diff –cached 命令。 提交命令 git commit ，在 commit 命令后添加 -m 选项，将提交信息与命令放在同一行给 git commit 加上 -a 选项，Git 会把所有已经跟踪过的文件暂存起来一并提交，跳过 git add 步骤。提交完发现漏掉了几个文件没有添加，或者提交信息写错了。 此时可以运行带有 –amend 选项的提交命令尝试重新提交，如果自上次提交以来你还未做任何修改，那么快照会保持不变，修改的只是提交信息。 123$ git commit -m &apos;initial commit&apos;$ git add forgotten_file$ git commit --amend 从 Git 中移除某个文件，必须要从已跟踪文件清单中移除（确切地说，是从暂存区域移除），然后提交。可以用 git rm 命令完成此项工作，并连带从工作目录中删除指定的文件，这样以后就不会出现在未跟踪文件清单中了。如果只是简单地从工作目录中手工删除文件，运行 git status 时就会在 “Changes not staged forcommit” 部分（也就是 未暂存清单）看到。 1$ git rm PROJECTS.md 把文件从 Git 仓库中删除（亦即从暂存区域移除），但仍然希望保留在当前工作目录中。 即让文件保留在磁盘，但是并不想让 Git 继续跟踪，使用 –cached 选项。rm 命令后面可以列出文件或者目录的名字，也可以使用 glob 模式。 1$ git rm log/\*.log 使用 git reset HEAD … 来取消暂存（修改了两个文件并且想作为两次独立的修改提交，却意外地输入 git add * ，取消暂存两个中的一个）。 git checkout – … 撤消修改， 运行 git mv 就相当于运行了下面三条命令： 123$ mv README.md README$ git rm README.md$ git add README git log 会按提交时间列出所有的更新，包括每个提交的 SHA-1 校验和、作者的名字和电子邮件地址、提交时间以及提交说明。-p 用来显示每次提交的内容差异。–stat 选项列出所有被修改过的文件、有多少文件被修改了以及被修改过的文件的哪些行被移除或是添加。 查看已经配置的远程仓库服务器，运行 git remote 命令。运行 git remote add 添加一个新的远程 Git 仓库。从远程仓库中获得数据，可以执行 git fetch [remote-name]，这个命令会访问远程仓库拉取你还没有的数据。 执行完成后，你将会拥有那个远程仓库中所有分支的引用。注意其并不会自动合并。 如果有一个分支设置为跟踪一个远程分支，可以使用 git pull 命令来自动的抓取然后合并远程分支到当前分支。默认情况下，git clone 命令会自动设置本地 master 分支跟踪克隆的远程仓库的 master 分支。运行 git pull 通常会从最初克隆的服务器上抓取数据并自动尝试合并到当前所在的分支。 推送到远程仓库：git push [remote-name] [branchname]。只有当你有服务器的写入权限，并且之前没有人推送过时，这条命令才能生效。 当你和其他人在同一时间克隆，他们先推送到上游然后你再推送到上游，你的推送就会毫无疑问地被拒绝。 你必须先将他们的工作拉取下来并将其合并进你的工作后才能推送。 运行 git remote rename 去修改一个远程仓库的简写名。移除一个仓库使用 git remote rm。 使用 git show tagname 命令可以看到标签信息与对应的提交信息。 附注标签是存储在 Git 数据库中的一个完整对象。 它们是可以被校验的；其中包含打标签者的名字、电子邮件地址、日期时间；还有一个标签信息；并且可以使用 GNU Privacy Guard （GPG）签名与验证。创建附注标签：git tag -a，使用 -m 选项指定一条存储在标签中的信息。 1$ git tag -a v1.4 -m &quot;my version 1.4&quot; 轻量标签本质上是将提交校验和存储到一个文件中，创建时不需要任何选项。后期打标签要在命令的末尾指定提交的校验和（或部分校验和）。 默认情况下 git push 不会传送标签到远程仓库服务器上，运行 git push origin [tagname]，使用 –tags 选项传送所有不在服务器上的标签。 删除本地仓库上的标签，使用命令 git tag -d ，但并不会从任何远程仓库中移除这个标签，必须使用 git push :refs/tags/ 来更新远程仓库。 想查看某个标签所指向的文件版本，可以使用 git checkout 命令。]]></content>
       <categories>
         <category>Git</category>
       </categories>
+      <tags>
+        <tag>版本控制系统</tag>
+      </tags>
   </entry>
   <entry>
-    <title><![CDATA[Linux正则和文件格式化]]></title>
-    <url>%2F2019%2F11%2F28%2FLinux%E6%AD%A3%E5%88%99%E5%92%8C%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F%E5%8C%96%2F</url>
+    <title><![CDATA[Java 补丁-基本程序设计结构]]></title>
+    <url>%2F2019%2F12%2F01%2FJava-%E8%A1%A5%E4%B8%81-%E5%9F%BA%E6%9C%AC%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E7%BB%93%E6%9E%84%2F</url>
+    <content type="text"><![CDATA[数据类型部分整型Java7 开始：允许通过加前缀 0b 写二进制数；允许为数字字面量加下划线： 1_000_000 0b1111_0000_0100 浮点型由于二进制系统无法精确表示分数 1/10，故浮点数值不适用金融计算，此时应使用 BigDecimal 类。 常量 数值 Double.POSITIVE_INFINITY 正无穷 Double.NEGATIVE_INFINITY 负无穷 Double.NaN 非数字 判断一个特定值是否为 Double.NaN ： 12if(x == Double.NaN) // never trueif(Double.isNaN(x)) // √ char 类型char 数据类型是一个采用 UTF-16 编码表示 Unicode 码点的代码单元。Unicode 转义序列会在解析代码前处理： “\u0022+\u0022” 会得到 “”+”” 即空串 // \u00A0 is a newline 会替换成换行符 // c:\users 会产生语法错误 枚举类型枚举类型的变量只能储存这个类型声明中给定的某个枚举值，或没有设置值 null 12enum Size &#123; SAMLL, MEDIUM, LARGE &#125;;Size s = Size.SMALL; 详见 Java补丁-继承（404 相关：大数值java.math 包的 BigInteger 和 BigDecimal 类可以处理任意长度数字序列的数值，分别对应整数和浮点数运算。 运算符部分数学函数StrictMath 类使用 fdlibm 库实现算法，确保在所有平台上得到相同结果。 数值类型转换二元操作中的类型转换，以 double float long 的顺序进行判断，若都不是则两个操作数都转换成 int 型。强制类型转换通过截断小数部分将浮点值转换为整型，若要得到最接近整型的数，使用 Math.round 对浮点数进行舍入： int newx = (int) Math.round(x); // 返回的是 long 类型 强制转换中若超出目标类型的表示范围，结果会截断成完全不同的值。不要在 boolean 与任何数值类型间强制类型转换，转换为数值时可以使用条件表达式 boolean ? 1:0 自增自减和运算符级别自增自减中，用于表达式时前缀形式会先完成加减一： 1234int m = 7;int n = 7;int a = 2 * ++m; // a is 16, m is 8int b = 2 * n++; // b is 14, n is 8 += 是右结合运算符，所以 a += b += c 等价于 a += (b += c) 位运算符 位运算符 &amp; and &#124; or ^ xor ~ not 1int fourthBit = (n &amp; 0b1000) / 0b1000; 字符串部分String API提取子串： substring 方法。多个字符串放在一起用一个定界符分隔： String.join 方法。 不可变字符串String 类没有修改字符串的方法，可以先提取再拼接；编译器可以让字符串共享，即复制一个字符串变量，原始字符串与复制的字符串共享相同的字符。但不要使用 == （此运算符确定是否在同一位置上）检测两个字符串是否相等，虚拟机实际上只有字符串常量是共享的，而 + 或 substring 等操作产生的结果并不共享。使用 equals equalsIgnoreCase 方法。 构建字符串用许多小段字符串构建时，字符串连接的方式效率较低，每次连接字符串都会构建一个新的 String 对象，应该 new 个空的字符串构造器：StringBuilder 类，相对 StringBuffer 类效率更高，但后者允许多线程方式执行操作。 Null 串null 上调用方法会出现错误，故检查字符串 null 和空 if (str != null &amp;&amp; str.length() != 0) ，空用 equals 也行。 码点和代码单元length 方法返回采用 UTF-16 编码表示的给定字符串所需要的代码单元数量（配合 char 数据类型食用）。大多数常用字符使用一个代码单元表示，辅助字符需要一对代码单元表示。故实际长度应该是码点数量：使用 codePointCount 方法获取。如字符 𝕆 U+1D546 需要两个代码单元，若使用 char ch = sentence.charAt(1) 会返回第二个代码单元而非空格，所以此类不要用 char 类型。charAt 方法返回位置 n 的代码单元。 输入输出部分格式化输出 12System.out.printf(&quot;%,.2f&quot;, 10000.0 / 3.0);// 3,333.33 用于 printf 的转换符： 转换符 类型 d 十进制整数 x 十六进制整数 o 八进制整数 f 定点浮点数 e 指数浮点值 g 通用浮点数 a 十六进制浮点数 s 字符串 c 字符 b 布尔 h 散列码 % 百分号 n 平台有关的行分隔符 用于 printf 的标志： 标志 目的 举例 + 打印正负数符号 +333 空格 在正数前加空格 0 数字前面补 0 00333.3 - 左对齐 ( 将负数括在括号内 (3.3) , 添加分组分隔符 3,333 #（f） 包含小数点 333. # 添加前缀 0x 或 0 0xcafe 文件输入和输出通过相对位置指定文件时，是 Java 虚拟机启动路径的相对位置。记得捕获输入输出异常，以免文件不存在或不能被创建。 读取也是构造 Scanner 对象，路径中要转义反斜杠；写入则构造 PrintWriter 对象。 12Scanner in = new Scanner(Paths.get(&quot;c:\\my\\file&quot;), &quot;UTF-8&quot;);Scanner in = new Scanner(&quot;c:\\my\\file&quot;); // 允许但会变成字符数据 控制流程部分switch 语句Java7 开始，case 标签可以是字符串字面量。 1234String input = ...;switch (input.toLowerCase())&#123; case &quot;yes&quot;:&#125; 中断语句带标签 break 语句用于跳出多重循环。标签放在最外层循环之前，并紧跟冒号，break 将跳转到带标签的语句块结尾。只能跳出，不能跳入。带标签 break 甚至可以用于 if 语句或语句块中： 1234label:&#123; if (condition) break label;&#125; continue 语句将控制转移到最内层循环的首部，带标签 continue 语句将跳到与标签匹配的循环首部。 数组部分数字数组初始化为 0，boolean 数组初始化为 false，对象数组则为 null。数组创建后不能改变大小，需要扩展应选择数组列表 array list。Java 允许数组长度为 0，与 null 不同。 for each 循环 1for (variable : collection) statement collection 可以是数组或实现了 Iterable 接口的类对象。打印数组所有值可以用 Arrays.toString 方法，元素被放在 [] 内，用逗号分隔。 初始化和匿名不创建变量初始化一个数组： 1234arr = new int[] &#123;1, 2, 3&#125;;// 即下列语句简写int[] temp = &#123;1, 2, 3&#125;;arr = temp; 拷贝将一个数组变量拷贝给另一个数组变量后，两个变量引用的是同一个数组，即更改在两者生效。若要拷贝到新数组，使用 Arrays.copyOf 方法，这个方法也用于增加数组大小：arr = Arrays.copyOf(arr, 2 * arr.length) 。 命令行参数main 的 String[] args 用于存储命令行参数，不包含程序名。 不规则数组Java 实际上只有一维数组，多维数组定义为“数组的数组”。所以可以让两行交换，或是每一行有不同的长度： 12345int[][] odds = new int[NMAX +1][];//new 一个具有行数的数组for (int n = 0; n &lt;= NMAX; n++) odds[n] = new int[n + 1]; //然后为每行添加元素]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>数据类型</tag>
+        <tag>控制流程</tag>
+        <tag>数组</tag>
+        <tag>运算符</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Linux 正则和文件格式化]]></title>
+    <url>%2F2019%2F11%2F28%2FLinux-%E6%AD%A3%E5%88%99%E5%92%8C%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F%E5%8C%96%2F</url>
     <content type="text"><![CDATA[正则表达式即以行为单位，通过特殊符号查询删除替换某特定字符串的方法，在支持的工具里通用基础正则表达式语系避免编码造成的区别，建议使用特殊符号 特殊符号 意义 :alnum: A-Z a-z 0-9 :alpha: A-Z a-z :upper: A-Z :lower: a-z :digit: 0-9 字符| RE | 意义 || :—: | :—: || ˆword | 待查找字符串在首行 || word$ | 待查找字符串在尾行 || . | 一定有一个任意字符 || \ | 转义 || * | 重复的零到无穷个前一个字符 || [list] | list 中任意一个 || [n1-n2] | 要选取的字符范围 || [ˆlist] | 上上个取反 || {n,m} | 连续 n 到 m 个前一个字符 || {n,} | 连续 n 个以上的前一个字符 |# grep -n &#39;go\{2,3}g&#39; regular_express.txt sed 工具 12345678910111213141516# sed [-nefr] [动作]-n 安静模式，只显示 sed 处理过的列/操作默认列出所有 stdin 的数据-e 在命令行模式上进行 sed 的动作编辑-f 将 sed 的动作写入一个文件，可使用 -f filename 执行-r 使用扩展型正则表达式的语法-i 直接修改读取的文件内容而不由屏幕输出[n1],[n2] 动作 选择进行动作的行数，在 n1 到 n2 行之间进行function 参数a 新增，a 后的字符串在目前的下一行新增一行出现c 替换，c 后的字符串替换 n1,n2 之间的行d 删除i 插入，在目前的上一行新增一行出现p 打印，通常与 sed -n 用s 替换，通常接正则表达式 部分数据的查找并替换# sed &#39;s/旧字符串/新字符串/g&#39; 例子🌰 12345678nl /etc/passwd | sed &apos;3,$d&apos;删除第 3 到最后一行nl /etc/passwd | sed &apos;2a text1...\&gt; text2&apos;增加 2 行字符串nl /etc/passwd | sed -n &apos;2,3p&apos;仅显示 2-3 行，注意 -n /sbin/ifconfig eth0 | grep &apos;inet addr&apos; | sed &apos;s/ˆ.*addr://g&apos; | sed &apos;s/Bcast.*$//g&apos; sed 可以直接修改文件内容，使用 -i 文件的格式化printf 123456789# printf &apos;打印格式&apos; 实际内容\a 警告音\b backspace 退格键\f 清除屏幕\n 输出新一行\r enter 回车键\t 水平 [tab]\v 垂直 [tab]\xNN 转换两位数 NN 数值为字符 awk处理每一行的字段内的数据，默认分隔符是空格键或 [tab] 键 内置变量 名称 意义 NF 每行的字段总数 NR 目前是第几行 FS 目前的分隔符 1# awk &apos;条件类型1&#123;动作1&#125; 条件类型2&#123;动作2&#125; ...&apos; filename 文件比较工具以行为单位，用于同一文件新旧版本的区别，也可以比较目录，找出 only in 文件 123456# diff [-bBi] fromfile tofilefromfile 欲比较的文件tofile 基准比较文件-b 一行中的多个空白视为一个-B 忽略空白行-i 忽略大小写 补丁文件，使用 diff 制作出来的比较文件扩展名为 .patch，以行为单位新文件看到 - 会删除，+ 会加入 12345# patch -R -pN &lt; patch_file-R 还原，不加则为恢复-p 取消 N 层目录patch -p0 &lt; passwd.patch 以字节为单位，用于比较二进制文件 12# cmp [-s] file1 file2-s 列出所有不同点的字节处]]></content>
       <categories>
         <category>Linux</category>
       </categories>
-  </entry>
-  <entry>
-    <title><![CDATA[汇编课程记录6]]></title>
-    <url>%2F2019%2F11%2F17%2F%E6%B1%87%E7%BC%96%E8%AF%BE%E7%A8%8B%E8%AE%B0%E5%BD%956%2F</url>
-    <content type="text"><![CDATA[接上节控制转移指令循环控制指令用 CX 寄存器作为计数器控制程序的循环，目地址只能用段内直接寻址的 8 位位移量，不影响标志位1234LOOP 标号;循环指令;(CX) ⬅ (CX)-1;(CX) ≠ 0，则转移至标号处循环直至 (CX)=01234LOOPZ(LOOPE) 标号;为零/相等循环指令;(CX) ⬅ (CX)-1;(CX) ≠ 0，且 ZF=1 则转移至标号处循环直至 (CX)=0 1234LOOPNZ(LOOPNE) 标号;不为零/不相等循环指令;(CX) ⬅ (CX)-1;(CX) ≠ 0，且 ZF=0 则转移至标号处循环直至 (CX)=0 过程调用和返回指令CALL 子进程调用指令段内直接近调用指令 1234567CALL DSTCALL NEAR PTR DST (DST一般为子程序名);PUSH(IP);(IP) ⬅ (IP)+D16;将子程序的返回地址存入堆栈以便子程序返回时使用;DST 给出转向地址即子程序入口;D16 为机器指令中的位移量，是转向地址和返回地址之间的差值 段内间接近调用 12345CALL SDTCALL WORD PTR DST (DST 为通用寄存器或字存储器);PUSH(IP);(IP) ⬅ (EA);DST 可用寄存器寻址和存储器寻址 段间直接远调用 1234567CALL FAR PTR DST (DST 一般为子程序名);PUSH (CS);PUSH (IP);(IP) ⬅ DST 指定的偏移地址;(CS) ⬅ DST 指定的段地址;因为不在同一段内，返回地址的保存和转向地址设置;要将段基址考虑在内 段间间接远调用 1234567CALL DWORD PTR DST (DST 为双字存储器);PUSH (CS);PUSH (IP);(IP) ⬅ (EA);(CS) ⬅ (EA)+2;EA 是由 DST 的寻址方式确定的有效地址;可使用任一的存储器寻址方式取得 EA RET 子程序返回指令段内近返回 12RET;(IP) ⬅ POP() 段内带立即数近返回允许返回地址出栈后修改的指针，便于调用程序再用 CALL 指令调用子程序前把子程序所需要的参数入栈，当子程序返回后修改指针使其指向参数入栈以前的值 123RET EXP;(IP) ⬅ POP();(SP) ⬅ (SP)+D16 段间远返回 123RET;(IP) ⬅ POP();(CS) ⬅ POP() 段间带立即数远返回 1234RET EXP;(IP) ⬅ POP();(CS) ⬅ POP();(SP) ⬅ (SP)+D16 中断指令CPU 暂时中止现行程序转向另一处处理程序称为中断 int 软中断将控制转向一个型号为 n 的软中断，该中断处理程序入口地址在中断向量表的 n*4 地址处的两个存储字中，n 为类型号，可以是 0-255 的常数或常数表达式，影响 IF TF 标志位 123456789INT n;PUSH (FLAGES);IF ⬅️ 0;TF ⬅️ 0;AC ⬅️ 0;PUSH (CS);PUSH (IP);(IP) ⬅️ (n*4);(CS) ⬅️ (n*4+2) IRET 中断返回指令从中断程序处理程序返回主程序，恢复中断前的 CS 和 IP 的内容，软中断硬中断皆可，影响所有标志位 1234IRET;(IP) ⬅️ POP();(CS) ⬅️ POP();(FLAGES) ⬅️ POP() INTO 溢出中断指令立即产生一个中断类型为 4 的中断，OF=0 时不起作用 12345678910INTO;若 OF=1 则;PUSH (FLAGES);IF ⬅️ 0;TF ⬅️ 0;AC ⬅️ 0;PUSH (CS);PUSH (IP);(IP) ⬅️ (10H);(CS) ⬅️ (12H) 处理器控制指令标志位操作指令对 CF DF IF 进行设置进位位标志操作指令 123456CLC;进位位清 0 指令STC;进位位置 1 指令CMC;进位位求反指令 方向标志操作指令 1234CLD;方向标志清 0 指令STD;方向标志置 1 指令 其他处理器控制指令都不影响标志位NOP 空操作指令不执行任何操作，其机器码占用一个字节单元，通常用于调试程序时替代被删除指令的机器码而无须重新汇编链接；或在延时程序中作为延时时间的调节 1NOP HLT 停机指令使处理器暂停不进行任何操作，当 CPU 发生复位或来自外部的中断时，脱离暂停状态。用于程序中断等待，在 PC 机中会引发死机，一般的应用程序不要使用 1HLT WAIT 等待指令使处理器处于空转等待状态，不做任何操作，也可以用来等待外部中断的发生，但中断结束后仍然返回 WAIT 继续等待；可用于与 ESC 指令配合等待协处理器的执行结果 1WAIT ESC 换码指令指定协处理器接受指令和数据，CPU 将控制权交给协处理器，第一个数据 OP 操作码，第二个数据为操作数（寄存器 REG 或存储器 MEM 中的内容） 1ESC OP, REG/MEM LOCK 封锁指令是指令前缀，与其他指令配合维持总栈的控制权不被其他处理器占有，直到与其配合的指令执行完毕 1LOCK 指令]]></content>
-      <categories>
-        <category>汇编</category>
-      </categories>
       <tags>
-        <tag>汇编语句</tag>
+        <tag>文件</tag>
+        <tag>正则表达式</tag>
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[汇编课程记录5]]></title>
-    <url>%2F2019%2F11%2F17%2F%E6%B1%87%E7%BC%96%E8%AF%BE%E7%A8%8B%E8%AE%B0%E5%BD%955%2F</url>
+    <title><![CDATA[汇编课程记录 5]]></title>
+    <url>%2F2019%2F11%2F17%2F%E6%B1%87%E7%BC%96%E8%AF%BE%E7%A8%8B%E8%AE%B0%E5%BD%95-5%2F</url>
     <content type="text"><![CDATA[算术运算指令双操作数指令必须有一个操作数在寄存器中（除源操作数是立即数的情况）单操作数指令不允许使用立即数条件标志位CF 有进位为 1 无进位为 0ZF 结果为零SF 符号OF 溢出，若两个操作数符号相同而结果的符号与之相反时为 1加法指令1234567ADD DST,SRCADC DST,SRC;(DST) ← (SRC)+(DST)+CF;带进位加法指令INC OPR;(OPR) ← (OPR)+1;加 1 指令 减法指令123456789101112SUB DST,SRCSBB DST,SRC;(DST) ← (DST)-(SRC)-CF;带借位减法指令DEC OPR;减 1 指令NEG OPR;类似 (OPR) ← 0FFFFH-(OPR)+1;求补指令CMP OPR1,OPR2;比较指令，执行 SUB 操作但不保存结果，只根据结果设置条件标志位;两操作数的类型长度须一致，不能同时为存储器操作数 乘法指令目操作数必须是累加器，字节运算为 AL，字运算为 AX源操作数允许立即数外的寻址方式两个 8 位数相乘得 16 位乘积存放 1234567MUL SRC;无符号数乘法指令;(AX) ← (AL)*(SRC);(DX,AX) ← (AX)*(SRC);DX 放高字位，AX 放低字位IMUL SRC;有符号数乘法指令 MUL 指令中，若字节操作的 (AH) 或字操作的 (DX) 为 0，则 CF OF 为 0，否则为 1，用于检查字节相乘的结果是字节还是字，或检查字相乘的结果是字还是双字IMUL 指令中，若乘积的高一半是低一半的符号扩展，则 CF OF 为 0 除法指令12345678910DIV SRC;(AL) ← (AX)/(SRC) 的商;(AH) ← (AX)/(SRC) 的余数;源操作数为 8 位时，被除数必须 16 位;被除数必须预先存在 AX 中;(AL) ← (DX,AX)/(SRC) 的商;(AH) ← (DX,AX)/(SRC) 的余数;被除数必须预先存在 DX,AX 中IDIV SRC;有符号数除法指令 逻辑操作指令逻辑运算指令1234AND DST,SRC;(DST) ← (DST)∧(SRC);逻辑与指令;将源设置成立即数，将要屏蔽的位设为 0，可以使目的某些位被清零 1234OR DST,SRC;(DST) ← (DST)V(SRC);逻辑或指令;使目的某些位置 1 123456789NOT OPR;逻辑非指令，按位取反XOR DST,SRC;异或指令;将目的某些位取反，源操作数中需要取反的位设为 1XOR AX,AX ;给寄存器清零，同时使 CF 清零TEST OPR1,OPR2;用(OPR1)∧(OPR2) 的结果设置条件标志位，不影响不保存;可测试目的某些位是否为 0 或 1，测试位为 1 则 ZF=1 时结果为 0 移位指令123456SHL OPR,CNTSAL OPR,CN;逻辑左移指令和算术左移指令;将操作数 OPR 向左移动 CNT 指定的次数，低位补入相应个数的 0;CF 的内容为 OPR 最后移出的数位值;若需要移位的次数大于 1 则需要把位移次数置于 CL 寄存器 12345SHR OPR,CNT;逻辑右移指令，参考逻辑左移SAR OPR,CNT;算术右移指令;最高位保持不变，即操作数符号位不变 这四条移位指令都可作字或字节操作，当 CNT=1 时，且移位后最高有效位发生改变，则 OF 置 1，否则置 0算术位移指令适用于有符号数，逻辑移位指令用于无符号数运算 123456ROL OPR,CNTROR OPR,CNT;循环左移指令和循环右移指令;将操作数 OPR 的最高最低位连接;将环中所有位一起向左/右循环移动 CNT 指定的次数;CF 的内容为 OPR 中最后移出的数值位 12345RCL OPR,CNTRCR OPR,CNT;带进位循环左移指令和循环右移指令;将操作数 OPR 与 CF 标志位一起连接成环;CF 为 OPR 最后移到 CF 中的数值 这四条指令只影响 OF(当 CNT=1 时) 和 CF 位，循环移位指令可以改变操作数中所有位的位置 串处理指令将一组存放在存储器连续单元的数据称为数据串。而数据传送指令每次只能传送一个数据，故 CPU 为数据串提供了一组完成数据串传送的指令 重复前缀配合串处理指令的重复操作 123456REP 串指令;重复串操作;1. 如 (CX)=0，则退出串操作，否则继续执行;2. (CX) ← (CX)-1;3. 执行其后的串操作;4. 从 1 重复 12345678REPE/REPZ 串指令;相等/为零则重复串操作;如 (CX)=0 或 ZF=0 ;增加了某次比较的结果两个操作数不等则退出串操作REPNE/REPNZ 串指令;不相等/不为零则重复串操作;如 (CX)=0 或 ZF=0 串处理指令数据类型可为字或字节可使用但条指令也可加重复前缀，若加重复前缀则要求将数据串长度/重复次数赋 (CX)源串地址应设置在 (DS:SI) 中，可指定段跨越前缀；目的串地址应设置在 (ES:DI) 中，不能指定段跨越前缀操作数不是串时只能使用累加器 (AL/AX)所有串处理指令前都必先对方向标志 (DF) 置值 CLD 使 DF=0，控制地址自动增加 1(字)/2(字节) STD 使 DF=1，控制地址自动减少 1(字)/2(字节) 与 REP 配合的指令 1234567MOVS DST,SRCMOVSBMOVSW;串传送指令;((ES:DI)) ← ((DS:SI));(SI) ← (SI) ±1/±2;(DI) ← (DI) ±1/±2 不影响标志位执行前的准备工作： 将存放于数据段的源串首地址(DF=0)或末地址(DF=1)放入 SI 将存放于附加段的目的串首地址(DF=0)或末地址(DF=1)放入 SI 将数据串长度放入 CX 寄存器 建立方向标志 123456STOS DSTSTOSBSTOSW;将数存入串指令;((ES:DI)) ← (AL) 或 (AX);(DI) ← (DI) ±1/±2 与 REP 配合时可把 AL/AX 的内容存入长度为 (CX) 的缓冲区，常用于对一段数据区进行初始化，不影响标志位 与 REPE/REPZ REPNE/REPNZ 配合的指令 1234567CMPS SRC,DSTCMPSBCMPSW;串比较指令;以 ((ES:DI)) - ((DS:SI)) 的结果设置标志位;(SI) ← (SI) ±1/±2;(DI) ← (DI) ±1/±2 可配合找出两组数据串中不同/相同的字符 123456SCAS DSTSCASBSCASW;串查找指令;以 (AL) 或 (AX) - ((ES:DI)) 的结果设置标志位;(DI) ← (DI) ±1/±2 可配合找出两组数据串中与指定字符不同/相同的元素 不与重复前缀配合的指令 123456LODS SRCLODSBLODSW;从串中取数指令;(AL) 或 (AX) ← ((DS:SI));(SI) ← (SI) ±1/±2 控制转移指令无条件转移指令配合 程序转移寻址方式 1234JMP SHORT 目标标号;(IP) ← (IP)+8位位移量JMP NEAR PTR 目标标号;(IP) ← (IP)+16位位移量 12JMP 字地址指针;(IP) ← (EA) 123JMP FAR PTR 目标标号;(IP) ← 目标标号的段内偏移地址;(CS) ← 目标标号所在段的段基址 123JMP DWORD PTR 目标标号;(IP) ← (EA);(CS) ← (EA+2) 条件转移指令条件转移指令只能使用段内直接寻址的 8 位位移量 根据单个标志位设置情况格式 | 标志设置 | 测试条件:———–: | :———–: | :———–:JC/JNC 地址标号 | CF=1/CF=0 | 有/无进位则转移JE/JNE 地址标号 | ZF=1/ZF=0 | 结果相等/不相等则转移JZ/JNZ 地址标号 | ZF=1/ZF=0 | 结果为零/不为零则转移JS/JNS 地址标号 | SF=1/SF=0 | 结果为负/正则转移JO/JNO 地址标号 | OF=1/OF=0 | 结果溢出/不溢出则转移JP/JNP 地址标号 | PF=1/PF=0 | 奇偶位为 1/0 则转移 比较两个无符号数 格式 测试条件 JA/JNBE 地址标号 高于/不低于等于时转移 JAE/JNB 地址标号 高于等于/不低于时转移 JB/JNAE 地址标号 低于/不高于等于时转移 JBE/JNA 地址标号 低于等于/不高于转移 比较两个带符号数 格式 测试条件 JG/JNLE OPR 大于/不小于等于时转移 JGE/JNL OPR 大于等于/不小于时转移 JL/JNGE OPR 小于/不大于等于时转移 JLE/JNG OPR 小于等于/不大于时转移 测试 CX 的值为 0 则转移 12JCXZ 地址标号;若 CX 寄存器的内容为零，则转移到指定地址标号 循环控制指令见下节]]></content>
       <categories>
         <category>汇编</category>
       </categories>
       <tags>
-        <tag>汇编语句</tag>
+        <tag>指令系统</tag>
+        <tag>算数运算</tag>
+        <tag>逻辑操作</tag>
+        <tag>串处理</tag>
+        <tag>控制转移</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[汇编课程记录 6]]></title>
+    <url>%2F2019%2F11%2F17%2F%E6%B1%87%E7%BC%96%E8%AF%BE%E7%A8%8B%E8%AE%B0%E5%BD%95-6%2F</url>
+    <content type="text"><![CDATA[接上节控制转移指令循环控制指令用 CX 寄存器作为计数器控制程序的循环，目地址只能用段内直接寻址的 8 位位移量，不影响标志位1234LOOP 标号;循环指令;(CX) ⬅ (CX)-1;(CX) ≠ 0，则转移至标号处循环直至 (CX)=01234LOOPZ(LOOPE) 标号;为零/相等循环指令;(CX) ⬅ (CX)-1;(CX) ≠ 0，且 ZF=1 则转移至标号处循环直至 (CX)=0 1234LOOPNZ(LOOPNE) 标号;不为零/不相等循环指令;(CX) ⬅ (CX)-1;(CX) ≠ 0，且 ZF=0 则转移至标号处循环直至 (CX)=0 过程调用和返回指令CALL 子进程调用指令段内直接近调用指令 1234567CALL DSTCALL NEAR PTR DST (DST一般为子程序名);PUSH(IP);(IP) ⬅ (IP)+D16;将子程序的返回地址存入堆栈以便子程序返回时使用;DST 给出转向地址即子程序入口;D16 为机器指令中的位移量，是转向地址和返回地址之间的差值 段内间接近调用 12345CALL SDTCALL WORD PTR DST (DST 为通用寄存器或字存储器);PUSH(IP);(IP) ⬅ (EA);DST 可用寄存器寻址和存储器寻址 段间直接远调用 1234567CALL FAR PTR DST (DST 一般为子程序名);PUSH (CS);PUSH (IP);(IP) ⬅ DST 指定的偏移地址;(CS) ⬅ DST 指定的段地址;因为不在同一段内，返回地址的保存和转向地址设置;要将段基址考虑在内 段间间接远调用 1234567CALL DWORD PTR DST (DST 为双字存储器);PUSH (CS);PUSH (IP);(IP) ⬅ (EA);(CS) ⬅ (EA)+2;EA 是由 DST 的寻址方式确定的有效地址;可使用任一的存储器寻址方式取得 EA RET 子程序返回指令段内近返回 12RET;(IP) ⬅ POP() 段内带立即数近返回允许返回地址出栈后修改的指针，便于调用程序再用 CALL 指令调用子程序前把子程序所需要的参数入栈，当子程序返回后修改指针使其指向参数入栈以前的值 123RET EXP;(IP) ⬅ POP();(SP) ⬅ (SP)+D16 段间远返回 123RET;(IP) ⬅ POP();(CS) ⬅ POP() 段间带立即数远返回 1234RET EXP;(IP) ⬅ POP();(CS) ⬅ POP();(SP) ⬅ (SP)+D16 中断指令CPU 暂时中止现行程序转向另一处处理程序称为中断 int 软中断将控制转向一个型号为 n 的软中断，该中断处理程序入口地址在中断向量表的 n*4 地址处的两个存储字中，n 为类型号，可以是 0-255 的常数或常数表达式，影响 IF TF 标志位 123456789INT n;PUSH (FLAGES);IF ⬅️ 0;TF ⬅️ 0;AC ⬅️ 0;PUSH (CS);PUSH (IP);(IP) ⬅️ (n*4);(CS) ⬅️ (n*4+2) IRET 中断返回指令从中断程序处理程序返回主程序，恢复中断前的 CS 和 IP 的内容，软中断硬中断皆可，影响所有标志位 1234IRET;(IP) ⬅️ POP();(CS) ⬅️ POP();(FLAGES) ⬅️ POP() INTO 溢出中断指令立即产生一个中断类型为 4 的中断，OF=0 时不起作用 12345678910INTO;若 OF=1 则;PUSH (FLAGES);IF ⬅️ 0;TF ⬅️ 0;AC ⬅️ 0;PUSH (CS);PUSH (IP);(IP) ⬅️ (10H);(CS) ⬅️ (12H) 处理器控制指令标志位操作指令对 CF DF IF 进行设置进位位标志操作指令 123456CLC;进位位清 0 指令STC;进位位置 1 指令CMC;进位位求反指令 方向标志操作指令 1234CLD;方向标志清 0 指令STD;方向标志置 1 指令 其他处理器控制指令都不影响标志位NOP 空操作指令不执行任何操作，其机器码占用一个字节单元，通常用于调试程序时替代被删除指令的机器码而无须重新汇编链接；或在延时程序中作为延时时间的调节 1NOP HLT 停机指令使处理器暂停不进行任何操作，当 CPU 发生复位或来自外部的中断时，脱离暂停状态。用于程序中断等待，在 PC 机中会引发死机，一般的应用程序不要使用 1HLT WAIT 等待指令使处理器处于空转等待状态，不做任何操作，也可以用来等待外部中断的发生，但中断结束后仍然返回 WAIT 继续等待；可用于与 ESC 指令配合等待协处理器的执行结果 1WAIT ESC 换码指令指定协处理器接受指令和数据，CPU 将控制权交给协处理器，第一个数据 OP 操作码，第二个数据为操作数（寄存器 REG 或存储器 MEM 中的内容） 1ESC OP, REG/MEM LOCK 封锁指令是指令前缀，与其他指令配合维持总栈的控制权不被其他处理器占有，直到与其配合的指令执行完毕 1LOCK 指令]]></content>
+      <categories>
+        <category>汇编</category>
+      </categories>
+      <tags>
+        <tag>指令系统</tag>
+        <tag>控制转移</tag>
+        <tag>处理器控制</tag>
       </tags>
   </entry>
   <entry>
     <title><![CDATA[19-11碎碎念]]></title>
     <url>%2F2019%2F11%2F10%2F19-11%E7%A2%8E%E7%A2%8E%E5%BF%B5%2F</url>
-    <content type="text"><![CDATA[这个月前十天集中（摸鱼）还了上课睡觉的债，剩下的时间主要还是放 Linux 上，关于使用要靠以后什么项目来熟练。等 bash 部分结束就要转移重心到 JAVA 上了，不再看一遍总担心底子薄，而且对数据结构和算法也有帮助。]]></content>
+    <content type="text"><![CDATA[剩下的时间还是在 Linux 上，关于使用该找个项目熟练了。Java 不再看一遍总担心底子薄，而且对数据结构和算法也有帮助。]]></content>
       <categories>
         <category>碎碎念</category>
       </categories>
-      <tags>
-        <tag>小目标</tag>
-      </tags>
   </entry>
   <entry>
-    <title><![CDATA[离散数学名词解释]]></title>
-    <url>%2F2019%2F11%2F10%2F%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E5%90%8D%E8%AF%8D%E8%A7%A3%E9%87%8A%2F</url>
+    <title><![CDATA[离散数学名词]]></title>
+    <url>%2F2019%2F11%2F10%2F%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E5%90%8D%E8%AF%8D%2F</url>
     <content type="text"><![CDATA[数理逻辑 -&gt; 命题逻辑范式真值表的规模会随命题变元（文字）的数量呈指数增长，使用范式替代真值表 有限个简单合取式（短语）的析取称 析取范式 有限个简单析取式（子句）的合取称 合取范式 否定联结词仅出现在文字之前单独的文字可看作子句 / 短语 / 合取范式 / 析取范式单独的短语 / 子句也可构成析取范式 / 合取范式 P∨Q∨R 是子句 / 合区范式 / 析取范式 将文字看作短语即析取范式 (P∨Q∨R) 是子句 / 合取范式 不可拆分 P∨(Q∨R) 既不是合取范式也不是析取范式 析取析取范式，范式关注于当前的书写形式 析取范式指出公式何时为真，合取范式指出公式何时为假，故能替代真值表命题公式的范式表达不唯一 主范式对构成范式的短语和子句进一步规范化，形成唯一的主析取范式和主合区范式极大项：子句状，每个极大项只有一个成假赋值，命题变元对应 0 命题变元的否定对应 1； Mi∨Mj=1极小项：短语状，每个极小项只有一个成真赋值，命题变元对应 1 命题变元的否定对应 0； mi∧mj=0 析取范式中，每一个短语都是极小项且按编码从小到大排列，称 主析取范式 合取范式中，每一个子句都是极大项且按编码从小到大排列，称 主合取范式 对任何命题公式，主析取范式与主合取范式的项编码是互补关系包含所有极小项的主析取范式为永真式，包含所有极大项的主合取范式为永假式 推理推理的有效性不等同结论的真实性，因为前提可能为假；推理有效等价前提为真结论为真推理规则 规则 P ：前提引用规则，可随时引用前提集合中的任意前提…废话 规则 T ：逻辑结果引用规则，可随时引用之前推导出来的逻辑结果…废话 规则 CP ：附加前提规则，多用反证法找冲突 数理逻辑 -&gt; 谓词逻辑解决命题逻辑的局限性（无法表达内部的逻辑关系），如三段论和含变量语句， 个体词可以独立存在的客体，如主语宾语 个体词的取值范围称为 个体域（论域） 表示具体或特定的个体词称为 个体常量 表示抽象或泛指的个体词称为 个体变量 谓词刻画客体性质或客体间关系，采用函数形式表达，定义域在个体域中取值，值域是 0/1 表示具体性质或关系的谓词称为 谓词常量 表示抽象或泛指的性质或关系的谓词称为 谓词变量 没有任何个体变量的谓词称为 0 元谓词 量词全称量词 (∀x) ：每一个，刻画其个体域的特性谓词作为蕴含式的前件加入存在量词 (∃x) ：至少有一个，刻画其个体域的特性谓词作为合取式的合取项加入 真值确定(∀x)G(x) ：任意/所有 x 使 G(x) 为 1 则真；存在 x 使 G(x) 为 0 则假(∃x)G(x) ：存在 x 使 G(x) 为 1 则真；任意/所有 x 使 G(x) 为 0 则假当个体域是有限集合时，真值可用等价的命题公式表示 (∀x)G(x) = G(x0) ∨ G(x1)… ∨ G(xn) (∃x)G(x) = G(x0) ∨ G(x1)… ∨ G(xn) 量词辖域若量词后有括号，括号内的子公式为辖域；若量词后无括号，与量词邻接的子公式为辖域 变元 x 出现在使用变元的量词的辖域内，称 约束变元 若不是约束出现，则为 自由变元 一个公式中若无自由出现的个体变元，则称 闭式，故闭式是命题 前束范式公式中的所有量词都在最前端且不含否定，这些量词的辖域都延伸到公式末端]]></content>
       <categories>
         <category>离散数学</category>
       </categories>
+      <tags>
+        <tag>命题逻辑</tag>
+        <tag>谓词逻辑</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[Linux bash]]></title>
     <url>%2F2019%2F11%2F06%2FLinux-bash%2F</url>
-    <content type="text"><![CDATA[shell用户默认取得的 shell 记录于 /etc/passwd，默认是 bash上一次登录的历史命令记录在 ~/.bash_histroy，本次登录的会在注销后记录进去内置命令和外部命令123# type [-ta] name-t 仅显示执行时的依据-a 显示所有含 name 的命令内置命令是 shell 解释程序内建的，由 shell 直接执行，不需要派生新的进程；外部命令 shel会创建一个新的进程，新的进程在 PATH 变量内所列出的目录中寻找特定命令执行，默认 shell 将等待直到该进程结束 变量env 查看当前 shell 环境下的环境变量和内容set 查看所有变量，包含环境变量和自定义变量 设置规则不能以数字开头，连接的 = 两边不能直接接空格，变量内容若有空格使用 “ 或 ‘，必须成对 “ 可以保持特殊字符的特性，如 var=lang is $LANG 相当于 lang is en_US ‘ 仅为纯文本 `命令` 和 $(命令) 用于在命令中使用其他命令的值，如 echo $version $变量名称 ${变量名称} 用于显示变量或增加变量内容，如 PATH=”$PATH”:/home/bin 转义字符 / 将特殊符号变成一般符号，命令过长可以 /[enter] 换行若变量需要在子进程进行需要用 export 变成环境变量，不加参数时和 env 相似unset 取消变量 语系问题locale 不加参数查询所有语系变量可以逐一设置，当设置 LANG 或者 LC_ALL 时，其他语系变量都会被这两个替代locale -a 查询所有支持的语系，语系文件放置在 /usr/lib/locale/整体系统默认的语系定义在 /etc/sysconfig/i18h 键盘输入读取来自键盘输入的变量 123# read [-pt] variable-p 后面可接提示符-t 后面可接等待秒数 声明变量类型declare 或 typeset 功能一样。变量类型默认为字符串，数值运算默认最多达到整数型数组变量类型，var[index] = content 设置，${数组}读取 123456789101112# declare [-aixrp] variable-a 定义成数组 array 类型-i 定义成整数 integer 类型-x 与 export 一样，变成环境变量-r 设置成只读 readonly 类型，不可被变更内容也不能重设-p 查看变量类型不接任何参数则显示所有变量与内容，类似 set将 - 换成 + 可进行取消操作# sum=1+2+3 &lt;--x# declare -i sum=1+2+3 &lt;--√# echo $sum 变量内容的删除和替换从变量内容向右删除，取最短的那个 1# $&#123;variable#&#125; 从变量内容向右删除，取最长的那个 1# $&#123;variable##&#125; 从变量内容向左删除，取最短的那个，最长同上 1# $&#123;variable%&#125; 设置 说明 ${变量#关键字} 变量内容从头开始的内容符合关键字，则删除符合的最短数据 ${变量##关键字} 变量内容从头开始的内容符合关键字，则删除符合的最长数据 ${变量%关键字} 变量内容从后向前的内容符合关键字，则删除符合的最短数据 ${变量%%关键字} 变量内容从后向前的内容符合关键字，则删除符合的最短数据 ${变量/旧字符串/新字符串} 变量内容符合旧字符串，则替换第一个旧字符串 ${变量//旧字符串/新字符串} 变量内容符合旧字符串，则替换全部的旧字符串 变量的测试和内容替换判断变量是否存在，不存在便给予设置 1# new_var=$&#123;old_var-content&#125; 判断变量是否存在或为空字符串，不存在或为空便给予设置 1# new_var=$&#123;old_var:-content&#125; 设置方式 str 没有设置 str 为空字符串 str 已设置非空 var=${str-expr} var=exper var= var=$str var=${str:-expr} var=exper var=expr var=$str var=${str+expr} var= var=expr var=expr var=${str:+expr} var= var= var=expr var=${str=expr} var=expr str=expr var= str 不变 var=$str str 不变 var=${str:=expr} var=expr str=expr var=expr str=expr var=$str str不变 var=${str?expr} expr 输出至 stderr var= var=str var=${str:?expr} expr 输出至 stderr expr 输出至 stderr var=str 命令命令别名设置alias 单用查询当前命令别名 1# alias rm=&apos;rm -i&apos; unalias 取消命令别名 历史命令登录主机后，系统由 ~./bash_history 读取历史命令，记录的条数由 HISTSIZE 变量设定，注销时会将最近的 HISTSIZE 条记录到记录文件中 12345678# history [n]# history [-c]# history [-raw] histfilesn 最近 n 条命令-c 清除目前 shell 中的 history-a 将新增的 history 更新进 histfiles，若没有则写入默认文件中-r 将 histfiles 的内容读到目前 shell 的 history 中-w 将目前 history 更新进 histfiles 123456# !number# !command# !!number 执行第 number 条指令command 由近向远搜寻 command 开头的命令并执行!! 执行上一条命令 操作环境命令运行的顺序 相对/绝对路径执行 由 alias 找到执行 bash 内置命令 $PATH 变量找到的第一个 bash 的登录欢迎信息登录后的欢迎字符串在 /etc/issue 中设置telnet 远程登录用的是 /etc/issue.net - - \d 本地日期 \l 第几个终端机接口 \m 硬件等级 \n 主机的网络名称 \0 domain name \r 操作系统版本 (uname -r) \t 本地时间 \s 操作系统名称 \v 操作系统版本 每个用户登录后都显示的信息加入 /etc/moted 中 bash 的环境配置login shell ：完整登录流程取得的 bashnon-login shell ：没有重复登录取得的 bash，如 X Window 登录后图形界面启动终端机，没有再次要求输入密码 读入环境配置文件source 或小数点 . 都可以将配置文件读进当前 shell 环境而不必注销 1# source 配置文件名 login shell 读取的文件： /etc/profile 系统整体设置，会调用外部数据 /etc/inputrc /etc/profile.d/*.sh /etc/sysconfig/i18n ~/.bash_profile 或 ~/.bash_login 或 /.profile 用户个人设置，仅读取依此顺序第一个找到的，照顾其他 shell 的用户 non-login shell 仅读取 ~.bashrc 终端机环境设置查阅按键内容 123# stty [-a]-a 列出目前所有的按键和按键内容^ 代表 [ctrl] 设置按键 1# stty 行为 按键 set 可设置输出/输入环境 通配符* 零到无穷个字符；? 一定有一个字符；[] 一定有一个在其中的字符；[-] 编码顺序内的所有字符；[^] 非 数据流重定向将某个命令执行后的输出传输到其他地方标准输入 stdin ：代码 0，用 &lt; &lt;&lt;标准输出 stdout ：代码 1，用 &gt; &gt;&gt;标准错误输出 stderr ：代码 2，用 2&gt; 2&gt;&gt; 将数据输出到指定文件或设备&gt; 输出到已存在文件时，会先清空再写入&gt;&gt; 会写入文件的最下方垃圾桶黑洞设备（丢弃错误信息），/dev/null 可以吃掉任何导向该设备的信息 1$ find /home -name .bashrc 2&gt; /dev/null 将正确与错误信息写入到同一文件，使用 &amp; 语法，否则会交叉写入 1$ find /home -name .bashrc &gt; list 2&gt;&amp;1 cat 命令后加入 &gt;，会主动创建文件，并且其内容即键盘输入的数据 123# cat &gt; catfiletesting&lt;==[ctrl]+d 离开 用文件内容代替键盘输入&lt; 指定文件内容替代键盘输入&lt;&lt; 代表输入结束，键盘输入指定字符便结束输入 1# cat &gt; catfile &lt; ～/.bashrc 命令的判断依据; 一次执行多条命令，用 ; 隔开$? 命令回传码，若前一个命令执行的结果为正确，将回传 $?=0&amp;&amp; $?=0 才执行下一句|| $?≠0 才执行下一句cmd1 &amp;&amp; cmd2 || cmd3 是安全的，其余顺序要注意有效性和安全性 管道命令 pipe使用 | 符号，仅处理由前一个命令传来的正确信息，并且接收数据成为 stdin 继续处理 less more head 是可以接收 stdin 的管道命令 ls cp mv 则不是 选取命令cut 取出一段信息的某一段，常用于将同一行的数据进行分解 1234567# cut -d &apos;分隔字符&apos; -f fields# cut -c 字符范围-d -f 依据分隔字符将信息切成数段，取其中 fields 段-c 以字符的单位取出固定字符区间echo $PATH | cut -d &apos;:&apos; -f 3,5export | cut -c 12- grep 对行信息进行分析 12345678# grep [-acinv] [--color=auto] &apos;查找字符串&apos; filename-a 将 binary 文件以 text 文件的方式查找-c 计算找到 &apos;&apos; 的次数-i 忽略大小写-n 输出行号-v 反选last | grep &apos;root&apos; | cut -d &apos; &apos; -f 1 排序命令1234567891011# sort [-fbMnrtuk] [file or stdin]-f 忽略大小写-b 忽略最前面的空格符-M 以月份排序-n 使用纯数字排序，默认是文字类型-r 反向排序-u 相同数据仅显示一条-t 设置分隔符，默认 [TAB]-k 以区间（field）进行排序cat /etc/passwd | sort -t &apos;:&apos; -k 3 -n 12345# uniq [-ic]-i 忽略大小写-c 进行计数last | cut -d &apos; &apos; -f 1 | sort | uniq -c 12345# wc [-lwm]-l 仅列出行-w 仅列出多少英文单字-m 仅显示多少字符默认显示 行数 字数 字符数 双重定向]]></content>
+    <content type="text"><![CDATA[shell用户默认取得的 shell 记录于 /etc/passwd，默认是 bash上一次登录的历史命令记录在 ~/.bash_histroy，本次登录的会在注销后记录进去内置命令和外部命令123# type [-ta] name-t 仅显示执行时的依据-a 显示所有含 name 的命令内置命令是 shell 解释程序内建的，由 shell 直接执行，不需要派生新的进程；外部命令 shel会创建一个新的进程，新的进程在 PATH 变量内所列出的目录中寻找特定命令执行，默认 shell 将等待直到该进程结束 变量env 查看当前 shell 环境下的环境变量和内容set 查看所有变量，包含环境变量和自定义变量 设置规则不能以数字开头，连接的 = 两边不能直接接空格，变量内容若有空格使用 “ 或 ‘，必须成对 “ 可以保持特殊字符的特性，如 var=lang is $LANG 相当于 lang is en_US ‘ 仅为纯文本 `命令` 和 $(命令) 用于在命令中使用其他命令的值，如 echo $version $变量名称 ${变量名称} 用于显示变量或增加变量内容，如 PATH=”$PATH”:/home/bin 转义字符 / 将特殊符号变成一般符号，命令过长可以 /[enter] 换行若变量需要在子进程进行需要用 export 变成环境变量，不加参数时和 env 相似unset 取消变量 语系问题locale 不加参数查询所有语系变量可以逐一设置，当设置 LANG 或者 LC_ALL 时，其他语系变量都会被这两个替代locale -a 查询所有支持的语系，语系文件放置在 /usr/lib/locale/整体系统默认的语系定义在 /etc/sysconfig/i18h 键盘输入读取来自键盘输入的变量 123# read [-pt] variable-p 后面可接提示符-t 后面可接等待秒数 声明变量类型declare 或 typeset 功能一样。变量类型默认为字符串，数值运算默认最多达到整数型数组变量类型，var[index] = content 设置，${数组}读取 123456789101112# declare [-aixrp] variable-a 定义成数组 array 类型-i 定义成整数 integer 类型-x 与 export 一样，变成环境变量-r 设置成只读 readonly 类型，不可被变更内容也不能重设-p 查看变量类型不接任何参数则显示所有变量与内容，类似 set将 - 换成 + 可进行取消操作# sum=1+2+3 &lt;--x# declare -i sum=1+2+3 &lt;--√# echo $sum 变量内容的删除和替换从变量内容向右删除，取最短的那个 1# $&#123;variable#&#125; 从变量内容向右删除，取最长的那个 1# $&#123;variable##&#125; 从变量内容向左删除，取最短的那个，最长同上 1# $&#123;variable%&#125; 设置 说明 ${变量#关键字} 变量内容从头开始的内容符合关键字，则删除符合的最短数据 ${变量##关键字} 变量内容从头开始的内容符合关键字，则删除符合的最长数据 ${变量%关键字} 变量内容从后向前的内容符合关键字，则删除符合的最短数据 ${变量%%关键字} 变量内容从后向前的内容符合关键字，则删除符合的最短数据 ${变量/旧字符串/新字符串} 变量内容符合旧字符串，则替换第一个旧字符串 ${变量//旧字符串/新字符串} 变量内容符合旧字符串，则替换全部的旧字符串 变量的测试和内容替换判断变量是否存在，不存在便给予设置 1# new_var=$&#123;old_var-content&#125; 判断变量是否存在或为空字符串，不存在或为空便给予设置 1# new_var=$&#123;old_var:-content&#125; 设置方式 str 没有设置 str 为空字符串 str 已设置非空 var=${str-expr} var=exper var= var=$str var=${str:-expr} var=exper var=expr var=$str var=${str+expr} var= var=expr var=expr var=${str:+expr} var= var= var=expr var=${str=expr} var=expr str=expr var= str 不变 var=$str str 不变 var=${str:=expr} var=expr str=expr var=expr str=expr var=$str str不变 var=${str?expr} expr 输出至 stderr var= var=str var=${str:?expr} expr 输出至 stderr expr 输出至 stderr var=str 命令命令别名设置alias 单用查询当前命令别名 1# alias rm=&apos;rm -i&apos; unalias 取消命令别名 历史命令登录主机后，系统由 ~./bash_history 读取历史命令，记录的条数由 HISTSIZE 变量设定，注销时会将最近的 HISTSIZE 条记录到记录文件中 12345678# history [n]# history [-c]# history [-raw] histfilesn 最近 n 条命令-c 清除目前 shell 中的 history-a 将新增的 history 更新进 histfiles，若没有则写入默认文件中-r 将 histfiles 的内容读到目前 shell 的 history 中-w 将目前 history 更新进 histfiles 123456# !number# !command# !!number 执行第 number 条指令command 由近向远搜寻 command 开头的命令并执行!! 执行上一条命令 操作环境命令运行的顺序 相对/绝对路径执行 由 alias 找到执行 bash 内置命令 $PATH 变量找到的第一个 bash 的登录欢迎信息登录后的欢迎字符串在 /etc/issue 中设置telnet 远程登录用的是 /etc/issue.net - - \d 本地日期 \l 第几个终端机接口 \m 硬件等级 \n 主机的网络名称 \0 domain name \r 操作系统版本 (uname -r) \t 本地时间 \s 操作系统名称 \v 操作系统版本 每个用户登录后都显示的信息加入 /etc/moted 中 bash 的环境配置login shell ：完整登录流程取得的 bashnon-login shell ：没有重复登录取得的 bash，如 X Window 登录后图形界面启动终端机，没有再次要求输入密码 读入环境配置文件source 或小数点 . 都可以将配置文件读进当前 shell 环境而不必注销 1# source 配置文件名 login shell 读取的文件： /etc/profile 系统整体设置，会调用外部数据 /etc/inputrc /etc/profile.d/*.sh /etc/sysconfig/i18n ~/.bash_profile 或 ~/.bash_login 或 /.profile 用户个人设置，仅读取依此顺序第一个找到的，照顾其他 shell 的用户 non-login shell 仅读取 ~.bashrc 终端机环境设置查阅按键内容 123# stty [-a]-a 列出目前所有的按键和按键内容^ 代表 [ctrl] 设置按键 1# stty 行为 按键 set 可设置输出/输入环境 通配符* 零到无穷个字符；? 一定有一个字符；[] 一定有一个在其中的字符；[-] 编码顺序内的所有字符；[^] 非 数据流重定向将某个命令执行后的输出传输到其他地方标准输入 stdin ：代码 0，用 &lt; &lt;&lt;标准输出 stdout ：代码 1，用 &gt; &gt;&gt;标准错误输出 stderr ：代码 2，用 2&gt; 2&gt;&gt; 将数据输出到指定文件或设备&gt; 输出到已存在文件时，会先清空再写入&gt;&gt; 会写入文件的最下方垃圾桶黑洞设备（丢弃错误信息），/dev/null 可以吃掉任何导向该设备的信息 1$ find /home -name .bashrc 2&gt; /dev/null 将正确与错误信息写入到同一文件，使用 &amp; 语法，否则会交叉写入 1$ find /home -name .bashrc &gt; list 2&gt;&amp;1 cat 命令后加入 &gt;，会主动创建文件，并且其内容即键盘输入的数据 123# cat &gt; catfiletesting&lt;==[ctrl]+d 离开 用文件内容代替键盘输入&lt; 指定文件内容替代键盘输入&lt;&lt; 代表输入结束，键盘输入指定字符便结束输入 1# cat &gt; catfile &lt; ～/.bashrc 命令的判断依据; 一次执行多条命令，用 ; 隔开$? 命令回传码，若前一个命令执行的结果为正确，将回传 $?=0&amp;&amp; $?=0 才执行下一句|| $?≠0 才执行下一句cmd1 &amp;&amp; cmd2 || cmd3 是安全的，其余顺序要注意有效性和安全性 管道命令 pipe使用 | 符号，仅处理由前一个命令传来的正确信息，并且接收数据成为 stdin 继续处理 less more head 是可以接收 stdin 的管道命令 ls cp mv 则不是 选取命令cut 取出一段信息的某一段，常用于将同一行的数据进行分解 1234567# cut -d &apos;分隔字符&apos; -f fields# cut -c 字符范围-d -f 依据分隔字符将信息切成数段，取其中 fields 段-c 以字符的单位取出固定字符区间echo $PATH | cut -d &apos;:&apos; -f 3,5export | cut -c 12- grep 对行信息进行分析 12345678# grep [-acinv] [--color=auto] &apos;查找字符串&apos; filename-a 将 binary 文件以 text 文件的方式查找-c 计算找到 &apos;&apos; 的次数-i 忽略大小写-n 输出行号-v 反选last | grep &apos;root&apos; | cut -d &apos; &apos; -f 1 排序命令1234567891011# sort [-fbMnrtuk] [file or stdin]-f 忽略大小写-b 忽略最前面的空格符-M 以月份排序-n 使用纯数字排序，默认是文字类型-r 反向排序-u 相同数据仅显示一条-t 设置分隔符，默认 [TAB]-k 以区间（field）进行排序cat /etc/passwd | sort -t &apos;:&apos; -k 3 -n 12345# uniq [-ic]-i 忽略大小写-c 进行计数last | cut -d &apos; &apos; -f 1 | sort | uniq -c 12345# wc [-lwm]-l 仅列出行-w 仅列出多少英文单字-m 仅显示多少字符默认显示 行数 字数 字符数]]></content>
       <categories>
         <category>Linux</category>
       </categories>
+      <tags>
+        <tag>bash</tag>
+        <tag>数据流</tag>
+      </tags>
   </entry>
   <entry>
-    <title><![CDATA[汇编课程记录4]]></title>
-    <url>%2F2019%2F11%2F04%2F%E6%B1%87%E7%BC%96%E8%AF%BE%E7%A8%8B%E8%AE%B0%E5%BD%954%2F</url>
+    <title><![CDATA[汇编课程记录 4]]></title>
+    <url>%2F2019%2F11%2F04%2F%E6%B1%87%E7%BC%96%E8%AF%BE%E7%A8%8B%E8%AE%B0%E5%BD%95-4%2F</url>
     <content type="text"><![CDATA[嗯这周也继续昏迷x通用数据传送指令1MOV DST,SRC ;传送指令操作数与目的长度必须为 8/16 位目不能为 CS IP 或立即数存储单元和段寄存器之间不能直接传送数据，要用通用寄存器为桥梁立即数不能直接送到段寄存器123456PUSH SRC ;进栈指令;(SP) ⬅ (SP) -2;((SP+1), (SP)) ⬅ (SRC)POP DST ;出栈指令;(DST) ⬅ ((SP+1), (SP));(SP) ⬅ (SP) +2 PUSH 操作数为 16 位的寄存器，存储器，不允许立即数，避免 PUSH SP，因为 8086/8088 和 80286 对此的处理方式不同POP 目为 16 位的寄存器（不允许 CS 段寄存器），存储器堆栈的存取必须以字为单位，PUSH 和 POP 只能做字操作 1XCHG DST, SCR ;交换指令 两个操作数必须有一个在寄存器中，且不允许段寄存器，允许字或字节操作（长度 8/16 位），不允许立即数寻址 累加器专用传送指令1234IN AL, PORT ;长格式-字节IN AX, PORT ;长格式-字IN AL, DX ;短格式-字节IN AX, DX ;短格式-字 将外部设备的信息输入到 CPU 的累加器 AL/AX 中，源操作数是外部设备端口地址，通过 DX 寄存器指明的地址可以间接寻址 65536 个端口，而用立即数直接指明的地址只能寻址 256 个 1234OUT PORT, AL ;长格式-字节OUT PORT, AX ;长格式-字OUT DX, AL ;短格式-字节OUT DX, AX ;短格式-字 将 CPU 累加器中的信息输出到外部设备，基本和 IN 反过来 地址传送指令123456LEA REG, SRC ;有效地址送寄存器指令LEA BX, TABLEMOV BX, OFFSET TABLE;两个功能相同，MOV 执行速度比 LEA 快，但 OFFSET 只能用简单符号地址;与 MOV DST,SRC 区别，此处得到的是有效地址而非存储单元的内容 REG 寄存器，将源操作数的有效地址送到指定寄存器，且必须为 16 位通用寄存器 1234567LDS REG, SRC ;送寄存器和 DS 指令LES REG, SRC ;送寄存器和 ES 指令;(REG) ⬅ (SRC);(SREG) ⬅ (SRC+2);将存储单元中存放的 16 位偏移地址（即 SRC 的内容）装入;指定寄存器，然后将（SRC+2）中的 16 位段地址装入指定的;段寄存器 SREG DS 或 ES，源操作数只能用存储器寻址，目不允许段寄存器 类型转换指令123456CBW ;字节转字;将 AL 中的内容扩展到 AH，若 (AL) 最高有效位为 0，;则 (AH) 为 0，为 1，则 (AH) =0FFHCWD ;字转双字;将 AX 中的内容扩展到 DX，形成 DX:AX 双字，;若 (AX) 最高有效位为 0，则 (DX) 为 0，为 1，则 (DX) =0FFFFH]]></content>
       <categories>
         <category>汇编</category>
       </categories>
       <tags>
-        <tag>汇编语句</tag>
+        <tag>指令系统</tag>
+        <tag>数据传送</tag>
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[vim的乱七八糟]]></title>
-    <url>%2F2019%2F10%2F27%2Fvim%E7%9A%84%E4%B9%B1%E4%B8%83%E5%85%AB%E7%B3%9F%2F</url>
+    <title><![CDATA[vim 的乱七八糟]]></title>
+    <url>%2F2019%2F10%2F27%2Fvim-%E7%9A%84%E4%B9%B1%E4%B8%83%E5%85%AB%E7%B3%9F%2F</url>
     <content type="text"><![CDATA[文件vim 编辑文件时会新建 .filename.swp 文件，记录所作操作，当 vim 被不正常中断（或他人正在编辑）时暂存文件不会消失，继续编辑时允许如下操作： R 加载暂存文件的内容，恢复未保存的工作，记得离开 vim 后手动删掉暂存文件 D 确定暂存文件无用，删除并新建本次使用的 .swp O 以只读打开，不进行编辑行为，用于他人正在编辑 环境记录文件~/.viminfo 环境配置文件/etc/vimrc，建议创建 ~/.vimrc - - :setnu :set nonu 行号 :set all 当前环境参数 :set 与默认不同的参数 操作1.块选择 一般模式下 [ctrl]-v 选择，y 复制，p 粘贴 2.多窗口 新窗口 光标向下 光标向上 :sp / :sp{filename} [ctrl]-w+j [ctrl]-w+k 3.多文件| 当前打开的文件 | 下一个 | 上一个 ||—————|:————–|:————–:|| :files | :n | :N | 注意中文编码 1234567# LANG=zh_CN.xxx# iconv --list# iconv -f 原编码 -t 新编码 filename [-o newfile]-f from-t to-o newfile 保留原本文件 断行符DOS ：^M$，即 CR 和 LFLinux ：$，仅 LF 1234# dos2UNIX [-kn] file [newfile]# UNIX2dos [-kn] file [newfile]-k 不修改 mtime-n 输出到新文件]]></content>
       <categories>
         <category>Linux</category>
       </categories>
       <tags>
         <tag>vim</tag>
-        <tag>编码乱码</tag>
+        <tag>环境配置</tag>
         <tag>断行符</tag>
       </tags>
   </entry>
   <entry>
     <title><![CDATA[19-10碎碎念]]></title>
     <url>%2F2019%2F10%2F27%2F19-10%E7%A2%8E%E7%A2%8E%E5%BF%B5%2F</url>
-    <content type="text"><![CDATA[十月底… :drooling_face: 这个月也摸鱼了（也？） 接下来三天的计划 JAVA 抽空看会卷一 前端 暂时放一边… Linux 尽快补掉 bash 笔记，速读磁盘和压缩 课程 复习汇编和离散数学]]></content>
+    <content type="text"><![CDATA[十月底… 这个月也摸鱼了（也？） 接下来三天的计划 Java 抽空看卷一 前端 暂时放一边… Linux 尽快补掉 bash 笔记，速读磁盘和压缩 课程 复习汇编和离散数学]]></content>
       <categories>
         <category>碎碎念</category>
       </categories>
-      <tags>
-        <tag>小目标</tag>
-      </tags>
   </entry>
   <entry>
-    <title><![CDATA[汇编课程记录3]]></title>
-    <url>%2F2019%2F10%2F27%2F%E6%B1%87%E7%BC%96%E8%AF%BE%E7%A8%8B%E8%AE%B0%E5%BD%953%2F</url>
+    <title><![CDATA[汇编课程记录 3]]></title>
+    <url>%2F2019%2F10%2F27%2F%E6%B1%87%E7%BC%96%E8%AF%BE%E7%A8%8B%E8%AE%B0%E5%BD%95-3%2F</url>
     <content type="text"><![CDATA[这节也昏迷了…（艹，原来这边还没上数据寻址方式立即数寻址操作数直接存放于指令1MOV AX,1234H ;即1234H寄存器寻址操作数存放于 CPU 的某个寄存器中，不需访问存储器速度快8 位操作数寄存器可以是 AH AL BH BL CH CL DH DL16 位操作数寄存器可以是 AX BX CX DX SP BP SI DI 1MOV AX,BX 存储器直接寻址数据在存储器中，存储单元的有效地址（偏移地址 EA）由指令直接给出，计算机通过段基址和有效地址获得物理地址（左移四位 + 偏移量balabala），段基址默认为 DS 数据段 1234MOV AX,[100H]MOV AX,A1MOV AX,[A1] ;和上面那条等效MOV AX,ES:[100H] ;取 ES 段段基址，加偏移量 100H 寄存器间接寻址操作数在存储器中，操作数的有效地址在某个寄存器中 仅可使用这些寄存器 BX BP SI DI，其中 BP 默认段是 SS 段 1MOV AX,[SI] 寄存器相对寻址操作数的有效地址是一个基址寄存器（BX/BP）或变址寄存器（SI/DI）内容与指定 8/16 位偏移量之和 允许的寄存器同间接寻址方式 12345MOV AX,100H[SI]MOV AX,[SI+100H] ;和上面那条等效MOV AX,COUNT[SI];COUNT 为 16 位位移量的符号地址，设 (DS)=3000H (SI)=2000H COUNT=3000H (35000H)=5678H;物理地址 = 30000H + 2000H + 3000H = 35000H 即(AX)=5678H 基址变址寻址操作数的有效地址由一个基址寄存器和一个变址寄存器的内容相加组成，BX 默认段为 DS，BP 默认段是 SS，适用于数组或表格处理，首地址存放在基址寄存器中，用变址寄存器访问数组的元素 1MOV AX,[BX][DI] 相对基址变址寻址基址变址寻址的基础上再加一个 8/16 位位移量，适用于二维数组，偏移量指向文件首，基址寄存器指向某记录，变址寄存器指向记录中的元素 1MOV AX,MASK[BX][SI] 程序转移寻址方式程序的执行由指令的地址指针（CS 和 IP）决定，IP 的内容会自动改变指向下一条指令的地址； 段内转移仅改变 IP 地址，段间转移因为不在同一个代码段同时要改变 CS 的值 段内直接寻址转向的有效地址是相对于当前 IP 值的 8/16 位位移量，即 IP 寄存器内容与指定位移量之和，唯一支持条件转移指令，位移量仅允许 8 位，用于无条件转移指令时，8 位称短跳转，16 位称近跳转 1234JMP SHORT ADDR2 ;无条件转移 JMPADDR2:...JMP NEAR PTR ADDR1 段内间接寻址转向的有效地址是一个寄存器或一个存储单元的内容，通过除立即数寻址以外的任何寻址方式获得，然后取代 IP 寄存器的内容 12JMP BXJMP WORD PTR [BX+ADDR] ;WORD PTR 指出其后的地址长度为一个字 段间直接寻址在指令中直接提供转向地址和偏移地址，分别取代 CS 和 IP 寄存器的内容 1JMP FAR PTR ADDR 段间间接寻址用存储器中两个相继字的内容取代 IP 和 CS 的内容，通过除立即数寻址和寄存器寻址以外的任何寻址方式获得，有效地址的第一个字作为转移偏移地址送 IP 寄存器，第二个字节作为转移段地址送 CS 寄存器 1JMP DWORD PTR [ADDR+BX]]]></content>
       <categories>
         <category>汇编</category>
       </categories>
       <tags>
-        <tag>汇编语句</tag>
+        <tag>数据寻址</tag>
+        <tag>程序转移寻址</tag>
+        <tag>寻址方式</tag>
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[temp]]></title>
-    <url>%2F2019%2F10%2F21%2Ftemp%2F</url>
-    <content type="text"><![CDATA[123456789101112131415161718192021222324252627282930313233343536373839404142434445464748#include&lt;iostream&gt;#include&lt;random&gt;#include&lt;time.h&gt;using namespace std;void thrthr() &#123; srand((unsigned)time(0)); int a[3][3], i, j, sum; for (i = 0; i &lt;= 2; i++) &#123; for (j = 0; j &lt;= 2; j++) &#123; a[i][j] = rand() % (99 - 10 + 1) + 10; cout &lt;&lt; a[i][j] &lt;&lt; &quot; &quot;; &#125; cout &lt;&lt; endl; &#125; sum = a[0][0] + a[0][2] + a[1][1] + a[2][0] + a[2][2]; cout &lt;&lt; &quot;对角线元素之和为：&quot; &lt;&lt; sum &lt;&lt; endl;&#125;void swapp(int array[], int i, int j) &#123; int temp = array[i]; array[i] = array[j]; array[j] = temp;&#125;void maopao() &#123; int arr[10], i, j; cout &lt;&lt; &quot;请输入要排序的元素：&quot; &lt;&lt; endl; for (i = 0; i &lt; 10; i++) &#123; cin &gt;&gt; arr[i]; &#125; for (i = 0; i &lt; 9; i++) &#123; for (j = i + 1; j &lt; 10; j++) &#123; if (arr[i] &gt; arr[j]) swapp(arr, j, i); &#125; &#125; cout &lt;&lt; &quot;排序后的数组元素&quot; &lt;&lt; endl; for (i = 0; i &lt; 10; i++) &#123; cout &lt;&lt; arr[i] &lt;&lt; &quot; &quot; &lt;&lt; endl; &#125;&#125;int main() &#123; thrthr(); maopao(); return 0;&#125; 19-11-04123456789101112131415161718192021#include&lt;iostream&gt;using namespace std;void sum(int);int main() &#123; sum(5); return 0;&#125;int factorial(int num) &#123; if (num == 1) return 1; else return num * factorial(num - 1);&#125;void sum(int num) &#123; int sum = 0; for (int i = 1; i &lt;= num; i++) &#123; factorial(i); sum += factorial(i); cout &lt;&lt;i&lt;&lt; &quot;!=&quot;&lt;&lt;factorial(i) &lt;&lt; endl; &#125; cout&lt;&lt;&quot;阶乘的和为：&quot;&lt;&lt;sum&lt;&lt;endl;&#125; 12345678910111213141516171819202122232425262728#include&lt;iostream&gt;using namespace std;void godbah();bool prime(int);int main()&#123; godbah(); return 0;&#125;void godbah() &#123; int n; cout &lt;&lt; &quot;输入不小于 6 的偶数：&quot; &lt;&lt; endl; cin &gt;&gt; n; for (int i = 3; i &lt;= n; i++) &#123; if (prime(i) &amp;&amp; prime(n - i)) &#123; cout &lt;&lt; n &lt;&lt; &quot;=&quot; &lt;&lt; i &lt;&lt; &quot;+&quot; &lt;&lt; n - i &lt;&lt; endl; break; &#125; &#125;&#125;bool prime(int num) &#123; int i; for (i = 2; i &lt; num; i += 2) &#123; if (num % i == 0) return false; &#125; if (i == num) return true;&#125;]]></content>
-  </entry>
-  <entry>
-    <title><![CDATA[Linux磁盘管理]]></title>
-    <url>%2F2019%2F10%2F10%2FLinux%E7%A3%81%E7%9B%98%E7%AE%A1%E7%90%86%2F</url>
+    <title><![CDATA[Linux 磁盘管理]]></title>
+    <url>%2F2019%2F10%2F10%2FLinux-%E7%A3%81%E7%9B%98%E7%AE%A1%E7%90%86%2F</url>
     <content type="text"><![CDATA[磁盘分区程序1234567# fdisk [-l] 设备名称-l ：输出对应设备的所有的分区，未指定设备则显示系统内能找到的所有分区相关命令 m 查看cylinder 可以通过 +sizeM 让系统自动分配# partprobe &lt;==强制内核重新读取分区表（不重启更新分区表信息）无法处理 2TB 以上的磁盘分区，使用 parted 命令设备名称不应该加上数字如 /dev/hdc1 因为分区针对的是整个硬盘设备 磁盘格式化1# mkfs [-t 文件系统格式] 设备文件名 磁盘检验12# fsck [-t 文件系统] [-ACay] 设备名称-t ：Linux 会通过 super block 分辨文件系统，可省略 检查文件系统是否出错，可能会造成部分损坏，故执行 fsck 时被检查分区需要在卸载状态 1# badblocks [-svw] 设备名称 检查扇区是否有坏轨 磁盘挂载与卸载被挂载的目录理论上应该是空目录，否则原有内容会隐藏到新分区卸载 放弃磁盘，这部分还是面向谷歌吧x]]></content>
       <categories>
         <category>Linux</category>
       </categories>
       <tags>
-        <tag>操作</tag>
-        <tag>硬盘</tag>
+        <tag>存储器</tag>
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[汇编课程记录2]]></title>
-    <url>%2F2019%2F10%2F06%2F%E6%B1%87%E7%BC%96%E8%AF%BE%E7%A8%8B%E8%AE%B0%E5%BD%952%2F</url>
+    <title><![CDATA[汇编课程记录 2]]></title>
+    <url>%2F2019%2F10%2F06%2F%E6%B1%87%E7%BC%96%E8%AF%BE%E7%A8%8B%E8%AE%B0%E5%BD%95-2%2F</url>
     <content type="text"><![CDATA[太困了没听… 实际上不算课程记录…寄存器CPU 优先读写寄存器，依靠名称而非地址区分数据。80386 以上的 CPU 有 8 个 32 位通用寄存器： EAX EBX ECX EDX ESP 堆栈指针寄存器，栈顶的偏移量 EBP ESI EDI 6 个 16 位段寄存器 CS 当前正在运行的程序段 SS 当前堆栈段，配合 ESP 食用 DS 主数据段 ES 附加数据段 FS GS 2 个 32 位控制寄存器 EIP 指令指针寄存器，存放偏移量部分，配合 CS 指出下一条指令的地址 FLAGS 标志寄存器 细节翻书 内存堆 Heap 来自用户主动请求，从起始地址开始向高位增长，不会自动消失 栈 Stack 函数运行而临时占用的内存区域，为每个函数建立一个桢，运行结束则回收桢释放内部变量不再占用内存，由内存区域的结束地址开始向低位，后进先出； 生成新的帧即入栈 push；栈的回收即出栈 pop 段寄存器装入ASSUME 仅指出段和段寄存器之间的关系，并未真正装入 DS ES 12MOV AX,DATAMOV DS,AX CS IP系统自动将 START 所在段段地址送 CS 段内偏移地址送 IP 12345START: . . . END START SS SP自动装入]]></content>
       <categories>
         <category>汇编</category>
       </categories>
       <tags>
-        <tag>汇编语句</tag>
+        <tag>寄存器</tag>
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[Linux文件系统操作]]></title>
-    <url>%2F2019%2F09%2F28%2FLinux%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E6%93%8D%E4%BD%9C%2F</url>
-    <content type="text"><![CDATA[df du根据 super block 中的信息12345678# df [-ahikHTm] [filenamedirname]-a : 列出所有文件系统，比默认多显示如内存中的 文件系统-k : 以 KB 显示各文件系统-m : 同上-h : 自行以易阅读的单位显示-H : 以 1M=1000K 计算-T : 增加显示文件系统名称 type-i : 以 inode 数量显示 /proc 这个挂载点在内存中，没有占用任何硬盘空间故大小为 0/dev/shm 是利用内存虚拟的磁盘空间 通过搜索文件计算每个的大小然后累加 12345# du [-ahskm] filenamedirname-a : 列出所有文件和目录容量，默认仅统计目录-hkm : 同 df-s : 仅显示最后加总的值-S : 类似 -s 不包括子目录的大小 12# du –hs xxx 显示目录总大小，不会列出目录中的每一个文件# du –hs xxx/* 列出 xxx 下每个目录和文件所占容量 du 能看到的文件是当前存在没有被删除的，删除一个文件的时候，这个文件不是马上就在文件系统当中消失了，而是暂时消失了，当所有程序都不用时，才会根据OS的规则释放掉已经删除的文件不要直接执行 du 命令，它会遍历并列出目录下的所有文件 连接文件hard link 硬连接/实际连接新建一个文件名连接到 inode 上 文件内容和 inode 有关 通过文件名指向到对应 inode 读取文件 所以 hard link 和源文件除了文件名，相关信息完全一样，若将其中一个文件删除，因为 inode 还有连接故实际还存在不能跨文件系统，不能连接到目录（因为会产生大量连接造成开销） symbolic link 符号连接/快捷方式创建一个独立文件让数据读取指向连接的文件名所以源文件删除后 symbolic link 将无法打开，两个文件指向不同的 indoe目录快捷方式时将同步删除等，新建目录连接至少产生三个：本身 . .. 而上层目录连接数会加一，新目录连接数为二 123# ln [-sf] 源文件 目标文件-s ：symbolic link，不加参数为 hard link-f ：目标文件若存在则先删除再创建]]></content>
+    <title><![CDATA[Linux 文件系统操作]]></title>
+    <url>%2F2019%2F09%2F28%2FLinux-%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E6%93%8D%E4%BD%9C%2F</url>
+    <content type="text"><![CDATA[df du根据 super block 中的信息12345678# df [-ahikHTm] [filenamedirname]-a : 列出所有文件系统，比默认多显示如内存中的-k : 以 KB 显示各文件系统-m : 同上-h : 自行以易阅读的单位显示-H : 以 1M=1000K 计算-T : 增加显示文件系统名称 type-i : 以 inode 数量显示 /proc 这个挂载点在内存中，没有占用任何硬盘空间故大小为 0/dev/shm 是利用内存虚拟的磁盘空间 通过搜索文件计算每个的大小然后累加 12345# du [-ahskm] filenamedirname-a : 列出所有文件和目录容量，默认仅统计目录-hkm : 同 df-s : 仅显示最后加总的值-S : 类似 -s 不包括子目录的大小 12# du –hs xxx 显示目录总大小，不会列出目录中的每一个文件# du –hs xxx/* 列出 xxx 下每个目录和文件所占容量 du 能看到的文件是当前存在没有被删除的，删除一个文件的时候，这个文件不是马上就在文件系统当中消失了，而是暂时消失了，当所有程序都不用时，才会根据OS的规则释放掉已经删除的文件不要直接执行 du 命令，它会遍历并列出目录下的所有文件 连接文件hard link 硬连接/实际连接新建一个文件名连接到 inode 上 文件内容和 inode 有关 通过文件名指向到对应 inode 读取文件 所以 hard link 和源文件除了文件名，相关信息完全一样，若将其中一个文件删除，因为 inode 还有连接故实际还存在不能跨文件系统，不能连接到目录（因为会产生大量连接造成开销） symbolic link 符号连接/快捷方式创建一个独立文件让数据读取指向连接的文件名所以源文件删除后 symbolic link 将无法打开，两个文件指向不同的 indoe目录快捷方式时将同步删除等，新建目录连接至少产生三个：本身 . .. 而上层目录连接数会加一，新目录连接数为二 123# ln [-sf] 源文件 目标文件-s ：symbolic link，不加参数为 hard link-f ：目标文件若存在则先删除再创建]]></content>
       <categories>
         <category>Linux</category>
       </categories>
       <tags>
-        <tag>概念</tag>
-        <tag>查</tag>
         <tag>文件系统</tag>
         <tag>连接文件</tag>
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[汇编课程记录]]></title>
-    <url>%2F2019%2F09%2F23%2F%E6%B1%87%E7%BC%96%E8%AF%BE%E7%A8%8B%E8%AE%B0%E5%BD%95%2F</url>
+    <title><![CDATA[汇编课程记录 1]]></title>
+    <url>%2F2019%2F09%2F23%2F%E6%B1%87%E7%BC%96%E8%AF%BE%E7%A8%8B%E8%AE%B0%E5%BD%95-1%2F</url>
     <content type="text"><![CDATA[存储器为了区分不同的内存单元（一字节），每个单元会分配一个存储器地址；地址在计算机中用无符号二进制数表示，可简写成十六进制而字，双字，四字数据类型占用多个单元，在低地址中存放低位字节数据，高地址存放高位字节数据，访问时根据最低单元的地址依此存取后续字节 MSB (Most Significant Byte)，最高有效字节，是一个数据中权值最大的那一个字节LSB (Least Significant Byte)，最低有效字节，是一个数据中权值最小的那一个字节Little-Endian，是指数据的高字节(MSB)保存在内存的高地址中，而数据的低字节(LSB)保存在内存的低地址中，这种存储模式将地址的高低和数据位权有效地结合起来，高地址部分权值高，低地址部分权值低例如：整型数 0x1A2B3C4D 在内存中存储的方式如下: 实模式本身意义是代表真实的物理地址8086CPU 的数据总线为 16 位，一次最多读取 2^16=64KB 数据（故实模式每个段最大64KB），但地址总线为 20 位，最大寻址能力是 2^20=1MB将若干个地址连续的内存单元看做是一个段，通过将一个段地址左移 4 位形成基地址，再通过这个基地址来定位这个段的起始地址，然后，再通过偏移地址便可以精确定位到段中的内存单元了10H × 段基址 + 偏移量 = 物理地址]]></content>
       <categories>
         <category>汇编</category>
       </categories>
       <tags>
+        <tag>存储器</tag>
         <tag>Little-Endian</tag>
         <tag>实模式</tag>
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[Linux文件系统概念]]></title>
-    <url>%2F2019%2F09%2F18%2FLinux%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%2F</url>
+    <title><![CDATA[Linux 文件系统]]></title>
+    <url>%2F2019%2F09%2F18%2FLinux-%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%2F</url>
     <content type="text"><![CDATA[回顾硬盘分区磁盘分区指定分区的起始与结束柱面，分区的柱面范围记录在第一个扇区的分区表里面硬盘的第一个扇区中有主引导记录 MBR 446bytes 和分区表 partition table 64bytes，由于大小限制最多只能记录四条分区的记录，即主分区或扩展分区 GPT + UEFI 则扫描整块磁盘上的分区，读取 EFI 分区里的引导文件，所以不再限制在扇区开头的 512bytes 中 硬盘限制主分区和扩展分区最多可以有四个，操作系统限制扩展分区只能有一个，无法被格式化即无法作为数据访问，但扩展分区可以再分出逻辑分区 格式化文件系统通过格式化将 inode 和 block 规划好，并不再变动；不同文件系统格式化方法不同，所以不能相互识别利用 inode 记录文件属性和此文件的数据所在的 block，一个文件占用一个 inode block 实际记录文件内容，可占用多个 super block 记录此文件系统的整体信息，如 inode/block 总量使用量剩余量，文件系统的格式等 碎片整理即因为文件写入的 block 过于离散，影响文件读取性能，需要将它们汇合到一起；这针对没有 inode 的 FAT 系统，Linux 的索引式文件系统基本不需要 文件系统当 inode 和 block 数量极大时不容易管理，Ext2 在格式化时区分为多个块组 block group，每个块组有独立的 inode/block/superblock 系统boot sector 启动扇区在文件系统最前面，用于安装引导装载程序，这样不用覆盖整块硬盘唯一的 MBR，制作多重引导环境 data block 数据块放置文件内容，每个 block 最多放置一个文件的数据，若有剩余空间则浪费；Ext2 支持 1KB 2KB 4KB 三种 block 大小，其决定最大总容量和最大单一文件容量 inodetable至少记录访问模式 所有者和组 大小 ctime atime mtime 内容指向 文件特性，系统读取文件时会先分析 inode 所记录的权限与用户是否符合；每个文件占用一个inode，所以文件系统能创建的文件数量与 inode 数量有关inode 大小固定为 128bytes，当文件较大则不足以记录下所有的 block 编号，故定义了 12 个直接，一个间接，一个双间接，一个三间接记录区 用一个 block 来记录额外的编号，若依然不够则用一个 block 指出下一个记录编号的 block，依此最多三层；以 1KB 大小的 block 计算，12*1K + 256*1K + 256*256*1K + 256*256*256*1K = 16GB，即该文件系统最大容量 superblock一般为 1024bytes，除了第一个 blockgroup 中含有 superblock 外，后面的不一定含有，若有则为备份 文件系统描述 File system Dscription描述每个 blockgroup 的开始与结束编号，说明每个区段介于哪个 block 之间 区段指 superblock bitmap inodemap datablock block bitmap 标记/修改某个 block 是否被使用 inode bitmap同上 查询文件系统 1234# df &lt;== 查询目前挂载的设备# dumpe2fs [-bh] devname-b ：列出坏道部分-h ：仅列出 superblock 数据 新增文件的过程 检查目录是否有 w 和 x 权限 根据 inode bitmap 查找没有使用的 inode 编号并写入新文件的权限属性 根据 block bitmap 查找没有使用的 block 编号并写入实际数据，更新 inode 的指向 将 inode 和 block 信息更新到 inode bitmap 与 block bitmap，并更新 superblock 由于 superblock inodebitmap blockbitmap 的数据经常变动，被称为 metadata 中间数据，而 inode table 和 data block 称为数据存放区域 异步处理 asynchronoly提高效率：系统加载一个文件到内存后，若文件没有被改动，则被设置成 clean，更改过则为 dirty，系统不定时将 dirty 数据写回硬盘 可以 sync 命令手动写回 正常关机会主动调用 sync 命令 与目录树的关系ext2 中的目录新建目录时，会分配一个 inode 和至少一块 block，inode 记录目录的相关权限，属性，和分配到的 block 编号；block 记录此目录下的文件名与文件名的 inode 编号数据 ext2 中的文件新建一般文件时，会分配一个 inode 和对应大小的 block 数量，由于只有 12 个直接指向，可能分配额外的 block 用来记录块编号 inode 本身不记录文件名，而是在目录的 block 中，所以增删改文件名与目录的 w 权限有关。当读取某个文件时务必会经过目录的 inode 和 block，然后找到文件的 inode 最终获得 block 中的数据系统通过挂载信息获得根目录的 inode 号码，并据此获得根目录 block 内的文件名数据，再一层层向下 日志文件系统inconsistent 状态文件在写入文件系统时发生中断，未同步更新 metadata 导致 metadata 的内容和实际数据存放区不一致 避免 inconsistent 发生 写入文件前先在日志记录块记录准备要写入的信息 实际写入，包括更新 metadata 的数据 在日志记录块中完成该文件的记录 发生问题时通过检查日志记录块定位到文件，不必检查整个文件系统，Ext2 中没有文件日志系统，需要对比 metadata 区域和数据存放区]]></content>
       <categories>
         <category>Linux</category>
       </categories>
       <tags>
-        <tag>概念</tag>
         <tag>目录树</tag>
-        <tag>格式化</tag>
         <tag>日志</tag>
-        <tag>硬盘</tag>
+        <tag>存储器</tag>
         <tag>文件系统</tag>
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[Linux文件目录的权限和命令补充]]></title>
-    <url>%2F2019%2F09%2F11%2FLinux%E6%96%87%E4%BB%B6%E7%9B%AE%E5%BD%95%E7%9A%84%E6%9D%83%E9%99%90%E5%92%8C%E5%91%BD%E4%BB%A4%E8%A1%A5%E5%85%85%2F</url>
+    <title><![CDATA[Linux 文件与目录补充]]></title>
+    <url>%2F2019%2F09%2F11%2FLinux-%E6%96%87%E4%BB%B6%E4%B8%8E%E7%9B%AE%E5%BD%95%E8%A1%A5%E5%85%85%2F</url>
     <content type="text"><![CDATA[默认权限 文件默认没有可执行权限，即最大为 666 目录默认有所有权限，即 777 umask 指定目前用户新建文件或目录时的权限默认值 查看 12# umask [-S]-S ：以字母显示默认权限，否则是数字 其数字结果是该默认值要被拿掉的权限 设置 1# umask xyz root 默认是 022，一般用户是 002用字母进行计算更准确，如 (-rw-rw-rw-) - (——–wx) = -rw-rw-r–,而非 666 - 003 = 663 隐藏属性chattr设置文件的隐藏属性仅在 Ext2/Ext3 的文件系统生效 1234567891011# chattr [+-=][ASacdistu] dirname/filname+ ：仅增加某一个参数- ：仅减少某一个参数= ：仅有后面指定的参数A ：访问此文件/目录时，访问时间 atime 将不会被修改S ：对文件的修改将 同步 写入磁盘a ：root 限定，只能增加数据不能删改c ：文件将被自动压缩，读取时自动解压，存储时先压缩再存储d ：dump 程序被执行时，该文件/目录不会被 dump 备份i ：root 限定，该文件无法被增删改和设置连接 lsattr显示文件的隐藏属性 1234# lsattr [-adR] filname/dirname-a 包括隐藏文件-d 目录属性而非内容-R 递归，子目录数据也显示 特殊权限SUID 4 u+sSetUID 只对文件有效，文件所有者的 x 权限为 s 仅对二进制程序有效，对于 shell script 无效，靠看其根本的二进制文件设置 执行者对改程序有 x 权限 废话 仅在执行过程 run-time 中有效 执行者将拥有 owner 的权限 例：/etc/shadow 记录了所有账号的密码，-rwsr-xr-x root root 仅有 root 可读可强制写入，但用户也能修改自己的密码 SGID 2 g+sSetGID 用户组的 x 权限为 s文件同 SUID目录 用户对此目录有 r 与 x 权限时可进入 用户在此目录下的有效用户组将变成该目录的用户组 若在此目录下有 w 权限，则新文件的用户组和此目录的用户组相同 SBIT 1 o+tStickyBit 只对目录有效，other 的 x 的权限为 x，仅用户自己和 root 有权利删除该目录下的文件/目录 查询文件脚本文件名12# which [-a] command-a 列出所有 PATH 目录中可以找到的同名命令，否者显示找到的第一个 根据 PATH 环境变量规范的路径查找，查不到 bash 内置的命令 文件名 whereis寻找特定文件 数据库 12345# whereis [-bmsu] filname/filname-b 仅找二进制文件-m 仅找说明文件 manual 路径下的文件-s 仅找 source 源文件-u 其它特殊文件 查找文件，故不在 PATH 中也能找到；利用数据库，速度快但结果有延迟 locate 数据库 123# locate [-ir] keyword-i 忽略大小写-r 允许接正则表达式 可以只输入文件的部分名称(包括路径中)，根据 /var/lib/mlocate/ 中的数据，默认每天更新一次可能有延迟，可手动 updatedb 更新 find 硬盘 12345678910111213141516171819202122232425262728293031# find [PATH] [option] [action]与时间有关的参数-mtime n 在 n 天前的 一天之内 被更改过的文件，前24小时即 0 -mtime +n 在 n 天之前被更改过的文件，不含本身 -mtime -n 在 n 天之内被更改过的文件，含本身 -newer file 列出比 file 更新的文件与用户或用户组名有关的参数-uid n 即 UID，记录在 /etc/passwd-gid n 即 GID，记录在 /etc/group-user name 用户账号名称-group name 用户组名-nouser 所有者不在 /etc/passwd 的文件-nogroup 所有用户组不在 /etc/passwd 的文件与文件权限及名称有关的参数-name filename 根据文件名查询-size [+-]SIZE 查找比 SIZE 大或小的文件 k代表1024bytes-type TYPE 查找文件类型为 TYPE 的；一般文件 f，设备文件 b c，目录 d，连接文件 1，socket s，FIFO p-perm mode 文件权限刚好是 mode 的文件，类似 chmod 的属性值-perm +-mode 文件权限全部包含/包含任意 mode 的文件 例 #find /bin /sbin -perm +6000 查找/bin /sbin 两个目录下具有 SUID SGID 的文件 其他操作-exec command 后面可以接其他命令处理查到的结果 #find / -perm +7000 -exec ls -l &#123;&#125;\; &#123;&#125; 代表 find 查找到的内容，\; 转义 本身代表额外命令结束利用通配符查找 #find /etc -name &apos;*httpd*&apos;]]></content>
       <categories>
         <category>Linux</category>
       </categories>
       <tags>
-        <tag>操作</tag>
         <tag>文件</tag>
         <tag>目录</tag>
-        <tag>概念</tag>
         <tag>属性权限</tag>
-        <tag>查</tag>
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[Linux文件与目录操作]]></title>
-    <url>%2F2019%2F09%2F09%2FLinux%E6%96%87%E4%BB%B6%E4%B8%8E%E7%9B%AE%E5%BD%95%E6%93%8D%E4%BD%9C%2F</url>
+    <title><![CDATA[Linux 文件与目录操作]]></title>
+    <url>%2F2019%2F09%2F09%2FLinux-%E6%96%87%E4%BB%B6%E4%B8%8E%E7%9B%AE%E5%BD%95%E6%93%8D%E4%BD%9C%2F</url>
     <content type="text"><![CDATA[目录处理cd change directory 切换目录 1# cd - 返回之前的目录 pwd print working directory 显示当前目录 1# pwd -p 获得实际路径而非连接路径 mkdir 新建目录 123# mkdir [-mp] dirname-m ：新建自定义权限的目录 如 mkdir -m xyz test-p ：递归创建 如 mkdir -p test1/test2/test3 rmdir 删除空目录 1# rmdir [-p] dirname 同上 文件处理 cp copy 123456789# cp [-adfilprsu] source destination-a ：同-pdr-d ：若源文件是连接文件则复制连接文件而非本身-i ：若目标文件存在，询问是否覆盖-l ：创建硬连接的连接文件-p ：连同文件属性复制，常用于备份-r ：递归复制，用于目录的复制行为-s ：创建符号连接文件，即快捷方式-u ：源文件新才 update 默认情况下目的文件的所有者是命令操作者 没有参数时 cp 复制的是源文件而非连接文件 rm remove 1234# rm [-fir] dirname/filename-f : force 强制，忽略不存在的文件且不警告-i ：删除前进行询问-r ：递归删除 目录名以 - 开头会造成误判，可以用 ./ 避免 mv move 1234# mv [-fiu] source destination-f ：force 若目标文件已存在则直接覆盖不询问-i ：若目标文件存在，询问是否覆盖-u ：源文件新才 update 多个源文件或目录要移动时，最后一个（即目标文件）一定是目录 废话 文件内容查阅直接查看 cat concatenate 从第一行开始显示文件内容 1234# cat [-AbEnTv]-A ：相当 -vET 整合，特殊字符 断行字符$ Tab键＾I-b ：列出行号，空白行不标号-n ：列出行号，包括空白行 tac cat 反写，功能也是 nl 添加行号显示 123456789# nl [-bnw]-b ：行号的指定方式 a 空行也显示，类似 cat -n t 空行不显示行号，默认值-n ：行号的表示方法 ln 行号字段最左显示 rn 行号字段的最右显示，不加 0 rz 行号字段的最右显示，加 0-w ：行号字段的位数，默认六位 翻页查看 more Space ：向后翻一页 Enter ：向下滚动一行 /字符串 ：当前页向下查询，n 继续查询 :f ：显示出文件名以及目前显示的行数 b/ctrl+b ：回翻，仅限文件，FIFO无效 less Space/PageDown ：向后翻一页 PageUp ：向前翻一页 ?字符串 ：当前页向上查询，n 继续查询 N ：反向继续查询 数据选取head 取出前几行，默认显示十行 12# head [-n num] file 取前 num 行# head [-n -num] file 取 num 行之前，第二个是减号ao（x tail 取后面几行 123# tail [-n num] file 取后 num 行# tail [-n +num] file 取 num 行之后-f 持续监测，应对数据随时写入 od 非纯文本文件 1234# od [-t TYPE] 文件TYPE a ：默认字符输出 c ：ASCII 字符输出 dfox ：十进制 浮点数 八进制 十六进制 文件时间处理1# ls -l --time=?time filname mtime modification time内容数据更改时更新，ls 默认值 ctime status time状态改变时更新，如权限与属性 atime access time内容被取用访问时更新 123456# touch [-acdmt] file-a ：修改 atime-c ：修改文件时间，文件不存不创建新文件-d ：修改 atime mtime，ctime 不变-m ：修改 mtime-t ：修改 atime mtime，ctime 记录当前时间，格式 YYMMDDhhmm 默认将三个时间更新为当前，若文件不存在创建新文件 文件类型查看1# file filename]]></content>
       <categories>
         <category>Linux</category>
       </categories>
       <tags>
-        <tag>操作</tag>
-        <tag>增删查</tag>
         <tag>文件</tag>
         <tag>目录</tag>
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[Linux文件与目录概念]]></title>
-    <url>%2F2019%2F09%2F08%2FLinux%E6%96%87%E4%BB%B6%E6%9D%83%E9%99%90%E4%B8%8E%E7%9B%AE%E5%BD%95%2F</url>
+    <title><![CDATA[Linux 文件与目录]]></title>
+    <url>%2F2019%2F09%2F08%2FLinux-%E6%96%87%E4%BB%B6%E4%B8%8E%E7%9B%AE%E5%BD%95%2F</url>
     <content type="text"><![CDATA[文件属性示例1-rw-r--r-- 1 root root 63428 Sep 8 19:24 xxxxx.md 第一列 第一位 [d] 目录 [-] 文件 [l] 连接文件 linkfile [b] 可供存储的设备 是设备文件 [c] 串行端口设备 是设备文件 第一列 第二~九位三个一组，分别为 文件所有者权限 同用户组权限 其他用户权限 每组三个参数依次为 r读-4 w写-2 x执行-1Linux 中文件的可执行性与文件名无绝对关系文件与目录的权限意义不同 第二列链接到此节点 i-node 的不同文件名数&ensp;&ensp;文件名集合权限与属性记录到文件系统的 i-node 中 第六列创建日期或最近修改日期显示完整时间格式： 1# ls -l --full-time &ensp;&ensp;中文无法在终端显示所以： 1# LANG= en_US 改变文件属性 复制行为 cp 不会更改源文件的属性 chgrp 改变所属用户组change group 1# chgrp [-R] groupname dirname/filename 组名在 /etc/group 中，否则报错 chown 改变所有者change owner 12# chown [-R] ownername dirname/filename# chown [-R] ownername:groupname dirname/filename 组名在 /etc/passwd 中，否则报错ownername:groupname 同时更改 owner 和 group，不要用 . 防止误判 chmod 改变权限change modify 12# chmod [-R] xyz dirname/filename# chmod u/g/o/a +/-/= r/w/x dirname/filename 目录树状，记录文件名列表 FHS/根目录，开机相关FHS建议 / 所在分区应越小越好，但以下不应该与根目录分开： /etc 配置文件 /bin 执行文件，可被 root 和一般用户共用 /dev 设备文件 /lib 函数库和内核所需模块 /sbin 执行文件，多用于设定系统文件，root 限定因为与开机过程有关，开机仅挂载根目录，其他分区在开机完成后进行根目录也有 . 和 ..，但两者都是根目录本身 /usrUNIX software resourse 软件资源数据，可分享 shareable 不可变动 static /varvariable 常态性变动文件，缓存，登陆文件，软件运行产生的文件等 权限之于目录 r read contents in directory读取目录结构列表的权限，即 文件名数据，可利用 ls 查询内容列表 w modify contents in directory读取目录结构列表的权限，即 新建新的文件和目录 删除已存在的文件与目录（无视其它权限） 重命名已存在的文件与目录 转移目录内的文件与目录位置 x access directory用户进入该目录成为工作目录的权限 目前所在的目录 例：r–（目录） 用户访问 root 的目录仅可查询目录下的文件名列表但不能切换到此目录，无法执行任何该目录下的命令例：rwx（目录） 用户访问 root 的 — 文件不可读 编辑 执行 但可以删除 路径 PATH相对路径相对于当前工作目录，shell scrits 下执行环境不同可能导致问题 绝对路径一定由根目录 / 写起，正确度更好 系统依照 PATH 的设置去 PATH 定义的目录下查询对应文件名的可执行文件不同用户默认 PATH 不同，故默认可直接执行指令也不同但 PATH 可以修改，一般用户可通过修改 PATH 执行 /sbin 或 /usr/sbin 的命令来查询 12# echo $PATH 查询# PATH=&quot;$PATH&quot;:/dirname 添加目录进 PATH 相同命令在不同目录，先被查询到的目录先执行 12# basename 取文件名# dirname 取目录名]]></content>
       <categories>
         <category>Linux</category>
@@ -221,44 +239,37 @@
       <tags>
         <tag>文件</tag>
         <tag>目录</tag>
-        <tag>概念</tag>
         <tag>属性权限</tag>
       </tags>
   </entry>
   <entry>
     <title><![CDATA[19-09碎碎念]]></title>
     <url>%2F2019%2F09%2F08%2F19-09%E7%A2%8E%E7%A2%8E%E5%BF%B5%2F</url>
-    <content type="text"><![CDATA[开学了嗯 争取每天做总结吧（接下来的计划 抓紧把 Linux 基础速读掉，补笔记 属性与权限概念 目录概念与文件系统 磁盘相关 抽空整fu理xi HTML5 CSS JavaScript 笔记，主要把书看掉 抽空整fu理xi JAVA 笔记 这些定在十月前吧，到时候看下摸鱼程度x]]></content>
+    <content type="text"><![CDATA[开学了嗯 争取每天做总结吧（接下来的计划 抓紧把 Linux 基础速读掉，补笔记 属性与权限概念 目录概念与文件系统 磁盘相关 抽空整fu理xi HTML5 CSS JavaScript 笔记，主要把书看掉 抽空整fu理xi Java 笔记 这些定在十月前吧，到时候看下摸鱼程度x]]></content>
       <categories>
         <category>碎碎念</category>
       </categories>
-      <tags>
-        <tag>小目标</tag>
-      </tags>
   </entry>
   <entry>
     <title><![CDATA[关于静态成员]]></title>
     <url>%2F2019%2F09%2F06%2F%E5%85%B3%E4%BA%8E%E9%9D%99%E6%80%81%E6%88%90%E5%91%98%2F</url>
     <content type="text"><![CDATA[静态成员：属于类本身，不属于类的实例，在程序加载时至程序结束时一直存在，用类名直接调用（不需要实例对象） 非静态成员：属于类的实例的，不属于类本身 因此，静态的成员，不能访问非静态成员（毕竟两者无关系）。但是实例方法在类中可以访问静态字段 静态成员函数与普通成员函数的差别在于缺少this，静态成员在类加载时就存在于内存（堆）中共享，与全局函数相比，这样可以减少内存开销]]></content>
       <categories>
-        <category>JAVA</category>
+        <category>Java</category>
       </categories>
       <tags>
         <tag>静态</tag>
-        <tag>思路</tag>
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[各种类型的比较方法]]></title>
+    <title><![CDATA[类型间的比较方法]]></title>
     <url>%2F2019%2F09%2F06%2F%E5%90%84%E7%A7%8D%E7%B1%BB%E5%9E%8B%E7%9A%84%E6%AF%94%E8%BE%83%E6%96%B9%E6%B3%95%2F</url>
     <content type="text"><![CDATA[内存地址比较用 equalsstring 类型与 null 比较用 ==string 类型与空字符串 “” 比较用 equals乱入12String str1 = null; //str引用为空 String str2 = ""; //str引用为空串相关如果 str1=null; 这个的写法错误⬇： 123if(str1.equals("")||str1==null)&#123; //如果str1没有值，则返回false &#125; 正确的写法是： 123if(str1==null||str1.equals(""))&#123; //先判断是不是对象，如果是，再判断是不是空字符串 &#125;]]></content>
       <categories>
-        <category>JAVA</category>
+        <category>Java</category>
       </categories>
       <tags>
-        <tag>思路</tag>
-        <tag>基础</tag>
-        <tag>比较</tag>
+        <tag>数据类型</tag>
       </tags>
   </entry>
   <entry>
@@ -266,10 +277,9 @@
     <url>%2F2019%2F09%2F06%2F%E5%8F%98%E9%87%8F%E8%B5%8B%E5%80%BC%E4%B8%8E%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E7%9A%84%E6%89%A7%E8%A1%8C%E9%A1%BA%E5%BA%8F%2F</url>
     <content type="text"><![CDATA[子类给成员变量分配空间，在栈中默认初始化成0 调用子类构造函数，因为继承，调用 super(); 调用父类构造函数，因为覆盖，执行子类方法 执行父类构造函数其他语句 父类构造函数结束弹栈 子类对成员变量显示初始化(赋值) 调用子类构造函数其他语句 检验 123456789101112131415161718192021222324252627282930class Fu&#123; Fu() &#123; this.getNum(); &#125; public void getNum() &#123; System.out.println("父类"); &#125;&#125; class Zi extends Fu&#123; int num=4; public Zi() &#123; super(); System.out.println("子类构造函数中"+this.num); &#125; public void getNum() &#123; System.out.println("getNum方法"+this.num); &#125;&#125; public class learn&#123; public static void main(String[] args) &#123; new Zi(); &#125;&#125;]]></content>
       <categories>
-        <category>JAVA</category>
+        <category>Java</category>
       </categories>
       <tags>
-        <tag>思路</tag>
         <tag>构造函数</tag>
       </tags>
   </entry>
@@ -278,12 +288,10 @@
     <url>%2F2019%2F09%2F06%2F%E5%AF%B9%E8%B1%A1%E5%AE%9E%E4%BE%8B%E5%8C%96%E8%BF%87%E7%A8%8B%2F</url>
     <content type="text"><![CDATA[1Test t = new Test; JVM 读取 Test.class 文件并加载进内存，加载 Test 的父类(如果有) 堆内存中开辟空间，分配地址 在对象空间中，对对象中的属性进行默认初始化 调用对应的构造函数进行初始化 在构造函数中，先调用父类的构造函数进行初始化 父类初始化完毕后，对子类的属性进行显示初始化（ super(); 和第二句之间的动作） 进行子类构造函数的特定初始化 初始化完毕，将地址值赋值给引用变量]]></content>
       <categories>
-        <category>JAVA</category>
+        <category>Java</category>
       </categories>
       <tags>
-        <tag>思路</tag>
         <tag>构造函数</tag>
-        <tag>基础</tag>
         <tag>实例化</tag>
       </tags>
   </entry>
