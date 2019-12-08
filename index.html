@@ -258,7 +258,7 @@
   
   
   <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/04/Git-基础杂烩/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/08/Java-补丁-对象和类/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Sun YuYu">
@@ -272,7 +272,203 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
             
-            <a href="/2019/12/04/Git-基础杂烩/" class="post-title-link" itemprop="url">Git-基础杂烩</a>
+            <a href="/2019/12/08/Java-补丁-对象和类/" class="post-title-link" itemprop="url">Java 补丁-对象和类</a>
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2019-12-08 19:24:02 / 修改时间：21:27:13" itemprop="dateCreated datePublished" datetime="2019-12-08T19:24:02+08:00">2019-12-08</time>
+            </span>
+          
+            
+
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="预定义类部分"><a href="#预定义类部分" class="headerlink" title="预定义类部分"></a>预定义类部分</h1><p><strong>更改器和访问器</strong><br>更改器方法：调用方法后，会改变对象的状态。<br>访问器方法：只访问对象而不修改对象，通过生成新对象的方式应用改动。</p><h1 id="自定义类部分"><a href="#自定义类部分" class="headerlink" title="自定义类部分"></a>自定义类部分</h1><p><strong>封装</strong><br>注意是否返回了引用可变对象，即访问器方法返回了一个有更改器方法的对象；返回可变对象的引用时，应该先进行 clone。<br>Date 类有更改器方法 setTime，破坏了封装性：</p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/12/08/Java-补丁-对象和类/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+        <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block home">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/07/Git-分支乱七八糟版/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Sun YuYu">
+      <meta itemprop="description" content="虽然啥都没干，真是辛苦自己啦">
+      <meta itemprop="image" content="/images/logo.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="卑微的 YuYu">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+            
+            <a href="/2019/12/07/Git-分支乱七八糟版/" class="post-title-link" itemprop="url">Git-分支乱七八糟版</a>
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2019-12-07 19:39:54" itemprop="dateCreated datePublished" datetime="2019-12-07T19:39:54+08:00">2019-12-07</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-12-08 21:24:59" itemprop="dateModified" datetime="2019-12-08T21:24:59+08:00">2019-12-08</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Git/" itemprop="url" rel="index"><span itemprop="name">Git</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>使用 git branch <name> 命令创建分支。git branch -d <name> 删除分支。git branch -v 命令查看每个分支的最后一次提交。git branch –no-merged 查看未合并的分支，未合并的分支 -D 才能删除。<br>切换到一个已存在的分支，使用 git checkout 命令。</name></name></p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git checkout -b name</span><br><span class="line">等同于</span><br><span class="line">git branch name</span><br><span class="line">git checkout name</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/12/07/Git-分支乱七八糟版/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+        <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block home">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/04/Git-基础乱七八糟版/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Sun YuYu">
+      <meta itemprop="description" content="虽然啥都没干，真是辛苦自己啦">
+      <meta itemprop="image" content="/images/logo.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="卑微的 YuYu">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+            
+            <a href="/2019/12/04/Git-基础乱七八糟版/" class="post-title-link" itemprop="url">Git-基础乱七八糟版</a>
           
         </h1>
 
@@ -298,7 +494,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-12-06 21:01:09" itemprop="dateModified" datetime="2019-12-06T21:01:09+08:00">2019-12-06</time>
+                <time title="修改时间：2019-12-08 21:24:03" itemprop="dateModified" datetime="2019-12-08T21:24:03+08:00">2019-12-08</time>
               </span>
             
           
@@ -335,7 +531,7 @@
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2019/12/04/Git-基础杂烩/#more" rel="contents">
+              <a class="btn" href="/2019/12/04/Git-基础乱七八糟版/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -625,108 +821,6 @@
   
   
   <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/17/汇编课程记录-5/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Sun YuYu">
-      <meta itemprop="description" content="虽然啥都没干，真是辛苦自己啦">
-      <meta itemprop="image" content="/images/logo.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="卑微的 YuYu">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-            
-            <a href="/2019/11/17/汇编课程记录-5/" class="post-title-link" itemprop="url">汇编课程记录 5</a>
-          
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              
-                
-              
-
-              <time title="创建时间：2019-11-17 20:03:23" itemprop="dateCreated datePublished" datetime="2019-11-17T20:03:23+08:00">2019-11-17</time>
-            </span>
-          
-            
-
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-12-06 21:17:30" itemprop="dateModified" datetime="2019-12-06T21:17:30+08:00">2019-12-06</time>
-              </span>
-            
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/汇编/" itemprop="url" rel="index"><span itemprop="name">汇编</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="算术运算指令"><a href="#算术运算指令" class="headerlink" title="算术运算指令"></a>算术运算指令</h1><p>双操作数指令必须有一个操作数在寄存器中（除源操作数是立即数的情况）<br>单操作数指令不允许使用立即数</p><p>条件标志位<br>CF 有进位为 1 无进位为 0<br>ZF 结果为零<br>SF 符号<br>OF 溢出，若两个操作数符号相同而结果的符号与之相反时为 1</p><h3 id="加法指令"><a href="#加法指令" class="headerlink" title="加法指令"></a>加法指令</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">ADD DST,SRC</span><br><span class="line">ADC DST,SRC</span><br><span class="line">;(DST) ← (SRC)+(DST)+CF</span><br><span class="line">;带进位加法指令</span><br><span class="line">INC OPR</span><br><span class="line">;(OPR) ← (OPR)+1</span><br><span class="line">;加 1 指令</span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/11/17/汇编课程记录-5/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-          <div class="post-eof"></div>
-        
-      </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
-        <article itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block home">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/17/汇编课程记录-6/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -801,6 +895,108 @@
           
             <div class="post-button text-center">
               <a class="btn" href="/2019/11/17/汇编课程记录-6/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+        <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block home">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/17/汇编课程记录-5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Sun YuYu">
+      <meta itemprop="description" content="虽然啥都没干，真是辛苦自己啦">
+      <meta itemprop="image" content="/images/logo.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="卑微的 YuYu">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+            
+            <a href="/2019/11/17/汇编课程记录-5/" class="post-title-link" itemprop="url">汇编课程记录 5</a>
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2019-11-17 20:03:23" itemprop="dateCreated datePublished" datetime="2019-11-17T20:03:23+08:00">2019-11-17</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-12-06 21:17:30" itemprop="dateModified" datetime="2019-12-06T21:17:30+08:00">2019-12-06</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/汇编/" itemprop="url" rel="index"><span itemprop="name">汇编</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="算术运算指令"><a href="#算术运算指令" class="headerlink" title="算术运算指令"></a>算术运算指令</h1><p>双操作数指令必须有一个操作数在寄存器中（除源操作数是立即数的情况）<br>单操作数指令不允许使用立即数</p><p>条件标志位<br>CF 有进位为 1 无进位为 0<br>ZF 结果为零<br>SF 符号<br>OF 溢出，若两个操作数符号相同而结果的符号与之相反时为 1</p><h3 id="加法指令"><a href="#加法指令" class="headerlink" title="加法指令"></a>加法指令</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">ADD DST,SRC</span><br><span class="line">ADC DST,SRC</span><br><span class="line">;(DST) ← (SRC)+(DST)+CF</span><br><span class="line">;带进位加法指令</span><br><span class="line">INC OPR</span><br><span class="line">;(OPR) ← (OPR)+1</span><br><span class="line">;加 1 指令</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/11/17/汇编课程记录-5/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1125,214 +1321,6 @@
   </article>
 
     
-        <article itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/04/汇编课程记录-4/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Sun YuYu">
-      <meta itemprop="description" content="虽然啥都没干，真是辛苦自己啦">
-      <meta itemprop="image" content="/images/logo.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="卑微的 YuYu">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-            
-            <a href="/2019/11/04/汇编课程记录-4/" class="post-title-link" itemprop="url">汇编课程记录 4</a>
-          
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              
-                
-              
-
-              <time title="创建时间：2019-11-04 11:52:22" itemprop="dateCreated datePublished" datetime="2019-11-04T11:52:22+08:00">2019-11-04</time>
-            </span>
-          
-            
-
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-12-06 21:17:57" itemprop="dateModified" datetime="2019-12-06T21:17:57+08:00">2019-12-06</time>
-              </span>
-            
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/汇编/" itemprop="url" rel="index"><span itemprop="name">汇编</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>嗯这周也继续昏迷x</p><h1 id="通用数据传送指令"><a href="#通用数据传送指令" class="headerlink" title="通用数据传送指令"></a>通用数据传送指令</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">MOV DST,SRC ;传送指令</span><br></pre></td></tr></table></figure><p>操作数与目的长度必须为 8/16 位<br>目不能为 CS IP 或立即数<br>存储单元和段寄存器之间不能直接传送数据，要用通用寄存器为桥梁<br>立即数不能直接送到段寄存器</p><hr><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">PUSH SRC ;进栈指令</span><br><span class="line">;(SP) ⬅ (SP) -2</span><br><span class="line">;((SP+1), (SP)) ⬅ (SRC)</span><br><span class="line">POP DST ;出栈指令</span><br><span class="line">;(DST) ⬅ ((SP+1), (SP))</span><br><span class="line">;(SP) ⬅ (SP) +2</span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/11/04/汇编课程记录-4/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-          <div class="post-eof"></div>
-        
-      </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
-        <article itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/27/vim-的乱七八糟/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Sun YuYu">
-      <meta itemprop="description" content="虽然啥都没干，真是辛苦自己啦">
-      <meta itemprop="image" content="/images/logo.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="卑微的 YuYu">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-            
-            <a href="/2019/10/27/vim-的乱七八糟/" class="post-title-link" itemprop="url">vim 的乱七八糟</a>
-          
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              
-                
-              
-
-              <time title="创建时间：2019-10-27 23:50:44" itemprop="dateCreated datePublished" datetime="2019-10-27T23:50:44+08:00">2019-10-27</time>
-            </span>
-          
-            
-
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-12-06 21:15:17" itemprop="dateModified" datetime="2019-12-06T21:15:17+08:00">2019-12-06</time>
-              </span>
-            
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="文件"><a href="#文件" class="headerlink" title="文件"></a>文件</h1><p>vim 编辑文件时会新建 .filename.swp 文件，记录所作操作，当 vim 被不正常中断（或他人正在编辑<br>）时暂存文件不会消失，继续编辑时允许如下操作：</p><ul>
-<li>R 加载暂存文件的内容，恢复未保存的工作，记得离开 vim 后手动删掉暂存文件</li>
-<li>D 确定暂存文件无用，删除并新建本次使用的 .swp</li>
-<li>O 以只读打开，不进行编辑行为，用于他人正在编辑</li>
-</ul>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/10/27/vim-的乱七八糟/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-          <div class="post-eof"></div>
-        
-      </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
   </div>
 
   
@@ -1385,7 +1373,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">26</span>
+          <span class="site-state-item-count">28</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1501,7 +1489,17 @@
         
           
         
-        <span class="site-state-item-count">37</span>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">42</span>
         <span class="site-state-item-name">标签</span>
         </a>
       </div>
