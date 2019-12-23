@@ -65,7 +65,7 @@
 <meta property="og:site_name" content="卑微的 YuYu">
 <meta property="og:description" content="数据类型部分整型Java7 开始：允许通过加前缀 0b 写二进制数；允许为数字字面量加下划线： 1_000_000 0b1111_0000_0100 浮点型由于二进制系统无法精确表示分数 1/10，故浮点数值不适用金融计算，此时应使用 BigDecimal 类。   常量 数值    Double.POSITIVE_INFINITY 正无穷   Double.NEGATIVE_INFINITY 负">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-12-06T13:31:46.986Z">
+<meta property="og:updated_time" content="2019-12-11T12:22:46.990Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java 补丁-基本程序设计结构">
 <meta name="twitter:description" content="数据类型部分整型Java7 开始：允许通过加前缀 0b 写二进制数；允许为数字字面量加下划线： 1_000_000 0b1111_0000_0100 浮点型由于二进制系统无法精确表示分数 1/10，故浮点数值不适用金融计算，此时应使用 BigDecimal 类。   常量 数值    Double.POSITIVE_INFINITY 正无穷   Double.NEGATIVE_INFINITY 负">
@@ -300,7 +300,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-12-06 21:31:46" itemprop="dateModified" datetime="2019-12-06T21:31:46+08:00">2019-12-06</time>
+                <time title="修改时间：2019-12-11 20:22:46" itemprop="dateModified" datetime="2019-12-11T20:22:46+08:00">2019-12-11</time>
               </span>
             
           
@@ -372,7 +372,7 @@
 <p><strong>枚举类型</strong><br>枚举类型的变量只能储存这个类型声明中给定的某个枚举值，或没有设置值 null</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">enum Size &#123; SAMLL, MEDIUM, LARGE &#125;;</span><br><span class="line">Size s = Size.SMALL;</span><br></pre></td></tr></table></figure>
 
-<p>详见 Java补丁-继承（404</p>
+<p>所有枚举类型都是 Enum 的子类，继承其方法。因为实际上是一个类，故比较时直接用 == 就好，也可以在枚举类型中添加构造器 方法 域。</p>
 <p><strong>相关：大数值</strong><br>java.math 包的 BigInteger 和 BigDecimal 类可以处理任意长度数字序列的数值，分别对应整数和浮点数运算。</p>
 <hr>
 <h1 id="运算符部分"><a href="#运算符部分" class="headerlink" title="运算符部分"></a>运算符部分</h1><p><strong>数学函数</strong><br>StrictMath 类使用 fdlibm 库实现算法，确保在所有平台上得到相同结果。</p>
@@ -674,7 +674,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">29</span>
+          <span class="site-state-item-count">32</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -800,7 +800,21 @@
         
           
         
-        <span class="site-state-item-count">42</span>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">49</span>
         <span class="site-state-item-name">标签</span>
         </a>
       </div>
