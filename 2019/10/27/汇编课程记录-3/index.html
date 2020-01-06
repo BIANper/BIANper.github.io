@@ -57,18 +57,18 @@
   };
 </script>
 
-  <meta name="description" content="这节也昏迷了…（艹，原来这边还没上数据寻址方式立即数寻址操作数直接存放于指令1MOV AX,1234H    ;即1234H寄存器寻址操作数存放于 CPU 的某个寄存器中，不需访问存储器速度快8 位操作数寄存器可以是 AH AL BH BL CH CL DH DL16 位操作数寄存器可以是 AX BX CX DX SP BP SI DI">
+  <meta name="description" content="数据寻址方式立即数寻址操作数直接存放于指令1MOV AX,1234H    ;即1234H寄存器寻址操作数存放于 CPU 的某个寄存器中，不需访问存储器速度快8 位操作数寄存器可以是 AH AL BH BL CH CL DH DL16 位操作数寄存器可以是 AX BX CX DX SP BP SI DI">
 <meta name="keywords" content="数据寻址,程序转移寻址,寻址方式">
 <meta property="og:type" content="article">
 <meta property="og:title" content="汇编课程记录 3">
 <meta property="og:url" content="http://yoursite.com/2019/10/27/汇编课程记录-3/index.html">
 <meta property="og:site_name" content="卑微的 YuYu">
-<meta property="og:description" content="这节也昏迷了…（艹，原来这边还没上数据寻址方式立即数寻址操作数直接存放于指令1MOV AX,1234H    ;即1234H寄存器寻址操作数存放于 CPU 的某个寄存器中，不需访问存储器速度快8 位操作数寄存器可以是 AH AL BH BL CH CL DH DL16 位操作数寄存器可以是 AX BX CX DX SP BP SI DI">
+<meta property="og:description" content="数据寻址方式立即数寻址操作数直接存放于指令1MOV AX,1234H    ;即1234H寄存器寻址操作数存放于 CPU 的某个寄存器中，不需访问存储器速度快8 位操作数寄存器可以是 AH AL BH BL CH CL DH DL16 位操作数寄存器可以是 AX BX CX DX SP BP SI DI">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-12-06T13:17:35.598Z">
+<meta property="og:updated_time" content="2020-01-06T16:26:47.475Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="汇编课程记录 3">
-<meta name="twitter:description" content="这节也昏迷了…（艹，原来这边还没上数据寻址方式立即数寻址操作数直接存放于指令1MOV AX,1234H    ;即1234H寄存器寻址操作数存放于 CPU 的某个寄存器中，不需访问存储器速度快8 位操作数寄存器可以是 AH AL BH BL CH CL DH DL16 位操作数寄存器可以是 AX BX CX DX SP BP SI DI">
+<meta name="twitter:description" content="数据寻址方式立即数寻址操作数直接存放于指令1MOV AX,1234H    ;即1234H寄存器寻址操作数存放于 CPU 的某个寄存器中，不需访问存储器速度快8 位操作数寄存器可以是 AH AL BH BL CH CL DH DL16 位操作数寄存器可以是 AX BX CX DX SP BP SI DI">
   <link rel="canonical" href="http://yoursite.com/2019/10/27/汇编课程记录-3/">
 
 
@@ -300,7 +300,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-12-06 21:17:35" itemprop="dateModified" datetime="2019-12-06T21:17:35+08:00">2019-12-06</time>
+                <time title="修改时间：2020-01-07 00:26:47" itemprop="dateModified" datetime="2020-01-07T00:26:47+08:00">2020-01-07</time>
               </span>
             
           
@@ -329,46 +329,39 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>这节也昏迷了…</p><p>（艹，原来这边还没上</p><h1 id="数据寻址方式"><a href="#数据寻址方式" class="headerlink" title="数据寻址方式"></a>数据寻址方式</h1><h3 id="立即数寻址"><a href="#立即数寻址" class="headerlink" title="立即数寻址"></a>立即数寻址</h3><p>操作数直接存放于指令</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">MOV AX,1234H    ;即1234H</span><br></pre></td></tr></table></figure><h3 id="寄存器寻址"><a href="#寄存器寻址" class="headerlink" title="寄存器寻址"></a>寄存器寻址</h3><p>操作数存放于 CPU 的某个寄存器中，不需访问存储器速度快</p><p>8 位操作数寄存器可以是 AH AL BH BL CH CL DH DL</p><p>16 位操作数寄存器可以是 AX BX CX DX SP BP SI DI</p><a id="more"></a>
-
-
-
-
+        <h1 id="数据寻址方式"><a href="#数据寻址方式" class="headerlink" title="数据寻址方式"></a>数据寻址方式</h1><p><strong>立即数寻址</strong><br>操作数直接存放于指令</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">MOV AX,1234H    ;即1234H</span><br></pre></td></tr></table></figure><p><strong>寄存器寻址</strong><br>操作数存放于 CPU 的某个寄存器中，不需访问存储器速度快<br>8 位操作数寄存器可以是 AH AL BH BL CH CL DH DL<br>16 位操作数寄存器可以是 AX BX CX DX SP BP SI DI</p><a id="more"></a>
 
 
 
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">MOV AX,BX</span><br></pre></td></tr></table></figure>
 
-<h3 id="存储器直接寻址"><a href="#存储器直接寻址" class="headerlink" title="存储器直接寻址"></a>存储器直接寻址</h3><p>数据在存储器中，存储单元的有效地址（偏移地址 EA）由指令直接给出，计算机通过段基址和有效地址获得物理地址（左移四位 + 偏移量balabala），段基址默认为 DS 数据段</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">MOV AX,[100H]</span><br><span class="line">MOV AX,A1</span><br><span class="line">MOV AX,[A1]    ;和上面那条等效</span><br><span class="line">MOV AX,ES:[100H]    ;取 ES 段段基址，加偏移量 100H</span><br></pre></td></tr></table></figure>
+<p><strong>存储器直接寻址</strong><br>数据在存储器中，存储单元的有效地址（即偏移地址 EA）由指令直接给出。计算机通过段基址和有效地址获得物理地址（左移四位 + 偏移量balabala），段基址默认为 DS 数据段<br>允许段跨越前缀和符号地址</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">MOV AX,[100H]</span><br><span class="line">MOV AX,A1</span><br><span class="line">MOV AX,[A1]    ;和上面那条等效，方括号可加可不加</span><br><span class="line">MOV AX,ES:[100H]    ;取 ES 段段基址，加偏移量 100H</span><br></pre></td></tr></table></figure>
 
-<h3 id="寄存器间接寻址"><a href="#寄存器间接寻址" class="headerlink" title="寄存器间接寻址"></a>寄存器间接寻址</h3><p>操作数在存储器中，操作数的有效地址在某个寄存器中</p>
-<p>仅可使用这些寄存器 BX BP SI DI，其中 BP 默认段是 SS 段</p>
+<p><strong>寄存器间接寻址</strong><br>操作数在存储器中，寄存器的内容作为操作数的有效地址<br>所有间接寻址中，仅可使用 BX BP SI DI，其中 BP 默认段是 SS 的堆栈段，其余为 DS 的数据段<br>允许段跨越前缀和符号地址</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">MOV AX,[SI]</span><br></pre></td></tr></table></figure>
 
-<h3 id="寄存器相对寻址"><a href="#寄存器相对寻址" class="headerlink" title="寄存器相对寻址"></a>寄存器相对寻址</h3><p>操作数的有效地址是一个基址寄存器（BX/BP）或变址寄存器（SI/DI）内容与指定 8/16 位偏移量之和</p>
-<p>允许的寄存器同间接寻址方式</p>
+<p><strong>寄存器相对寻址</strong><br>操作数的有效地址是一个基址寄存器（BX/BP）或变址寄存器（SI/DI）内容与指令中指定的 8/16 位偏移量之和<br>允许段跨越前缀和符号地址</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">MOV AX,100H[SI]</span><br><span class="line">MOV AX,[SI+100H]    ;和上面那条等效</span><br><span class="line">MOV AX,COUNT[SI]</span><br><span class="line">;COUNT 为 16 位位移量的符号地址，设 (DS)=3000H (SI)=2000H COUNT=3000H (35000H)=5678H</span><br><span class="line">;物理地址 = 30000H + 2000H + 3000H = 35000H 即(AX)=5678H</span><br></pre></td></tr></table></figure>
 
-<h3 id="基址变址寻址"><a href="#基址变址寻址" class="headerlink" title="基址变址寻址"></a>基址变址寻址</h3><p>操作数的有效地址由一个基址寄存器和一个变址寄存器的内容相加组成，BX 默认段为 DS，BP 默认段是 SS，适用于数组或表格处理，首地址存放在基址寄存器中，用变址寄存器访问数组的元素</p>
+<p><strong>基址变址寻址</strong><br>操作数的有效地址是一个基址寄存器的内容加上一个变址寄存器的内容，与 DS/SS 的内容组合为物理地址，BX 默认段则为 DS，BP 默认段则为 SS，适用于数组或表格处理，首地址存放在基址寄存器中，用变址寄存器访问数组的元素<br>允许段跨越前缀</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">MOV AX,[BX][DI]</span><br></pre></td></tr></table></figure>
 
-<h3 id="相对基址变址寻址"><a href="#相对基址变址寻址" class="headerlink" title="相对基址变址寻址"></a>相对基址变址寻址</h3><p>基址变址寻址的基础上再加一个 8/16 位位移量，适用于二维数组，偏移量指向文件首，基址寄存器指向某记录，变址寄存器指向记录中的元素</p>
+<p><strong>相对基址变址寻址</strong><br>基址变址寻址的基础上再加一个指令中的 8/16 位位移量，适用于二维数组，偏移量指向文件首，基址寄存器指向某记录，变址寄存器指向记录中的元素<br>允许段跨越前缀和符号地址</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">MOV AX,MASK[BX][SI]</span><br></pre></td></tr></table></figure>
 
 <hr>
-<h1 id="程序转移寻址方式"><a href="#程序转移寻址方式" class="headerlink" title="程序转移寻址方式"></a>程序转移寻址方式</h1><p>程序的执行由指令的地址指针（CS 和 IP）决定，IP 的内容会自动改变指向下一条指令的地址；</p>
-<p>段内转移仅改变 IP 地址，段间转移因为不在同一个代码段同时要改变 CS 的值</p>
-<h3 id="段内直接寻址"><a href="#段内直接寻址" class="headerlink" title="段内直接寻址"></a>段内直接寻址</h3><p>转向的有效地址是相对于当前 IP 值的 8/16 位位移量，即 IP 寄存器内容与指定位移量之和，唯一支持条件转移指令，位移量仅允许 8 位，用于无条件转移指令时，8 位称短跳转，16 位称近跳转</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">JMP SHORT ADDR2    ;无条件转移 JMP</span><br><span class="line">ADDR2:...</span><br><span class="line"></span><br><span class="line">JMP NEAR PTR ADDR1</span><br></pre></td></tr></table></figure>
+<h1 id="程序转移寻址方式"><a href="#程序转移寻址方式" class="headerlink" title="程序转移寻址方式"></a>程序转移寻址方式</h1><p>程序的执行由指令的地址指针（CS 和 IP）决定，IP 的内容会自动改变指向下一条指令的地址，若需要改变程序的执行顺序，需要修改 IP CS 的内容；段内转移仅改变 IP 地址，段间转移因为不在同一个代码段同时要改变 CS 的值</p>
+<p><strong>段内直接寻址</strong><br>转向的有效地址是相对于当前 IP 值的 8/16 位位移量，即 IP 寄存器内容与指令中指定的位移量之和，使用于条件转移和无条件转移<br>用于条件转移指令时位移量仅允许 8 位，用于无条件转移指令时，8 位称短跳转，16 位称近跳转</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">JMP SHORT ADDR2    ;短跳转</span><br><span class="line">JMP NEAR PTR ADDR1    ;近跳转</span><br></pre></td></tr></table></figure>
 
-<h3 id="段内间接寻址"><a href="#段内间接寻址" class="headerlink" title="段内间接寻址"></a>段内间接寻址</h3><p>转向的有效地址是一个寄存器或一个存储单元的内容，通过除立即数寻址以外的任何寻址方式获得，然后取代 IP 寄存器的内容</p>
+<p><strong>段内间接寻址</strong><br>转向的有效地址是一个寄存器或一个存储单元的内容，通过除立即数寻址以外的任何寻址方式获得，然后取代 IP 寄存器的内容</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">JMP BX</span><br><span class="line">JMP WORD PTR [BX+ADDR]    ;WORD PTR 指出其后的地址长度为一个字</span><br></pre></td></tr></table></figure>
 
-<h3 id="段间直接寻址"><a href="#段间直接寻址" class="headerlink" title="段间直接寻址"></a>段间直接寻址</h3><p>在指令中直接提供转向地址和偏移地址，分别取代 CS 和 IP 寄存器的内容</p>
+<p><strong>段间直接寻址</strong><br>在指令中直接提供转向地址和偏移地址，分别取代 CS 和 IP 寄存器的内容<br>FAR PTR 段间转移操作符，允许符号地址</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">JMP FAR PTR ADDR</span><br></pre></td></tr></table></figure>
 
-<h3 id="段间间接寻址"><a href="#段间间接寻址" class="headerlink" title="段间间接寻址"></a>段间间接寻址</h3><p>用存储器中两个相继字的内容取代 IP 和 CS 的内容，通过除立即数寻址和寄存器寻址以外的任何寻址方式获得，有效地址的第一个字作为转移偏移地址送 IP 寄存器，第二个字节作为转移段地址送 CS 寄存器</p>
+<p><strong>段间间接寻址</strong><br>用存储器中两个相继字的内容取代 IP 和 CS 的内容，通过除立即数寻址和寄存器寻址以外的任何寻址方式获得，有效地址的第一个字作为转移偏移地址送 IP 寄存器，第二个字节作为转移段地址送 CS 寄存器</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">JMP DWORD PTR [ADDR+BX]</span><br></pre></td></tr></table></figure>
 
 
@@ -468,7 +461,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#数据寻址方式"><span class="nav-number">1.</span> <span class="nav-text">数据寻址方式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#立即数寻址"><span class="nav-number">1.0.1.</span> <span class="nav-text">立即数寻址</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#寄存器寻址"><span class="nav-number">1.0.2.</span> <span class="nav-text">寄存器寻址</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#存储器直接寻址"><span class="nav-number">1.0.3.</span> <span class="nav-text">存储器直接寻址</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#寄存器间接寻址"><span class="nav-number">1.0.4.</span> <span class="nav-text">寄存器间接寻址</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#寄存器相对寻址"><span class="nav-number">1.0.5.</span> <span class="nav-text">寄存器相对寻址</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#基址变址寻址"><span class="nav-number">1.0.6.</span> <span class="nav-text">基址变址寻址</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#相对基址变址寻址"><span class="nav-number">1.0.7.</span> <span class="nav-text">相对基址变址寻址</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#程序转移寻址方式"><span class="nav-number">2.</span> <span class="nav-text">程序转移寻址方式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#段内直接寻址"><span class="nav-number">2.0.1.</span> <span class="nav-text">段内直接寻址</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#段内间接寻址"><span class="nav-number">2.0.2.</span> <span class="nav-text">段内间接寻址</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#段间直接寻址"><span class="nav-number">2.0.3.</span> <span class="nav-text">段间直接寻址</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#段间间接寻址"><span class="nav-number">2.0.4.</span> <span class="nav-text">段间间接寻址</span></a></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#数据寻址方式"><span class="nav-number">1.</span> <span class="nav-text">数据寻址方式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#程序转移寻址方式"><span class="nav-number">2.</span> <span class="nav-text">程序转移寻址方式</span></a></li></ol></div>
         
       </div>
       <!--/noindex-->
@@ -682,7 +675,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+        <div class="copyright">&copy; 2019 – <span itemprop="copyrightYear">2020</span>
   <span class="with-love" id="animate">
     <i class="fa fa-transgender-alt"></i>
   </span>

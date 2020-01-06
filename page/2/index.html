@@ -1015,7 +1015,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-12-06 21:17:35" itemprop="dateModified" datetime="2019-12-06T21:17:35+08:00">2019-12-06</time>
+                <time title="修改时间：2020-01-07 00:26:47" itemprop="dateModified" datetime="2020-01-07T00:26:47+08:00">2020-01-07</time>
               </span>
             
           
@@ -1044,7 +1044,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>这节也昏迷了…</p><p>（艹，原来这边还没上</p><h1 id="数据寻址方式"><a href="#数据寻址方式" class="headerlink" title="数据寻址方式"></a>数据寻址方式</h1><h3 id="立即数寻址"><a href="#立即数寻址" class="headerlink" title="立即数寻址"></a>立即数寻址</h3><p>操作数直接存放于指令</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">MOV AX,1234H    ;即1234H</span><br></pre></td></tr></table></figure><h3 id="寄存器寻址"><a href="#寄存器寻址" class="headerlink" title="寄存器寻址"></a>寄存器寻址</h3><p>操作数存放于 CPU 的某个寄存器中，不需访问存储器速度快</p><p>8 位操作数寄存器可以是 AH AL BH BL CH CL DH DL</p><p>16 位操作数寄存器可以是 AX BX CX DX SP BP SI DI</p>
+          <h1 id="数据寻址方式"><a href="#数据寻址方式" class="headerlink" title="数据寻址方式"></a>数据寻址方式</h1><p><strong>立即数寻址</strong><br>操作数直接存放于指令</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">MOV AX,1234H    ;即1234H</span><br></pre></td></tr></table></figure><p><strong>寄存器寻址</strong><br>操作数存放于 CPU 的某个寄存器中，不需访问存储器速度快<br>8 位操作数寄存器可以是 AH AL BH BL CH CL DH DL<br>16 位操作数寄存器可以是 AX BX CX DX SP BP SI DI</p>
           <!--noindex-->
           
             <div class="post-button text-center">
@@ -1219,7 +1219,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-12-06 21:17:40" itemprop="dateModified" datetime="2019-12-06T21:17:40+08:00">2019-12-06</time>
+                <time title="修改时间：2020-01-06 23:36:05" itemprop="dateModified" datetime="2020-01-06T23:36:05+08:00">2020-01-06</time>
               </span>
             
           
@@ -1249,17 +1249,17 @@
 
       
           <p>太困了没听… 实际上不算课程记录…</p><h1 id="寄存器"><a href="#寄存器" class="headerlink" title="寄存器"></a>寄存器</h1><p>CPU 优先读写寄存器，依靠名称而非地址区分数据。80386 以上的 CPU 有 </p><p>8 个 32 位通用寄存器：</p><ul>
-<li>EAX</li>
+<li>EAX 有时也是累加器</li>
 <li>EBX</li>
 <li>ECX</li>
 <li>EDX</li>
-<li>ESP 堆栈指针寄存器，栈顶的偏移量</li>
+<li>ESP 栈指针/栈顶指针，栈顶的偏移量</li>
 <li>EBP</li>
 <li>ESI</li>
 <li>EDI</li>
 </ul><p>6 个 16 位段寄存器</p><ul>
-<li>CS 当前正在运行的程序段</li>
-<li>SS 当前堆栈段，配合 ESP 食用</li>
+<li>CS 代码段</li>
+<li>SS 堆栈段，配合 ESP 食用</li>
 <li>DS 主数据段</li>
 <li>ES 附加数据段</li>
 <li>FS</li>
@@ -1540,7 +1540,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+        <div class="copyright">&copy; 2019 – <span itemprop="copyrightYear">2020</span>
   <span class="with-love" id="animate">
     <i class="fa fa-transgender-alt"></i>
   </span>
