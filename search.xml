@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[再卡吃键盘]]></title>
+    <url>%2F2020%2F01%2F10%2F%E5%86%8D%E5%8D%A1%E5%90%83%E9%94%AE%E7%9B%98%2F</url>
+    <content type="text"></content>
+  </entry>
+  <entry>
     <title><![CDATA[Java 补丁-异常、断言和日志]]></title>
     <url>%2F2019%2F12%2F23%2FJava-%E8%A1%A5%E4%B8%81-%E5%BC%82%E5%B8%B8%E3%80%81%E6%96%AD%E8%A8%80%E5%92%8C%E6%97%A5%E5%BF%97%2F</url>
     <content type="text"><![CDATA[异常部分概念非受查 unchecked 异常：派生于 Error 类或 RuntimeException 类的所有异常，其它的异常称为受查 checked 异常。创建异常类派生于 Exception 或其子类。应该包含两个构造器：默认构造器和带描述信息的构造器（超类 Throwable 的 toString 方法会打印出详细信息）。 1234class FileFormatException extends IOException &#123;public FileFormatException() &#123;&#125;public FileFormatException(String gripe) &#123; super(gripe) &#125;;&#125; finally 子句建议解耦合 try/catch 和 try/finally 语句块，以提高清晰度（且会报告 finaly 子句的错误）。 12345678try &#123; try &#123; &#125; finally &#123; &#125;&#125;catch (Exception e) &#123;&#125; finally 子句中的 return 语句将会覆盖 try 中 return 的值。 带资源的 try 语句 123try (Resource res = ...; ...) &#123; work with res&#125; 可以指定多个资源，try 块正常退出或存在异常时会自动调用 res.close()。catch 子句和 finally 子句将会在关闭资源后执行。 堆栈轨迹元素堆栈轨迹 stack trace：方法调用过程的列表。 断言部分概念 12assert 条件 ;assert 条件 : 表达式 ; 测试期间向代码插入一些检查语句，发布时会自动移走。对条件进行检测，如果结果是 false 则抛出 AssertionError 异常。第二种还会将表达式转换成消息字符串。 启用和禁用运行程序时用 -ea -da 选项，可以指定某个类或某个包。默认禁用。程序中使用 setDefaultAssertionSatus (boolean b) 等完成。 日志部分占坑]]></content>
@@ -10,20 +15,6 @@
       <tags>
         <tag>异常</tag>
         <tag>断言</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[Java 补丁-泛型程序设计]]></title>
-    <url>%2F2019%2F12%2F23%2FJAVA%20%E8%A1%A5%E4%B8%81-%E6%B3%9B%E5%9E%8B%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%2F</url>
-    <content type="text"><![CDATA[类型变量限定对类型变量 T 设置限定 &lt;T extends BoundingType&gt;。T 的绑定类型可以是类也可以是接口，只是 extends 关键词更接近子类概念，并非表达继承的意思。一个类型变量或通配符可以有多个限定，限定类型用 &amp; 分隔，类型变量用逗号分隔。但限定中至多有一个类，并是限定列表的第一个。 继承规则Pair 不是 Pair 的子类，继承不延续进泛型类。泛型类可以扩展或实现其他的泛型类。 虚拟机部分类型擦除虚拟机没有泛型类型对象，无论何时定义泛型类型都会自动提供相应的原始类型，即擦除类型变量并替换成限定类型（用第一个限定的类型变量替换，无限定的用 Object）。 翻译泛型表达式程序调用泛型方法时，擦除返回类型插入强制类型转换。存取泛型域时也会插入强制类型转换。 12Pair&lt;Employee&gt; buddies = ... ;Employeee buddy = buddies.gettFirst(); 编译器将方法调用翻译成两条虚拟机指令： 对原始方法 Pair.getFirst 的调用。 将返回的 Object 类型强制转换为 Employee 类型。 翻译泛型方法 12345678class Father&lt;T&gt; &#123; public void fun(T x) &#123; &#125;&#125;class Son extends Father&lt;String&gt; &#123; public void fun(String x) &#123; &#125;&#125; Father 类和 Son 类经过类型擦除后变成： 12345678class Father&lt;Object&gt; &#123; public void fun(Object x) &#123; &#125;&#125;class Son extends Father &#123; public void fun(String x) &#123; &#125;&#125; 很显然，子类 Son 是想覆盖 Father 的 fun 方法，但是却出现了问题。当出现： 12Father&lt;String&gt; f = new Son();f.fun(x); 变量 f 声明为类型 Father 而此类型的方法是 fun(Object)，虚拟机用 f 引用的对象调用此方法，即 Son 的 fun(Object)，这个方法是虚拟机合成的桥方法，会调用 Son 的 fun(String) 方法。总之就是保证了不会调用之前被覆盖的超类方法。 对于 get 方法等无参数的，子类会出现两个方法名相同，都无参数的方法： 12String get() &#123;&#125;Object get() &#123;&#125; 在编写中是不合法的，但虚拟机用参数类型和_返回类型_确定一个方法，故能正确处理。 约束与局限部分不能用基本类型实例化类型参数没有诸如 而应该是 ，因为类型擦除后 Object 无法存储基本类型。 类型查询的是原始类型虚拟机中的对象总是一个非泛型类型，比如 if (a instanceof Pair&lt;String&gt;) 仅仅测试 a 是否是任意类型的 Pair。getClass 方法总是返回原始类型，强制类型转换将 warning。 123Pair&lt;String&gt; stringPair = ... ;Pair&lt;Employee&gt; employeePair = ... ;if (stringPair.getClass() == employeePair.getClass()) // true 不能创建泛型数组 1.8 中存疑类型擦除后使检查元素类型的机制无效，所以不允许创建泛型数组。声明泛型数组是合法的，但不能通过创建泛型数组来对其初始化。使用类似 ArrayList:ArrayList&lt;Pair&gt;。 Varargs 警告 123public static &lt;T&gt; void addAll(Collection&lt;T&gt; coll, T... ts) &#123; for (t : ts) coll.add(t);&#125; 当： 1234Collection&lt;Pair&lt;String&gt;&gt; table = ... ;Pair&lt;String&gt; Pair1 = ... ;Pair&lt;String&gt; Pair2 = ... ;addAll (table, pair1, pair2); 虚拟机不得不建立 Pair 数组，违反了上一条。但这种情况规则有所放松只会得到警告，用 @SafeVarargs 标注来抑制。 不能实例化类型变量诸如 new T(...) T.class 是非法的。类型擦除将 T 改变成 Object 从而违反了本意。通过反射调用 Class.newInstance 方法来构造泛型对象，例： 123456public static &lt;T&gt; Pair&lt;T&gt; makePair(Class&lt;T&gt; cl) &#123; try &#123; return new Pair&lt;&gt;(cl.newInstance(), cl.newInstance()); &#125; catch (Exception ex) &#123; return null; &#125;&#125;Pair&lt;String&gt; p = Pair.makePair(String.class); Class 类本身是泛型，例 String.calss 是 Class&lt;String&gt; 的唯一实例，makePair 以此推断 Pair 类型。 泛型类的静态域和方法无效不能在静态域或方法中使用泛型，经过类型擦除后只有一个非泛型域，会引起歧义。 不能抛出或捕获泛型类的实例泛型类扩展 Throwable 都是不合法的，catch 子句中不能使用类型变量。 123public class Problem&lt;T&gt; extends Exception &#123;&#125; // Errorcatch (T e) &#123;&#125; //Error 在异常规范中使用是允许的： 1public static &lt;T extends Throwable&gt; void doWork(T t) throws T &#123;&#125; 擦除后的冲突当： 1234public class Pair&lt;T&gt; &#123; public boolean equals(T value) &#123; return first.equals(value) &amp;&amp; second.equals(value); &#125; ...&#125; 比如对于 Pai 有两个 equals 方法： boolean equals(String) 由 Pair 定义 boolean equals(Object) 继承自 Object 方法擦除 boolean equals(T) 后即 boolean equals(Object) 覆盖了继承的方法。 一个类或类型变量不能同时成为两个接口类型的子类，这两个接口是同一接口的不同参数化（可能与桥方法产生冲突）： 123class Employee implements Comparable&lt;Employee&gt; &#123; ... &#125;class mangeer extends Employee implements Comparable&lt;Manager&gt; &#123; ... &#125;// Error 通配符部分子类型限定例：Pair 是 Pair&lt;? extends Employee&gt; 的子类型，即将 Pair 的类型限定于 Employee 及其子类。通配符的引用不会引起破坏： 123Pair&lt;Manager&gt; managerBuddies = new Pair&lt;&gt;(ceo, cfo);Pair&lt;? extends Employee&gt; wildcardBuddies = managerBuddies; // OKwildcardBuddies.setFirst(lowlyEmployee); // error 因为对于方法而言： 12? extends Employee getFirst() &#123;&#125;void setFirst(? extends Employee) &#123;&#125; 编译器只知道 setFirst 需要某个 Employee 的子类型，不知道具体是什么类型，拒绝任何特定的类型。而对于 getFrist，将返回值赋给 Employee 的引用是合法的。 超类型限定与子类型限定相反，可以为方法提供参数但不能使用返回值。 占坑 无限定通配符 占坑 反射部分]]></content>
-      <categories>
-        <category>Java</category>
-      </categories>
-      <tags>
-        <tag>继承</tag>
-        <tag>类型擦除</tag>
-        <tag>通配符</tag>
-        <tag>泛型</tag>
       </tags>
   </entry>
   <entry>
@@ -38,6 +29,20 @@
         <tag>接口</tag>
         <tag>内部类</tag>
         <tag>lambda</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Java 补丁-泛型程序设计]]></title>
+    <url>%2F2019%2F12%2F23%2FJAVA%20%E8%A1%A5%E4%B8%81-%E6%B3%9B%E5%9E%8B%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%2F</url>
+    <content type="text"><![CDATA[类型变量限定对类型变量 T 设置限定 &lt;T extends BoundingType&gt;。T 的绑定类型可以是类也可以是接口，只是 extends 关键词更接近子类概念，并非表达继承的意思。一个类型变量或通配符可以有多个限定，限定类型用 &amp; 分隔，类型变量用逗号分隔。但限定中至多有一个类，并是限定列表的第一个。 继承规则Pair 不是 Pair 的子类，继承不延续进泛型类。泛型类可以扩展或实现其他的泛型类。 虚拟机部分类型擦除虚拟机没有泛型类型对象，无论何时定义泛型类型都会自动提供相应的原始类型，即擦除类型变量并替换成限定类型（用第一个限定的类型变量替换，无限定的用 Object）。 翻译泛型表达式程序调用泛型方法时，擦除返回类型插入强制类型转换。存取泛型域时也会插入强制类型转换。 12Pair&lt;Employee&gt; buddies = ... ;Employeee buddy = buddies.gettFirst(); 编译器将方法调用翻译成两条虚拟机指令： 对原始方法 Pair.getFirst 的调用。 将返回的 Object 类型强制转换为 Employee 类型。 翻译泛型方法 12345678class Father&lt;T&gt; &#123; public void fun(T x) &#123; &#125;&#125;class Son extends Father&lt;String&gt; &#123; public void fun(String x) &#123; &#125;&#125; Father 类和 Son 类经过类型擦除后变成： 12345678class Father&lt;Object&gt; &#123; public void fun(Object x) &#123; &#125;&#125;class Son extends Father &#123; public void fun(String x) &#123; &#125;&#125; 很显然，子类 Son 是想覆盖 Father 的 fun 方法，但是却出现了问题。当出现： 12Father&lt;String&gt; f = new Son();f.fun(x); 变量 f 声明为类型 Father 而此类型的方法是 fun(Object)，虚拟机用 f 引用的对象调用此方法，即 Son 的 fun(Object)，这个方法是虚拟机合成的桥方法，会调用 Son 的 fun(String) 方法。总之就是保证了不会调用之前被覆盖的超类方法。 对于 get 方法等无参数的，子类会出现两个方法名相同，都无参数的方法： 12String get() &#123;&#125;Object get() &#123;&#125; 在编写中是不合法的，但虚拟机用参数类型和_返回类型_确定一个方法，故能正确处理。 约束与局限部分不能用基本类型实例化类型参数没有诸如 而应该是 ，因为类型擦除后 Object 无法存储基本类型。 类型查询的是原始类型虚拟机中的对象总是一个非泛型类型，比如 if (a instanceof Pair&lt;String&gt;) 仅仅测试 a 是否是任意类型的 Pair。getClass 方法总是返回原始类型，强制类型转换将 warning。 123Pair&lt;String&gt; stringPair = ... ;Pair&lt;Employee&gt; employeePair = ... ;if (stringPair.getClass() == employeePair.getClass()) // true 不能创建泛型数组 1.8 中存疑类型擦除后使检查元素类型的机制无效，所以不允许创建泛型数组。声明泛型数组是合法的，但不能通过创建泛型数组来对其初始化。使用类似 ArrayList:ArrayList&lt;Pair&gt;。 Varargs 警告 123public static &lt;T&gt; void addAll(Collection&lt;T&gt; coll, T... ts) &#123; for (t : ts) coll.add(t);&#125; 当： 1234Collection&lt;Pair&lt;String&gt;&gt; table = ... ;Pair&lt;String&gt; Pair1 = ... ;Pair&lt;String&gt; Pair2 = ... ;addAll (table, pair1, pair2); 虚拟机不得不建立 Pair 数组，违反了上一条。但这种情况规则有所放松只会得到警告，用 @SafeVarargs 标注来抑制。 不能实例化类型变量诸如 new T(...) T.class 是非法的。类型擦除将 T 改变成 Object 从而违反了本意。通过反射调用 Class.newInstance 方法来构造泛型对象，例： 123456public static &lt;T&gt; Pair&lt;T&gt; makePair(Class&lt;T&gt; cl) &#123; try &#123; return new Pair&lt;&gt;(cl.newInstance(), cl.newInstance()); &#125; catch (Exception ex) &#123; return null; &#125;&#125;Pair&lt;String&gt; p = Pair.makePair(String.class); Class 类本身是泛型，例 String.calss 是 Class&lt;String&gt; 的唯一实例，makePair 以此推断 Pair 类型。 泛型类的静态域和方法无效不能在静态域或方法中使用泛型，经过类型擦除后只有一个非泛型域，会引起歧义。 不能抛出或捕获泛型类的实例泛型类扩展 Throwable 都是不合法的，catch 子句中不能使用类型变量。 123public class Problem&lt;T&gt; extends Exception &#123;&#125; // Errorcatch (T e) &#123;&#125; //Error 在异常规范中使用是允许的： 1public static &lt;T extends Throwable&gt; void doWork(T t) throws T &#123;&#125; 擦除后的冲突当： 1234public class Pair&lt;T&gt; &#123; public boolean equals(T value) &#123; return first.equals(value) &amp;&amp; second.equals(value); &#125; ...&#125; 比如对于 Pai 有两个 equals 方法： boolean equals(String) 由 Pair 定义 boolean equals(Object) 继承自 Object 方法擦除 boolean equals(T) 后即 boolean equals(Object) 覆盖了继承的方法。 一个类或类型变量不能同时成为两个接口类型的子类，这两个接口是同一接口的不同参数化（可能与桥方法产生冲突）： 123class Employee implements Comparable&lt;Employee&gt; &#123; ... &#125;class mangeer extends Employee implements Comparable&lt;Manager&gt; &#123; ... &#125;// Error 通配符部分子类型限定例：Pair 是 Pair&lt;? extends Employee&gt; 的子类型，即将 Pair 的类型限定于 Employee 及其子类。通配符的引用不会引起破坏： 123Pair&lt;Manager&gt; managerBuddies = new Pair&lt;&gt;(ceo, cfo);Pair&lt;? extends Employee&gt; wildcardBuddies = managerBuddies; // OKwildcardBuddies.setFirst(lowlyEmployee); // error 因为对于方法而言： 12? extends Employee getFirst() &#123;&#125;void setFirst(? extends Employee) &#123;&#125; 编译器只知道 setFirst 需要某个 Employee 的子类型，不知道具体是什么类型，拒绝任何特定的类型。而对于 getFrist，将返回值赋给 Employee 的引用是合法的。 超类型限定与子类型限定相反，可以为方法提供参数但不能使用返回值。 占坑 无限定通配符 占坑 反射部分]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>继承</tag>
+        <tag>类型擦除</tag>
+        <tag>通配符</tag>
+        <tag>泛型</tag>
       </tags>
   </entry>
   <entry>
