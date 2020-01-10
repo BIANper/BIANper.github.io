@@ -25,10 +25,10 @@
         <category>Java</category>
       </categories>
       <tags>
+        <tag>泛型</tag>
         <tag>继承</tag>
         <tag>类型擦除</tag>
         <tag>通配符</tag>
-        <tag>泛型</tag>
       </tags>
   </entry>
   <entry>
@@ -39,10 +39,10 @@
         <category>Java</category>
       </categories>
       <tags>
-        <tag>泛型</tag>
         <tag>接口</tag>
         <tag>内部类</tag>
         <tag>lambda</tag>
+        <tag>泛型</tag>
       </tags>
   </entry>
   <entry>
@@ -53,9 +53,9 @@
         <category>Java</category>
       </categories>
       <tags>
-        <tag>继承</tag>
-        <tag>泛型</tag>
         <tag>数组</tag>
+        <tag>泛型</tag>
+        <tag>继承</tag>
       </tags>
   </entry>
   <entry>
