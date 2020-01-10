@@ -13,6 +13,20 @@
       </tags>
   </entry>
   <entry>
+    <title><![CDATA[Java 补丁-泛型程序设计]]></title>
+    <url>%2F2019%2F12%2F23%2FJAVA%20%E8%A1%A5%E4%B8%81-%E6%B3%9B%E5%9E%8B%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%2F</url>
+    <content type="text"><![CDATA[类型变量限定对类型变量 T 设置限定 &lt;T extends BoundingType&gt;。T 的绑定类型可以是类也可以是接口，只是 extends 关键词更接近子类概念，并非表达继承的意思。一个类型变量或通配符可以有多个限定，限定类型用 &amp; 分隔，类型变量用逗号分隔。但限定中至多有一个类，并是限定列表的第一个。 继承规则Pair 不是 Pair 的子类，继承不延续进泛型类。泛型类可以扩展或实现其他的泛型类。 虚拟机部分类型擦除虚拟机没有泛型类型对象，无论何时定义泛型类型都会自动提供相应的原始类型，即擦除类型变量并替换成限定类型（用第一个限定的类型变量替换，无限定的用 Object）。 翻译泛型表达式程序调用泛型方法时，擦除返回类型插入强制类型转换。存取泛型域时也会插入强制类型转换。 12Pair&lt;Employee&gt; buddies = ... ;Employeee buddy = buddies.gettFirst(); 编译器将方法调用翻译成两条虚拟机指令： 对原始方法 Pair.getFirst 的调用。 将返回的 Object 类型强制转换为 Employee 类型。 翻译泛型方法 12345678class Father&lt;T&gt; &#123; public void fun(T x) &#123; &#125;&#125;class Son extends Father&lt;String&gt; &#123; public void fun(String x) &#123; &#125;&#125; Father 类和 Son 类经过类型擦除后变成： 12345678class Father&lt;Object&gt; &#123; public void fun(Object x) &#123; &#125;&#125;class Son extends Father &#123; public void fun(String x) &#123; &#125;&#125; 很显然，子类 Son 是想覆盖 Father 的 fun 方法，但是却出现了问题。当出现： 12Father&lt;String&gt; f = new Son();f.fun(x); 变量 f 声明为类型 Father 而此类型的方法是 fun(Object)，虚拟机用 f 引用的对象调用此方法，即 Son 的 fun(Object)，这个方法是虚拟机合成的桥方法，会调用 Son 的 fun(String) 方法。总之就是保证了不会调用之前被覆盖的超类方法。 对于 get 方法等无参数的，子类会出现两个方法名相同，都无参数的方法： 12String get() &#123;&#125;Object get() &#123;&#125; 在编写中是不合法的，但虚拟机用参数类型和_返回类型_确定一个方法，故能正确处理。 约束与局限部分不能用基本类型实例化类型参数没有诸如 而应该是 ，因为类型擦除后 Object 无法存储基本类型。 类型查询的是原始类型虚拟机中的对象总是一个非泛型类型，比如 if (a instanceof Pair&lt;String&gt;) 仅仅测试 a 是否是任意类型的 Pair。getClass 方法总是返回原始类型，强制类型转换将 warning。 123Pair&lt;String&gt; stringPair = ... ;Pair&lt;Employee&gt; employeePair = ... ;if (stringPair.getClass() == employeePair.getClass()) // true 不能创建泛型数组 1.8 中存疑类型擦除后使检查元素类型的机制无效，所以不允许创建泛型数组。声明泛型数组是合法的，但不能通过创建泛型数组来对其初始化。使用类似 ArrayList:ArrayList&lt;Pair&gt;。 Varargs 警告 123public static &lt;T&gt; void addAll(Collection&lt;T&gt; coll, T... ts) &#123; for (t : ts) coll.add(t);&#125; 当： 1234Collection&lt;Pair&lt;String&gt;&gt; table = ... ;Pair&lt;String&gt; Pair1 = ... ;Pair&lt;String&gt; Pair2 = ... ;addAll (table, pair1, pair2); 虚拟机不得不建立 Pair 数组，违反了上一条。但这种情况规则有所放松只会得到警告，用 @SafeVarargs 标注来抑制。 不能实例化类型变量诸如 new T(...) T.class 是非法的。类型擦除将 T 改变成 Object 从而违反了本意。通过反射调用 Class.newInstance 方法来构造泛型对象，例： 123456public static &lt;T&gt; Pair&lt;T&gt; makePair(Class&lt;T&gt; cl) &#123; try &#123; return new Pair&lt;&gt;(cl.newInstance(), cl.newInstance()); &#125; catch (Exception ex) &#123; return null; &#125;&#125;Pair&lt;String&gt; p = Pair.makePair(String.class); Class 类本身是泛型，例 String.calss 是 Class&lt;String&gt; 的唯一实例，makePair 以此推断 Pair 类型。 泛型类的静态域和方法无效不能在静态域或方法中使用泛型，经过类型擦除后只有一个非泛型域，会引起歧义。 不能抛出或捕获泛型类的实例泛型类扩展 Throwable 都是不合法的，catch 子句中不能使用类型变量。 123public class Problem&lt;T&gt; extends Exception &#123;&#125; // Errorcatch (T e) &#123;&#125; //Error 在异常规范中使用是允许的： 1public static &lt;T extends Throwable&gt; void doWork(T t) throws T &#123;&#125; 擦除后的冲突当： 1234public class Pair&lt;T&gt; &#123; public boolean equals(T value) &#123; return first.equals(value) &amp;&amp; second.equals(value); &#125; ...&#125; 比如对于 Pai 有两个 equals 方法： boolean equals(String) 由 Pair 定义 boolean equals(Object) 继承自 Object 方法擦除 boolean equals(T) 后即 boolean equals(Object) 覆盖了继承的方法。 一个类或类型变量不能同时成为两个接口类型的子类，这两个接口是同一接口的不同参数化（可能与桥方法产生冲突）： 123class Employee implements Comparable&lt;Employee&gt; &#123; ... &#125;class mangeer extends Employee implements Comparable&lt;Manager&gt; &#123; ... &#125;// Error 通配符部分子类型限定例：Pair 是 Pair&lt;? extends Employee&gt; 的子类型，即将 Pair 的类型限定于 Employee 及其子类。通配符的引用不会引起破坏： 123Pair&lt;Manager&gt; managerBuddies = new Pair&lt;&gt;(ceo, cfo);Pair&lt;? extends Employee&gt; wildcardBuddies = managerBuddies; // OKwildcardBuddies.setFirst(lowlyEmployee); // error 因为对于方法而言： 12? extends Employee getFirst() &#123;&#125;void setFirst(? extends Employee) &#123;&#125; 编译器只知道 setFirst 需要某个 Employee 的子类型，不知道具体是什么类型，拒绝任何特定的类型。而对于 getFrist，将返回值赋给 Employee 的引用是合法的。 超类型限定与子类型限定相反，可以为方法提供参数但不能使用返回值。 占坑 无限定通配符 占坑 反射部分]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>继承</tag>
+        <tag>类型擦除</tag>
+        <tag>通配符</tag>
+        <tag>泛型</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Java 补丁-接口、lambda 和内部类]]></title>
     <url>%2F2019%2F12%2F23%2FJava-%E8%A1%A5%E4%B8%81-%E6%8E%A5%E5%8F%A3%E3%80%81lambda-%E5%92%8C%E5%86%85%E9%83%A8%E7%B1%BB%2F</url>
     <content type="text"><![CDATA[接口部分特性可以使用 instanceof 检查一个对象是否实现某个接口：1if (anObject instanceof Comparable) &#123; ... &#125;接口中不能包含实例域或静态方法（ Java 8 支持静态方法），允许常量。接口中的方法默认为 public，域默认为 public static final。 default 默认方法与超类冲突：超类的方法和接口的默认方法冲突时，超类优先。与接口冲突：只要有一个接口有默认方法，就需要提供一个实现覆盖掉。若接口们都没有提供默认方法，则不存在冲突 - 全部实现或不实现（使自身抽象）。 所以不要用接口的默认方法重新定义 Object 类中的方法如 equals 等，因为超类优先规则默认方法会永远被忽略。 clone 方法copy 一个新对象而不是引用。clone 方法是 Objects 的一个 protected 方法，子类只能克隆它自己的对象，会产生问题：若拷贝的是相同子对象的引用，原对象和克隆对象仍会共享一些信息。默认的拷贝是浅拷贝，若共享的子对象不可变（如 String 类），在生命周期里没有更改器改变它，也没有方法生成它的引用，则是安全的。 若默认 clone 方法满足需求，需要实现 Cloneable 接口（标记接口），调用 super.clone()；若要在可变的子对象上调用 clone 进行修补，则还重新定义一个 public 的 clone 方法。 lambda 表达式部分 *规范一个可传递的代码块，以及其变量规范。即使 lambda 表达式没有参数仍然要提供空括号：() -&gt; { ... } ；如果可以推导出参数类型则可以忽略其类型：Comparator&lt;S tring&gt; comp = (first, second) -&gt; ... ; ；如果方法只有一个参数，且可以推导出类型，可以省略小括号：ActionListener listener = event -&gt; ... ; 。lambda 表达式的返回类型会由上下文推导得出；只在某些分支返回一个值是不合法的。 函数式接口对于只有一个抽象方法的接口，需要其对象时，可以提供一个 lambda 表达式。Java 中对 lambda 表达式所能做的只是转换为函数式接口。 引用方法使用现有方法代替要传递的内容，用 :: 分隔方法名和对象名，允许使用 this 和 super。 object::instanceMethod Class::staticMethod Class::instanceMethod 前两种情况中方法引用等价于提供方法参数的 lambda 表达式，如 System.out::println 等价于 x -&gt; System.out.println(x) 。第三种情况第一个参数会成为方法的目标，如 String::compareToIgnoreCase 等价于 (x,y) -&gt; x.compareToIgnoreCase(y) 。 构造器引用构造器引用类似于方法引用，不过方法名为 new。编译器通过上下文选择构造器。可以用数组类型建立构造器引用，如 int[]::new 有一个数组长度参数，等价于 x -&gt; new int[x]。但无法构造泛型类型 T 的数组，通过 Stream 接口的 toArray 方法调用构造器获得某类型的数组。 变量作用域lambda 表达式可以捕获外围方法或类中变量的值，即可以存储自由变量（非参数且不在表达式中定义）的值。不能改变引用值，或在外部改变引用变量。即捕获的变量必须实际上是最终变量，初始化后就不会再为它赋新值。this 关键字是指创建这个 lambda 表达式的方法的 this 参数。 内部类部分规则内部类的对象总有一个隐式引用（OuterClass.this）指向外部类对象，故可以访问创建它的外围类对象的实例域。每个外部对象会分别有一个内部类实例，故内部类的静态域要加 final 确保唯一。而其方法不允许 static，可能因为弊大于利。 局部内部类定义在方法中，不能用 public 和 private 声明。对外部世界完全隐藏，外部类也不能访问它。 匿名内部类 1234new SuperType(construction parameters) &#123; inner class methods and data &#125; 若构造一个数组列表并将其传递到方法后就不再需要，可以作为匿名列表： 1invite(new ArrayList&lt;String&gt;() &#123;&#123; add(&quot;A&quot;; add(&quot;B&quot;); )&#125;&#125;); 外层括号建立了 ArrayList 的一个匿名子类，内层括号为子类添加元素。 调用 getClass() 是实际是 this.getClass() 而静态方法没有 this，所以应该：new Object(){}.getClass().getEnclosingClass() 。new Object(){} 会建立 Object 的一个匿名子类的匿名对象，getEnclosingClass() 则得到其外围类即包含对应静态方法的类。 静态内部类当使用内部类只是为了隐藏在另一个类内部，不引用外围类对象，可以声明成 static 以便取消产生的引用。（有时内部类对象在静态方法中构造）可以有静态域和方法。]]></content>
@@ -20,10 +34,10 @@
         <category>Java</category>
       </categories>
       <tags>
+        <tag>泛型</tag>
         <tag>接口</tag>
         <tag>内部类</tag>
         <tag>lambda</tag>
-        <tag>泛型</tag>
       </tags>
   </entry>
   <entry>
@@ -34,9 +48,9 @@
         <category>Java</category>
       </categories>
       <tags>
-        <tag>数组</tag>
-        <tag>泛型</tag>
         <tag>继承</tag>
+        <tag>泛型</tag>
+        <tag>数组</tag>
       </tags>
   </entry>
   <entry>
@@ -123,7 +137,7 @@
   </entry>
   <entry>
     <title><![CDATA[汇编课程记录 5]]></title>
-    <url>%2F2019%2F11%2F17%2F%E6%B1%87%E7%BC%96%E8%AF%BE%E7%A8%8B%E8%AE%B0%E5%BD%95-5%2F</url>
+    <url>%2F2019%2F11%2F16%2F%E6%B1%87%E7%BC%96%E8%AF%BE%E7%A8%8B%E8%AE%B0%E5%BD%95-5%2F</url>
     <content type="text"><![CDATA[算术运算指令双操作数指令必须有一个操作数在寄存器中（除源操作数是立即数的情况）单操作数指令不允许使用立即数条件标志位CF 有进位为 1 无进位为 0ZF 结果为零SF 符号OF 溢出，若两个操作数符号相同而结果的符号与之相反时为 1加法指令123456789ADD DST,SRCADC DST,SRC;(DST) ← (SRC)+(DST)+CF;带进位加法指令INC OPR;(OPR) ← (OPR)+1;加 1 指令 除 INC 指令不影响 CF 外，其余都影响标志位 减法指令 12345678910111213141516SUB DST,SRCSBB DST,SRC;(DST) ← (DST)-(SRC)-CF;带借位减法指令DEC OPR;减 1 指令NEG OPR;类似 (OPR) ← 0FFFFH-(OPR)+1;求补指令CMP OPR1,OPR2;比较指令，执行 SUB 操作但不保存结果，只根据结果设置条件标志位;两操作数不能同时为存储器操作数 乘法指令目操作数必须是累加器，字节运算为 AL，字运算为 AX源操作数允许立即数外的寻址方式两个 8 位数相乘得 16 位乘积存放在 AX；两个 16 位数相乘得 32 位乘积，高字位送 DX 低字位送 AX 1234567MUL SRC;无符号数乘法指令;(AX) ← (AL)*(SRC);(DX,AX) ← (AX)*(SRC)IMUL SRC;有符号数乘法指令 MUL 指令中，若高一半为 0，即字节操作的 (AH) 或字操作的 (DX) 为 0，则 CF OF 为 0，否则为 1，可以用于检查字节相乘的结果是字节还是字，或检查字相乘的结果是字还是双字IMUL 指令中，若乘积的高一半是低一半的符号扩展，则 CF OF 均为 0，否则均为 1 除法指令 1234567891011DIV SRC;(AL) ← (AX)/(SRC) 的商;(AH) ← (AX)/(SRC) 的余数;源操作数为 8 位时，被除数必须 16 位;被除数必须预先存在 AX 中;(AX) ← (DX,AX)/(SRC) 的商;(DX) ← (DX,AX)/(SRC) 的余数;被除数必须预先存在 DX,AX 中IDIV SRC;有符号数除法指令 逻辑操作指令逻辑运算指令 1234AND DST,SRC;(DST) ← (DST)∧(SRC);逻辑与指令;源为立即数，需要清零的位为 0，不变的位设为 1 1234OR DST,SRC;(DST) ← (DST)V(SRC);逻辑或指令;需要置一的位为 1，不变的位设为 0 123456789101112NOT OPR;逻辑非指令，按位取反XOR DST,SRC;异或指令;需要取反的位设为 1，不变的位设为 0XOR AX,AX;给寄存器清零，同时使 CF 清零TEST OPR1,OPR2;用 AND 的结果设置条件标志位 ZF;可测试目的某些位是否为 0 移位指令 123SHL OPR,CNTSAL OPR,CN;逻辑左移指令和算术左移指令 将操作数 OPR 向左移动 CNT 指定的次数，低位补入相应个数的 0，CF 的内容为 OPR 最后移出的数位值若需要移位的次数大于 1 则需要把位移次数置于 CL 寄存器 123456SHR OPR,CNT;逻辑右移指令，参考逻辑左移SAR OPR,CNT;算术右移指令;最高位保持不变 上面四条移位指令都可作字或字节操作，当 CNT=1 时，且移位后最高有效位发生改变，则 OF 置 1，否则置 0算术位移指令适用于有符号数，逻辑移位指令用于无符号数 123456ROL OPR,CNTROR OPR,CNT;循环左移指令和循环右移指令;将操作数 OPR 的最高最低位连接;将环中所有位一起向左/右循环移动 CNT 次;CF 的内容为 OPR 中最后移出的数值位 12345RCL OPR,CNTRCR OPR,CNT;带进位循环左移指令和循环右移指令;将操作数 OPR 与 CF 标志位一起连接成环;CF 为 OPR 最后移到 CF 中的数值 这四条指令也只影响 OF(当 CNT=1 时) 和 CF 位，循环移位指令可以改变操作数中所有位的位置 串处理指令将一组存放在存储器连续单元的数据称为数据串。而数据传送指令每次只能传送一个数据，故 CPU 为数据串提供了一组完成数据串传送的指令 若加重复前缀则要求将数据串长度/重复次数送 CX源串地址应设置在 (DS:SI) 中，可指定段跨越前缀；目的串地址应设置在 (ES:DI) 中，不能指定段跨越前缀操作数不是串时只能使用累加器 (AL/AX)所有串处理指令前都必先对方向标志 (DF) 置值 CLD 使 DF=0，控制地址自动增加 1(字)/2(字节) STD 使 DF=1，控制地址自动减少 1(字)/2(字节) 重复前缀配合串处理指令的重复操作 123456REP 串指令;重复串操作;1. 如 (CX)=0，则退出串操作，否则继续执行;2. (CX) ← (CX)-1;3. 执行其后的串操作;4. 从 1 重复 12345678REPE/REPZ 串指令;相等则重复串操作;即 (CX)=0 或 ZF=0 ;增加了两个操作数不等则退出串操作REPNE/REPNZ 串指令;不相等则重复串操作;即 (CX)=0 或 ZF=1 与 REP 配合的指令 1234567MOVS DST,SRCMOVSBMOVSW;串传送指令;((ES:DI)) ← ((DS:SI));(SI) ← (SI) ±1/±2;(DI) ← (DI) ±1/±2 不影响标志位执行前的准备工作： 将存放于数据段的源串首地址(DF=0)或末地址(DF=1)放入 SI 将存放于附加段的目的串首地址(DF=0)或末地址(DF=1)放入 SI 将数据串长度放入 CX 寄存器 建立方向标志 123456STOS DSTSTOSBSTOSW;将数存入串指令;((ES:DI)) ← (AL) 或 (AX);(DI) ← (DI) ±1/±2 与 REP 配合时可把 AL/AX 的内容存入长度为 (CX) 的缓冲区，常用于对一段数据区进行初始化，不影响标志位 与 REPE/REPZ REPNE/REPNZ 配合的指令 1234567CMPS SRC,DSTCMPSBCMPSW;串比较指令;以 ((ES:DI)) - ((DS:SI)) 的结果设置标志位;(SI) ← (SI) ±1/±2;(DI) ← (DI) ±1/±2 可配合找出两组数据串中不同/相同的字符 123456SCAS DSTSCASBSCASW;串查找指令;以 (AL) 或 (AX) - ((ES:DI)) 的结果设置标志位;(DI) ← (DI) ±1/±2 可配合找出两组数据串中与指定字符不同/相同的元素 不与重复前缀配合的指令 123456LODS SRCLODSBLODSW;从串中取数指令;(AL) 或 (AX) ← ((DS:SI));(SI) ← (SI) ±1/±2]]></content>
       <categories>
         <category>汇编</category>
