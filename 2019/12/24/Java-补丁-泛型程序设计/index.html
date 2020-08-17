@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.4.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.4.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.4.0">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.4.0" color="#222">
+
+<link rel="stylesheet" href="/css/main.css?v=7.4.0">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-big-counter.min.css?v=1.0.2">
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.4.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":true},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":true,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
+    },
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="类型变量限定对类型变量 T 设置限定 &amp;lt;T extends BoundingType&amp;gt;。T 的绑定类型可以是类也可以是接口，只是 extends 关键词更接近子类概念，并非表达继承的意思。一个类型变量或通配符可以有多个限定，限定类型用 &amp;amp; 分隔，类型变量用逗号分隔。但限定中至多有一个类，并是限定列表的第一个。">
+<meta name="keywords" content="类型擦除,继承,通配符,泛型约束">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java 补丁-泛型程序设计">
+<meta property="og:url" content="https://www.yuyurbq.club/2019/12/24/Java-补丁-泛型程序设计/index.html">
+<meta property="og:site_name" content="卑微的 YuYu">
+<meta property="og:description" content="类型变量限定对类型变量 T 设置限定 &amp;lt;T extends BoundingType&amp;gt;。T 的绑定类型可以是类也可以是接口，只是 extends 关键词更接近子类概念，并非表达继承的意思。一个类型变量或通配符可以有多个限定，限定类型用 &amp;amp; 分隔，类型变量用逗号分隔。但限定中至多有一个类，并是限定列表的第一个。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2020-02-16T03:30:00.536Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Java 补丁-泛型程序设计">
+<meta name="twitter:description" content="类型变量限定对类型变量 T 设置限定 &amp;lt;T extends BoundingType&amp;gt;。T 的绑定类型可以是类也可以是接口，只是 extends 关键词更接近子类概念，并非表达继承的意思。一个类型变量或通配符可以有多个限定，限定类型用 &amp;amp; 分隔，类型变量用逗号分隔。但限定中至多有一个类，并是限定列表的第一个。">
+  <link rel="canonical" href="https://www.yuyurbq.club/2019/12/24/Java-补丁-泛型程序设计/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>Java 补丁-泛型程序设计 | 卑微的 YuYu</title>
+  <meta name="generator" content="Hexo 3.9.0">
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">卑微的 YuYu</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">人如域名 (</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+      
+      
+      
+        
+        <li class="menu-item menu-item-home">
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-archives">
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-tags">
+      
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-categories">
+      
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-about">
+      
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-smile-o"></i> <br>关于我</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a href="javascript:;" class="popup-trigger">
+        
+          <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+      </li>
+    
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+            
+
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+      <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block post">
+    <link itemprop="mainEntityOfPage" href="https://www.yuyurbq.club/2019/12/24/Java-补丁-泛型程序设计/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Sun YuYu">
+      <meta itemprop="description" content="虽然啥都没干，真是辛苦自己啦">
+      <meta itemprop="image" content="/images/logo.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="卑微的 YuYu">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">Java 补丁-泛型程序设计
+
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2019-12-24 15:10:20" itemprop="dateCreated datePublished" datetime="2019-12-24T15:10:20+08:00">2019-12-24</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-02-16 11:30:00" itemprop="dateModified" datetime="2020-02-16T11:30:00+08:00">2020-02-16</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p><strong>类型变量限定</strong><br>对类型变量 T 设置限定 <code>&lt;T extends BoundingType&gt;</code>。T 的绑定类型可以是类也可以是接口，只是 extends 关键词更接近子类概念，并非表达继承的意思。<br>一个类型变量或通配符可以有多个限定，限定类型用 &amp; 分隔，类型变量用逗号分隔。但限定中至多有一个类，并是限定列表的第一个。</p><a id="more"></a>
+<p><strong>继承规则</strong><br>Pair<manager> 不是 Pair<employee> 的子类，继承不延续进泛型类。<br>泛型类可以扩展或实现其他的泛型类。</employee></manager></p>
+<h1 id="虚拟机部分"><a href="#虚拟机部分" class="headerlink" title="虚拟机部分"></a>虚拟机部分</h1><p><strong>类型擦除</strong><br>虚拟机没有泛型类型对象，无论何时定义泛型类型都会自动提供相应的原始类型，即擦除类型变量并替换成限定类型（用第一个限定的类型变量替换，无限定的用 Object）。</p>
+<p><strong>翻译泛型表达式</strong><br>程序调用泛型方法时，擦除返回类型插入强制类型转换。存取泛型域时也会插入强制类型转换。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Pair&lt;Employee&gt; buddies = ... ;</span><br><span class="line">Employeee buddy = buddies.gettFirst();</span><br></pre></td></tr></table></figure>
+
+<p>编译器将方法调用翻译成两条虚拟机指令：</p>
+<ul>
+<li>对原始方法 Pair.getFirst 的调用。</li>
+<li>将返回的 Object 类型强制转换为 Employee 类型。</li>
+</ul>
+<p><strong>翻译泛型方法</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">class Father&lt;T&gt; &#123;</span><br><span class="line">	public void fun(T x) &#123;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">class Son extends Father&lt;String&gt; &#123;</span><br><span class="line">	public void fun(String x) &#123;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Father 类和 Son 类经过类型擦除后变成：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">class Father&lt;Object&gt; &#123;</span><br><span class="line">	public void fun(Object x) &#123;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">class Son extends Father &#123;</span><br><span class="line">	public void fun(String x) &#123;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>很显然，子类 Son 是想覆盖 Father 的 fun 方法，但是却出现了问题。<br>当出现：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Father&lt;String&gt; f = new Son();</span><br><span class="line">f.fun(x);</span><br></pre></td></tr></table></figure>
+
+<p>变量 f 声明为类型 Father<string> 而此类型的方法是 fun(Object)，虚拟机用 f 引用的对象调用此方法，即 Son 的 fun(Object)，这个方法是虚拟机合成的桥方法，会调用 Son 的 fun(String) 方法。<br>总之就是保证了不会调用之前被覆盖的超类方法。</string></p>
+<p>对于 get 方法等无参数的，子类会出现两个方法名相同，都无参数的方法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">String get() &#123;&#125;</span><br><span class="line">Object get() &#123;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在编写中是不合法的，但虚拟机用参数类型和_返回类型_确定一个方法，故能正确处理。</p>
+<h1 id="约束与局限部分"><a href="#约束与局限部分" class="headerlink" title="约束与局限部分"></a>约束与局限部分</h1><p><strong>不能用基本类型实例化类型参数</strong><br>没有诸如 <double> 而应该是 <double>，因为类型擦除后 Object 无法存储基本类型。</double></double></p>
+<p><strong>类型查询的是原始类型</strong><br>虚拟机中的对象总是一个非泛型类型，比如 <code>if (a instanceof Pair&lt;String&gt;)</code> 仅仅测试 a 是否是任意类型的 Pair。getClass 方法总是返回原始类型，强制类型转换将 warning。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Pair&lt;String&gt; stringPair = ... ;</span><br><span class="line">Pair&lt;Employee&gt; employeePair = ... ;</span><br><span class="line">if (stringPair.getClass() == employeePair.getClass()) // true</span><br></pre></td></tr></table></figure>
+
+<p><strong>不能创建泛型数组</strong> 1.8 中存疑<br>类型擦除后使检查元素类型的机制无效，所以不允许创建泛型数组。声明泛型数组是合法的，但不能通过创建泛型数组来对其初始化。使用类似 ArrayList:ArrayList&lt;Pair<string>&gt;。</string></p>
+<p><strong>Varargs 警告</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public static &lt;T&gt; void addAll(Collection&lt;T&gt; coll, T... ts) &#123;</span><br><span class="line">	for (t : ts) coll.add(t);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>当：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Collection&lt;Pair&lt;String&gt;&gt; table = ... ;</span><br><span class="line">Pair&lt;String&gt; Pair1 = ... ;</span><br><span class="line">Pair&lt;String&gt; Pair2 = ... ;</span><br><span class="line">addAll (table, pair1, pair2);</span><br></pre></td></tr></table></figure>
+
+<p>虚拟机不得不建立 Pair<string> 数组，违反了上一条。但这种情况规则有所放松只会得到警告，用 @SafeVarargs 标注来抑制。</string></p>
+<p><strong>不能实例化类型变量</strong><br>诸如 <code>new T(...)</code> <code>T.class</code> 是非法的。类型擦除将 T 改变成 Object 从而违反了本意。<br>通过反射调用 Class.newInstance 方法来构造泛型对象，例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">public static &lt;T&gt; Pair&lt;T&gt; makePair(Class&lt;T&gt; cl) &#123;</span><br><span class="line">	try &#123; return new Pair&lt;&gt;(cl.newInstance(), cl.newInstance()); &#125;</span><br><span class="line">	catch (Exception ex) &#123; return null; &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Pair&lt;String&gt; p = Pair.makePair(String.class);</span><br></pre></td></tr></table></figure>
+
+<p>Class 类本身是泛型，例 <code>String.calss</code> 是 <code>Class&lt;String&gt;</code> 的唯一实例，makePair 以此推断 Pair 类型。</p>
+<p><strong>泛型类的静态域和方法无效</strong><br>不能在静态域或方法中使用泛型，经过类型擦除后只有一个非泛型域，会引起歧义。</p>
+<p><strong>不能抛出或捕获泛型类的实例</strong><br>泛型类扩展 Throwable 都是不合法的，catch 子句中不能使用类型变量。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public class Problem&lt;T&gt; extends Exception &#123;&#125; // Error</span><br><span class="line"></span><br><span class="line">catch (T e) &#123;&#125; //Error</span><br></pre></td></tr></table></figure>
+
+<p>在异常规范中使用是允许的：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">public static &lt;T extends Throwable&gt; void doWork(T t) throws T &#123;&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>擦除后的冲突</strong><br>当：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">public class Pair&lt;T&gt; &#123;</span><br><span class="line">	public boolean equals(T value) &#123; return first.equals(value) &amp;&amp; second.equals(value); &#125;</span><br><span class="line">	...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>比如对于 Pai<string> 有两个 equals 方法：</string></p>
+<ul>
+<li>boolean equals(String) 由 Pair<t> 定义</t></li>
+<li>boolean equals(Object) 继承自 Object</li>
+</ul>
+<p>方法擦除 <code>boolean equals(T)</code> 后即 <code>boolean equals(Object)</code> 覆盖了继承的方法。</p>
+<p>一个类或类型变量不能同时成为两个接口类型的子类，这两个接口是同一接口的不同参数化（可能与桥方法产生冲突）：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">class Employee implements Comparable&lt;Employee&gt; &#123; ... &#125;</span><br><span class="line">class mangeer extends Employee implements Comparable&lt;Manager&gt; &#123; ... &#125;</span><br><span class="line">// Error</span><br></pre></td></tr></table></figure>
+
+<h1 id="通配符部分"><a href="#通配符部分" class="headerlink" title="通配符部分"></a>通配符部分</h1><p><strong>子类型限定</strong><br>例：Pair<manager> 是 Pair&lt;? extends Employee&gt; 的子类型，即将 Pair 的类型限定于 Employee 及其子类。通配符的引用不会引起破坏：</manager></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Pair&lt;Manager&gt; managerBuddies = new Pair&lt;&gt;(ceo, cfo);</span><br><span class="line">Pair&lt;? extends Employee&gt; wildcardBuddies = managerBuddies; // OK</span><br><span class="line">wildcardBuddies.setFirst(lowlyEmployee); // error</span><br></pre></td></tr></table></figure>
+
+<p>因为对于方法而言：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">? extends Employee getFirst() &#123;&#125;</span><br><span class="line">void setFirst(? extends Employee) &#123;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>编译器只知道 setFirst 需要某个 Employee 的子类型，不知道具体是什么类型，拒绝任何特定的类型。而对于 getFrist，将返回值赋给 Employee 的引用是合法的。</p>
+<p><strong>超类型限定</strong><br>诸如 <code>&lt;? super Manger&gt;</code> 。<br>与子类型限定相反，可以为方法提供参数但不能使用返回值。</p>
+<p>带有超类型限定的通配符可以向泛型对象写入，带有子类型限定的通配符可以从泛型读取。</p>
+<p><strong>无限定通配符</strong><br>get 的返回值只能赋给一个 Object 。setFirst 只允许 null 值（子类型限定同）。</p>
+<h1 id="反射部分"><a href="#反射部分" class="headerlink" title="反射部分"></a>反射部分</h1><p>对象是泛型类实例时，因为擦除，反射得不到太多信息。<br>详见 API</p>
+
+    </div>
+
+    
+    
+    
+        
+      
+
+      <footer class="post-footer">
+          
+            
+          
+          <div class="post-tags">
+            
+              <a href="/tags/类型擦除/" rel="tag"># 类型擦除</a>
+            
+              <a href="/tags/继承/" rel="tag"># 继承</a>
+            
+              <a href="/tags/通配符/" rel="tag"># 通配符</a>
+            
+              <a href="/tags/泛型约束/" rel="tag"># 泛型约束</a>
+            
+          </div>
+        
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+              
+                <a href="/2019/12/23/Java-补丁-异常、断言和日志/" rel="next" title="Java 补丁-异常、断言和日志">
+                  <i class="fa fa-chevron-left"></i> Java 补丁-异常、断言和日志
+                </a>
+              
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+              
+                <a href="/2019/12/25/Java 补丁-集合/" rel="prev" title="Java 补丁-集合">
+                  Java 补丁-集合 <i class="fa fa-chevron-right"></i>
+                </a>
+              
+            </div>
+          </div>
+        
+      </footer>
+    
+  </div>
+  
+  
+  
+  </article>
+
+  </div>
+
+
+          </div>
+          
+
+        </div>
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+        
+        
+        
+        
+      
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#虚拟机部分"><span class="nav-number">1.</span> <span class="nav-text">虚拟机部分</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#约束与局限部分"><span class="nav-number">2.</span> <span class="nav-text">约束与局限部分</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#通配符部分"><span class="nav-number">3.</span> <span class="nav-text">通配符部分</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#反射部分"><span class="nav-number">4.</span> <span class="nav-text">反射部分</span></a></li></ol></div>
+        
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image"
+      src="/images/logo.png"
+      alt="Sun YuYu">
+  <p class="site-author-name" itemprop="name">Sun YuYu</p>
+  <div class="site-description" itemprop="description">虽然啥都没干，真是辛苦自己啦</div>
+</div>
+  <nav class="site-state motion-element">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">43</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+          
+            <a href="/categories/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">分类</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-tags">
+        
+          
+            <a href="/tags/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">67</span>
+        <span class="site-state-item-name">标签</span>
+        </a>
+      </div>
+    
+  </nav>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="mailto:bmzsmd@gmail.com" title="E-Mail &rarr; mailto:bmzsmd@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+    
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="https://t.me/yuyurbq" title="Telegram &rarr; https://t.me/yuyurbq" rel="noopener" target="_blank"><i class="fa fa-fw fa-telegram"></i>Telegram</a>
+      </span>
+    
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="https://weibo.com/sunsun1" title="Weibo &rarr; https://weibo.com/sunsun1" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>Weibo</a>
+      </span>
+    
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="https://twitter.com/bianminzi" title="Twitter &rarr; https://twitter.com/bianminzi" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i>Twitter</a>
+      </span>
+    
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2019 – <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-transgender-alt"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Sun YuYu</span>
+</div>
+  <!--<div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0</div>-->
+  <div class="powered-by">Hexo & GitHub 用❤驱动</div>
+  <!--<span class="post-meta-divider">|</span>-->
+  <!--<div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.4.0</div>-->
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+
+
+    
+    
+  
+    
+    
+  
+    
+  
+  <script color='0,0,255' opacity='0.5' zIndex='-1' count='99' src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  <script src="/lib/anime.min.js?v=3.1.0"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  <script defer src="/lib/three/three.min.js"></script>
+  <script defer src="/lib/three/three-waves.min.js"></script>
+  <script defer src="/lib/three/canvas_lines.min.js"></script>
+<script src="/js/utils.js?v=7.4.0"></script><script src="/js/motion.js?v=7.4.0"></script>
+<script src="/js/schemes/pisces.js?v=7.4.0"></script>
+<script src="/js/next-boot.js?v=7.4.0"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+  <script src="/js/local-search.js?v=7.4.0"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+</body>
+</html>

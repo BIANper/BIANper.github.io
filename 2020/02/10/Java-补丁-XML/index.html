@@ -1,0 +1,1032 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.4.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.4.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.4.0">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.4.0" color="#222">
+
+<link rel="stylesheet" href="/css/main.css?v=7.4.0">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-big-counter.min.css?v=1.0.2">
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.4.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":true},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":true,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
+    },
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="概述相对 HTML 的区别： 大小写敏感，故 &amp;lt;h1&amp;gt; 和 &amp;lt;H1&amp;gt; 为不同 XML 标签 不可省略结束标签 没有结束标签的元素必须以 / 结尾 属性值必须用引号包围，包括数值 所有属性必须有属性值 标记字符引用： &amp;amp;#十进制  &amp;amp;#x十六进制 实体引用： &amp;amp;name &amp;amp;lt 小于；&amp;amp;gt 大于；&amp;amp;amp &amp;amp;；&amp;amp">
+<meta name="keywords" content="XML,DTD,StAX">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java 补丁-XML">
+<meta property="og:url" content="https://www.yuyurbq.club/2020/02/10/Java-补丁-XML/index.html">
+<meta property="og:site_name" content="卑微的 YuYu">
+<meta property="og:description" content="概述相对 HTML 的区别： 大小写敏感，故 &amp;lt;h1&amp;gt; 和 &amp;lt;H1&amp;gt; 为不同 XML 标签 不可省略结束标签 没有结束标签的元素必须以 / 结尾 属性值必须用引号包围，包括数值 所有属性必须有属性值 标记字符引用： &amp;amp;#十进制  &amp;amp;#x十六进制 实体引用： &amp;amp;name &amp;amp;lt 小于；&amp;amp;gt 大于；&amp;amp;amp &amp;amp;；&amp;amp">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2020-03-15T12:41:11.726Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Java 补丁-XML">
+<meta name="twitter:description" content="概述相对 HTML 的区别： 大小写敏感，故 &amp;lt;h1&amp;gt; 和 &amp;lt;H1&amp;gt; 为不同 XML 标签 不可省略结束标签 没有结束标签的元素必须以 / 结尾 属性值必须用引号包围，包括数值 所有属性必须有属性值 标记字符引用： &amp;amp;#十进制  &amp;amp;#x十六进制 实体引用： &amp;amp;name &amp;amp;lt 小于；&amp;amp;gt 大于；&amp;amp;amp &amp;amp;；&amp;amp">
+  <link rel="canonical" href="https://www.yuyurbq.club/2020/02/10/Java-补丁-XML/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>Java 补丁-XML | 卑微的 YuYu</title>
+  <meta name="generator" content="Hexo 3.9.0">
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">卑微的 YuYu</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">人如域名 (</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+      
+      
+      
+        
+        <li class="menu-item menu-item-home">
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-archives">
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-tags">
+      
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-categories">
+      
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-about">
+      
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-smile-o"></i> <br>关于我</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a href="javascript:;" class="popup-trigger">
+        
+          <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+      </li>
+    
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+            
+
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+      <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block post">
+    <link itemprop="mainEntityOfPage" href="https://www.yuyurbq.club/2020/02/10/Java-补丁-XML/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Sun YuYu">
+      <meta itemprop="description" content="虽然啥都没干，真是辛苦自己啦">
+      <meta itemprop="image" content="/images/logo.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="卑微的 YuYu">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">Java 补丁-XML
+
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2020-02-10 13:42:36" itemprop="dateCreated datePublished" datetime="2020-02-10T13:42:36+08:00">2020-02-10</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-03-15 20:41:11" itemprop="dateModified" datetime="2020-03-15T20:41:11+08:00">2020-03-15</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p>相对 HTML 的区别：</p><ul>
+<li>大小写敏感，故 &lt;h1&gt; 和 &lt;H1&gt; 为不同 XML 标签</li>
+<li>不可省略结束标签</li>
+<li>没有结束标签的元素必须以 / 结尾</li>
+<li>属性值必须用引号包围，包括数值</li>
+<li>所有属性必须有属性值</li>
+</ul><h2 id="标记"><a href="#标记" class="headerlink" title="标记"></a>标记</h2><p>字符引用：</p><ul>
+<li><em>&amp;#十进制</em>  <em>&amp;#x十六进制</em></li>
+</ul><p>实体引用：</p><ul>
+<li><em>&amp;name</em></li>
+<li>&amp;lt 小于；&amp;gt 大于；&amp;amp &amp;；&amp;quot 引号；可在 DTD 中定义其他实体引用。</li>
+</ul><a id="more"></a>
+
+
+
+
+
+<p>CDATA Section：</p>
+<ul>
+<li>*<!--[CDATA[* ... *]]-->*</li>
+<li>特殊的字符数据形式，囊括含有 &lt; &gt; &amp; 等字符的字符串，而不必解释为标记。</li>
+<li>&lt;![CDATA[ &amp; &gt; are delimiters ]]&gt;</li>
+</ul>
+<p>处理指令：</p>
+<ul>
+<li>*<?* ... *?>*</li>
+<li>在处理 XML 的应用程序中使用。</li>
+</ul>
+<p>注释：</p>
+<ul>
+<li>*<!--* ... *-->*</li>
+<li>注释不应该含有 – 字符串。</li>
+</ul>
+<h2 id="规范"><a href="#规范" class="headerlink" title="规范"></a>规范</h2><p>避免混合式内容，即元素包含子元素和文本。</p>
+<p>属性只用于修改值的解释，而不是指定值。优先使用元素。例：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">font</span> <span class="attr">name</span>=<span class="string">"Helvetica"</span> <span class="attr">size</span>=<span class="string">"18 pt"</span> /&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">font</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">name</span>&gt;</span>Helvetica<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">size</span> <span class="attr">unit</span>=<span class="string">"pt"</span>&gt;</span>36<span class="tag">&lt;/<span class="name">size</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">font</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="解析文档"><a href="#解析文档" class="headerlink" title="解析文档"></a>解析文档</h1><p>首先从 DocumentBuilderFactory 得到 DocumentBuilder 对象：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">DocumentBuilderFactory = DocumentBuilderFactory.newInstance();</span><br><span class="line">DocumentBuilder builder = factory.newDocumentBuilder();</span><br></pre></td></tr></table></figure>
+
+<p>通过 builder 从文件，URL，输入流读入文档：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">File f = ...;</span><br><span class="line">URL u = ...;</span><br><span class="line">InputStream in = ...;</span><br><span class="line"></span><br><span class="line">Document doc = builder.parse(f);</span><br></pre></td></tr></table></figure>
+
+<p>若使用输入流读取，解析器无法定位以该文档为相对路径而被引用的文档。</p>
+<p>调用 <code>getDocumentElement</code> 方法对文档内容分析，并返回根元素：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Element root = doc.getDocumentElement();</span><br></pre></td></tr></table></figure>
+
+<p><code>getTagName</code> 方法可以返回元素的标签名。获得元素的子元素（元素，文本，注释，节点）使用 <code>getChildNodes</code> 方法，将返回一个 NodeList 类型的集合。item 方法得到指定索引值的项，<code>getLength</code> 方法获得项的总数。故枚举子元素：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">NodeList children = root.getChildNodes();</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; children.getLength(); i++) &#123;</span><br><span class="line">    Node child = children.item(i);</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>元素与元素之间的空白字符也算作子元素，忽略空白字符：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; children.getLength(); i++) &#123;</span><br><span class="line">    Node child = children.item(i);</span><br><span class="line">    <span class="keyword">if</span> (child <span class="keyword">instanceof</span> Element) &#123;</span><br><span class="line">        Element childElement = (Element) child;</span><br><span class="line">        ...</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>获得元素后，从 Text 类型的子节点中获取文本字符串，若节点可定位（如 Text 节点是唯一的子元素），可使用 <code>getFirstChild</code>  <code>getLastChild</code> 而不必遍历新的 NodeList ，然后用 <code>getData</code> 方法获取节点中的字符串：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; children.getLength(); i++) &#123;</span><br><span class="line">    Node child = children.item(i);</span><br><span class="line">    <span class="keyword">if</span> (child <span class="keyword">instanceof</span> Element) &#123;</span><br><span class="line">        Element childElement = (Element) child;</span><br><span class="line">        Text textNode = (Text) childElement.getFirstChild();</span><br><span class="line">        String text = textNode.getData().trim();</span><br><span class="line">        <span class="comment">// trim 删除数据前后的空白字符</span></span><br><span class="line">        <span class="keyword">if</span> (childElement.getTagName().equals(<span class="string">"name"</span>))</span><br><span class="line">            name = text;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (childElement.getTagName().equals(<span class="string">"size"</span>))</span><br><span class="line">            size = Interger.parseInt(text);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>若要遍历子节点集（不是 getChildNodes 来的 NodeList），结合 <code>getNextSibling</code> 方法（获取下一个兄弟节点）：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (Node childNode = element.getFirstChild();</span><br><span class="line">    childNode != <span class="keyword">null</span>;</span><br><span class="line">    childNode = childNode.getNextSibling()) &#123; ... &#125;</span><br></pre></td></tr></table></figure>
+
+<p>若要枚举节点的属性，调用 <code>getAttributes</code> 方法，其返回一个 NamedNodeMap 对象，包含了描述属性的 Node 对象。与遍历 NodeList 的方式相同，用 <code>getNodeName</code>  <code>getNodeValue</code> 方法获取属性名和属性值：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">NamedNodeMap attributes = element.getAttributes();</span><br><span class="line">String value = element.getAttribute(<span class="string">"unit"</span>);</span><br><span class="line"><span class="comment">// 知道属性名可以直接获取对应值</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; attributes.getLength(); i++) &#123;</span><br><span class="line">    Node attribute = attributes.item(i);</span><br><span class="line">    String name = attribute.getNodeName();</span><br><span class="line">    String value = attribute.getNodeValue;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="验证-XML-文档"><a href="#验证-XML-文档" class="headerlink" title="验证 XML 文档"></a>验证 XML 文档</h1><h2 id="DTD"><a href="#DTD" class="headerlink" title="DTD"></a>DTD</h2><p>若在 XML 文档内部提供 DTD，规则应当纳入到 DOCTYPE 声明的 [] 中，且 DOCTYPE 必须匹配根元素的名字，如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE configuration [</span><br><span class="line">    &lt;!ELEMENT configuration ...&gt;</span><br><span class="line">    ... ]&gt;</span><br><span class="line">&lt;configuration&gt;&lt;/configuration&gt;</span><br></pre></td></tr></table></figure>
+
+<p>更多是存储在外部，使用 SYSTEM 声明指定一个 DTD 文件：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE configuration SYSTEM &quot;path&quot;&gt;</span><br><span class="line">&lt;!DOCTYPE configuration SYSTEM &quot;URL&quot;&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="各种规则"><a href="#各种规则" class="headerlink" title="各种规则"></a>各种规则</h3><p><strong>ELEMENT 规则</strong>指定某个元素可以拥有的子元素，允许正则表达式。</p>
+<table>
+<thead>
+<tr>
+<th align="center">规则</th>
+<th align="center">含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">E*</td>
+<td align="center">0 或多个 E</td>
+</tr>
+<tr>
+<td align="center">E+</td>
+<td align="center">1 或多个 E</td>
+</tr>
+<tr>
+<td align="center">E?</td>
+<td align="center">0 或 1 个 E</td>
+</tr>
+<tr>
+<td align="center">E1|E2|…|En</td>
+<td align="center">E1,E2… 中的一个</td>
+</tr>
+<tr>
+<td align="center">E1,E2,…,En</td>
+<td align="center">E 按序排列</td>
+</tr>
+<tr>
+<td align="center">#PCDATA</td>
+<td align="center">文本</td>
+</tr>
+<tr>
+<td align="center">(#PCDATA|E1…|En)*</td>
+<td align="center">0 或多个文本且 E 以任意顺序排列</td>
+</tr>
+<tr>
+<td align="center">ANY</td>
+<td align="center">允许任何子元素</td>
+</tr>
+<tr>
+<td align="center">EMPTY</td>
+<td align="center">不允许有子元素</td>
+</tr>
+</tbody></table>
+<p>当元素需要包含文本时，只有两种合法情况：</p>
+<ul>
+<li>只包含文本 #PCDATA</li>
+<li>包含任意顺序的文本和标签 (#PCDATA|E1…|En)*</li>
+</ul>
+<p><strong>ATTLIST 规则</strong>指定元素属性，语法 <code>&lt;!ATTLIST element attribute type default&gt;</code></p>
+<table>
+<thead>
+<tr>
+<th align="center">类型</th>
+<th align="center">含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">CDATA</td>
+<td align="center">任意字符串</td>
+</tr>
+<tr>
+<td align="center">(A1|A2|…|An)</td>
+<td align="center">字符串属性为其中之一</td>
+</tr>
+<tr>
+<td align="center">NMTOKEN NMTOKENS</td>
+<td align="center">1 或多个名字标记</td>
+</tr>
+<tr>
+<td align="center">ID</td>
+<td align="center">1 个唯一的 ID</td>
+</tr>
+<tr>
+<td align="center">IDREF IDREFS</td>
+<td align="center">1 或多个对唯一 ID 的引用</td>
+</tr>
+<tr>
+<td align="center">ENTITY ENTITIES</td>
+<td align="center">1 或多个未解析的实体</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th align="center">默认值</th>
+<th align="center">含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">#REQUIRED</td>
+<td align="center">属性必需</td>
+</tr>
+<tr>
+<td align="center">#IMPLIED</td>
+<td align="center">属性可选</td>
+</tr>
+<tr>
+<td align="center">A</td>
+<td align="center">属性可选，若未指定则为 A</td>
+</tr>
+<tr>
+<td align="center">#FIXED A</td>
+<td align="center">属性必须为未指定或 A，解析器都报 A</td>
+</tr>
+</tbody></table>
+<p>例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;!ATTLIST font style (plain|bold|italic) &quot;plain&quot;&gt;</span><br><span class="line">&lt;!ATTLIST size unit CDATA #IMPLIED&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><p>通知工厂启用验证，此工厂生成的所有文档生成器都将根据 DTD 验证输入：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">factory.setValidating(<span class="keyword">true</span>);</span><br></pre></td></tr></table></figure>
+
+<p>忽略元素节点之间的空白字符：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">factory.setIgnoringElementContentWhitespace(<span class="keyword">true</span>);</span><br></pre></td></tr></table></figure>
+
+<p>这样就不用再通过循环剔除空白字符了：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;!ELEMENT font (name,size)&gt;</span><br><span class="line">&lt;!ELEMENT name (#PCDATA)&gt;</span><br><span class="line">&lt;!ELEMENT size (#PCDATA)&gt;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Element name = (Element) children.item(<span class="number">0</span>);</span><br><span class="line">Element size = (Element) children.item(<span class="number">1</span>);</span><br></pre></td></tr></table></figure>
+
+<h2 id="XML-Schema"><a href="#XML-Schema" class="headerlink" title="XML Schema"></a>XML Schema</h2><p>占坑</p>
+<h1 id="XPath"><a href="#XPath" class="headerlink" title="XPath"></a>XPath</h1><h2 id="概述-1"><a href="#概述-1" class="headerlink" title="概述"></a>概述</h2><p>相比遍历 DOM 树，XPath 访问节点更加简单，通过对 /configration/database/username 求值获取 username 的值。</p>
+<p>也可以描述节点集，如 /gridbag/row 描述根元素 gridbag 下的所有子元素 row，通过 [] 操作符选择元素：/gridbag/row[1] 表示第一行。</p>
+<p>@ 操作符获取属性值：/gridbag/row[1]/cell[1]/@anchor 。</p>
+<p>配合 XPath 的函数进行精细要求。</p>
+<h2 id="使用-1"><a href="#使用-1" class="headerlink" title="使用"></a>使用</h2><p>首先从 XPathFactory 创建 XPath 对象：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">XPathFactory xpfactory = XPathFactory.newInstance();</span><br><span class="line">path = xpfactory.nextXPath();</span><br></pre></td></tr></table></figure>
+
+<p>然后用 evaluate 方法计算 XPath 表达式（用于获取文本）：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">String name = path.evaluate(<span class="string">"/configuration/database/username"</span>, doc);</span><br></pre></td></tr></table></figure>
+
+<p>若 XPath 表达式产生了一组节点：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">NodeList nodes = (NodeList) path.evaluate(<span class="string">"/gridbag/row"</span>, doc, XPathConstants.NODESET);</span><br></pre></td></tr></table></figure>
+
+<p>若仅一个节点：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Node node = (Node) path.evaluate(<span class="string">"/gridbag/row[1]"</span>, doc, XPathContants.NODE);</span><br></pre></td></tr></table></figure>
+
+<p>若是数字：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> num = ((Number) path.evaluate(<span class="string">"count(/...)"</span>, doc, XPathConstants.NUMBER)).intValue();</span><br></pre></td></tr></table></figure>
+
+<p>从以前获得的节点开始：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">result = path.evaluate(expression, node);</span><br></pre></td></tr></table></figure>
+
+<h1 id="命名空间"><a href="#命名空间" class="headerlink" title="命名空间"></a>命名空间</h1><h2 id="概述-2"><a href="#概述-2" class="headerlink" title="概述"></a>概述</h2><p>XML 使用 URL 标识命名空间，避免名字冲突。此处 URL 只用作标示字符串，而非某个文件定位符。</p>
+<p>子元素也可以提供其命名空间：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">element</span> <span class="attr">xmlns</span>=<span class="string">"namespaceURL1"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">chilren</span></span></span><br><span class="line">    &lt;children xmlns="namespaceURL2"&gt;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">children</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">element</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>设置前缀表示命名空间（xsd 为例）：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">xsd:schema</span> <span class="attr">xmlns:xsd</span>=<span class="string">"URL"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">xsd:element</span> <span class="attr">...</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">xsd:schema</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="使用-2"><a href="#使用-2" class="headerlink" title="使用"></a>使用</h2><p>默认 Java XML 库的 DOM 解析器关闭命名空间处理，使用 <code>DocumentBuilderFactory</code> 类的 <code>setNamespaceAware</code> 方法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">factory.setNamespaceAware(<span class="keyword">true</span>);</span><br></pre></td></tr></table></figure>
+
+<p>该工厂产生的所有生成器都将支持命名空间：</p>
+<ul>
+<li><p>带前缀限定名 (例 xsd:schema) <code>getNodeName</code> <code>getTagName</code></p>
+</li>
+<li><p>命名空间 URI <code>getNamespaceURI</code></p>
+</li>
+<li><p>无命名空间或前缀的本地名 (例 schema)  <code>getLocalName</code></p>
+</li>
+</ul>
+<h1 id="流机制解析器"><a href="#流机制解析器" class="headerlink" title="流机制解析器"></a>流机制解析器</h1><blockquote>
+<p>DOM 解析器完整读入 XML 文档将其转换为树型的数据结构。若文档很大，或不需要看到完整结构，则相对低效。</p>
+</blockquote>
+<h2 id="SAX-解析器"><a href="#SAX-解析器" class="headerlink" title="SAX 解析器"></a>SAX 解析器</h2><p>DOM 解析器在 SAX 解析器的基础上构建，其在接收到解析器事件（SAX 解析输入数据时报告）时构建 DOM 树。而 SAX 由事件处理器建立数据结构，并且不在意元素的上下文环境。</p>
+<p><code>ContentHandler</code> 接口定义了部分解析器会调用的方法，如：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">font</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">name</span>&gt;</span>xxx<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">size</span> <span class="attr">units</span>=<span class="string">"pt"</span>&gt;</span>36<span class="tag">&lt;/<span class="name">size</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">font</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>startElement - font</li>
+<li>startElement - name</li>
+<li>characters - xxx</li>
+<li>endElement - name</li>
+<li>……</li>
+</ul>
+<p>在处理器中覆盖这些方法以执行我们所希望的动作。</p>
+<p>首先获得 SAX 解析器：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">SAXParserFactory factory = SAXParserFactory.newInstance();</span><br><span class="line"><span class="comment">// factory.setNamespaceAware(true); 打开命名空间处理</span></span><br><span class="line">SAXParser parser = factory.newSAXParser();</span><br></pre></td></tr></table></figure>
+
+<p>然后获得处理器，覆盖 startElement 方法为例，namespaceURI 和 lname 提供命名空间和本地非限定名，qname 以 prefix:localname 提供限定名：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">DefaultHandler handler = <span class="keyword">new</span></span><br><span class="line">    DefaultHandler() &#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">startElement</span><span class="params">(String namespaceURI, String lname, String qname, Attributes attrs)</span></span></span><br><span class="line"><span class="function">        throw SAXException </span>&#123;</span><br><span class="line">        ...</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>然后处理文档：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">parser.parse(文件/字符串/输入流, handler);</span><br></pre></td></tr></table></figure>
+
+<h2 id="StAX-解析器"><a href="#StAX-解析器" class="headerlink" title="StAX 解析器"></a>StAX 解析器</h2><p>不用管事件处理部分，用循环迭代所有事件。命名空间处理默认启用：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">XMLInputFactory factory = XMLInputFactory.newInstance();</span><br><span class="line"><span class="comment">// factory.setProperty(XMLInputFactory.IS_NAMESPACE_AWARE, false);</span></span><br><span class="line">XMLStreamReader parser = factory.createXMLStreamReader(输入流);</span><br><span class="line"><span class="keyword">while</span> (parser.hasNext()) &#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>使用 <code>XMLStreamReader</code> 中的方法分析当前（parser.next）元素属性值，如：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">String units = parser.getAttributeValue(<span class="keyword">null</span>, <span class="string">"units"</span>);</span><br><span class="line"><span class="comment">// 获取当前元素 units 属性</span></span><br></pre></td></tr></table></figure>
+
+
+    </div>
+
+    
+    
+    
+        
+      
+
+      <footer class="post-footer">
+          
+            
+          
+          <div class="post-tags">
+            
+              <a href="/tags/XML/" rel="tag"># XML</a>
+            
+              <a href="/tags/DTD/" rel="tag"># DTD</a>
+            
+              <a href="/tags/StAX/" rel="tag"># StAX</a>
+            
+          </div>
+        
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+              
+                <a href="/2020/02/10/Git-常用命令思维导图/" rel="next" title="Git 常用命令思维导图">
+                  <i class="fa fa-chevron-left"></i> Git 常用命令思维导图
+                </a>
+              
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+              
+                <a href="/2020/03/02/服务器驯化-之一/" rel="prev" title="服务器驯化-之一">
+                  服务器驯化-之一 <i class="fa fa-chevron-right"></i>
+                </a>
+              
+            </div>
+          </div>
+        
+      </footer>
+    
+  </div>
+  
+  
+  
+  </article>
+
+  </div>
+
+
+          </div>
+          
+
+        </div>
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+        
+        
+        
+        
+      
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#概述"><span class="nav-number">1.</span> <span class="nav-text">概述</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#标记"><span class="nav-number">1.1.</span> <span class="nav-text">标记</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#规范"><span class="nav-number">1.2.</span> <span class="nav-text">规范</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#解析文档"><span class="nav-number">2.</span> <span class="nav-text">解析文档</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#验证-XML-文档"><span class="nav-number">3.</span> <span class="nav-text">验证 XML 文档</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#DTD"><span class="nav-number">3.1.</span> <span class="nav-text">DTD</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#各种规则"><span class="nav-number">3.1.1.</span> <span class="nav-text">各种规则</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用"><span class="nav-number">3.1.2.</span> <span class="nav-text">使用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#XML-Schema"><span class="nav-number">3.2.</span> <span class="nav-text">XML Schema</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#XPath"><span class="nav-number">4.</span> <span class="nav-text">XPath</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#概述-1"><span class="nav-number">4.1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用-1"><span class="nav-number">4.2.</span> <span class="nav-text">使用</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#命名空间"><span class="nav-number">5.</span> <span class="nav-text">命名空间</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#概述-2"><span class="nav-number">5.1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用-2"><span class="nav-number">5.2.</span> <span class="nav-text">使用</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#流机制解析器"><span class="nav-number">6.</span> <span class="nav-text">流机制解析器</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#SAX-解析器"><span class="nav-number">6.1.</span> <span class="nav-text">SAX 解析器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#StAX-解析器"><span class="nav-number">6.2.</span> <span class="nav-text">StAX 解析器</span></a></li></ol></li></ol></div>
+        
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image"
+      src="/images/logo.png"
+      alt="Sun YuYu">
+  <p class="site-author-name" itemprop="name">Sun YuYu</p>
+  <div class="site-description" itemprop="description">虽然啥都没干，真是辛苦自己啦</div>
+</div>
+  <nav class="site-state motion-element">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">43</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+          
+            <a href="/categories/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">分类</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-tags">
+        
+          
+            <a href="/tags/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">67</span>
+        <span class="site-state-item-name">标签</span>
+        </a>
+      </div>
+    
+  </nav>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="mailto:bmzsmd@gmail.com" title="E-Mail &rarr; mailto:bmzsmd@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+    
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="https://t.me/yuyurbq" title="Telegram &rarr; https://t.me/yuyurbq" rel="noopener" target="_blank"><i class="fa fa-fw fa-telegram"></i>Telegram</a>
+      </span>
+    
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="https://weibo.com/sunsun1" title="Weibo &rarr; https://weibo.com/sunsun1" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>Weibo</a>
+      </span>
+    
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="https://twitter.com/bianminzi" title="Twitter &rarr; https://twitter.com/bianminzi" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i>Twitter</a>
+      </span>
+    
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2019 – <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-transgender-alt"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Sun YuYu</span>
+</div>
+  <!--<div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0</div>-->
+  <div class="powered-by">Hexo & GitHub 用❤驱动</div>
+  <!--<span class="post-meta-divider">|</span>-->
+  <!--<div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.4.0</div>-->
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+
+
+    
+    
+  
+    
+    
+  
+    
+  
+  <script color='0,0,255' opacity='0.5' zIndex='-1' count='99' src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  <script src="/lib/anime.min.js?v=3.1.0"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  <script defer src="/lib/three/three.min.js"></script>
+  <script defer src="/lib/three/three-waves.min.js"></script>
+  <script defer src="/lib/three/canvas_lines.min.js"></script>
+<script src="/js/utils.js?v=7.4.0"></script><script src="/js/motion.js?v=7.4.0"></script>
+<script src="/js/schemes/pisces.js?v=7.4.0"></script>
+<script src="/js/next-boot.js?v=7.4.0"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+  <script src="/js/local-search.js?v=7.4.0"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+</body>
+</html>

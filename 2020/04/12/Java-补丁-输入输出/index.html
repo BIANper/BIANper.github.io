@@ -1,0 +1,967 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.4.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.4.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.4.0">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.4.0" color="#222">
+
+<link rel="stylesheet" href="/css/main.css?v=7.4.0">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-big-counter.min.css?v=1.0.2">
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.4.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":true},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":true,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
+    },
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="输入/输出流读写字节若一个流（对象）不能被立即访问，read 和 write 方法在执行时将被阻塞，在等待流可用的时间里，时间片分给其他线程。available 方法检查当前可读入的字节数量，可以避免阻塞：12345int bytesAvailable = in.available();if (bytesAvailable &amp;gt; 0) &amp;#123;		byte[] data = new byt">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java 补丁-输入输出">
+<meta property="og:url" content="https://www.yuyurbq.club/2020/04/12/Java-补丁-输入输出/index.html">
+<meta property="og:site_name" content="卑微的 YuYu">
+<meta property="og:description" content="输入/输出流读写字节若一个流（对象）不能被立即访问，read 和 write 方法在执行时将被阻塞，在等待流可用的时间里，时间片分给其他线程。available 方法检查当前可读入的字节数量，可以避免阻塞：12345int bytesAvailable = in.available();if (bytesAvailable &amp;gt; 0) &amp;#123;		byte[] data = new byt">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2020-04-12T09:37:37.194Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Java 补丁-输入输出">
+<meta name="twitter:description" content="输入/输出流读写字节若一个流（对象）不能被立即访问，read 和 write 方法在执行时将被阻塞，在等待流可用的时间里，时间片分给其他线程。available 方法检查当前可读入的字节数量，可以避免阻塞：12345int bytesAvailable = in.available();if (bytesAvailable &amp;gt; 0) &amp;#123;		byte[] data = new byt">
+  <link rel="canonical" href="https://www.yuyurbq.club/2020/04/12/Java-补丁-输入输出/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>Java 补丁-输入输出 | 卑微的 YuYu</title>
+  <meta name="generator" content="Hexo 3.9.0">
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">卑微的 YuYu</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">人如域名 (</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+      
+      
+      
+        
+        <li class="menu-item menu-item-home">
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-archives">
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-tags">
+      
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-categories">
+      
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-about">
+      
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-smile-o"></i> <br>关于我</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a href="javascript:;" class="popup-trigger">
+        
+          <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+      </li>
+    
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+            
+
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+      <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block post">
+    <link itemprop="mainEntityOfPage" href="https://www.yuyurbq.club/2020/04/12/Java-补丁-输入输出/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Sun YuYu">
+      <meta itemprop="description" content="虽然啥都没干，真是辛苦自己啦">
+      <meta itemprop="image" content="/images/logo.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="卑微的 YuYu">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">Java 补丁-输入输出
+
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2020-04-12 17:36:32 / 修改时间：17:37:37" itemprop="dateCreated datePublished" datetime="2020-04-12T17:36:32+08:00">2020-04-12</time>
+            </span>
+          
+            
+
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="输入-输出流"><a href="#输入-输出流" class="headerlink" title="输入/输出流"></a>输入/输出流</h1><h2 id="读写字节"><a href="#读写字节" class="headerlink" title="读写字节"></a>读写字节</h2><p>若一个流（对象）不能被立即访问，read 和 write 方法在执行时将被阻塞，在等待流可用的时间里，时间片分给其他线程。available 方法检查当前可读入的字节数量，可以避免阻塞：</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> bytesAvailable = in.available();</span><br><span class="line"><span class="keyword">if</span> (bytesAvailable &gt; <span class="number">0</span>) &#123;</span><br><span class="line">		<span class="keyword">byte</span>[] data = <span class="keyword">new</span> <span class="keyword">byte</span>[byteAvailable];</span><br><span class="line">		in.read(data);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><a id="more"></a>
+
+
+<p>完成读写后应该调用 close 方法关闭，close 方法释放资源的同时，会送出输出流缓冲区中的字节。人为冲刷缓冲区用 flush 方法。</p>
+<h2 id="组合输入输出流过滤器"><a href="#组合输入输出流过滤器" class="headerlink" title="组合输入输出流过滤器"></a>组合输入输出流过滤器</h2><p>通过嵌套过滤器添加功能，例：用 DataInputStream 使用缓冲机制从文件中读取。输入流默认不被缓冲区缓存（ read 每次请求操作系统分发一个字节），DataInputStream 没有从文件中获取数据的方法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">DataInputStream din = <span class="keyword">new</span> DataInputStream(</span><br><span class="line">		<span class="keyword">new</span> BufferedInputStream(</span><br><span class="line">			<span class="keyword">new</span> FileInputStream(<span class="string">"test.dat"</span>)));</span><br></pre></td></tr></table></figure>
+
+<p>PushbackInputStream 用于预读下一个字节 <code>int b = pbin.read;</code> ，并退回非期望的值 <code>if(b != &#39;&lt;&#39;) pbin.unread(b);</code> :</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">DataInputStream din = <span class="keyword">new</span> DataInputStream(</span><br><span class="line">		pbin = <span class="keyword">new</span> PushbackInputStream(</span><br><span class="line">			<span class="keyword">new</span> BufferedInputStream(</span><br><span class="line">				<span class="keyword">new</span> FileInputStream(<span class="string">"test.dat"</span>))));</span><br></pre></td></tr></table></figure>
+
+<h1 id="读写文件"><a href="#读写文件" class="headerlink" title="读写文件"></a>读写文件</h1><h2 id="文本输出"><a href="#文本输出" class="headerlink" title="文本输出"></a>文本输出</h2><p>使用 PrintWrite 类建立写出器对象，用 print，println，printf 方法输出到写出器：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">PrintfWrite out = <span class="keyword">new</span> PrintWrite(<span class="string">"emp.txt"</span>, <span class="string">"UTF-8"</span>);</span><br><span class="line">String str = <span class="string">"abc"</span>;</span><br><span class="line">out.print(str);</span><br></pre></td></tr></table></figure>
+
+<p>println 通过 <code>System.getProperty(&quot;line.separator&quot;)</code> 获取当前系统的换行符。<br>自动冲刷：<code>PrintWriter(Writer out, Boolean autoFlush)</code> ，开启后每次调用 println 都会发送缓冲区中的所有字符。默认关闭。</p>
+<h2 id="文本输入"><a href="#文本输入" class="headerlink" title="文本输入"></a>文本输入</h2><p>从任何输入流构建 Scanner 对象处理文本。</p>
+<p>或者：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">String content = <span class="keyword">new</span> String(Files.readAllBytes(path), charset);</span><br><span class="line"><span class="comment">// 处理为字符串</span></span><br><span class="line"></span><br><span class="line">List&lt;String&gt; lines = Files.readAllLines(path, charset);</span><br><span class="line"><span class="comment">// 按行读入</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">try</span> (Stream&lt;String&gt; lines = Files.lines(path, charset)) &#123; ... &#125;</span><br><span class="line"><span class="comment">// 处理为 Stream&lt;String&gt; 对象</span></span><br></pre></td></tr></table></figure>
+
+<p>早期版本通过 BufferedReader 类，其 readLine 方法返回一行文本或 null，lines 方法可以产生一个 Stream<string> 对象。没有用于读入数字的方法。</string></p>
+<h1 id="读写二进制数据"><a href="#读写二进制数据" class="headerlink" title="读写二进制数据"></a>读写二进制数据</h1><p>Java 中所有值按高位在前的模式写出，以保证 Java 文件独立于平台。</p>
+<h2 id="DataInput-和-DataOutput-接口"><a href="#DataInput-和-DataOutput-接口" class="headerlink" title="DataInput 和 DataOutput 接口"></a>DataInput 和 DataOutput 接口</h2><p>DateOutput 接口定义了以二进制格式写数组，字符，布尔值和字符串的方法：<code>writeChars</code> <code>writeByte</code> <code>writeInt</code> <code>writeShort</code> <code>writeLong</code> <code>writeFloat</code> 等。虽然结果非人可读，但对于给定类型的每个值，其所需空间相同，读回也比文本更快。其中 writeUTF 方法先用 UTF-16 表示码元序列，再用 UTF-8 规则编码，所以对于编码大于 0xFFFF 的字符的处理有所不同（为了兼容）。用于虚拟机的字符串才需要 writeUTF 方法（如生成字节码的程序），其他情况应该用 writeChars。</p>
+<p>DateInput 接口定义了读回数据的方法。DataInputStream 类通过与字节源相组合，从文件中读入二进制数据：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DataInputStream in = <span class="keyword">new</span> DataInputStream(<span class="keyword">new</span> FileInputStream(<span class="string">"test.dat"</span>));</span><br></pre></td></tr></table></figure>
+
+<p>DataOutputStream 与此类似：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DataOutputStream in = <span class="keyword">new</span> DataOutputStream(<span class="keyword">new</span> FileOutputStream(<span class="string">"test.dat"</span>));</span><br></pre></td></tr></table></figure>
+
+<h2 id="随机访问文件"><a href="#随机访问文件" class="headerlink" title="随机访问文件"></a>随机访问文件</h2><blockquote>
+<p>随机访问文件的行为类似存储在文件系统中的一个大型 byte 数组。存在指向该隐含数组的光标或索引，称为文件指针；</p>
+<p>输入操作从文件指针开始读取字节，并随着对字节的读取而前移此文件指针。如果随机访问文件以读取/写入模式创建，则输出操作也可用；输出操作从文件指针开始写入字节，并随着对字节的写入而前移此文件指针。隐含数组的当前末尾之后的输出操作导致该数组扩展。</p>
+</blockquote>
+<p><code>RandomAccessFile</code> 类，磁盘文件都可以随机访问，注意套接字通信的流不是。使用字符串 “r” 或 “rw” 作为第二个参数指定只读或可读写：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">RandomAccessFile in = <span class="keyword">new</span> RandomAccessFile(<span class="string">"file.dat"</span>, <span class="string">"r"</span>);</span><br></pre></td></tr></table></figure>
+
+<p><code>seek</code> 方法用来设置文件指针到文件的任意位置，其参数是一个 long 型整数，<code>getFilePointer</code> 方法返回指针的当前位置。</p>
+<p>例，从第三个开始读：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">long</span> n = <span class="number">3</span>;</span><br><span class="line">in.seek((n-<span class="number">1</span>) * SIZE); <span class="comment">// 第三个处即第二个末尾</span></span><br><span class="line">Employee e = <span class="keyword">new</span> Employee();</span><br><span class="line">e.readDate(in);</span><br></pre></td></tr></table></figure>
+
+<p>在文件中（非尾部）进行修改只允许进行替换：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">in.seek((n-<span class="number">1</span>) * RECORD_SIZE);</span><br><span class="line">e.wirteDate(out);</span><br></pre></td></tr></table></figure>
+
+<p><code>length</code> 方法可以确认文件中的字节总数。</p>
+<h2 id="ZIP-文档"><a href="#ZIP-文档" class="headerlink" title="ZIP 文档"></a>ZIP 文档</h2><p>ZIP 文档头包含文件名和压缩方法等信息，使用 ZipInputStream 读入 ZIP 文档，<code>getNextEntry</code> 方法返回描述文档头项目的 ZipEntry 对象，将该项传递给 ZipInputStream 的 getInputStream 方法以获取读取该项的输入流。调用 closeEntry 读入下一项：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">ZipInputStream zin = <span class="keyword">new</span> ZipInputStream(<span class="keyword">new</span> FileInputStream(zipname));</span><br><span class="line">ZipEntry entry;</span><br><span class="line"><span class="keyword">while</span>((entry = zin.getNextEntry()) != <span class="keyword">null</span>) &#123;</span><br><span class="line">    InputStream in = zin.getInputStream(entry);</span><br><span class="line">    ...</span><br><span class="line">    zin.closeEntry();</span><br><span class="line">&#125;</span><br><span class="line">zin.close();</span><br></pre></td></tr></table></figure>
+
+<p>使用 ZipOutputStream 写出到 ZIP 文件，对要写入的每一项都应该创建一个 ZipEntry 对象，并将文件名传递给 ZipEntry 的构造器，其自动设置如文件日期解压缩方法等参数（也可自定义进行覆盖）。调用 ZipOutputStream 的 putNextEntry 方法将文件数据发送到 ZIP 输出流中，完成时 closeEntry。其后对其他文件重复此过程：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">FileOutputStream fout = <span class="keyword">new</span> FileOutputStream(<span class="string">"test.zip"</span>);</span><br><span class="line">ZipOutputStream zout = <span class="keyword">new</span> ZipOutputStream(fout);</span><br><span class="line"><span class="comment">// for all files :</span></span><br><span class="line">ZipEntry ze = <span class="keyword">new</span> ZipEntry(filename);</span><br><span class="line">zout.putNextEntry(ze);</span><br><span class="line">...</span><br><span class="line">zout.closeEntry();</span><br><span class="line"></span><br><span class="line">zout.close;</span><br></pre></td></tr></table></figure>
+
+<p>JAR 文件使用 JarInputStream 和 JarOutputStream 类读写，是带有特殊项的 ZIP 文档。</p>
+<h1 id="对象输入输出流与序列化"><a href="#对象输入输出流与序列化" class="headerlink" title="对象输入输出流与序列化"></a>对象输入输出流与序列化</h1><h2 id="保存和加载序列化对象"><a href="#保存和加载序列化对象" class="headerlink" title="保存和加载序列化对象"></a>保存和加载序列化对象</h2><p>对象序列化：将对象写出到输出流并可以再读回。类必须实现 Serializable 接口。</p>
+<p>首先创建 <code>ObjectOutputStream</code> 对象：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ObjectOutputStream out = <span class="keyword">new</span> ObjectOutputStream(<span class="keyword">new</span> FileOutputStream(<span class="string">"test.dat"</span>));</span><br></pre></td></tr></table></figure>
+
+<p><code>ObjectOutputStream</code> 的 <code>writeObject</code> 方法保存对象：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Employee harry = <span class="keyword">new</span> Employee(<span class="string">"harry"</span>);</span><br><span class="line">out,writeObject(harry)</span><br></pre></td></tr></table></figure>
+
+<p>若要读回，获取一个 ObjectInputStream 对象，然后用 readObject 方法以被写出时的顺序获得对象：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ObjectInputStream in = <span class="keyword">new</span> ObjectInputStream(<span class="keyword">new</span> FileInputStream(<span class="string">"test.dat"</span>));</span><br><span class="line">Employee e = (Employee) in.readObject();</span><br></pre></td></tr></table></figure>
+
+<p>每个对象是用一个序列号保存的：</p>
+<ul>
+<li>对每个对象引用都关联一个序列号</li>
+<li>对每个对象，第一次遇到时保存到输出流</li>
+<li>若之前已经保存过，则写出类似“与序列号 x 相同”</li>
+</ul>
+<p>读入时：</p>
+<ul>
+<li>对于输入流中的对象，第一次遇到其序列号时构建并初始化</li>
+<li>遇到“与序列号 x 相同”时获取对象引用</li>
+</ul>
+<h2 id="修改默认的序列化机制"><a href="#修改默认的序列化机制" class="headerlink" title="修改默认的序列化机制"></a>修改默认的序列化机制</h2><p>对于只对本地方法有意义的数据域，使用 transient 标记以避免序列化。</p>
+<p>为默认的读写方法添加其他行为，序列化的类中定义：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">readObject</span> <span class="params">(ObjectInputStream in)</span> </span></span><br><span class="line"><span class="function">    <span class="keyword">throws</span> IOException, ClassNotFoundException </span>&#123;</span><br><span class="line">    in.defaultReadObject();</span><br><span class="line">    ...    </span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">writeObject</span> <span class="params">(ObjectOutputStream out)</span> </span></span><br><span class="line"><span class="function">    <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">    out.defaultWriteObject();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>自定义序列化机制，必须实现 Externalizable 接口：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">readExternal</span> <span class="params">(ObjectInputStream in)</span></span></span><br><span class="line"><span class="function">    <span class="keyword">throws</span> IOException, ClassNotFoundException</span>;</span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">writeExternal</span> <span class="params">(ObjectOutputStream out)</span> </span></span><br><span class="line"><span class="function">    <span class="keyword">throws</span> IOException</span>;</span><br></pre></td></tr></table></figure>
+
+<p>这两个方法对包含超类数据在内的整个对象负责，序列化机制在读入时用无参构造器创建一个对象，然后调用 readExternal 方法。</p>
+<h2 id="序列化单例和类型安全的枚举"><a href="#序列化单例和类型安全的枚举" class="headerlink" title="序列化单例和类型安全的枚举"></a>序列化单例和类型安全的枚举</h2><p>类型安全的枚举实现 Serializable 接口时不适用默认的序列化机制，即使构造器私有，序列化机制也可以创建新对象：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Orientation</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> Orientation HORTZONTAL = <span class="keyword">new</span> Orientation(<span class="number">1</span>);</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> Orientation VERTICAL = <span class="keyword">new</span> Orientation(<span class="number">2</span>);</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> value;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">Orientation</span><span class="params">(<span class="keyword">int</span> v)</span> </span>&#123;</span><br><span class="line">        value = v;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Orientation = Orientation.HORTZONTAL;</span><br><span class="line"><span class="comment">// orientation == Orientation.HORTZONTAL -&gt; true</span></span><br><span class="line"></span><br><span class="line">ObjectOutputStream out = ... ;</span><br><span class="line">out.write(original);</span><br><span class="line">out.close();</span><br><span class="line">ObjectInputStream in = ...;</span><br><span class="line">Orientation saved = (Orientation) in.read();</span><br><span class="line"><span class="comment">// saved == Orientation.HORTZONTAL -&gt; false</span></span><br></pre></td></tr></table></figure>
+
+<p>需要定义 <code>readResolve</code> 特殊序列化方法，其在对象被序列化之后调用。该方法必须返回一个对象，并会成为 readObject 的返回值：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">protected</span> Object <span class="title">readResolve</span><span class="params">()</span> <span class="keyword">throws</span> ObjectStreamException </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (value == <span class="number">1</span>) <span class="keyword">return</span> Orientation.HORTZONTAL;</span><br><span class="line">    <span class="keyword">if</span> (value == <span class="number">2</span>) <span class="keyword">return</span> Orientation.VERTICAL;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="克隆"><a href="#克隆" class="headerlink" title="克隆"></a>克隆</h2><p>将对象序列化到输出流中，然后将其读回，产生的新对象是对现有对象的深拷贝，可以用 <code>ByteArrayOutputStream</code> 将数据保存在数组中而不必写出到文件。</p>
+<h1 id="操作文件"><a href="#操作文件" class="headerlink" title="操作文件"></a>操作文件</h1><h2 id="Path"><a href="#Path" class="headerlink" title="Path"></a>Path</h2><p><code>Paths.get</code> 方法接受一个或多个字符串，并用默认路径分隔符连接（\ /），然后返回 Path 对象。路径不必实际存在，其仅是抽象名字序列，先创建一个路径再调用方法创建对应文件。</p>
+<p><code>resolve</code> 方法产生子目录：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Path workRelative = Paths.get(<span class="string">"work"</span>);</span><br><span class="line">Path workPath = basePath.resolve(workRelative);</span><br><span class="line"><span class="comment">// 或者</span></span><br><span class="line">Path workPath = basePath.resolve(<span class="string">"work"</span>);</span><br></pre></td></tr></table></figure>
+
+<p><code>resolveSibling</code> 方法产生兄弟路径：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Path tempPath = workPath.resolveSibling(<span class="string">"temp"</span>);</span><br></pre></td></tr></table></figure>
+
+<p>相对化路径 <code>relativize</code> 方法，<code>normalize</code> 移除冗余，<code>toAbsolutePath</code> 产生给定路径的绝对地址。及诸如 <code>getParent()</code> <code>getFilename</code> 等。</p>
+<h2 id="读写文件-1"><a href="#读写文件-1" class="headerlink" title="读写文件"></a>读写文件</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">byte</span>[] bytes = Files.readAllBytes(path); <span class="comment">// 读入</span></span><br><span class="line">String content = <span class="keyword">new</span> String(bytes, charset); <span class="comment">// 作字符串</span></span><br><span class="line">List&lt;String&gt; lines = Files.readAllLines(path, charset); <span class="comment">// 作行序列读入</span></span><br><span class="line">Files.write(path, content.getBytes(charset)); <span class="comment">// 写出字符串</span></span><br><span class="line">Files.write(path, context.getBytes(charset), StandardOpenOption.APPEND);</span><br><span class="line"><span class="comment">// 追加内容</span></span><br><span class="line">Files.write(path, lines); <span class="comment">// 写出行集合</span></span><br></pre></td></tr></table></figure>
+
+<p>适合中等长度的文本文件，若文件长度较大或为二进制，应当使用输入输出流或读入写入器：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">InputStream in = Files.newInputStream(path);</span><br><span class="line">Reader in = Files.newBufferedReader(path, charset);</span><br></pre></td></tr></table></figure>
+
+<h2 id="创建文件和目录"><a href="#创建文件和目录" class="headerlink" title="创建文件和目录"></a>创建文件和目录</h2><p>路径中除最后一个，都已存在：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Files.createDirctory(path);</span><br></pre></td></tr></table></figure>
+
+<p>创建路径中的中间目录：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Files.createFile(path);</span><br></pre></td></tr></table></figure>
+
+<p><code>createTempFile()</code> 和 <code>createTempDirectory()</code> 用于创建临时文件和目录。</p>
+<h2 id="复制移动删除文件"><a href="#复制移动删除文件" class="headerlink" title="复制移动删除文件"></a>复制移动删除文件</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Files.copy(fromPath, toPath); <span class="comment">// 已存在则失败</span></span><br><span class="line">Files.move(fromPath, toPath); <span class="comment">// 已存在则失败</span></span><br><span class="line">Files.copy(fromPath, toPath, StandardCopyOption.REPLACE_EXISTING,</span><br><span class="line">    StandardCopyOption.COPY_ATTRIBUTES);</span><br><span class="line"><span class="comment">// 覆盖目标，复制所有文件属性</span></span><br><span class="line">Files.move(fromPath, toPath, StandardCopyOption.ATOMIC_MOVE);</span><br><span class="line"><span class="comment">// 原子移动，完成或保持原位</span></span><br><span class="line">Files.copy(inputStream, toPath);</span><br><span class="line">Files.copy(fromPath, outputStream);</span><br><span class="line">Files.delete(path); <span class="comment">// 失败抛异常</span></span><br><span class="line">Files.deleteIfExists(path); <span class="comment">// 返回 bool 值，可作为 delete 替代</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="访问目录中的项"><a href="#访问目录中的项" class="headerlink" title="访问目录中的项"></a>访问目录中的项</h2><p><code>Files.list</code> 方法返回一个可以读取目录中项的 Stream<path> 对象，若要进入子目录，使用 <code>File.walk</code> 方法，File.walk(pathToRoot, depth) 限制树的深度。涉及系统资源要 try 块。</path></p>
+<h2 id="目录流"><a href="#目录流" class="headerlink" title="目录流"></a>目录流</h2><p>比 walk 更细粒的控制，<code>File.newDirectoryStream</code> 是 Iterable 的子接口，可以用于增强 for 循环。</p>
+<p>使用 glob 模式过滤文件：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span> (DirectoryStream&lt;Path&gt; entries = Files.newDirectoryStream(dir, <span class="string">"*.java"</span>));</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th align="center">模式</th>
+<th align="center">描述</th>
+<th align="center">例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">*</td>
+<td align="center">匹配路径中 0 或多个字符</td>
+<td align="center">当前目录中匹配</td>
+</tr>
+<tr>
+<td align="center">**</td>
+<td align="center">匹配跨目录的 0 或多个字符</td>
+<td align="center">子目录中匹配</td>
+</tr>
+<tr>
+<td align="center">?</td>
+<td align="center">匹配一个字符</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">[…]</td>
+<td align="center">匹配字符集和</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">{…}</td>
+<td align="center">匹配 , 隔开的可选项之一</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">\</td>
+<td align="center">转译</td>
+<td align="center"><em>*</em> 带 * 的文件</td>
+</tr>
+</tbody></table>
+<p>若要访问某个目录的所有子孙成员，调用 <code>walkFileTree</code> 方法，并传递一个 FileVisitor 类型的对象，</p>
+<ul>
+<li><p>遇到文件或目录：<code>FileVisitResult visitFile(T path, BasicFileAtttributes attrs)</code></p>
+</li>
+<li><p>在一个目录被处理前：<code>FileVisitResult perVisitDirectory(T dir, IOException ex)</code></p>
+</li>
+<li><p>在一个目录被处理后：<code>FileVisitResult postVisitDirectory(T dir, IOException ex)</code></p>
+</li>
+<li><p>试图访问时发生错误：<code>FileVisitResult visitFileFailed(path, IOException)</code></p>
+</li>
+</ul>
+<p>以上情况可用的操作：</p>
+<ul>
+<li>继续访问下一个：<code>FileVisitResult.CONTINUE</code></li>
+<li>继续访问，但不再访问这个目录下的任何项：<code>FileVisitResult.SKIP_SUBBTREE</code></li>
+<li>继续访问，但不再访问这个文件的兄弟文件：<code>FileVisitResult.SKIP_SIBLINGS</code></li>
+<li>终止访问：<code>FileVisitResult.TERMINATE</code></li>
+</ul>
+<p>任何方法抛出异常将终止访问，并从 walkFileTree 方法抛出。</p>
+<p><code>SimpleFileVisitor</code> 实现了 FileVisitor 接口，除 visitFileFailed 方法外不做任何处理即直接访问。由 visitFileFailed 方法抛出由失败导致的异常，并终止访问。</p>
+<p>例，删除目录树：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">Files.walkFileTree(Paths.get(<span class="string">"/"</span>), <span class="keyword">new</span> SimpleFileVisitor&lt;Path&gt;()</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> FileVisitResult <span class="title">visitFile</span><span class="params">(Path file, BasicFileAtttributes attrs)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">            Files.delete(file);</span><br><span class="line">            <span class="keyword">return</span> FileVisitResult.CONTINUE;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> FileVisitResult <span class="title">postVisitDirectory</span><span class="params">(Path dir, IOException e)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">            <span class="keyword">if</span>(e != <span class="keyword">null</span>) <span class="keyword">throw</span> e;</span><br><span class="line">            Files.delete(dir);</span><br><span class="line">            <span class="keyword">return</span> FileVisitResult.CONTINUE;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br></pre></td></tr></table></figure>
+
+<p>覆盖 postVisitDirectory 方法，防止遇到不允许打开的目录或不允许访问的文件时立刻失败。</p>
+<h2 id="ZIP-文件系统"><a href="#ZIP-文件系统" class="headerlink" title="ZIP 文件系统"></a>ZIP 文件系统</h2><p>建立一个包含 ZIP 文档所有文件的文件系统：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">FileSystem fs = FileSystems.newFileSystem(Paths.get(zipname), <span class="keyword">null</span>);</span><br><span class="line">Files.copy(fs.getPath(sourceName), targetPAth);</span><br></pre></td></tr></table></figure>
+
+<h1 id="内存映射文件"><a href="#内存映射文件" class="headerlink" title="内存映射文件"></a>内存映射文件</h1><h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>首先从文件中获取一个通道（磁盘文件的抽象），以获得访问内存映射等特性：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">FileChannel channel = FileCHannel.open(path, options);</span><br></pre></td></tr></table></figure>
+
+<p>调用 <code>FileChannel</code> 类的 map 方法获得一个 ByteBuffer，可以指定模式：</p>
+<ul>
+<li>FileChannel.MapMode.READ_ONLY</li>
+<li>FileChannel.MapMode.READ_WRITE</li>
+<li>FileChannel.MapMode.PRIVATE 可写，但不会写回进文件</li>
+</ul>
+<p>然后使用 ByteBuffer 和 Buffer 超类方法读写。缓冲区支持顺序和随机访问，有一个通过 get put 操作移动的位置。</p>
+<p>顺序遍历：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> (buffer.hasRemaining()) &#123;</span><br><span class="line">		<span class="keyword">byte</span> b = buffer.get();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>随机访问：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i&lt; buffer.limit(); i++) &#123;</span><br><span class="line">		<span class="keyword">byte</span> b = buffer.get(i);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>读写字节数组：</p>
+<ul>
+<li>get(byte[] bytes)</li>
+<li>get(bytes[], int offset, int length)</li>
+</ul>
+<p>读入二进制基本类型：</p>
+<ul>
+<li>getInt</li>
+<li>getLong</li>
+<li>getChar</li>
+<li>…</li>
+</ul>
+<p>写入数字：</p>
+<ul>
+<li>putInt</li>
+<li>putLong</li>
+<li>…</li>
+</ul>
+<h2 id="缓冲区数据结构"><a href="#缓冲区数据结构" class="headerlink" title="缓冲区数据结构"></a>缓冲区数据结构</h2><p>缓冲区是由具有相同类型的数值构成的数组，Buffer 是一个抽象类，其具体子类有 ByteBuffer Charbuffer DoubleBuffer 等（没有 StringBuffer ！）。</p>
+<p>0 &lt;= 标记 &lt;= 位置 &lt;= 界限 &lt;= 容量</p>
+<p>缓冲区执行写读循环，假设不断 put 填充缓冲区，当耗尽所有数据或达到容量大小切换读入操作；<br>调用 flip 方法将界限设置到当前位置，然后位子复位到 0，当 remaining 方法返回正数就不断调用 get，当读入所有数值后，用 clear 复位位置到 0，恢复界限到容量，等待下次写循环。</p>
+<p>获取缓冲区有 ByteBuffer.allocate 或 ByteBuffer.warp 等方法，使用某个通道的数据填充。</p>
+<h2 id="文件加锁"><a href="#文件加锁" class="headerlink" title="文件加锁"></a>文件加锁</h2><p>锁定一个文件使用 FileChannel 类的 <code>lock</code> 或 <code>trylock</code> 方法，前者会阻塞至可获得锁，后者将立刻返回锁或 null。文件将锁定至通道关闭或在锁上调用 release 方法。</p>
+<p>锁定文件的一部分：<code>lock(long start, long size, boolean shared)</code> 或 <code>trylock(long start, long size, boolean shared)</code> ,share 标志为 false 则锁定文件的目的是读写，若为 true 允许多个进程从文件读入并阻止进程获得独占的锁。注意这依赖于操作系统。</p>
+
+    </div>
+
+    
+    
+    
+        
+      
+
+      <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+              
+                <a href="/2020/03/16/P420i-阵列卡开启-HBA-直通/" rel="next" title="P420i 阵列卡开启 HBA 直通">
+                  <i class="fa fa-chevron-left"></i> P420i 阵列卡开启 HBA 直通
+                </a>
+              
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+              
+                <a href="/2020/05/04/ssh修改iLO的SSL端口/" rel="prev" title="ssh 修改 iLO 的 SSL 端口">
+                  ssh 修改 iLO 的 SSL 端口 <i class="fa fa-chevron-right"></i>
+                </a>
+              
+            </div>
+          </div>
+        
+      </footer>
+    
+  </div>
+  
+  
+  
+  </article>
+
+  </div>
+
+
+          </div>
+          
+
+        </div>
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+        
+        
+        
+        
+      
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#输入-输出流"><span class="nav-number">1.</span> <span class="nav-text">输入/输出流</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#读写字节"><span class="nav-number">1.1.</span> <span class="nav-text">读写字节</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#组合输入输出流过滤器"><span class="nav-number">1.2.</span> <span class="nav-text">组合输入输出流过滤器</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#读写文件"><span class="nav-number">2.</span> <span class="nav-text">读写文件</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#文本输出"><span class="nav-number">2.1.</span> <span class="nav-text">文本输出</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文本输入"><span class="nav-number">2.2.</span> <span class="nav-text">文本输入</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#读写二进制数据"><span class="nav-number">3.</span> <span class="nav-text">读写二进制数据</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#DataInput-和-DataOutput-接口"><span class="nav-number">3.1.</span> <span class="nav-text">DataInput 和 DataOutput 接口</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#随机访问文件"><span class="nav-number">3.2.</span> <span class="nav-text">随机访问文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ZIP-文档"><span class="nav-number">3.3.</span> <span class="nav-text">ZIP 文档</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#对象输入输出流与序列化"><span class="nav-number">4.</span> <span class="nav-text">对象输入输出流与序列化</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#保存和加载序列化对象"><span class="nav-number">4.1.</span> <span class="nav-text">保存和加载序列化对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#修改默认的序列化机制"><span class="nav-number">4.2.</span> <span class="nav-text">修改默认的序列化机制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#序列化单例和类型安全的枚举"><span class="nav-number">4.3.</span> <span class="nav-text">序列化单例和类型安全的枚举</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#克隆"><span class="nav-number">4.4.</span> <span class="nav-text">克隆</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#操作文件"><span class="nav-number">5.</span> <span class="nav-text">操作文件</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Path"><span class="nav-number">5.1.</span> <span class="nav-text">Path</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#读写文件-1"><span class="nav-number">5.2.</span> <span class="nav-text">读写文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建文件和目录"><span class="nav-number">5.3.</span> <span class="nav-text">创建文件和目录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#复制移动删除文件"><span class="nav-number">5.4.</span> <span class="nav-text">复制移动删除文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#访问目录中的项"><span class="nav-number">5.5.</span> <span class="nav-text">访问目录中的项</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#目录流"><span class="nav-number">5.6.</span> <span class="nav-text">目录流</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ZIP-文件系统"><span class="nav-number">5.7.</span> <span class="nav-text">ZIP 文件系统</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#内存映射文件"><span class="nav-number">6.</span> <span class="nav-text">内存映射文件</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#概述"><span class="nav-number">6.1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#缓冲区数据结构"><span class="nav-number">6.2.</span> <span class="nav-text">缓冲区数据结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文件加锁"><span class="nav-number">6.3.</span> <span class="nav-text">文件加锁</span></a></li></ol></li></ol></div>
+        
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image"
+      src="/images/logo.png"
+      alt="Sun YuYu">
+  <p class="site-author-name" itemprop="name">Sun YuYu</p>
+  <div class="site-description" itemprop="description">虽然啥都没干，真是辛苦自己啦</div>
+</div>
+  <nav class="site-state motion-element">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">43</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+          
+            <a href="/categories/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">分类</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-tags">
+        
+          
+            <a href="/tags/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">67</span>
+        <span class="site-state-item-name">标签</span>
+        </a>
+      </div>
+    
+  </nav>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="mailto:bmzsmd@gmail.com" title="E-Mail &rarr; mailto:bmzsmd@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+    
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="https://t.me/yuyurbq" title="Telegram &rarr; https://t.me/yuyurbq" rel="noopener" target="_blank"><i class="fa fa-fw fa-telegram"></i>Telegram</a>
+      </span>
+    
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="https://weibo.com/sunsun1" title="Weibo &rarr; https://weibo.com/sunsun1" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>Weibo</a>
+      </span>
+    
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="https://twitter.com/bianminzi" title="Twitter &rarr; https://twitter.com/bianminzi" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i>Twitter</a>
+      </span>
+    
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2019 – <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-transgender-alt"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Sun YuYu</span>
+</div>
+  <!--<div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0</div>-->
+  <div class="powered-by">Hexo & GitHub 用❤驱动</div>
+  <!--<span class="post-meta-divider">|</span>-->
+  <!--<div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.4.0</div>-->
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+
+
+    
+    
+  
+    
+    
+  
+    
+  
+  <script color='0,0,255' opacity='0.5' zIndex='-1' count='99' src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  <script src="/lib/anime.min.js?v=3.1.0"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  <script defer src="/lib/three/three.min.js"></script>
+  <script defer src="/lib/three/three-waves.min.js"></script>
+  <script defer src="/lib/three/canvas_lines.min.js"></script>
+<script src="/js/utils.js?v=7.4.0"></script><script src="/js/motion.js?v=7.4.0"></script>
+<script src="/js/schemes/pisces.js?v=7.4.0"></script>
+<script src="/js/next-boot.js?v=7.4.0"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+  <script src="/js/local-search.js?v=7.4.0"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+</body>
+</html>
