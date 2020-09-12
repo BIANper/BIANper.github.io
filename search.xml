@@ -40,6 +40,64 @@
       </tags>
   </entry>
   <entry>
+    <title>Java 补丁-集合</title>
+    <url>/2019/12/25/Java%20%E8%A1%A5%E4%B8%81-%E9%9B%86%E5%90%88/</url>
+    <content><![CDATA[<h1 id="具体集合部分"><a href="#具体集合部分" class="headerlink" title="具体集合部分"></a>具体集合部分</h1><p><strong>链表 LinkedList</strong><br>List 接口描述有序集合，有两种访问元素的协议，迭代器或 get set 方法，后者更适合数组。链表对于删除插入元素很有效，允许对象有重复的值。<br>Java 中链表都是双向链接的，即每个结点存放前驱结点和下一个结点的引用。如果链表有 n 个元素则有 n+1 个位置可以插入新元素。<br>链表只跟踪结构性修改，set 方法不被视为结构性修改。<br>避免使用整数索引表示链表中位置的方法，如果需要对集合进行指定访问，就使用数组或 ArrayList 而非链表。</p><a id="more"></a>
+<p><strong>数组链表 ArrayList</strong><br>也实现了 List 接口，封装了动态再分配的对象数组。不需要同步时使用，若有多个线程访问，应使用 Vector类。</p>
+<p><strong>散列集 HashSet</strong><br>Set 的集合里不允许对象有重复的值。HashSet 仅仅存储对象（HashMap 储存键值对），基于 HashMap 实现。<br>散列表为每一个对象计算一个整数（hash code），Java 中用链表数组实现，每个表称为桶。<br>HashSet 类实现了基于散列表的集，散列集迭代器将依次访问所有桶，由于元素分散在表的各个位置上（散列码与桶的总数取余），所以访问的顺序是随机的。<br>对与集中的元素，如果元素的散列码发生了改变，在数据结构中的位置也会发生变化。</p>
+<p><strong>树集 TreeSet</strong><br>TreeSet 是一个有序集合，用红黑树实现，任意顺序将元素插入集合遍历时自动排序输出。树的排序必须是全序即任意两个元素是可比的，并且元素必须实现 Comparable 接口，或构造集时提供一个 Comparator 。<br> 添加元素比散列表慢但是检查重复元素快很多。</p>
+<p> <strong>双端队列</strong><br> 可以在头部和尾部同时添加或删除元素，不支持在队列中间添加元素。Deque 接口由 ArrayDeque 和 LinkedList 类实现，必要时可增加队列长度。</p>
+<p> <strong>优先级队列</strong><br> 使用堆。可以保存实现了 Comparable 接口的类对象，或在构造器中提供的 Comparator 对象。</p>
+<h1 id="映射部分"><a href="#映射部分" class="headerlink" title="映射部分"></a>映射部分</h1><p><strong>基本</strong><br>HashMap 和 TreeMap 类都实现了 Map 接口。散列映射对键进行散列，树映射用键的整体顺序对元素进行排序并组织成搜索树。<br>不能对同一个键存放两个值，若调用两次 put 方法，第二个值会取代第一个值并返回存储的上一个值。若要迭代处理映射的键值，可以使用 forEach 方法配合 lambda 表达式。<br>TreeMap保存了对象的排列次序。HashMap允许键和值为null。</p>
+<p><strong>更新映射项</strong><br>获得键关联的原值，更新后再放回如：<code>counts.put(word, counts.get(word) + 1)</code> 。当 word 没有预先存在的话，get 将返回 null 而 put 的值不能为 null 。可以使用：</p>
+<ul>
+<li>counts.put(word, counts.getOrDefault(word, 0) + 1);</li>
+<li>counts.putIfAbsent(word, 0); counts.put(word, counts.get(word) + 1);</li>
+<li>counts.merge(word, 1, Integer::sum);</li>
+</ul>
+<p><strong>映射视图</strong></p>
+<p>一共分为三种：</p>
+<ul>
+<li>键集 Set&lt;K&gt;  keySet()</li>
+<li>值集合 Collection&lt;V&gt;  values()</li>
+<li>键值对集 Set&lt;Map.Entry&lt;K,V&gt;&gt;  entrySet()</li>
+</ul>
+<p><strong>弱散列映射</strong></p>
+<p>WeakHashMap 类，当对键的唯一引用来自散列条目，将删除键值对。使用弱引用保存键，将引用保存到散列键对象中，垃圾回收会用特有方式处理此类对象。</p>
+<blockquote>
+<p>  新建WeakHashMap，将“键值对”添加到WeakHashMap中。 实际上，WeakHashMap是通过数组table保存Entry(键值对)；每一个Entry实际上是一个单向链表，即Entry是键值对链表。</p>
+<p>  当某“弱键”不再被其它对象引用，并被GC回收时。在GC回收该“弱键”时，这个“弱键”也同时会被添加到ReferenceQueue(queue)队列中。</p>
+<p>  当下一次需要操作WeakHashMap时，会先同步table和queue。table中保存了全部的键值对，而queue中保存被GC回收的键值对；同步它们，就是删除table中被GC回收的键值对。</p>
+</blockquote>
+<p><strong>链接散列集和映射</strong></p>
+<p>LinkedHashSet 和 LinkedHashMap 类会保留插入元素项的顺序。LinkedHashSet 是对 LinkedHashMap 的简单包装。LinkedHashMap 是 HashMap 的直接子类，二者唯一的区别是 LinkedHashMap 在 HashMap 的基础上，采用双向链表的形式将所有 entry 连接起来，保证元素的迭代顺序跟插入顺序相同。<br>会将 get 或 put 影响的条目移至链表尾部。</p>
+<p><strong>枚举集与映射</strong><br>EnumSet 内部用位序列实现，对应值在集中则相应位被置 1。使用静态方法构造这个集：<code>enum Weekday { ... };</code>，使用 Set 接口的方法修改 EnumSet。<br>EnumMap 是以键类型为枚举类型的映射，需要在构造时指定：<code>EunmMap&lt;Weekday, Employee&gt; test = new EnumMap&lt;&gt;{Weekday.class}</code>。</p>
+<p><strong>标识散列映射</strong><br>IdentityHsahMap 中键的散列值用 System.identityHashCode 方法计算，即根据内存地址计算。比较两对象时，IdentityHashMap 类使用 == 。<br>故不同的键对象即使内容相同，也视为不同对象。</p>
+<h1 id="视图与包装器"><a href="#视图与包装器" class="headerlink" title="视图与包装器"></a>视图与包装器</h1><p>视图可以获得其他实现了 Collection 接口和 Map 接口的对象，如 keySet 方法并没有创建新集，而是返回了一个实现 Set 接口的类对象，其方法对原映射进行操作。</p>
+<p><strong>轻量集合包装器</strong><br>Arrrays 类的静态方法 asList 返回一个包装了普通 Java 数组的 List 包装器而非 ArrayList 对象：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Card[] cardDeck = <span class="keyword">new</span> Card[<span class="number">52</span>];</span><br><span class="line">...</span><br><span class="line">List&lt;Card&gt; cardList = Arrays.asList(cardDeck);</span><br></pre></td></tr></table></figure>
+
+<p>改变数组大小的方法将抛出异常。</p>
+<p><strong>子范围视图</strong><br>如从列表 staff 中取出第 10-19 个元素：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">List group = staff.subList(<span class="number">10</span>, <span class="number">20</span>);</span><br></pre></td></tr></table></figure>
+
+<p>对于有序集和映射，可以使用排序顺序而非元素位置建立子范围。如 <code>SortedSet</code> <code>SortMap</code></p>
+<p><strong>不可修改的视图</strong><br>Collection 中一些方法用于产生不可修改视图，运行时检查到修改则抛出一个异常。</p>
+<p><strong>同步视图</strong><br>类库设计者使用视图确保集合的线程安全，而非实现线程安全的集合类。如将任何一个映射表转换成具有同步访问方法的 Map 视图：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Map&lt;String,, Employee&gt; map = Collections.synchronizedMap(<span class="keyword">new</span> HashMap&lt;String, Employee&gt;());</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>集合</tag>
+        <tag>队列</tag>
+        <tag>散列</tag>
+        <tag>映射</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Git-基础乱七八糟版</title>
     <url>/2019/12/04/Git-%E5%9F%BA%E7%A1%80%E4%B9%B1%E4%B8%83%E5%85%AB%E7%B3%9F%E7%89%88/</url>
     <content><![CDATA[<p>Git 有三种状态：已提交（committed）、已修改（modified）和已暂存（staged）。</p><ul>
@@ -109,61 +167,243 @@
       </tags>
   </entry>
   <entry>
-    <title>Java 补丁-集合</title>
-    <url>/2019/12/25/Java%20%E8%A1%A5%E4%B8%81-%E9%9B%86%E5%90%88/</url>
-    <content><![CDATA[<h1 id="具体集合部分"><a href="#具体集合部分" class="headerlink" title="具体集合部分"></a>具体集合部分</h1><p><strong>链表 LinkedList</strong><br>List 接口描述有序集合，有两种访问元素的协议，迭代器或 get set 方法，后者更适合数组。链表对于删除插入元素很有效，允许对象有重复的值。<br>Java 中链表都是双向链接的，即每个结点存放前驱结点和下一个结点的引用。如果链表有 n 个元素则有 n+1 个位置可以插入新元素。<br>链表只跟踪结构性修改，set 方法不被视为结构性修改。<br>避免使用整数索引表示链表中位置的方法，如果需要对集合进行指定访问，就使用数组或 ArrayList 而非链表。</p><a id="more"></a>
-<p><strong>数组链表 ArrayList</strong><br>也实现了 List 接口，封装了动态再分配的对象数组。不需要同步时使用，若有多个线程访问，应使用 Vector类。</p>
-<p><strong>散列集 HashSet</strong><br>Set 的集合里不允许对象有重复的值。HashSet 仅仅存储对象（HashMap 储存键值对），基于 HashMap 实现。<br>散列表为每一个对象计算一个整数（hash code），Java 中用链表数组实现，每个表称为桶。<br>HashSet 类实现了基于散列表的集，散列集迭代器将依次访问所有桶，由于元素分散在表的各个位置上（散列码与桶的总数取余），所以访问的顺序是随机的。<br>对与集中的元素，如果元素的散列码发生了改变，在数据结构中的位置也会发生变化。</p>
-<p><strong>树集 TreeSet</strong><br>TreeSet 是一个有序集合，用红黑树实现，任意顺序将元素插入集合遍历时自动排序输出。树的排序必须是全序即任意两个元素是可比的，并且元素必须实现 Comparable 接口，或构造集时提供一个 Comparator 。<br> 添加元素比散列表慢但是检查重复元素快很多。</p>
-<p> <strong>双端队列</strong><br> 可以在头部和尾部同时添加或删除元素，不支持在队列中间添加元素。Deque 接口由 ArrayDeque 和 LinkedList 类实现，必要时可增加队列长度。</p>
-<p> <strong>优先级队列</strong><br> 使用堆。可以保存实现了 Comparable 接口的类对象，或在构造器中提供的 Comparator 对象。</p>
-<h1 id="映射部分"><a href="#映射部分" class="headerlink" title="映射部分"></a>映射部分</h1><p><strong>基本</strong><br>HashMap 和 TreeMap 类都实现了 Map 接口。散列映射对键进行散列，树映射用键的整体顺序对元素进行排序并组织成搜索树。<br>不能对同一个键存放两个值，若调用两次 put 方法，第二个值会取代第一个值并返回存储的上一个值。若要迭代处理映射的键值，可以使用 forEach 方法配合 lambda 表达式。<br>TreeMap保存了对象的排列次序。HashMap允许键和值为null。</p>
-<p><strong>更新映射项</strong><br>获得键关联的原值，更新后再放回如：<code>counts.put(word, counts.get(word) + 1)</code> 。当 word 没有预先存在的话，get 将返回 null 而 put 的值不能为 null 。可以使用：</p>
+    <title>Java 补丁-基本程序设计结构</title>
+    <url>/2019/12/01/Java-%E8%A1%A5%E4%B8%81-%E5%9F%BA%E6%9C%AC%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E7%BB%93%E6%9E%84/</url>
+    <content><![CDATA[<h1 id="数据类型部分"><a href="#数据类型部分" class="headerlink" title="数据类型部分"></a>数据类型部分</h1><p><strong>整型</strong><br>Java7 开始：允许通过加前缀 0b 写二进制数；允许为数字字面量加下划线：</p><ul>
+<li>1_000_000</li>
+<li>0b1111_0000_0100</li>
+</ul><p><strong>浮点型</strong><br>由于二进制系统无法精确表示分数 1/10，故浮点数值不适用金融计算，此时应使用 BigDecimal 类。</p><table>
+<thead>
+<tr>
+<th align="center">常量</th>
+<th align="center">数值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">Double.POSITIVE_INFINITY</td>
+<td align="center">正无穷</td>
+</tr>
+<tr>
+<td align="center">Double.NEGATIVE_INFINITY</td>
+<td align="center">负无穷</td>
+</tr>
+<tr>
+<td align="center">Double.NaN</td>
+<td align="center">非数字</td>
+</tr>
+</tbody></table><a id="more"></a>
+
+
+
+<p>判断一个特定值是否为 Double.NaN ：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span>(x == Double.NaN) <span class="comment">// never true</span></span><br><span class="line"><span class="keyword">if</span>(Double.isNaN(x)) <span class="comment">// √</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>char 类型</strong><br>char 数据类型是一个采用 UTF-16 编码表示 Unicode 码点的代码单元。<br>Unicode 转义序列会在解析代码前处理：</p>
 <ul>
-<li>counts.put(word, counts.getOrDefault(word, 0) + 1);</li>
-<li>counts.putIfAbsent(word, 0); counts.put(word, counts.get(word) + 1);</li>
-<li>counts.merge(word, 1, Integer::sum);</li>
+<li>“\u0022+\u0022” 会得到 “”+”” 即空串</li>
+<li>// \u00A0 is a newline 会替换成换行符</li>
+<li>// c:\users 会产生语法错误</li>
 </ul>
-<p><strong>映射视图</strong></p>
-<p>一共分为三种：</p>
+<p><strong>枚举类型</strong><br>枚举类型的变量只能储存这个类型声明中给定的某个枚举值，或没有设置值 null</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">enum</span> Size &#123; SAMLL, MEDIUM, LARGE &#125;;</span><br><span class="line">Size s = Size.SMALL;</span><br></pre></td></tr></table></figure>
+
+<p>所有枚举类型都是 Enum 的子类，继承其方法。因为实际上是一个类，故比较时直接用 == 就好，也可以在枚举类型中添加构造器方法域。</p>
+<p><strong>相关：大数值</strong><br>java.math 包的 BigInteger 和 BigDecimal 类可以处理任意长度数字序列的数值，分别对应整数和浮点数运算。</p>
+<hr>
+<h1 id="运算符部分"><a href="#运算符部分" class="headerlink" title="运算符部分"></a>运算符部分</h1><p><strong>数学函数</strong><br>StrictMath 类使用 fdlibm 库实现算法，确保在所有平台上得到相同结果。</p>
+<p><strong>数值类型转换</strong><br>二元操作中的类型转换，以 double float long 的顺序进行判断，若都不是则两个操作数都转换成 int 型。<br>强制类型转换通过截断小数部分将浮点值转换为整型，若要得到最接近整型的数，使用 Math.round 对浮点数进行舍入：</p>
 <ul>
-<li>键集 Set&lt;K&gt;  keySet()</li>
-<li>值集合 Collection&lt;V&gt;  values()</li>
-<li>键值对集 Set&lt;Map.Entry&lt;K,V&gt;&gt;  entrySet()</li>
+<li><code>int newx = (int) Math.round(x);</code> // 返回的是 long 类型</li>
 </ul>
-<p><strong>弱散列映射</strong></p>
-<p>WeakHashMap 类，当对键的唯一引用来自散列条目，将删除键值对。使用弱引用保存键，将引用保存到散列键对象中，垃圾回收会用特有方式处理此类对象。</p>
+<p>强制转换中若超出目标类型的表示范围，结果会截断成完全不同的值。<br>不要在 boolean 与任何数值类型间强制类型转换，转换为数值时可以使用条件表达式 boolean ? 1:0</p>
+<p><strong>自增自减和运算符级别</strong><br>自增自减中，用于表达式时前缀形式会先完成加减一：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> m = <span class="number">7</span>;</span><br><span class="line"><span class="keyword">int</span> n = <span class="number">7</span>;</span><br><span class="line"><span class="keyword">int</span> a = <span class="number">2</span> * ++m; <span class="comment">// a is 16, m is 8</span></span><br><span class="line"><span class="keyword">int</span> b = <span class="number">2</span> * n++; <span class="comment">// b is 14, n is 8</span></span><br></pre></td></tr></table></figure>
+
+<p>+= 是右结合运算符，所以 <code>a += b += c</code> 等价于 <code>a += (b += c)</code></p>
+<p><strong>位运算符</strong></p>
+<table>
+<thead>
+<tr>
+<th align="center">位运算符</th>
+<th align="center"></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">&amp;</td>
+<td align="center">and</td>
+</tr>
+<tr>
+<td align="center">&#124;</td>
+<td align="center">or</td>
+</tr>
+<tr>
+<td align="center">^</td>
+<td align="center">xor</td>
+</tr>
+<tr>
+<td align="center">~</td>
+<td align="center">not</td>
+</tr>
+</tbody></table>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> fourthBit = (n &amp; <span class="number">0b1000</span>) / <span class="number">0b1000</span>;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="字符串部分"><a href="#字符串部分" class="headerlink" title="字符串部分"></a>字符串部分</h1><p><strong>String API</strong><br>提取子串： substring 方法。<br>多个字符串放在一起用一个定界符分隔： String.join 方法。</p>
+<p><strong>不可变字符串</strong><br>String 类没有修改字符串的方法，可以先提取再拼接；编译器可以让字符串共享，即复制一个字符串变量，原始字符串与复制的字符串共享相同的字符。<br>但不要使用 == （此运算符确定是否在同一位置上）检测两个字符串是否相等，虚拟机实际上只有字符串常量是共享的，而 + 或 substring 等操作产生的结果并不共享。使用 equals equalsIgnoreCase 方法。</p>
+<p><strong>构建字符串</strong><br>用许多小段字符串构建时，字符串连接的方式效率较低，每次连接字符串都会构建一个新的 String 对象，应该 new 个空的字符串构造器：StringBuilder 类，相对 StringBuffer 类效率更高，但后者允许多线程方式执行操作。</p>
+<p><strong>Null 串</strong><br>null 上调用方法会出现错误，故检查字符串 null 和空 <code>if (str != null &amp;&amp; str.length() != 0)</code> ，空用 equals 也行。</p>
+<p><strong>码点和代码单元</strong><br>length 方法返回采用 UTF-16 编码表示的给定字符串所需要的代码单元数量（配合 char 数据类型食用）。大多数常用字符使用一个代码单元表示，辅助字符需要一对代码单元表示。故实际长度应该是码点数量：使用 codePointCount 方法获取。<br>如字符 𝕆 U+1D546 需要两个代码单元，若使用 <code>char ch = sentence.charAt(1)</code> 会返回第二个代码单元而非空格，所以此类不要用 char 类型。charAt 方法返回位置 n 的代码单元。</p>
 <blockquote>
-<p>  新建WeakHashMap，将“键值对”添加到WeakHashMap中。 实际上，WeakHashMap是通过数组table保存Entry(键值对)；每一个Entry实际上是一个单向链表，即Entry是键值对链表。</p>
-<p>  当某“弱键”不再被其它对象引用，并被GC回收时。在GC回收该“弱键”时，这个“弱键”也同时会被添加到ReferenceQueue(queue)队列中。</p>
-<p>  当下一次需要操作WeakHashMap时，会先同步table和queue。table中保存了全部的键值对，而queue中保存被GC回收的键值对；同步它们，就是删除table中被GC回收的键值对。</p>
+<p>一个 code point 可能由一个或多个 code unit(s) 表示。在 U+10000 之前的 code point 可以由一个 UTF-16 code unit 表示，U+10000 及之后的 code point 要由两个 UTF-16 code units 表示。</p>
 </blockquote>
-<p><strong>链接散列集和映射</strong></p>
-<p>LinkedHashSet 和 LinkedHashMap 类会保留插入元素项的顺序。LinkedHashSet 是对 LinkedHashMap 的简单包装。LinkedHashMap 是 HashMap 的直接子类，二者唯一的区别是 LinkedHashMap 在 HashMap 的基础上，采用双向链表的形式将所有 entry 连接起来，保证元素的迭代顺序跟插入顺序相同。<br>会将 get 或 put 影响的条目移至链表尾部。</p>
-<p><strong>枚举集与映射</strong><br>EnumSet 内部用位序列实现，对应值在集中则相应位被置 1。使用静态方法构造这个集：<code>enum Weekday { ... };</code>，使用 Set 接口的方法修改 EnumSet。<br>EnumMap 是以键类型为枚举类型的映射，需要在构造时指定：<code>EunmMap&lt;Weekday, Employee&gt; test = new EnumMap&lt;&gt;{Weekday.class}</code>。</p>
-<p><strong>标识散列映射</strong><br>IdentityHsahMap 中键的散列值用 System.identityHashCode 方法计算，即根据内存地址计算。比较两对象时，IdentityHashMap 类使用 == 。<br>故不同的键对象即使内容相同，也视为不同对象。</p>
-<h1 id="视图与包装器"><a href="#视图与包装器" class="headerlink" title="视图与包装器"></a>视图与包装器</h1><p>视图可以获得其他实现了 Collection 接口和 Map 接口的对象，如 keySet 方法并没有创建新集，而是返回了一个实现 Set 接口的类对象，其方法对原映射进行操作。</p>
-<p><strong>轻量集合包装器</strong><br>Arrrays 类的静态方法 asList 返回一个包装了普通 Java 数组的 List 包装器而非 ArrayList 对象：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Card[] cardDeck = <span class="keyword">new</span> Card[<span class="number">52</span>];</span><br><span class="line">...</span><br><span class="line">List&lt;Card&gt; cardList = Arrays.asList(cardDeck);</span><br></pre></td></tr></table></figure>
+<hr>
+<h1 id="输入输出部分"><a href="#输入输出部分" class="headerlink" title="输入输出部分"></a>输入输出部分</h1><p><strong>格式化输出</strong></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">System.out.printf(<span class="string">"%,.2f"</span>, <span class="number">10000.0</span> / <span class="number">3.0</span>);</span><br><span class="line"><span class="comment">// 3,333.33</span></span><br></pre></td></tr></table></figure>
 
-<p>改变数组大小的方法将抛出异常。</p>
-<p><strong>子范围视图</strong><br>如从列表 staff 中取出第 10-19 个元素：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">List group = staff.subList(<span class="number">10</span>, <span class="number">20</span>);</span><br></pre></td></tr></table></figure>
+<p>用于 printf 的转换符：</p>
+<table>
+<thead>
+<tr>
+<th align="center">转换符</th>
+<th align="center">类型</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">d</td>
+<td align="center">十进制整数</td>
+</tr>
+<tr>
+<td align="center">x</td>
+<td align="center">十六进制整数</td>
+</tr>
+<tr>
+<td align="center">o</td>
+<td align="center">八进制整数</td>
+</tr>
+<tr>
+<td align="center">f</td>
+<td align="center">定点浮点数</td>
+</tr>
+<tr>
+<td align="center">e</td>
+<td align="center">指数浮点值</td>
+</tr>
+<tr>
+<td align="center">g</td>
+<td align="center">通用浮点数</td>
+</tr>
+<tr>
+<td align="center">a</td>
+<td align="center">十六进制浮点数</td>
+</tr>
+<tr>
+<td align="center">s</td>
+<td align="center">字符串</td>
+</tr>
+<tr>
+<td align="center">c</td>
+<td align="center">字符</td>
+</tr>
+<tr>
+<td align="center">b</td>
+<td align="center">布尔</td>
+</tr>
+<tr>
+<td align="center">h</td>
+<td align="center">散列码</td>
+</tr>
+<tr>
+<td align="center">%</td>
+<td align="center">百分号</td>
+</tr>
+<tr>
+<td align="center">n</td>
+<td align="center">平台有关的行分隔符</td>
+</tr>
+</tbody></table>
+<p>用于 printf 的标志：</p>
+<table>
+<thead>
+<tr>
+<th align="center">标志</th>
+<th align="center">目的</th>
+<th align="center">举例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">+</td>
+<td align="center">打印正负数符号</td>
+<td align="center">+333</td>
+</tr>
+<tr>
+<td align="center">空格</td>
+<td align="center">在正数前加空格</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">0</td>
+<td align="center">数字前面补 0</td>
+<td align="center">00333.3</td>
+</tr>
+<tr>
+<td align="center">-</td>
+<td align="center">左对齐</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">(</td>
+<td align="center">将负数括在括号内</td>
+<td align="center">(3.3)</td>
+</tr>
+<tr>
+<td align="center">,</td>
+<td align="center">添加分组分隔符</td>
+<td align="center">3,333</td>
+</tr>
+<tr>
+<td align="center">#（f）</td>
+<td align="center">包含小数点</td>
+<td align="center">333.</td>
+</tr>
+<tr>
+<td align="center">#</td>
+<td align="center">添加前缀 0x 或 0</td>
+<td align="center">0xcafe</td>
+</tr>
+</tbody></table>
+<p><strong>文件输入和输出</strong><br>通过相对位置指定文件时，是 Java 虚拟机启动路径的相对位置。<br>记得捕获输入输出异常，以免文件不存在或不能被创建。</p>
+<p>读取通过构造 Scanner 对象，路径中要转义反斜杠；写入则构造 PrintWriter 对象。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Scanner in = <span class="keyword">new</span> Scanner(Paths.get(<span class="string">"c:\\my\\file"</span>), <span class="string">"UTF-8"</span>);</span><br><span class="line">Scanner in = <span class="keyword">new</span> Scanner(<span class="string">"c:\\my\\file"</span>); <span class="comment">// 允许但会变成字符数据</span></span><br></pre></td></tr></table></figure>
 
-<p>对于有序集和映射，可以使用排序顺序而非元素位置建立子范围。如 <code>SortedSet</code> <code>SortMap</code></p>
-<p><strong>不可修改的视图</strong><br>Collection 中一些方法用于产生不可修改视图，运行时检查到修改则抛出一个异常。</p>
-<p><strong>同步视图</strong><br>类库设计者使用视图确保集合的线程安全，而非实现线程安全的集合类。如将任何一个映射表转换成具有同步访问方法的 Map 视图：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Map&lt;String,, Employee&gt; map = Collections.synchronizedMap(<span class="keyword">new</span> HashMap&lt;String, Employee&gt;());</span><br></pre></td></tr></table></figure>
+<hr>
+<h1 id="控制流程部分"><a href="#控制流程部分" class="headerlink" title="控制流程部分"></a>控制流程部分</h1><p><strong>switch 语句</strong><br>Java7 开始，case 标签可以是字符串字面量。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">String input = ...;</span><br><span class="line"><span class="keyword">switch</span> (input.toLowerCase())&#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="string">"yes"</span>:</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-]]></content>
+<p><strong>中断语句</strong><br>带标签 break 语句用于跳出多重循环。标签放在最外层循环之前，并紧跟冒号，break 将跳转到带标签的语句块结尾。只能跳出，不能跳入。<br>带标签 break 甚至可以用于 if 语句或语句块中：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">label:</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span> (condition) <span class="keyword">break</span> label;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>continue 语句将控制转移到最内层循环的首部，带标签 continue 语句将跳到与标签匹配的循环首部。</p>
+<hr>
+<h1 id="数组部分"><a href="#数组部分" class="headerlink" title="数组部分"></a>数组部分</h1><p>数字数组初始化为 0，boolean 数组初始化为 false，对象数组则为 null。数组创建后不能改变大小，需要扩展应选择数组列表 array list。<br>Java 允许数组长度为 0，与 null 不同。</p>
+<p><strong>for each 循环</strong></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> (variable : collection) statement &#123;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>collection 可以是数组或实现了 Iterable 接口的类对象。<br>打印数组所有值可以用 Arrays.toString 方法，元素被放在 [] 内，用逗号分隔。</p>
+<p><strong>初始化和匿名</strong><br>不创建变量初始化一个数组：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">arr = <span class="keyword">new</span> <span class="keyword">int</span>[] &#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>&#125;;</span><br><span class="line"><span class="comment">// 即下列语句简写</span></span><br><span class="line"><span class="keyword">int</span>[] temp = &#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>&#125;;</span><br><span class="line">arr = temp;</span><br></pre></td></tr></table></figure>
+
+<p><strong>拷贝</strong><br>将一个数组变量拷贝给另一个数组变量后，两个变量引用的是同一个数组，即更改在两者生效。若要拷贝到新数组，使用 Arrays.copyOf 方法，这个方法也用于增加数组大小：<code>arr = Arrays.copyOf(arr, 2 * arr.length)</code> 。</p>
+<p><strong>命令行参数</strong><br>main 的 String[] args 用于存储命令行参数，不包含程序名。</p>
+<p><strong>不规则数组</strong><br>Java 实际上只有一维数组，多维数组定义为“数组的数组”。所以可以让两行交换，或是每一行有不同的长度：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span>[][] odds = <span class="keyword">new</span> <span class="keyword">int</span>[NMAX +<span class="number">1</span>][];</span><br><span class="line"><span class="comment">//new 一个具有行数的数组</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> n = <span class="number">0</span>; n &lt;= NMAX; n++)</span><br><span class="line">    odds[n] = <span class="keyword">new</span> <span class="keyword">int</span>[n + <span class="number">1</span>];</span><br><span class="line">    <span class="comment">//然后为每行添加元素</span></span><br></pre></td></tr></table></figure>]]></content>
       <categories>
         <category>Java</category>
       </categories>
       <tags>
-        <tag>集合</tag>
-        <tag>队列</tag>
-        <tag>散列</tag>
-        <tag>映射</tag>
+        <tag>数据类型</tag>
+        <tag>控制流程</tag>
+        <tag>数组</tag>
+        <tag>运算符</tag>
       </tags>
   </entry>
   <entry>
@@ -441,248 +681,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Java 补丁-基本程序设计结构</title>
-    <url>/2019/12/01/Java-%E8%A1%A5%E4%B8%81-%E5%9F%BA%E6%9C%AC%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E7%BB%93%E6%9E%84/</url>
-    <content><![CDATA[<h1 id="数据类型部分"><a href="#数据类型部分" class="headerlink" title="数据类型部分"></a>数据类型部分</h1><p><strong>整型</strong><br>Java7 开始：允许通过加前缀 0b 写二进制数；允许为数字字面量加下划线：</p><ul>
-<li>1_000_000</li>
-<li>0b1111_0000_0100</li>
-</ul><p><strong>浮点型</strong><br>由于二进制系统无法精确表示分数 1/10，故浮点数值不适用金融计算，此时应使用 BigDecimal 类。</p><table>
-<thead>
-<tr>
-<th align="center">常量</th>
-<th align="center">数值</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">Double.POSITIVE_INFINITY</td>
-<td align="center">正无穷</td>
-</tr>
-<tr>
-<td align="center">Double.NEGATIVE_INFINITY</td>
-<td align="center">负无穷</td>
-</tr>
-<tr>
-<td align="center">Double.NaN</td>
-<td align="center">非数字</td>
-</tr>
-<tr>
-<td align="center">判断一个特定值是否为 Double.NaN ：</td>
-<td align="center"></td>
-</tr>
-<tr>
-<td align="center"><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">if(x == Double.NaN) // never true</span><br><span class="line">if(Double.isNaN(x)) // √</span><br></pre></td></tr></table></figure></td>
-<td align="center"></td>
-</tr>
-</tbody></table><a id="more"></a>
-
-
-
-<p><strong>char 类型</strong><br>char 数据类型是一个采用 UTF-16 编码表示 Unicode 码点的代码单元。<br>Unicode 转义序列会在解析代码前处理：</p>
-<ul>
-<li>“\u0022+\u0022” 会得到 “”+”” 即空串</li>
-<li>// \u00A0 is a newline 会替换成换行符</li>
-<li>// c:\users 会产生语法错误</li>
-</ul>
-<p><strong>枚举类型</strong><br>枚举类型的变量只能储存这个类型声明中给定的某个枚举值，或没有设置值 null</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">enum Size &#123; SAMLL, MEDIUM, LARGE &#125;;</span><br><span class="line">Size s = Size.SMALL;</span><br></pre></td></tr></table></figure>
-
-<p>所有枚举类型都是 Enum 的子类，继承其方法。因为实际上是一个类，故比较时直接用 == 就好，也可以在枚举类型中添加构造器 方法 域。</p>
-<p><strong>相关：大数值</strong><br>java.math 包的 BigInteger 和 BigDecimal 类可以处理任意长度数字序列的数值，分别对应整数和浮点数运算。</p>
-<hr>
-<h1 id="运算符部分"><a href="#运算符部分" class="headerlink" title="运算符部分"></a>运算符部分</h1><p><strong>数学函数</strong><br>StrictMath 类使用 fdlibm 库实现算法，确保在所有平台上得到相同结果。</p>
-<p><strong>数值类型转换</strong><br>二元操作中的类型转换，以 double float long 的顺序进行判断，若都不是则两个操作数都转换成 int 型。<br>强制类型转换通过截断小数部分将浮点值转换为整型，若要得到最接近整型的数，使用 Math.round 对浮点数进行舍入：</p>
-<ul>
-<li>int newx = (int) Math.round(x); // 返回的是 long 类型</li>
-</ul>
-<p>强制转换中若超出目标类型的表示范围，结果会截断成完全不同的值。<br>不要在 boolean 与任何数值类型间强制类型转换，转换为数值时可以使用条件表达式 boolean ? 1:0</p>
-<p><strong>自增自减和运算符级别</strong><br>自增自减中，用于表达式时前缀形式会先完成加减一：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">int m = 7;</span><br><span class="line">int n = 7;</span><br><span class="line">int a = 2 * ++m; // a is 16, m is 8</span><br><span class="line">int b = 2 * n++; // b is 14, n is 8</span><br></pre></td></tr></table></figure>
-
-<p>+= 是右结合运算符，所以 <code>a += b += c</code> 等价于 <code>a += (b += c)</code></p>
-<p><strong>位运算符</strong></p>
-<table>
-<thead>
-<tr>
-<th align="center">位运算符</th>
-<th align="center"></th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">&amp;</td>
-<td align="center">and</td>
-</tr>
-<tr>
-<td align="center">&#124;</td>
-<td align="center">or</td>
-</tr>
-<tr>
-<td align="center">^</td>
-<td align="center">xor</td>
-</tr>
-<tr>
-<td align="center">~</td>
-<td align="center">not</td>
-</tr>
-</tbody></table>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">int fourthBit = (n &amp; 0b1000) / 0b1000;</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h1 id="字符串部分"><a href="#字符串部分" class="headerlink" title="字符串部分"></a>字符串部分</h1><p><strong>String API</strong><br>提取子串： substring 方法。<br>多个字符串放在一起用一个定界符分隔： String.join 方法。</p>
-<p><strong>不可变字符串</strong><br>String 类没有修改字符串的方法，可以先提取再拼接；编译器可以让字符串共享，即复制一个字符串变量，原始字符串与复制的字符串共享相同的字符。<br>但不要使用 == （此运算符确定是否在同一位置上）检测两个字符串是否相等，虚拟机实际上只有字符串常量是共享的，而 + 或 substring 等操作产生的结果并不共享。使用 equals equalsIgnoreCase 方法。</p>
-<p><strong>构建字符串</strong><br>用许多小段字符串构建时，字符串连接的方式效率较低，每次连接字符串都会构建一个新的 String 对象，应该 new 个空的字符串构造器：StringBuilder 类，相对 StringBuffer 类效率更高，但后者允许多线程方式执行操作。</p>
-<p><strong>Null 串</strong><br>null 上调用方法会出现错误，故检查字符串 null 和空 <code>if (str != null &amp;&amp; str.length() != 0)</code> ，空用 equals 也行。</p>
-<p><strong>码点和代码单元</strong><br>length 方法返回采用 UTF-16 编码表示的给定字符串所需要的代码单元数量（配合 char 数据类型食用）。大多数常用字符使用一个代码单元表示，辅助字符需要一对代码单元表示。故实际长度应该是码点数量：使用 codePointCount 方法获取。<br>如字符 𝕆 U+1D546 需要两个代码单元，若使用 <code>char ch = sentence.charAt(1)</code> 会返回第二个代码单元而非空格，所以此类不要用 char 类型。charAt 方法返回位置 n 的代码单元。</p>
-<hr>
-<h1 id="输入输出部分"><a href="#输入输出部分" class="headerlink" title="输入输出部分"></a>输入输出部分</h1><p><strong>格式化输出</strong></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">System.out.printf(&quot;%,.2f&quot;, 10000.0 / 3.0);</span><br><span class="line">// 3,333.33</span><br></pre></td></tr></table></figure>
-
-<p>用于 printf 的转换符：</p>
-<table>
-<thead>
-<tr>
-<th align="center">转换符</th>
-<th align="center">类型</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">d</td>
-<td align="center">十进制整数</td>
-</tr>
-<tr>
-<td align="center">x</td>
-<td align="center">十六进制整数</td>
-</tr>
-<tr>
-<td align="center">o</td>
-<td align="center">八进制整数</td>
-</tr>
-<tr>
-<td align="center">f</td>
-<td align="center">定点浮点数</td>
-</tr>
-<tr>
-<td align="center">e</td>
-<td align="center">指数浮点值</td>
-</tr>
-<tr>
-<td align="center">g</td>
-<td align="center">通用浮点数</td>
-</tr>
-<tr>
-<td align="center">a</td>
-<td align="center">十六进制浮点数</td>
-</tr>
-<tr>
-<td align="center">s</td>
-<td align="center">字符串</td>
-</tr>
-<tr>
-<td align="center">c</td>
-<td align="center">字符</td>
-</tr>
-<tr>
-<td align="center">b</td>
-<td align="center">布尔</td>
-</tr>
-<tr>
-<td align="center">h</td>
-<td align="center">散列码</td>
-</tr>
-<tr>
-<td align="center">%</td>
-<td align="center">百分号</td>
-</tr>
-<tr>
-<td align="center">n</td>
-<td align="center">平台有关的行分隔符</td>
-</tr>
-</tbody></table>
-<p>用于 printf 的标志：</p>
-<table>
-<thead>
-<tr>
-<th align="center">标志</th>
-<th align="center">目的</th>
-<th align="center">举例</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">+</td>
-<td align="center">打印正负数符号</td>
-<td align="center">+333</td>
-</tr>
-<tr>
-<td align="center">空格</td>
-<td align="center">在正数前加空格</td>
-<td align="center"></td>
-</tr>
-<tr>
-<td align="center">0</td>
-<td align="center">数字前面补 0</td>
-<td align="center">00333.3</td>
-</tr>
-<tr>
-<td align="center">-</td>
-<td align="center">左对齐</td>
-<td align="center"></td>
-</tr>
-<tr>
-<td align="center">(</td>
-<td align="center">将负数括在括号内</td>
-<td align="center">(3.3)</td>
-</tr>
-<tr>
-<td align="center">,</td>
-<td align="center">添加分组分隔符</td>
-<td align="center">3,333</td>
-</tr>
-<tr>
-<td align="center">#（f）</td>
-<td align="center">包含小数点</td>
-<td align="center">333.</td>
-</tr>
-<tr>
-<td align="center">#</td>
-<td align="center">添加前缀 0x 或 0</td>
-<td align="center">0xcafe</td>
-</tr>
-</tbody></table>
-<p><strong>文件输入和输出</strong><br>通过相对位置指定文件时，是 Java 虚拟机启动路径的相对位置。<br>记得捕获输入输出异常，以免文件不存在或不能被创建。</p>
-<p>读取也是构造 Scanner 对象，路径中要转义反斜杠；写入则构造 PrintWriter 对象。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Scanner in = new Scanner(Paths.get(&quot;c:\\my\\file&quot;), &quot;UTF-8&quot;);</span><br><span class="line">Scanner in = new Scanner(&quot;c:\\my\\file&quot;); // 允许但会变成字符数据</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h1 id="控制流程部分"><a href="#控制流程部分" class="headerlink" title="控制流程部分"></a>控制流程部分</h1><p><strong>switch 语句</strong><br>Java7 开始，case 标签可以是字符串字面量。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">String input = ...;</span><br><span class="line">switch (input.toLowerCase())&#123;</span><br><span class="line">    case &quot;yes&quot;:</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>中断语句</strong><br>带标签 break 语句用于跳出多重循环。标签放在最外层循环之前，并紧跟冒号，break 将跳转到带标签的语句块结尾。只能跳出，不能跳入。<br>带标签 break 甚至可以用于 if 语句或语句块中：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">label:</span><br><span class="line">&#123;</span><br><span class="line">    if (condition) break label;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>continue 语句将控制转移到最内层循环的首部，带标签 continue 语句将跳到与标签匹配的循环首部。</p>
-<hr>
-<h1 id="数组部分"><a href="#数组部分" class="headerlink" title="数组部分"></a>数组部分</h1><p>数字数组初始化为 0，boolean 数组初始化为 false，对象数组则为 null。数组创建后不能改变大小，需要扩展应选择数组列表 array list。<br>Java 允许数组长度为 0，与 null 不同。</p>
-<p><strong>for each 循环</strong></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">for (variable : collection) statement</span><br></pre></td></tr></table></figure>
-
-<p>collection 可以是数组或实现了 Iterable 接口的类对象。<br>打印数组所有值可以用 Arrays.toString 方法，元素被放在 [] 内，用逗号分隔。</p>
-<p><strong>初始化和匿名</strong><br>不创建变量初始化一个数组：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">arr = new int[] &#123;1, 2, 3&#125;;</span><br><span class="line">// 即下列语句简写</span><br><span class="line">int[] temp = &#123;1, 2, 3&#125;;</span><br><span class="line">arr = temp;</span><br></pre></td></tr></table></figure>
-
-<p><strong>拷贝</strong><br>将一个数组变量拷贝给另一个数组变量后，两个变量引用的是同一个数组，即更改在两者生效。若要拷贝到新数组，使用 Arrays.copyOf 方法，这个方法也用于增加数组大小：<code>arr = Arrays.copyOf(arr, 2 * arr.length)</code> 。</p>
-<p><strong>命令行参数</strong><br>main 的 String[] args 用于存储命令行参数，不包含程序名。</p>
-<p><strong>不规则数组</strong><br>Java 实际上只有一维数组，多维数组定义为“数组的数组”。所以可以让两行交换，或是每一行有不同的长度：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">int[][] odds = new int[NMAX +1][];</span><br><span class="line">//new 一个具有行数的数组</span><br><span class="line">for (int n = 0; n &lt;= NMAX; n++)</span><br><span class="line">    odds[n] = new int[n + 1];</span><br><span class="line">    //然后为每行添加元素</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>Java</category>
-      </categories>
-      <tags>
-        <tag>数据类型</tag>
-        <tag>控制流程</tag>
-        <tag>数组</tag>
-        <tag>运算符</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Java 补丁-对象和类</title>
     <url>/2019/12/08/Java-%E8%A1%A5%E4%B8%81-%E5%AF%B9%E8%B1%A1%E5%92%8C%E7%B1%BB/</url>
     <content><![CDATA[<h1 id="预定义类部分"><a href="#预定义类部分" class="headerlink" title="预定义类部分"></a>预定义类部分</h1><p><strong>更改器和访问器</strong><br>更改器方法：调用方法后，会改变对象的状态。<br>访问器方法：只访问对象而不修改对象，通过生成新对象的方式应用改动。</p><h1 id="自定义类部分"><a href="#自定义类部分" class="headerlink" title="自定义类部分"></a>自定义类部分</h1><p><strong>封装</strong><br>注意是否返回了引用可变对象，即访问器方法返回了一个有更改器方法的对象；返回可变对象的引用时，应该先进行 clone。<br>Date 类有更改器方法 setTime，破坏了封装性：</p><a id="more"></a>
@@ -723,6 +721,102 @@
         <tag>静态</tag>
         <tag>封装</tag>
         <tag>call by</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Java 补丁-异常、断言和日志</title>
+    <url>/2019/12/23/Java-%E8%A1%A5%E4%B8%81-%E5%BC%82%E5%B8%B8%E3%80%81%E6%96%AD%E8%A8%80%E5%92%8C%E6%97%A5%E5%BF%97/</url>
+    <content><![CDATA[<h1 id="异常部分"><a href="#异常部分" class="headerlink" title="异常部分"></a>异常部分</h1><p><strong>概念</strong><br>非受查 unchecked 异常：派生于 Error 类或 RuntimeException 类的所有异常，其它的异常称为受查 checked 异常。</p><p><strong>创建异常类</strong><br>派生于 Exception 或其子类。应该包含两个构造器：默认构造器和带描述信息的构造器（超类 Throwable 的 toString 方法会打印出详细信息）。</p><a id="more"></a>
+
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class FileFormatException extends IOException &#123;</span><br><span class="line">public FileFormatException() &#123;&#125;</span><br><span class="line">public FileFormatException(String gripe) &#123; super(gripe) &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>finally 子句</strong><br>建议解耦合 try/catch 和 try/finally 语句块，以提高清晰度（且会报告 finaly 子句的错误）。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">try &#123;</span><br><span class="line">	try &#123;</span><br><span class="line">	&#125;</span><br><span class="line">	finally &#123;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">catch (Exception e) &#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>finally 子句中的 return 语句将会覆盖 try 中 return 的值。</p>
+<p><strong>带资源的 try 语句</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">try (Resource res = ...; ...) &#123;</span><br><span class="line">	work with res</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>可以指定多个资源，try 块正常退出或存在异常时会自动调用 res.close()。catch 子句和 finally 子句将会在关闭资源后执行。</p>
+<p><strong>堆栈轨迹元素</strong><br>堆栈轨迹 stack trace：方法调用过程的列表。</p>
+<h1 id="断言部分"><a href="#断言部分" class="headerlink" title="断言部分"></a>断言部分</h1><p><strong>概念</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">assert 条件 ;</span><br><span class="line">assert 条件 : 表达式 ;</span><br><span class="line"></span><br><span class="line">assert x&gt;=0 : x;</span><br></pre></td></tr></table></figure>
+
+<p>assert 关键词，测试期间向代码插入一些检查语句，发布时会自动移走。<br>对条件进行检测，如果结果是 false 则抛出 AssertionError 异常。第二种还会将表达式传到 AssertionError 转换成消息字符串输出。</p>
+<p><strong>启用和禁用</strong><br>运行程序时用 -ea -da 选项，可以指定某个类或某个包。没有类加载器的系统类需要用 -esa 启用。例：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">java -ea:MyClass -ea:com.mycom... -da:YmClass MyApp</span><br></pre></td></tr></table></figure>
+
+<p>程序中使用 <code>setDefaultAssertionSatus (boolean b)</code> 等完成。</p>
+<h1 id="日志部分"><a href="#日志部分" class="headerlink" title="日志部分"></a>日志部分</h1><p><strong>基本日志</strong><br>即全局日志记录器的 info 方法：<code>Logger.getGlobal().info(&quot; ... &quot;)</code> 。</p>
+<p><strong>高级日志</strong><br>即自定义日志记录器，调用 getLogger 方法创建或获取，具有类似包名的层次结构，因为未被任何变量引用的日志记录器可能会被垃圾回收，要用一个静态变量存储引用：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">private static final Logger myLogger = Logger.getLogger(&apos;&apos;com.mycom...&apos;&apos;);</span><br></pre></td></tr></table></figure>
+
+<p>日志记录器的父子间共享某些属性如日志级别：</p>
+<ul>
+<li>SEVERE</li>
+<li>WARNING</li>
+<li>INFO</li>
+<li>CONFIG</li>
+<li>FINE</li>
+<li>FINER</li>
+<li>FINEST</li>
+</ul>
+<p>默认只记录前三个级别，通过 <code>logger.setLevel(Level.FINE);</code> 设置其他级别。</p>
+]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>异常</tag>
+        <tag>断言</tag>
+        <tag>日志</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Java 补丁-接口、lambda 和内部类</title>
+    <url>/2019/12/23/Java-%E8%A1%A5%E4%B8%81-%E6%8E%A5%E5%8F%A3%E3%80%81lambda-%E5%92%8C%E5%86%85%E9%83%A8%E7%B1%BB/</url>
+    <content><![CDATA[<h1 id="接口部分"><a href="#接口部分" class="headerlink" title="接口部分"></a>接口部分</h1><p><strong>特性</strong><br>可以使用 instanceof 检查一个对象是否实现某个接口：</p><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">if (anObject instanceof Comparable) &#123; ... &#125;</span><br></pre></td></tr></table></figure><p>接口中不能包含实例域或静态方法（ Java 8 支持静态方法），允许常量。接口中的方法默认为 public，域默认为 public static final。</p><a id="more"></a>
+
+
+
+<p> <strong>default 默认方法</strong><br>与超类冲突：超类的方法和接口的默认方法冲突时，超类优先。<br>与接口冲突：只要有一个接口有默认方法，就需要提供一个实现覆盖掉。若接口们都没有提供默认方法，则不存在冲突 - 全部实现或不实现（使自身抽象）。</p>
+<blockquote>
+<p>所以不要用接口的默认方法重新定义 Object 类中的方法如 equals 等，因为超类优先规则默认方法会永远被忽略。</p>
+</blockquote>
+<p><strong>clone 方法</strong><br>copy 一个新对象而不是引用。clone 方法是 Objects 的一个 protected 方法，子类只能克隆它自己的对象，会产生问题：若拷贝的是相同子对象的引用，原对象和克隆对象仍会共享一些信息。默认的拷贝是浅拷贝，若共享的子对象不可变（如 String 类），在生命周期里没有更改器改变它，也没有方法生成它的引用，则是安全的。</p>
+<p>若默认 clone 方法满足需求，需要实现 Cloneable 接口（标记接口），调用 <code>super.clone()</code>；若要在可变的子对象上调用 clone 进行修补，则还重新定义一个 public 的 clone 方法。</p>
+<h1 id="lambda-表达式部分"><a href="#lambda-表达式部分" class="headerlink" title="lambda 表达式部分 *"></a>lambda 表达式部分 *</h1><p><strong>规范</strong><br>一个可传递的代码块，以及其变量规范。即使 lambda 表达式没有参数仍然要提供空括号：<code>() -&gt; { ... }</code> ；如果可以推导出参数类型则可以忽略其类型：<code>Comparator&lt;S
+tring&gt; comp = (first, second) -&gt; ... ;</code> ；如果方法只有一个参数，且可以推导出类型，可以省略小括号：<code>ActionListener listener = event -&gt; ... ;</code> 。<br>lambda 表达式的返回类型会由上下文推导得出；只在某些分支返回一个值是不合法的。</p>
+<p><strong>函数式接口</strong><br>对于只有一个抽象方法的接口，需要其对象时，可以提供一个 lambda 表达式。Java 中对 lambda 表达式所能做的只是转换为函数式接口。</p>
+<p><strong>引用方法</strong><br>使用现有方法代替要传递的内容，用 :: 分隔方法名和对象名，允许使用 this 和 super。</p>
+<ul>
+<li>object::instanceMethod</li>
+<li>Class::staticMethod</li>
+<li>Class::instanceMethod</li>
+</ul>
+<p>前两种情况中方法引用等价于提供方法参数的 lambda 表达式，如 <code>System.out::println</code> 等价于 <code>x -&gt; System.out.println(x)</code> 。第三种情况第一个参数会成为方法的目标，如 <code>String::compareToIgnoreCase</code> 等价于 <code>(x,y) -&gt; x.compareToIgnoreCase(y)</code> 。</p>
+<p><strong>构造器引用</strong><br>构造器引用类似于方法引用，不过方法名为 new。编译器通过上下文选择构造器。<br>可以用数组类型建立构造器引用，如 <code>int[]::new</code> 有一个数组长度参数，等价于 <code>x -&gt; new int[x]</code>。但无法构造泛型类型 T 的数组，通过 Stream 接口的 toArray 方法调用构造器获得某类型的数组。</p>
+<p><strong>变量作用域</strong><br>lambda 表达式可以捕获外围方法或类中变量的值，即可以存储自由变量（非参数且不在表达式中定义）的值。<br>不能改变引用值，或在外部改变引用变量。即捕获的变量必须实际上是最终变量，初始化后就不会再为它赋新值。<br>this 关键字是指创建这个 lambda 表达式的方法的 this 参数。</p>
+<h1 id="内部类部分"><a href="#内部类部分" class="headerlink" title="内部类部分"></a>内部类部分</h1><p><strong>规则</strong><br>内部类的对象总有一个隐式引用（OuterClass.this）指向外部类对象，故可以访问创建它的外围类对象的实例域。<br>每个外部对象会分别有一个内部类实例，故内部类的静态域要加 final 确保唯一。而其方法不允许 static，可能因为弊大于利。</p>
+<p><strong>局部内部类</strong><br>定义在方法中，不能用 public 和 private 声明。对外部世界完全隐藏，外部类也不能访问它。</p>
+<p><strong>匿名内部类</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">new SuperType(construction parameters)</span><br><span class="line">	&#123;</span><br><span class="line">		inner class methods and data</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+
+<p>若构造一个数组列表并将其传递到方法后就不再需要，可以作为匿名列表：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">invite(new ArrayList&lt;String&gt;() &#123;&#123; add(&quot;A&quot;; add(&quot;B&quot;); )&#125;&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>外层括号建立了 ArrayList 的一个匿名子类，内层括号为子类添加元素。</p>
+<p>调用 getClass() 是实际是 this.getClass() 而静态方法没有 this，所以应该：<code>new Object(){}.getClass().getEnclosingClass()</code> 。<code>new Object(){}</code> 会建立 Object 的一个匿名子类的匿名对象，<code>getEnclosingClass()</code> 则得到其外围类即包含对应静态方法的类。</p>
+<p><strong>静态内部类</strong><br>当使用内部类只是为了隐藏在另一个类内部，不引用外围类对象，可以声明成 static 以便取消产生的引用。（有时内部类对象在静态方法中构造）<br>可以有静态域和方法。</p>
+]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>接口</tag>
+        <tag>内部类</tag>
+        <tag>lambda</tag>
+        <tag>泛型</tag>
       </tags>
   </entry>
   <entry>
@@ -820,55 +914,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Java 补丁-异常、断言和日志</title>
-    <url>/2019/12/23/Java-%E8%A1%A5%E4%B8%81-%E5%BC%82%E5%B8%B8%E3%80%81%E6%96%AD%E8%A8%80%E5%92%8C%E6%97%A5%E5%BF%97/</url>
-    <content><![CDATA[<h1 id="异常部分"><a href="#异常部分" class="headerlink" title="异常部分"></a>异常部分</h1><p><strong>概念</strong><br>非受查 unchecked 异常：派生于 Error 类或 RuntimeException 类的所有异常，其它的异常称为受查 checked 异常。</p><p><strong>创建异常类</strong><br>派生于 Exception 或其子类。应该包含两个构造器：默认构造器和带描述信息的构造器（超类 Throwable 的 toString 方法会打印出详细信息）。</p><a id="more"></a>
-
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class FileFormatException extends IOException &#123;</span><br><span class="line">public FileFormatException() &#123;&#125;</span><br><span class="line">public FileFormatException(String gripe) &#123; super(gripe) &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>finally 子句</strong><br>建议解耦合 try/catch 和 try/finally 语句块，以提高清晰度（且会报告 finaly 子句的错误）。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">try &#123;</span><br><span class="line">	try &#123;</span><br><span class="line">	&#125;</span><br><span class="line">	finally &#123;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">catch (Exception e) &#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>finally 子句中的 return 语句将会覆盖 try 中 return 的值。</p>
-<p><strong>带资源的 try 语句</strong></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">try (Resource res = ...; ...) &#123;</span><br><span class="line">	work with res</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>可以指定多个资源，try 块正常退出或存在异常时会自动调用 res.close()。catch 子句和 finally 子句将会在关闭资源后执行。</p>
-<p><strong>堆栈轨迹元素</strong><br>堆栈轨迹 stack trace：方法调用过程的列表。</p>
-<h1 id="断言部分"><a href="#断言部分" class="headerlink" title="断言部分"></a>断言部分</h1><p><strong>概念</strong></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">assert 条件 ;</span><br><span class="line">assert 条件 : 表达式 ;</span><br><span class="line"></span><br><span class="line">assert x&gt;=0 : x;</span><br></pre></td></tr></table></figure>
-
-<p>assert 关键词，测试期间向代码插入一些检查语句，发布时会自动移走。<br>对条件进行检测，如果结果是 false 则抛出 AssertionError 异常。第二种还会将表达式传到 AssertionError 转换成消息字符串输出。</p>
-<p><strong>启用和禁用</strong><br>运行程序时用 -ea -da 选项，可以指定某个类或某个包。没有类加载器的系统类需要用 -esa 启用。例：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">java -ea:MyClass -ea:com.mycom... -da:YmClass MyApp</span><br></pre></td></tr></table></figure>
-
-<p>程序中使用 <code>setDefaultAssertionSatus (boolean b)</code> 等完成。</p>
-<h1 id="日志部分"><a href="#日志部分" class="headerlink" title="日志部分"></a>日志部分</h1><p><strong>基本日志</strong><br>即全局日志记录器的 info 方法：<code>Logger.getGlobal().info(&quot; ... &quot;)</code> 。</p>
-<p><strong>高级日志</strong><br>即自定义日志记录器，调用 getLogger 方法创建或获取，具有类似包名的层次结构，因为未被任何变量引用的日志记录器可能会被垃圾回收，要用一个静态变量存储引用：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">private static final Logger myLogger = Logger.getLogger(&apos;&apos;com.mycom...&apos;&apos;);</span><br></pre></td></tr></table></figure>
-
-<p>日志记录器的父子间共享某些属性如日志级别：</p>
-<ul>
-<li>SEVERE</li>
-<li>WARNING</li>
-<li>INFO</li>
-<li>CONFIG</li>
-<li>FINE</li>
-<li>FINER</li>
-<li>FINEST</li>
-</ul>
-<p>默认只记录前三个级别，通过 <code>logger.setLevel(Level.FINE);</code> 设置其他级别。</p>
-]]></content>
-      <categories>
-        <category>Java</category>
-      </categories>
-      <tags>
-        <tag>异常</tag>
-        <tag>断言</tag>
-        <tag>日志</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Java 补丁-泛型程序设计</title>
     <url>/2019/12/24/Java-%E8%A1%A5%E4%B8%81-%E6%B3%9B%E5%9E%8B%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/</url>
     <content><![CDATA[<p><strong>类型变量限定</strong><br>对类型变量 T 设置限定 <code>&lt;T extends BoundingType&gt;</code>。T 的绑定类型可以是类也可以是接口，只是 extends 关键词更接近子类概念，并非表达继承的意思。<br>一个类型变量或通配符可以有多个限定，限定类型用 &amp; 分隔，类型变量用逗号分隔。但限定中至多有一个类，并是限定列表的第一个。</p><a id="more"></a>
@@ -951,111 +996,6 @@
         <tag>继承</tag>
         <tag>通配符</tag>
         <tag>泛型约束</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Java 补丁-接口、lambda 和内部类</title>
-    <url>/2019/12/23/Java-%E8%A1%A5%E4%B8%81-%E6%8E%A5%E5%8F%A3%E3%80%81lambda-%E5%92%8C%E5%86%85%E9%83%A8%E7%B1%BB/</url>
-    <content><![CDATA[<h1 id="接口部分"><a href="#接口部分" class="headerlink" title="接口部分"></a>接口部分</h1><p><strong>特性</strong><br>可以使用 instanceof 检查一个对象是否实现某个接口：</p><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">if (anObject instanceof Comparable) &#123; ... &#125;</span><br></pre></td></tr></table></figure><p>接口中不能包含实例域或静态方法（ Java 8 支持静态方法），允许常量。接口中的方法默认为 public，域默认为 public static final。</p><a id="more"></a>
-
-
-
-<p> <strong>default 默认方法</strong><br>与超类冲突：超类的方法和接口的默认方法冲突时，超类优先。<br>与接口冲突：只要有一个接口有默认方法，就需要提供一个实现覆盖掉。若接口们都没有提供默认方法，则不存在冲突 - 全部实现或不实现（使自身抽象）。</p>
-<blockquote>
-<p>所以不要用接口的默认方法重新定义 Object 类中的方法如 equals 等，因为超类优先规则默认方法会永远被忽略。</p>
-</blockquote>
-<p><strong>clone 方法</strong><br>copy 一个新对象而不是引用。clone 方法是 Objects 的一个 protected 方法，子类只能克隆它自己的对象，会产生问题：若拷贝的是相同子对象的引用，原对象和克隆对象仍会共享一些信息。默认的拷贝是浅拷贝，若共享的子对象不可变（如 String 类），在生命周期里没有更改器改变它，也没有方法生成它的引用，则是安全的。</p>
-<p>若默认 clone 方法满足需求，需要实现 Cloneable 接口（标记接口），调用 <code>super.clone()</code>；若要在可变的子对象上调用 clone 进行修补，则还重新定义一个 public 的 clone 方法。</p>
-<h1 id="lambda-表达式部分"><a href="#lambda-表达式部分" class="headerlink" title="lambda 表达式部分 *"></a>lambda 表达式部分 *</h1><p><strong>规范</strong><br>一个可传递的代码块，以及其变量规范。即使 lambda 表达式没有参数仍然要提供空括号：<code>() -&gt; { ... }</code> ；如果可以推导出参数类型则可以忽略其类型：<code>Comparator&lt;S
-tring&gt; comp = (first, second) -&gt; ... ;</code> ；如果方法只有一个参数，且可以推导出类型，可以省略小括号：<code>ActionListener listener = event -&gt; ... ;</code> 。<br>lambda 表达式的返回类型会由上下文推导得出；只在某些分支返回一个值是不合法的。</p>
-<p><strong>函数式接口</strong><br>对于只有一个抽象方法的接口，需要其对象时，可以提供一个 lambda 表达式。Java 中对 lambda 表达式所能做的只是转换为函数式接口。</p>
-<p><strong>引用方法</strong><br>使用现有方法代替要传递的内容，用 :: 分隔方法名和对象名，允许使用 this 和 super。</p>
-<ul>
-<li>object::instanceMethod</li>
-<li>Class::staticMethod</li>
-<li>Class::instanceMethod</li>
-</ul>
-<p>前两种情况中方法引用等价于提供方法参数的 lambda 表达式，如 <code>System.out::println</code> 等价于 <code>x -&gt; System.out.println(x)</code> 。第三种情况第一个参数会成为方法的目标，如 <code>String::compareToIgnoreCase</code> 等价于 <code>(x,y) -&gt; x.compareToIgnoreCase(y)</code> 。</p>
-<p><strong>构造器引用</strong><br>构造器引用类似于方法引用，不过方法名为 new。编译器通过上下文选择构造器。<br>可以用数组类型建立构造器引用，如 <code>int[]::new</code> 有一个数组长度参数，等价于 <code>x -&gt; new int[x]</code>。但无法构造泛型类型 T 的数组，通过 Stream 接口的 toArray 方法调用构造器获得某类型的数组。</p>
-<p><strong>变量作用域</strong><br>lambda 表达式可以捕获外围方法或类中变量的值，即可以存储自由变量（非参数且不在表达式中定义）的值。<br>不能改变引用值，或在外部改变引用变量。即捕获的变量必须实际上是最终变量，初始化后就不会再为它赋新值。<br>this 关键字是指创建这个 lambda 表达式的方法的 this 参数。</p>
-<h1 id="内部类部分"><a href="#内部类部分" class="headerlink" title="内部类部分"></a>内部类部分</h1><p><strong>规则</strong><br>内部类的对象总有一个隐式引用（OuterClass.this）指向外部类对象，故可以访问创建它的外围类对象的实例域。<br>每个外部对象会分别有一个内部类实例，故内部类的静态域要加 final 确保唯一。而其方法不允许 static，可能因为弊大于利。</p>
-<p><strong>局部内部类</strong><br>定义在方法中，不能用 public 和 private 声明。对外部世界完全隐藏，外部类也不能访问它。</p>
-<p><strong>匿名内部类</strong></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">new SuperType(construction parameters)</span><br><span class="line">	&#123;</span><br><span class="line">		inner class methods and data</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
-
-<p>若构造一个数组列表并将其传递到方法后就不再需要，可以作为匿名列表：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">invite(new ArrayList&lt;String&gt;() &#123;&#123; add(&quot;A&quot;; add(&quot;B&quot;); )&#125;&#125;);</span><br></pre></td></tr></table></figure>
-
-<p>外层括号建立了 ArrayList 的一个匿名子类，内层括号为子类添加元素。</p>
-<p>调用 getClass() 是实际是 this.getClass() 而静态方法没有 this，所以应该：<code>new Object(){}.getClass().getEnclosingClass()</code> 。<code>new Object(){}</code> 会建立 Object 的一个匿名子类的匿名对象，<code>getEnclosingClass()</code> 则得到其外围类即包含对应静态方法的类。</p>
-<p><strong>静态内部类</strong><br>当使用内部类只是为了隐藏在另一个类内部，不引用外围类对象，可以声明成 static 以便取消产生的引用。（有时内部类对象在静态方法中构造）<br>可以有静态域和方法。</p>
-]]></content>
-      <categories>
-        <category>Java</category>
-      </categories>
-      <tags>
-        <tag>接口</tag>
-        <tag>内部类</tag>
-        <tag>lambda</tag>
-        <tag>泛型</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Java 补丁-继承</title>
-    <url>/2019/12/11/Java-%E8%A1%A5%E4%B8%81-%E7%BB%A7%E6%89%BF/</url>
-    <content><![CDATA[<h1 id="超类子类部分"><a href="#超类子类部分" class="headerlink" title="超类子类部分"></a>超类子类部分</h1><p><strong>this 和 super</strong></p><table>
-<thead>
-<tr>
-<th>this</th>
-<th>super</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>引用隐式参数</td>
-<td>调用超类方法</td>
-</tr>
-<tr>
-<td>调用该类其他构造器</td>
-<td>调用超类的构造器</td>
-</tr>
-</tbody></table><p>但是：super 不是一个对象的引用，只是一个指示编译器调用超类方法的<em>关键词</em></p><p><strong>is-a 规则</strong><br>出现超类对象的任何地方都可以通过子类对象置换。即置换法则。</p><p><strong>方法调用</strong><br>假设调用 x.f(args)，x 是类 C 的一个对象：</p><a id="more"></a>
-
-
-
-
-<ol>
-<li>编译器查看对象的声明类型和方法名。编译器会一一列举所有 C 类中名为 f 的方法和其超类中声明为 public 且名为 f 的方法。</li>
-<li>编译器查看调用方法时提供的参数类型，选择第一步中与提供的参数类型完全匹配的方法。即重载解析。这个过程允许类型转换，若没有找到或找到多个则报告错误。&lt;– 此时已获得需要调用的方法名和参数类型</li>
-<li>如果是 private static final 方法或者构造器，编译器已知道应该调用的方法，即静态绑定。若调用的方法依赖隐式参数的实际类型，称动态绑定。此例中编译器通过动态绑定确定调用 f(String) 方法。</li>
-<li>采用动态绑定调用方法时，虚拟机会调用与 x 所引对象_实际类型_最符合的那个类的方法。若 x 实际类型为 D，是 C 的子类。若 D 定义了 f(String) 方法就调用，否则在 D 的超类中寻找。</li>
-</ol>
-<p>为了应对搜索方法的时间开销，虚拟机预先为每个类创建方法表，列出所有方法签名和实际调用的方法。</p>
-<p><strong>绑定</strong><br>_静态绑定_：在程序执行以前已经被绑定（即在编译过程中就已经知道这个方法到底是哪个类中的方法）。<br>_动态绑定_：在运行时期根据具体对象的类型进行绑定。<br>Java 中重载的方法使用静态绑定，重写的方法使用动态绑定。</p>
-<p><strong>protected</strong><br>仅对本类可见，包括子类。谨慎使用于数据域，因为他人可能由这个类派生出新类并访问 protected，若要对此类进行修改就必须通知所有相关人员。更适合使用于方法。</p>
-<h1 id="Objects-部分"><a href="#Objects-部分" class="headerlink" title="Objects 部分"></a>Objects 部分</h1><p><strong>覆盖 equals</strong></p>
-<ol>
-<li>检测 this 与显式参数是否引用同一个对象。<code>if (this == otherObj) return true;</code></li>
-<li>检测显式参数是否为 null，因为 null 调用方法会报错。 <code>if (otherObj == null) return false;</code></li>
-<li>比较 this 与显式参数是否为同一类。为了保证 equals 的对称性，应该 <code>if (getClass() != otherObj.getclass()) return false;</code> 但是例如 AbstractSet 类拥有 TreeSet 和 HashSet 两个具体子类，实现了同样的操作。此时应该 <code>if (!(otherObj instanceof ClassName)) return false;</code></li>
-<li>将 otherObj 转换为相应的类类型变量。 <code>ClassName other = (ClassName) otherObj;</code></li>
-<li>对需要比较的域进行比较，== 比较基本域，Objects.equals 比较对象域。 <code>return field1 == other.field1 $$ Objects.equals(field2, other.field2);</code><br>如果在子类中重新定义了 equals，先调用 <code>super.equals(other);</code> 比较，再比较子类中的实例域。<br>覆盖 Objects 类的 equals 方法就不要弄错显式参数类型！可以用 @Override 进行标记。<br>对于数组类型，使用静态 Arrays.equals 方法。</li>
-</ol>
-<p><strong>覆盖 hashCode</strong><br>不同对象的散列码基本不会相同，最好使用 null 安全的 Objects.hashCode，参数为 null 时返回 0；使用静态方法避免创建对象。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public int hashCode()&#123;</span><br><span class="line">	return 7 * Objects.hashCode(name) + 11* Double.hashCode(salary);</span><br><span class="line">	// 或者</span><br><span class="line">	return Objects.hashCode(name, salary);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>覆盖 toString</strong><br>Objects 的 toString 输出对象所属的类名和散列码。有时候直接输出这个大概是设计者没覆盖…<br>比如数组继承了 Objects 的方法，所以用静态方法 Arrays.toString 比较好。</p>
-<h1 id="泛型数组列表部分"><a href="#泛型数组列表部分" class="headerlink" title="泛型数组列表部分"></a>泛型数组列表部分</h1><p><strong>数组长度</strong><br>确认数组列表不再发生变化时使用 trimToSize 方法，将存储区域的大小调整为当前，回收多余存储空间。不影响之后再添加元素，但和扩展一样，会自动创建更大的数组并拷贝进去。</p>
-<p><strong>参数数量可变方法</strong><br>… 代表当前方法可以接收任意数量的对象，相当于接收了对象数组。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public static double max(double... values)&#123;&#125;</span><br><span class="line">// 基本类型会自动装箱</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>Java</category>
-      </categories>
-      <tags>
-        <tag>数组</tag>
-        <tag>继承</tag>
-        <tag>泛型</tag>
       </tags>
   </entry>
   <entry>
@@ -1193,6 +1133,64 @@ tring&gt; comp = (first, second) -&gt; ... ;</code> ；如果方法只有一个�
       <categories>
         <category>Java</category>
       </categories>
+  </entry>
+  <entry>
+    <title>Java 补丁-继承</title>
+    <url>/2019/12/11/Java-%E8%A1%A5%E4%B8%81-%E7%BB%A7%E6%89%BF/</url>
+    <content><![CDATA[<h1 id="超类子类部分"><a href="#超类子类部分" class="headerlink" title="超类子类部分"></a>超类子类部分</h1><p><strong>this 和 super</strong></p><table>
+<thead>
+<tr>
+<th>this</th>
+<th>super</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>引用隐式参数</td>
+<td>调用超类方法</td>
+</tr>
+<tr>
+<td>调用该类其他构造器</td>
+<td>调用超类的构造器</td>
+</tr>
+</tbody></table><p>但是：super 不是一个对象的引用，只是一个指示编译器调用超类方法的<em>关键词</em></p><p><strong>is-a 规则</strong><br>出现超类对象的任何地方都可以通过子类对象置换。即置换法则。</p><p><strong>方法调用</strong><br>假设调用 x.f(args)，x 是类 C 的一个对象：</p><a id="more"></a>
+
+
+
+
+<ol>
+<li>编译器查看对象的声明类型和方法名。编译器会一一列举所有 C 类中名为 f 的方法和其超类中声明为 public 且名为 f 的方法。</li>
+<li>编译器查看调用方法时提供的参数类型，选择第一步中与提供的参数类型完全匹配的方法。即重载解析。这个过程允许类型转换，若没有找到或找到多个则报告错误。&lt;– 此时已获得需要调用的方法名和参数类型</li>
+<li>如果是 private static final 方法或者构造器，编译器已知道应该调用的方法，即静态绑定。若调用的方法依赖隐式参数的实际类型，称动态绑定。此例中编译器通过动态绑定确定调用 f(String) 方法。</li>
+<li>采用动态绑定调用方法时，虚拟机会调用与 x 所引对象_实际类型_最符合的那个类的方法。若 x 实际类型为 D，是 C 的子类。若 D 定义了 f(String) 方法就调用，否则在 D 的超类中寻找。</li>
+</ol>
+<p>为了应对搜索方法的时间开销，虚拟机预先为每个类创建方法表，列出所有方法签名和实际调用的方法。</p>
+<p><strong>绑定</strong><br>_静态绑定_：在程序执行以前已经被绑定（即在编译过程中就已经知道这个方法到底是哪个类中的方法）。<br>_动态绑定_：在运行时期根据具体对象的类型进行绑定。<br>Java 中重载的方法使用静态绑定，重写的方法使用动态绑定。</p>
+<p><strong>protected</strong><br>仅对本类可见，包括子类。谨慎使用于数据域，因为他人可能由这个类派生出新类并访问 protected，若要对此类进行修改就必须通知所有相关人员。更适合使用于方法。</p>
+<h1 id="Objects-部分"><a href="#Objects-部分" class="headerlink" title="Objects 部分"></a>Objects 部分</h1><p><strong>覆盖 equals</strong></p>
+<ol>
+<li>检测 this 与显式参数是否引用同一个对象。<code>if (this == otherObj) return true;</code></li>
+<li>检测显式参数是否为 null，因为 null 调用方法会报错。 <code>if (otherObj == null) return false;</code></li>
+<li>比较 this 与显式参数是否为同一类。为了保证 equals 的对称性，应该 <code>if (getClass() != otherObj.getclass()) return false;</code> 但是例如 AbstractSet 类拥有 TreeSet 和 HashSet 两个具体子类，实现了同样的操作。此时应该 <code>if (!(otherObj instanceof ClassName)) return false;</code></li>
+<li>将 otherObj 转换为相应的类类型变量。 <code>ClassName other = (ClassName) otherObj;</code></li>
+<li>对需要比较的域进行比较，== 比较基本域，Objects.equals 比较对象域。 <code>return field1 == other.field1 $$ Objects.equals(field2, other.field2);</code><br>如果在子类中重新定义了 equals，先调用 <code>super.equals(other);</code> 比较，再比较子类中的实例域。<br>覆盖 Objects 类的 equals 方法就不要弄错显式参数类型！可以用 @Override 进行标记。<br>对于数组类型，使用静态 Arrays.equals 方法。</li>
+</ol>
+<p><strong>覆盖 hashCode</strong><br>不同对象的散列码基本不会相同，最好使用 null 安全的 Objects.hashCode，参数为 null 时返回 0；使用静态方法避免创建对象。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public int hashCode()&#123;</span><br><span class="line">	return 7 * Objects.hashCode(name) + 11* Double.hashCode(salary);</span><br><span class="line">	// 或者</span><br><span class="line">	return Objects.hashCode(name, salary);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>覆盖 toString</strong><br>Objects 的 toString 输出对象所属的类名和散列码。有时候直接输出这个大概是设计者没覆盖…<br>比如数组继承了 Objects 的方法，所以用静态方法 Arrays.toString 比较好。</p>
+<h1 id="泛型数组列表部分"><a href="#泛型数组列表部分" class="headerlink" title="泛型数组列表部分"></a>泛型数组列表部分</h1><p><strong>数组长度</strong><br>确认数组列表不再发生变化时使用 trimToSize 方法，将存储区域的大小调整为当前，回收多余存储空间。不影响之后再添加元素，但和扩展一样，会自动创建更大的数组并拷贝进去。</p>
+<p><strong>参数数量可变方法</strong><br>… 代表当前方法可以接收任意数量的对象，相当于接收了对象数组。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public static double max(double... values)&#123;&#125;</span><br><span class="line">// 基本类型会自动装箱</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>数组</tag>
+        <tag>泛型</tag>
+        <tag>继承</tag>
+      </tags>
   </entry>
   <entry>
     <title>Linux bash</title>
@@ -1840,74 +1838,6 @@ tring&gt; comp = (first, second) -&gt; ... ;</code> ；如果方法只有一个�
       </tags>
   </entry>
   <entry>
-    <title>Linux 文件与目录补充</title>
-    <url>/2019/09/11/Linux-%E6%96%87%E4%BB%B6%E4%B8%8E%E7%9B%AE%E5%BD%95%E8%A1%A5%E5%85%85/</url>
-    <content><![CDATA[<h1 id="默认权限"><a href="#默认权限" class="headerlink" title="默认权限"></a>默认权限</h1><ul>
-<li>文件<br>默认没有可执行权限，即最大为 666</li>
-<li>目录<br>默认有所有权限，即 777</li>
-</ul>
-<p>umask 指定目前用户新建文件或目录时的权限默认值</p>
-<ul>
-<li><p>查看</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># umask [-S]</span><br><span class="line">-S ：以字母显示默认权限，否则是数字</span><br></pre></td></tr></table></figure>
-
-<p>其数字结果是该默认值要被拿掉的权限</p>
-<a id="more"></a></li>
-<li><p>设置</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># umask xyz</span><br></pre></td></tr></table></figure>
-
-<p>root 默认是 022，一般用户是 002<br>用字母进行计算更准确，如 (-rw-rw-rw-) - (——–wx) = -rw-rw-r–,而非 666 - 003 = 663</p>
-</li>
-</ul>
-<h1 id="隐藏属性"><a href="#隐藏属性" class="headerlink" title="隐藏属性"></a>隐藏属性</h1><h2 id="chattr"><a href="#chattr" class="headerlink" title="chattr"></a>chattr</h2><p>设置文件的隐藏属性<br>仅在 Ext2/Ext3 的文件系统生效</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># chattr [+-=][ASacdistu] dirname/filname</span><br><span class="line">+ ：仅增加某一个参数</span><br><span class="line">- ：仅减少某一个参数</span><br><span class="line">= ：仅有后面指定的参数</span><br><span class="line"></span><br><span class="line">A ：访问此文件/目录时，访问时间 atime 将不会被修改</span><br><span class="line">S ：对文件的修改将 同步 写入磁盘</span><br><span class="line">a ：root 限定，只能增加数据不能删改</span><br><span class="line">c ：文件将被自动压缩，读取时自动解压，存储时先压缩再存储</span><br><span class="line">d ：dump 程序被执行时，该文件/目录不会被 dump 备份</span><br><span class="line">i ：root 限定，该文件无法被增删改和设置连接</span><br></pre></td></tr></table></figure>
-
-<h2 id="lsattr"><a href="#lsattr" class="headerlink" title="lsattr"></a>lsattr</h2><p>显示文件的隐藏属性</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># lsattr [-adR] filname/dirname</span><br><span class="line">-a 包括隐藏文件</span><br><span class="line">-d 目录属性而非内容</span><br><span class="line">-R 递归，子目录数据也显示</span><br></pre></td></tr></table></figure>
-
-<h1 id="特殊权限"><a href="#特殊权限" class="headerlink" title="特殊权限"></a>特殊权限</h1><h2 id="SUID-4-u-s"><a href="#SUID-4-u-s" class="headerlink" title="SUID 4 u+s"></a>SUID 4 u+s</h2><p>SetUID 只对文件有效，文件所有者的 x 权限为 s</p>
-<ul>
-<li>仅对二进制程序有效，对于 shell script 无效，靠看其根本的二进制文件设置</li>
-<li>执行者对改程序有 x 权限 <font color="#D3D3D3">废话</font></li>
-<li>仅在执行过程 run-time 中有效</li>
-<li>执行者将拥有 owner 的权限</li>
-</ul>
-<p>例：/etc/shadow 记录了所有账号的密码，<strong>-rwsr-xr-x root root</strong> 仅有 root 可读可强制写入，但用户也能修改自己的密码</p>
-<h2 id="SGID-2-g-s"><a href="#SGID-2-g-s" class="headerlink" title="SGID 2 g+s"></a>SGID 2 g+s</h2><p>SetGID 用户组的 x 权限为 s<br>文件同 SUID<br>目录</p>
-<ul>
-<li>用户对此目录有 r 与 x 权限时可进入</li>
-<li>用户在此目录下的有效用户组将变成该目录的用户组</li>
-<li>若在此目录下有 w 权限，则新文件的用户组和此目录的用户组相同</li>
-<li><h2 id="SBIT-1-o-t"><a href="#SBIT-1-o-t" class="headerlink" title="SBIT 1 o+t"></a>SBIT 1 o+t</h2>StickyBit 只对目录有效，other 的 x 的权限为 x，仅用户自己和 root 有权利删除该目录下的文件/目录</li>
-</ul>
-<h1 id="查询文件"><a href="#查询文件" class="headerlink" title="查询文件"></a>查询文件</h1><h2 id="脚本文件名"><a href="#脚本文件名" class="headerlink" title="脚本文件名"></a>脚本文件名</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># which [-a] command</span><br><span class="line">-a 列出所有 PATH 目录中可以找到的同名命令，否者显示找到的第一个</span><br></pre></td></tr></table></figure>
-
-<p>根据 PATH 环境变量规范的路径查找，查不到 bash 内置的命令</p>
-<h2 id="文件名"><a href="#文件名" class="headerlink" title="文件名"></a>文件名</h2><ul>
-<li><p>whereis寻找特定文件 数据库</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># whereis [-bmsu] filname/filname</span><br><span class="line">-b 仅找二进制文件</span><br><span class="line">-m 仅找说明文件 manual 路径下的文件</span><br><span class="line">-s 仅找 source 源文件</span><br><span class="line">-u 其它特殊文件</span><br></pre></td></tr></table></figure>
-
-<p>查找文件，故不在 PATH 中也能找到；利用数据库，速度快但结果有延迟</p>
-</li>
-<li><p>locate 数据库</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># locate [-ir] keyword</span><br><span class="line">-i 忽略大小写</span><br><span class="line">-r 允许接正则表达式</span><br></pre></td></tr></table></figure>
-
-<p>可以只输入文件的部分名称(包括路径中)，根据 /var/lib/mlocate/ 中的数据，默认每天更新一次可能有延迟，可手动 updatedb 更新</p>
-</li>
-<li><p>find 硬盘</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># find [PATH] [option] [action]</span><br><span class="line">与时间有关的参数</span><br><span class="line">-mtime n 在 n 天前的 一天之内 被更改过的文件，前24小时即 0 </span><br><span class="line">-mtime +n 在 n 天之前被更改过的文件，不含本身 </span><br><span class="line">-mtime -n 在 n 天之内被更改过的文件，含本身 </span><br><span class="line">-newer file 列出比 file 更新的文件</span><br><span class="line"></span><br><span class="line">与用户或用户组名有关的参数</span><br><span class="line">-uid n 即 UID，记录在 /etc/passwd</span><br><span class="line">-gid n 即 GID，记录在 /etc/group</span><br><span class="line">-user name 用户账号名称</span><br><span class="line">-group name 用户组名</span><br><span class="line">-nouser 所有者不在 /etc/passwd 的文件</span><br><span class="line">-nogroup 所有用户组不在 /etc/passwd 的文件</span><br><span class="line"></span><br><span class="line">与文件权限及名称有关的参数</span><br><span class="line">-name filename 根据文件名查询</span><br><span class="line">-size [+-]SIZE 查找比 SIZE 大或小的文件 k代表1024bytes</span><br><span class="line">-type TYPE 查找文件类型为 TYPE 的；一般文件 f，设备文件 b c，目录 d，连接文件 1，socket s，FIFO p</span><br><span class="line">-perm mode 文件权限刚好是 mode 的文件，类似 chmod 的属性值</span><br><span class="line">-perm +-mode 文件权限全部包含/包含任意 mode 的文件</span><br><span class="line">    例</span><br><span class="line">    #find /bin /sbin -perm +6000</span><br><span class="line">    查找/bin /sbin 两个目录下具有 SUID SGID 的文件</span><br><span class="line">    </span><br><span class="line">其他操作</span><br><span class="line">-exec command 后面可以接其他命令处理查到的结果</span><br><span class="line">    #find / -perm +7000 -exec ls -l &#123;&#125;\;</span><br><span class="line">    &#123;&#125; 代表 find 查找到的内容，\; 转义 本身代表额外命令结束</span><br><span class="line">利用通配符查找</span><br><span class="line">    #find /etc -name &apos;*httpd*&apos;</span><br></pre></td></tr></table></figure></li>
-</ul>
-]]></content>
-      <categories>
-        <category>Linux</category>
-      </categories>
-      <tags>
-        <tag>文件</tag>
-        <tag>目录</tag>
-        <tag>属性权限</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Linux 文件系统</title>
     <url>/2019/09/18/Linux-%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F/</url>
     <content><![CDATA[<h1 id="回顾硬盘"><a href="#回顾硬盘" class="headerlink" title="回顾硬盘"></a>回顾硬盘</h1><h2 id="分区"><a href="#分区" class="headerlink" title="分区"></a>分区</h2><p>磁盘分区指定分区的起始与结束<strong>柱面</strong>，分区的柱面范围记录在第一个扇区的分区表里面</p><p>硬盘的第一个扇区中有主引导记录 <strong>MBR 446bytes</strong> 和分区表 <strong>partition table 64bytes</strong>，由于大小限制最多只能记录四条分区的记录，即主分区或扩展分区</p><ul>
@@ -1978,6 +1908,232 @@ tring&gt; comp = (first, second) -&gt; ... ;</code> ；如果方法只有一个�
       </tags>
   </entry>
   <entry>
+    <title>MySQL 性能-优化</title>
+    <url>/2020/09/11/MySQL-%E6%80%A7%E8%83%BD/</url>
+    <content><![CDATA[<h1 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h1><blockquote>
+<p>更小通常更好 选择不会超过范围的最小类型</p>
+</blockquote><blockquote>
+<p>简单更好 简单数据类型操作代价低</p>
+</blockquote><blockquote>
+<p>尽量避免 NULL 值 索引会变得复杂，但不要极端</p>
+</blockquote><h2 id="整数类型"><a href="#整数类型" class="headerlink" title="整数类型"></a>整数类型</h2><table>
+<thead>
+<tr>
+<th align="center">类型</th>
+<th align="center">存储空间</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">tinyint</td>
+<td align="center">8 bit</td>
+</tr>
+<tr>
+<td align="center">smallint</td>
+<td align="center">16 bit</td>
+</tr>
+<tr>
+<td align="center">mediumint</td>
+<td align="center">24 bit</td>
+</tr>
+<tr>
+<td align="center">int</td>
+<td align="center">32 bit</td>
+</tr>
+<tr>
+<td align="center">bigint</td>
+<td align="center">64 bit</td>
+</tr>
+</tbody></table><a id="more"></a>
+
+
+
+<p><code>UNSIGNED</code> 属性不影响性能。</p>
+<p>整数计算一般（某些聚合函数使用 decimal double）使用 64 位，与类型定义和环境无关。</p>
+<p>为整数类型指定宽度（<code>int(10)</code>）不会改变存储和计算的方式，不会限制值的合法范围。</p>
+<h2 id="实数类型"><a href="#实数类型" class="headerlink" title="实数类型"></a>实数类型</h2><table>
+<thead>
+<tr>
+<th align="center">类型</th>
+<th align="center">存储空间</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">float</td>
+<td align="center">4 byte</td>
+</tr>
+<tr>
+<td align="center">double</td>
+<td align="center">8 byte</td>
+</tr>
+<tr>
+<td align="center">decimal</td>
+<td align="center">每 4 byte / 9 个数字<br>小数点 1 byte</td>
+</tr>
+</tbody></table>
+<p>浮点计算内部使用 double 类型。</p>
+<p>decimal 类型计算由 MySQL 自身实现，速度不如浮点；可以用来存储比 bigint 大的整数；数据量大时考虑用 bigint 代替 decimal 计算（乘以倍数后存储）。</p>
+<h2 id="字符串类型"><a href="#字符串类型" class="headerlink" title="字符串类型"></a>字符串类型</h2><p><em>注意字符串长度定义是字符数，多字节字符集需要更多存储空间</em></p>
+<p><strong>varchar 和 char</strong></p>
+<p>varchar 使用额外字节记录字符串的长度（&lt;=255 一字节 否则两字节），如 varchar(1000) 需要 1002 字节。若 update 使得字符串变长，MyISAM 将行拆成不同的片段存储，InnoDB 则分裂页使行可以放入。用更长的列存储短字符串虽然空间开销一样，但会消耗更多内存。</p>
+<ul>
+<li>字符串列的最大长度比平均长度大很多；</li>
+<li>列的更新很少；</li>
+<li>使用了每个字符字节数不同的复杂字符集（如 UTF-8）；</li>
+</ul>
+<p>char 会删除值末尾的空格，并根据需要填充空格以方便比较。因为定长，不宜产生碎片，没有额外字节。</p>
+<ul>
+<li>较短字符串（如 char(1) Y/N）；</li>
+<li>经常变更的数据；</li>
+<li>所有值接近一个长度；</li>
+</ul>
+<p><strong>blob 和 text</strong></p>
+<p>blob 是 smallblob 的同义词，采用二进制方式存储，没有排序规则或字符集；text 是smalltext 的同义词，采用字符方式存储，有排序规则和字符集（两者仅有的不同）。</p>
+<p>blob 或 text 值太大时，每个值会通过行内 1～4 个字节的指针指向存储区域中实际的值。</p>
+<p><strong>enum</strong></p>
+<p>MySQL 内部将每个值在列表中的位置保存为整数，并在 .frm 文件中保存映射表。</p>
+<p>enum 按照定义时的顺序（即存储的整数）而非字符串进行排序。显示指定：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">select e from enum_table order by field(e, &apos;a&apos;, &apos;b&apos;, &apos;c&apos;);</span><br></pre></td></tr></table></figure>
+
+<p>某些情况下，char/varchar 列与枚举列进行连接可能比直接连接 char/varchar 列更慢。（采用整数主键而避免采用基于字符串的值进行关联）。</p>
+<h2 id="日期和时间类型"><a href="#日期和时间类型" class="headerlink" title="日期和时间类型"></a>日期和时间类型</h2><table>
+<thead>
+<tr>
+<th align="center">类型</th>
+<th align="center">存储空间</th>
+<th align="center">时区</th>
+<th align="center">格式</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">datetime</td>
+<td align="center">8 bit (1001 - 9999)</td>
+<td align="center">无关</td>
+<td align="center">YYYYMMDDHHMMSS 整数</td>
+</tr>
+<tr>
+<td align="center">timestamp</td>
+<td align="center">4 bit (1970 - 2038)</td>
+<td align="center">依赖</td>
+<td align="center">UNIX 时间戳</td>
+</tr>
+</tbody></table>
+<p>比秒更小的粒度可以考虑 bigint （时间戳）或 double （秒后小数部分）。</p>
+<h2 id="位数据类型"><a href="#位数据类型" class="headerlink" title="位数据类型"></a>位数据类型</h2><p>bit 在 MySQL 中作为字符串类型，而非数字类型；但在数字上下文中将是位字符串转换成的数字：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">create table bittest(a bit(8));</span><br><span class="line">insert into bittest values(b&apos;00111001&apos;);</span><br><span class="line">select a, a+0 from bittest;</span><br><span class="line">- a 9</span><br><span class="line">- a+0 57</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>set 多选字符串数据类型，适合存储“多个值”。</p>
+<p>设定set的格式：<br>　　字段名称 SET(‘选项1’, ‘选项2’, …, ‘选项n’)</p>
+<p>set 的每个选项值也对应一个数字，依次是1，2，4，8，16…，最多有64个选项。<br>使用的时候，可以使用 set 选项的字符串本身（多个选项用逗号分隔），也可以使用多个选项的数字之和（比如：1+2+4=7）。</p>
+</blockquote>
+<h1 id="范式"><a href="#范式" class="headerlink" title="范式"></a>范式</h1><h2 id="范式优缺点"><a href="#范式优缺点" class="headerlink" title="范式优缺点"></a>范式优缺点</h2><ul>
+<li>更新操作比范式化快</li>
+<li>重复数据很少或没有，修改更少的数据</li>
+<li>表更小，执行操作更快</li>
+<li>检索时更少需要 distinct 或 group by 语句</li>
+</ul>
+<ul>
+<li>需要关联，产生额外代价</li>
+<li>列存放在不同的表中，可能使一些索引无效</li>
+</ul>
+<h2 id="反范式优缺点"><a href="#反范式优缺点" class="headerlink" title="反范式优缺点"></a>反范式优缺点</h2><ul>
+<li>避免关联，顺序 I/O （与引擎有关）。</li>
+<li>使用更有效的索引</li>
+</ul>
+<ul>
+<li>……略</li>
+</ul>
+<h2 id="混用范式化和反范式化"><a href="#混用范式化和反范式化" class="headerlink" title="混用范式化和反范式化"></a>混用范式化和反范式化</h2><p>从父表冗余一些数据到子表以方便排序。</p>
+<p>缓存衍生值，避免性价比不高的子查询。</p>
+<h1 id="缓存表和汇总表"><a href="#缓存表和汇总表" class="headerlink" title="缓存表和汇总表"></a>缓存表和汇总表</h1><p><em>更快的读，更慢的写</em></p>
+<blockquote>
+<p>缓存表(Cache Table)指那些包含能够轻松从Schema中获得的数据的表（但每次获取的速度慢），即表中的数据是逻辑冗余(Logically Redundant)。</p>
+<p>汇总表(Summary/Roll-up Table)是说包含通过聚合函数得到的数据的表，例如表中数据是通过GROUP BY得到的。对优化搜索和检索查询语句很有效。</p>
+</blockquote>
+<blockquote>
+<p>最常见的场景就是报表等统计工作。生成这些统计数据要扫描大量数据，实时计算成本很高且很多时候没有必要。而且查询这些数据还要加大量组合索引才能提高性能，然而这些索引又会对平时的更新和插入等操作造成影响。于是常用技术就是添加中间表到其他引擎(利用MyISAM更小的索引和全文检索能力)，甚至其他系统(Lucene或Sphinx)。</p>
+</blockquote>
+<h2 id="计数表"><a href="#计数表" class="headerlink" title="计数表"></a>计数表</h2><p>解决独立表并发问题可以建多行，根据id随机更新，然后统计时 sum() 。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">CREATE TABLE hit_counter(</span><br><span class="line">     slot tinyint unsigned not null primary key,</span><br><span class="line">     cnt int unsigned not null</span><br><span class="line">) ENGINE=InnoDB;</span><br><span class="line"></span><br><span class="line">UPDATE hit_counter SET cnt = cnt + 1 WHERE slot = RAND() * 100;</span><br><span class="line"></span><br><span class="line">SELECT SUM(cnt) FROM hit_counter;</span><br></pre></td></tr></table></figure>
+
+<p>可以按天或小时单独建行，旧时间可定时任务合并到统一的一行。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">CREATE TABLE daily_hit_counter(</span><br><span class="line">     day date not null,</span><br><span class="line">     slot tinyint unsigned not null primary key,</span><br><span class="line">     cnt int unsigned not null,</span><br><span class="line">     primary key(day, slot)</span><br><span class="line">) ENGINE=InnoDB;</span><br></pre></td></tr></table></figure>
+
+<h1 id="加速-alert-table-操作"><a href="#加速-alert-table-操作" class="headerlink" title="加速 alert table 操作"></a>加速 alert table 操作</h1><p>先禁用（删除）非唯一索引，导入数据之后重新启用索引。</p>
+]]></content>
+      <tags>
+        <tag>MySQL</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Linux 文件与目录补充</title>
+    <url>/2019/09/11/Linux-%E6%96%87%E4%BB%B6%E4%B8%8E%E7%9B%AE%E5%BD%95%E8%A1%A5%E5%85%85/</url>
+    <content><![CDATA[<h1 id="默认权限"><a href="#默认权限" class="headerlink" title="默认权限"></a>默认权限</h1><ul>
+<li>文件<br>默认没有可执行权限，即最大为 666</li>
+<li>目录<br>默认有所有权限，即 777</li>
+</ul>
+<p>umask 指定目前用户新建文件或目录时的权限默认值</p>
+<ul>
+<li><p>查看</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># umask [-S]</span><br><span class="line">-S ：以字母显示默认权限，否则是数字</span><br></pre></td></tr></table></figure>
+
+<p>其数字结果是该默认值要被拿掉的权限</p>
+<a id="more"></a></li>
+<li><p>设置</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># umask xyz</span><br></pre></td></tr></table></figure>
+
+<p>root 默认是 022，一般用户是 002<br>用字母进行计算更准确，如 (-rw-rw-rw-) - (——–wx) = -rw-rw-r–,而非 666 - 003 = 663</p>
+</li>
+</ul>
+<h1 id="隐藏属性"><a href="#隐藏属性" class="headerlink" title="隐藏属性"></a>隐藏属性</h1><h2 id="chattr"><a href="#chattr" class="headerlink" title="chattr"></a>chattr</h2><p>设置文件的隐藏属性<br>仅在 Ext2/Ext3 的文件系统生效</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># chattr [+-=][ASacdistu] dirname/filname</span><br><span class="line">+ ：仅增加某一个参数</span><br><span class="line">- ：仅减少某一个参数</span><br><span class="line">= ：仅有后面指定的参数</span><br><span class="line"></span><br><span class="line">A ：访问此文件/目录时，访问时间 atime 将不会被修改</span><br><span class="line">S ：对文件的修改将 同步 写入磁盘</span><br><span class="line">a ：root 限定，只能增加数据不能删改</span><br><span class="line">c ：文件将被自动压缩，读取时自动解压，存储时先压缩再存储</span><br><span class="line">d ：dump 程序被执行时，该文件/目录不会被 dump 备份</span><br><span class="line">i ：root 限定，该文件无法被增删改和设置连接</span><br></pre></td></tr></table></figure>
+
+<h2 id="lsattr"><a href="#lsattr" class="headerlink" title="lsattr"></a>lsattr</h2><p>显示文件的隐藏属性</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># lsattr [-adR] filname/dirname</span><br><span class="line">-a 包括隐藏文件</span><br><span class="line">-d 目录属性而非内容</span><br><span class="line">-R 递归，子目录数据也显示</span><br></pre></td></tr></table></figure>
+
+<h1 id="特殊权限"><a href="#特殊权限" class="headerlink" title="特殊权限"></a>特殊权限</h1><h2 id="SUID-4-u-s"><a href="#SUID-4-u-s" class="headerlink" title="SUID 4 u+s"></a>SUID 4 u+s</h2><p>SetUID 只对文件有效，文件所有者的 x 权限为 s</p>
+<ul>
+<li>仅对二进制程序有效，对于 shell script 无效，靠看其根本的二进制文件设置</li>
+<li>执行者对改程序有 x 权限 <font color="#D3D3D3">废话</font></li>
+<li>仅在执行过程 run-time 中有效</li>
+<li>执行者将拥有 owner 的权限</li>
+</ul>
+<p>例：/etc/shadow 记录了所有账号的密码，<strong>-rwsr-xr-x root root</strong> 仅有 root 可读可强制写入，但用户也能修改自己的密码</p>
+<h2 id="SGID-2-g-s"><a href="#SGID-2-g-s" class="headerlink" title="SGID 2 g+s"></a>SGID 2 g+s</h2><p>SetGID 用户组的 x 权限为 s<br>文件同 SUID<br>目录</p>
+<ul>
+<li>用户对此目录有 r 与 x 权限时可进入</li>
+<li>用户在此目录下的有效用户组将变成该目录的用户组</li>
+<li>若在此目录下有 w 权限，则新文件的用户组和此目录的用户组相同</li>
+<li><h2 id="SBIT-1-o-t"><a href="#SBIT-1-o-t" class="headerlink" title="SBIT 1 o+t"></a>SBIT 1 o+t</h2>StickyBit 只对目录有效，other 的 x 的权限为 x，仅用户自己和 root 有权利删除该目录下的文件/目录</li>
+</ul>
+<h1 id="查询文件"><a href="#查询文件" class="headerlink" title="查询文件"></a>查询文件</h1><h2 id="脚本文件名"><a href="#脚本文件名" class="headerlink" title="脚本文件名"></a>脚本文件名</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># which [-a] command</span><br><span class="line">-a 列出所有 PATH 目录中可以找到的同名命令，否者显示找到的第一个</span><br></pre></td></tr></table></figure>
+
+<p>根据 PATH 环境变量规范的路径查找，查不到 bash 内置的命令</p>
+<h2 id="文件名"><a href="#文件名" class="headerlink" title="文件名"></a>文件名</h2><ul>
+<li><p>whereis寻找特定文件 数据库</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># whereis [-bmsu] filname/filname</span><br><span class="line">-b 仅找二进制文件</span><br><span class="line">-m 仅找说明文件 manual 路径下的文件</span><br><span class="line">-s 仅找 source 源文件</span><br><span class="line">-u 其它特殊文件</span><br></pre></td></tr></table></figure>
+
+<p>查找文件，故不在 PATH 中也能找到；利用数据库，速度快但结果有延迟</p>
+</li>
+<li><p>locate 数据库</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># locate [-ir] keyword</span><br><span class="line">-i 忽略大小写</span><br><span class="line">-r 允许接正则表达式</span><br></pre></td></tr></table></figure>
+
+<p>可以只输入文件的部分名称(包括路径中)，根据 /var/lib/mlocate/ 中的数据，默认每天更新一次可能有延迟，可手动 updatedb 更新</p>
+</li>
+<li><p>find 硬盘</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># find [PATH] [option] [action]</span><br><span class="line">与时间有关的参数</span><br><span class="line">-mtime n 在 n 天前的 一天之内 被更改过的文件，前24小时即 0 </span><br><span class="line">-mtime +n 在 n 天之前被更改过的文件，不含本身 </span><br><span class="line">-mtime -n 在 n 天之内被更改过的文件，含本身 </span><br><span class="line">-newer file 列出比 file 更新的文件</span><br><span class="line"></span><br><span class="line">与用户或用户组名有关的参数</span><br><span class="line">-uid n 即 UID，记录在 /etc/passwd</span><br><span class="line">-gid n 即 GID，记录在 /etc/group</span><br><span class="line">-user name 用户账号名称</span><br><span class="line">-group name 用户组名</span><br><span class="line">-nouser 所有者不在 /etc/passwd 的文件</span><br><span class="line">-nogroup 所有用户组不在 /etc/passwd 的文件</span><br><span class="line"></span><br><span class="line">与文件权限及名称有关的参数</span><br><span class="line">-name filename 根据文件名查询</span><br><span class="line">-size [+-]SIZE 查找比 SIZE 大或小的文件 k代表1024bytes</span><br><span class="line">-type TYPE 查找文件类型为 TYPE 的；一般文件 f，设备文件 b c，目录 d，连接文件 1，socket s，FIFO p</span><br><span class="line">-perm mode 文件权限刚好是 mode 的文件，类似 chmod 的属性值</span><br><span class="line">-perm +-mode 文件权限全部包含/包含任意 mode 的文件</span><br><span class="line">    例</span><br><span class="line">    #find /bin /sbin -perm +6000</span><br><span class="line">    查找/bin /sbin 两个目录下具有 SUID SGID 的文件</span><br><span class="line">    </span><br><span class="line">其他操作</span><br><span class="line">-exec command 后面可以接其他命令处理查到的结果</span><br><span class="line">    #find / -perm +7000 -exec ls -l &#123;&#125;\;</span><br><span class="line">    &#123;&#125; 代表 find 查找到的内容，\; 转义 本身代表额外命令结束</span><br><span class="line">利用通配符查找</span><br><span class="line">    #find /etc -name &apos;*httpd*&apos;</span><br></pre></td></tr></table></figure></li>
+</ul>
+]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>文件</tag>
+        <tag>目录</tag>
+        <tag>属性权限</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Linux 文件系统操作</title>
     <url>/2019/09/28/Linux-%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E6%93%8D%E4%BD%9C/</url>
     <content><![CDATA[<h1 id="df-du"><a href="#df-du" class="headerlink" title="df du"></a>df du</h1><p>根据 super block 中的信息</p><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># df [-ahikHTm] [filenamedirname]</span><br><span class="line">-a : 列出所有文件系统，比默认多显示如内存中的</span><br><span class="line">-k : 以 KB 显示各文件系统</span><br><span class="line">-m : 同上</span><br><span class="line">-h : 自行以易阅读的单位显示</span><br><span class="line">-H : 以 1M=1000K 计算</span><br><span class="line">-T : 增加显示文件系统名称 type</span><br><span class="line">-i : 以 inode 数量显示</span><br></pre></td></tr></table></figure><a id="more"></a>
@@ -2042,7 +2198,56 @@ tring&gt; comp = (first, second) -&gt; ... ;</code> ；如果方法只有一个�
 </tbody></table><a id="more"></a>
 
 
-<p><strong>字符</strong><br>|  RE  |  意义  |<br>| :—: | :—: |<br>|  ˆword  |  待查找字符串在首行  |<br>|  word$  |  待查找字符串在尾行  |<br>|  .  |  一定有一个任意字符  |<br>|  \  |  转义  |<br>|  *  |  重复的零到无穷个前一个字符  |<br>|  [list]  |  list 中任意一个  |<br>|  [n1-n2]  |  要选取的字符范围  |<br>|  [ˆlist]  |  上上个取反  |<br>|  {n,m}  |      连续 n 到 m 个前一个字符  |<br>|  {n,}  |  连续 n 个以上的前一个字符 |<br><code># grep -n &#39;go\{2,3}g&#39; regular_express.txt</code> </p>
+<p><strong>字符</strong></p>
+<table>
+<thead>
+<tr>
+<th align="center">RE</th>
+<th align="center">意义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">ˆword</td>
+<td align="center">待查找字符串在首行</td>
+</tr>
+<tr>
+<td align="center">word$</td>
+<td align="center">待查找字符串在尾行</td>
+</tr>
+<tr>
+<td align="center">.</td>
+<td align="center">一定有一个任意字符</td>
+</tr>
+<tr>
+<td align="center">\</td>
+<td align="center">转义</td>
+</tr>
+<tr>
+<td align="center">*</td>
+<td align="center">重复的零到无穷个前一个字符</td>
+</tr>
+<tr>
+<td align="center">[list]</td>
+<td align="center">list 中任意一个</td>
+</tr>
+<tr>
+<td align="center">[n1-n2]</td>
+<td align="center">要选取的字符范围</td>
+</tr>
+<tr>
+<td align="center">[ˆlist]</td>
+<td align="center">上上个取反</td>
+</tr>
+<tr>
+<td align="center">{n,m}</td>
+<td align="center">连续 n 到 m 个前一个字符</td>
+</tr>
+<tr>
+<td align="center">{n,}</td>
+<td align="center">连续 n 个以上的前一个字符</td>
+</tr>
+</tbody></table>
+<p><code># grep -n &#39;go\{2,3}g&#39; regular_express.txt</code> </p>
 <p><strong>sed 工具</strong></p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># sed [-nefr] [动作]</span><br><span class="line">-n 安静模式，只显示 sed 处理过的列/操作</span><br><span class="line">默认列出所有 stdin 的数据</span><br><span class="line">-e 在命令行模式上进行 sed  的动作编辑</span><br><span class="line">-f 将 sed 的动作写入一个文件，可使用 -f filename 执行</span><br><span class="line">-r 使用扩展型正则表达式的语法</span><br><span class="line">-i 直接修改读取的文件内容而不由屏幕输出</span><br><span class="line">[n1],[n2] 动作 选择进行动作的行数，在 n1 到 n2 行之间进行</span><br><span class="line"></span><br><span class="line">function 参数</span><br><span class="line">a 新增，a 后的字符串在目前的下一行新增一行出现</span><br><span class="line">c 替换，c 后的字符串替换 n1,n2 之间的行</span><br><span class="line">d 删除</span><br><span class="line">i 插入，在目前的上一行新增一行出现</span><br><span class="line">p 打印，通常与 sed -n 用</span><br><span class="line">s 替换，通常接正则表达式</span><br></pre></td></tr></table></figure>
 
@@ -2053,7 +2258,6 @@ tring&gt; comp = (first, second) -&gt; ... ;</code> ；如果方法只有一个�
 <p>sed 可以直接修改文件内容，使用 -i</p>
 <h1 id="文件的格式化"><a href="#文件的格式化" class="headerlink" title="文件的格式化"></a>文件的格式化</h1><p><strong>printf</strong></p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># printf &apos;打印格式&apos; 实际内容</span><br><span class="line">\a 警告音</span><br><span class="line">\b backspace 退格键</span><br><span class="line">\f 清除屏幕</span><br><span class="line">\n 输出新一行</span><br><span class="line">\r enter 回车键</span><br><span class="line">\t  水平 [tab]</span><br><span class="line">\v 垂直 [tab]</span><br><span class="line">\xNN 转换两位数 NN 数值为字符</span><br></pre></td></tr></table></figure>
-
 
 <p><strong>awk</strong><br>处理每一行的字段内的数据，默认分隔符是空格键或 [tab] 键</p>
 <p>内置变量</p>
@@ -2202,6 +2406,62 @@ tring&gt; comp = (first, second) -&gt; ... ;</code> ；如果方法只有一个�
 </center></center>]]></content>
   </entry>
   <entry>
+    <title>Padavan 添加 NameSilo DDNS 服务</title>
+    <url>/2020/09/11/Padavan-%E6%B7%BB%E5%8A%A0-NameSilo-DDNS-%E6%9C%8D%E5%8A%A1/</url>
+    <content><![CDATA[<p>步骤同之前 <a href="https://www.yuyurbq.icu/2020/03/15/Padavan-%E6%B7%BB%E5%8A%A0-GoDaddy-DDNS-%E6%9C%8D%E5%8A%A1/" target="_blank" rel="noopener">Padavan 添加 GoDaddy DDNS 服务</a> ；</p>
+<p>apikey 到 <a href="https://www.namesilo.com/account/api-manager" target="_blank" rel="noopener">https://www.namesilo.com/account/api-manager</a> 创建；</p>
+<p>shell 脚本如下：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"></span><br><span class="line">MYAPIKEY=<span class="string">"填apikey"</span></span><br><span class="line">MYDOMAIN=<span class="string">"域名"</span></span><br><span class="line">MYHOST=<span class="string">"A记录名称"</span></span><br><span class="line">MYFULLDOMAIN=<span class="string">"<span class="variable">$MYHOST</span>.<span class="variable">$MYDOMAIN</span>"</span></span><br><span class="line"></span><br><span class="line">MYIP=`curl -s <span class="string">"https://api.ipify.org"</span>`</span><br><span class="line">OLDIP=$(tail -n 1 /home/root/iprecord.txt)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> [<span class="string">"<span class="variable">$OLDIP</span>"</span> == <span class="string">"<span class="variable">$MYIP</span>"</span>]; <span class="keyword">then</span></span><br><span class="line">  <span class="built_in">echo</span> <span class="string">"Nothing happened."</span></span><br><span class="line">  <span class="built_in">exit</span> 0</span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"<span class="variable">$MYIP</span>"</span> &gt; /home/root/iprecord.txt</span><br><span class="line"><span class="built_in">echo</span> <span class="string">"IP has changed."</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Fetch DNS record ID</span></span><br><span class="line">RESPONSE=<span class="string">"<span class="variable">$(curl -s "https://www.namesilo.com/api/dnsListRecords?version=1&amp;type=xml&amp;key=$MYAPIKEY&amp;domain=$MYDOMAIN")</span>"</span></span><br><span class="line">RECORD_ID=<span class="string">"<span class="variable">$(echo $RESPONSE | sed -n 's/^.*&lt;record_id&gt;\(.*\)&lt;\/record_id&gt;&lt;type&gt;A&lt;\/type&gt;&lt;host&gt;'$MYFULLDOMAIN'&lt;\/host&gt;.*$/\1/p')</span>"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Update</span></span><br><span class="line">RESPONSE=<span class="string">"<span class="variable">$(curl -s "https://www.namesilo.com/api/dnsUpdateRecord?version=1&amp;type=xml&amp;key=$MYAPIKEY&amp;domain=$MYDOMAIN&amp;rrid=$RECORD_ID&amp;rrhost=$MYHOST&amp;rrvalue=$MYIP&amp;rrttl=7207")</span>"</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">exit</span> 0</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>瞎折腾</category>
+      </categories>
+      <tags>
+        <tag>DDNS</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>久久久远的2017</title>
+    <url>/2020/01/30/%E4%B9%85%E4%B9%85%E4%B9%85%E8%BF%9C%E7%9A%842017/</url>
+    <content><![CDATA[<p>图片已压缩… 阿里云 OSS 太贵了 qvq</p>
+<p><img src="https://i.loli.net/2020/03/02/dHeotmyg2lCNqRF.jpg" alt="0212-01.jpg"></p>
+<p><em>那天和对象出来干啥来着的… 咱俩坐在水游城负一楼休息，正巧在扶梯那。</em></p>
+<p><em>相比另一张横幅的，这张更有气势，但内容有点乱。</em></p>
+<a id="more"></a>
+
+<hr>
+<p><img src="https://i.loli.net/2020/03/02/zcT5wmgXStBd7vf.jpg" alt="0212-02.jpg"></p>
+<p><em>和舍友们在玄武湖遇到的一只老猫，毛都秃了x 。</em></p>
+<p><em>emmm 比较…气质？</em></p>
+<hr>
+<p><img src="https://i.loli.net/2020/03/02/fBzIupQEiRSAxa1.jpg" alt="0212-03.jpg"></p>
+<p><em>学校图书馆，录完对比视频顺手合影。想表达锤子科技产品理念的更迭，好像失败了x ，现在看简直是对 M 系列的鞭尸。</em></p>
+<p><em>为了让 M 产生虚化两者前后距离实际相当远，用长焦压缩的距离。暖光比较符合 M 系列的性格和地位，也能和锐利的坚果产生冲突。对象打光穿帮了，应该挡一下坚果方向的，嗯对象的锅。</em></p>
+<hr>
+<p><img src="https://i.loli.net/2020/03/02/C3y4xmScps2hEdt.jpg" alt="0212-04.jpeg"></p>
+<p><em>17 年才摸到真机，比后面几代圆角怪x 好看多了。</em></p>
+<hr>
+<p><img src="https://i.loli.net/2020/03/02/5o1rHYLpjWNMZC3.jpg" alt="0212-05.jpeg"></p>
+<p><em>宿舍床上拍的，按使用时间算遗照。是个正经大法，不像后来某些 A25 A35 A45 A55 x</em></p>
+<hr>
+<p><img src="https://i.loli.net/2020/03/02/HoaDWZpUPduylYC.jpg" alt="0212-06.jpg"></p>
+<p><em>大晚上爬紫金山还吃了晚归，第一次拍全景弄拼接，嗯也就这一次。</em></p>
+<p><em>光污染没救回来，天空占比也多了。紫峰左边那部分截掉其实也可，当时为了长吧x ，左右下角一片黑是因为机位没选好，山坡和护栏把视野挡了。</em></p>
+]]></content>
+      <categories>
+        <category>碎碎念</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>关于 Java 标签404</title>
+    <url>/2019/12/08/%E5%85%B3%E4%BA%8E-Java-%E6%A0%87%E7%AD%BE404/</url>
+    <content><![CDATA[<p><del>之前的标签名是 JAVA，后来改了小写，hexo 好像没有对标签的文件夹 <code>git mv</code>，有时间再手动改吧…</del></p>
+<p><del>干脆直接戳 <a href="https://www.yuyurbq.club/categories/JAVA/">https://www.yuyurbq.club/categories/JAVA/</a> 吧…</del></p>
+<p>没事了</p>
+]]></content>
+  </entry>
+  <entry>
     <title>Vim 思维导图</title>
     <url>/2020/02/02/Vim-%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE/</url>
     <content><![CDATA[<p>没钱开 XMind… 理直气壮不去水印</p>
@@ -2216,33 +2476,26 @@ tring&gt; comp = (first, second) -&gt; ... ;</code> ；如果方法只有一个�
       </tags>
   </entry>
   <entry>
-    <title>ssh 修改 iLO 的 SSL 端口</title>
-    <url>/2020/05/04/ssh%E4%BF%AE%E6%94%B9iLO%E7%9A%84SSL%E7%AB%AF%E5%8F%A3/</url>
-    <content><![CDATA[<p>问题：修改 iLO Web 服务器 SSL 端口到 <strong>21</strong> 后无法连接。</p><p>原因：浏览器认为不安全（http 访问 21）</p><p>解决：改回默认或者换个不冲突的。</p><hr><ol>
-<li><p>VPN 接入内网，ssh 登录 iLO。</p>
-</li>
-<li><p>不认 ls cat 什么的，<code>help</code> 说要用 <code>show</code> ，<em>system1</em> 目录是主机信息和 iLO 没啥关系。</p>
-<p> <img src="https://i.loli.net/2020/05/04/GRYOdgyHnFZmC1f.png" alt="0505-01.png"></p>
-</li>
-<li><p><code>show /map1</code> 能找到一个配置文件 <em>config1</em> ，<code>show /map1/config1</code> 看一下，果然有 <em>oemhp_sslport</em> 这项 (图片是修改后的) ：</p>
-<p> <img src="https://i.loli.net/2020/05/04/1KtHeNEFklS75PR.png" alt="0505-03.png"></p>
-</li>
-<li><p>最后 <code>cd /map1/config1</code> :</p>
- <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">&lt;/map1/config1&gt;hpiLO-&gt; set oemhp_sslport=443</span><br></pre></td></tr></table></figure>
-
-</li>
-</ol><a id="more"></a>
-
-
-
-
-<hr>
-<p>校园网访问家里的服务器要连上机场当跳板 (没有国内 vps) 。今天 ssh 居然裸连上了… 然后恶从胆边生 (不是) 试了隔壁的 FTP 端口 (x</p>
-<p>不过远程卡真的会用上 21 端口 <del>(某300页手册说) iLO 进入某个恢复模式时会自启一个 FTP 服务…</del>  </p>
-]]></content>
+    <title>变量赋值与构造函数的执行顺序</title>
+    <url>/2019/09/06/%E5%8F%98%E9%87%8F%E8%B5%8B%E5%80%BC%E4%B8%8E%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E7%9A%84%E6%89%A7%E8%A1%8C%E9%A1%BA%E5%BA%8F/</url>
+    <content><![CDATA[<ol>
+<li>子类给成员变量分配空间，在栈中默认初始化成0</li>
+<li>调用子类构造函数，因为继承，调用 super();</li>
+<li>调用父类构造函数，因为覆盖，执行子类方法</li>
+<li>执行父类构造函数其他语句</li>
+<li>父类构造函数结束弹栈</li>
+<li>子类对成员变量显示初始化(赋值)</li>
+<li>调用子类构造函数其他语句   </li>
+</ol>
+<a id="more"></a>
+<p><strong>检验</strong></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Fu</span></span>&#123;</span><br><span class="line">    Fu()</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">this</span>.getNum();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">getNum</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"父类"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Zi</span> <span class="keyword">extends</span> <span class="title">Fu</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> num=<span class="number">4</span>;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Zi</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>();</span><br><span class="line">        System.out.println(<span class="string">"子类构造函数中"</span>+<span class="keyword">this</span>.num);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">getNum</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"getNum方法"</span>+<span class="keyword">this</span>.num);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">learn</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">new</span> Zi();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
       <categories>
-        <category>瞎折腾</category>
+        <category>Java</category>
       </categories>
+      <tags>
+        <tag>构造函数</tag>
+      </tags>
   </entry>
   <entry>
     <title>vim 的乱七八糟</title>
@@ -2311,66 +2564,33 @@ tring&gt; comp = (first, second) -&gt; ... ;</code> ；如果方法只有一个�
       </tags>
   </entry>
   <entry>
-    <title>久久久远的2017</title>
-    <url>/2020/01/30/%E4%B9%85%E4%B9%85%E4%B9%85%E8%BF%9C%E7%9A%842017/</url>
-    <content><![CDATA[<p>图片已压缩… 阿里云 OSS 太贵了 qvq</p>
-<p><img src="https://i.loli.net/2020/03/02/dHeotmyg2lCNqRF.jpg" alt="0212-01.jpg"></p>
-<p><em>那天和对象出来干啥来着的… 咱俩坐在水游城负一楼休息，正巧在扶梯那。</em></p>
-<p><em>相比另一张横幅的，这张更有气势，但内容有点乱。</em></p>
-<a id="more"></a>
+    <title>ssh 修改 iLO 的 SSL 端口</title>
+    <url>/2020/05/04/ssh%E4%BF%AE%E6%94%B9iLO%E7%9A%84SSL%E7%AB%AF%E5%8F%A3/</url>
+    <content><![CDATA[<p>问题：修改 iLO Web 服务器 SSL 端口到 <strong>21</strong> 后无法连接。</p><p>原因：浏览器认为不安全（http 访问 21）</p><p>解决：改回默认或者换个不冲突的。</p><hr><ol>
+<li><p>VPN 接入内网，ssh 登录 iLO。</p>
+</li>
+<li><p>不认 ls cat 什么的，<code>help</code> 说要用 <code>show</code> ，<em>system1</em> 目录是主机信息和 iLO 没啥关系。</p>
+<p> <img src="https://i.loli.net/2020/05/04/GRYOdgyHnFZmC1f.png" alt="0505-01.png"></p>
+</li>
+<li><p><code>show /map1</code> 能找到一个配置文件 <em>config1</em> ，<code>show /map1/config1</code> 看一下，果然有 <em>oemhp_sslport</em> 这项 (图片是修改后的) ：</p>
+<p> <img src="https://i.loli.net/2020/05/04/1KtHeNEFklS75PR.png" alt="0505-03.png"></p>
+</li>
+<li><p>最后 <code>cd /map1/config1</code> :</p>
+ <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">&lt;/map1/config1&gt;hpiLO-&gt; set oemhp_sslport=443</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol><a id="more"></a>
+
+
+
 
 <hr>
-<p><img src="https://i.loli.net/2020/03/02/zcT5wmgXStBd7vf.jpg" alt="0212-02.jpg"></p>
-<p><em>和舍友们在玄武湖遇到的一只老猫，毛都秃了x 。</em></p>
-<p><em>emmm 比较…气质？</em></p>
-<hr>
-<p><img src="https://i.loli.net/2020/03/02/fBzIupQEiRSAxa1.jpg" alt="0212-03.jpg"></p>
-<p><em>学校图书馆，录完对比视频顺手合影。想表达锤子科技产品理念的更迭，好像失败了x ，现在看简直是对 M 系列的鞭尸。</em></p>
-<p><em>为了让 M 产生虚化两者前后距离实际相当远，用长焦压缩的距离。暖光比较符合 M 系列的性格和地位，也能和锐利的坚果产生冲突。对象打光穿帮了，应该挡一下坚果方向的，嗯对象的锅。</em></p>
-<hr>
-<p><img src="https://i.loli.net/2020/03/02/C3y4xmScps2hEdt.jpg" alt="0212-04.jpeg"></p>
-<p><em>17 年才摸到真机，比后面几代圆角怪x 好看多了。</em></p>
-<hr>
-<p><img src="https://i.loli.net/2020/03/02/5o1rHYLpjWNMZC3.jpg" alt="0212-05.jpeg"></p>
-<p><em>宿舍床上拍的，按使用时间算遗照。是个正经大法，不像后来某些 A25 A35 A45 A55 x</em></p>
-<hr>
-<p><img src="https://i.loli.net/2020/03/02/HoaDWZpUPduylYC.jpg" alt="0212-06.jpg"></p>
-<p><em>大晚上爬紫金山还吃了晚归，第一次拍全景弄拼接，嗯也就这一次。</em></p>
-<p><em>光污染没救回来，天空占比也多了。紫峰左边那部分截掉其实也可，当时为了长吧x ，左右下角一片黑是因为机位没选好，山坡和护栏把视野挡了。</em></p>
+<p>校园网访问家里的服务器要连上机场当跳板 (没有国内 vps) 。今天 ssh 居然裸连上了… 然后恶从胆边生 (不是) 试了隔壁的 FTP 端口 (x</p>
+<p>不过远程卡真的会用上 21 端口 <del>(某300页手册说) iLO 进入某个恢复模式时会自启一个 FTP 服务…</del>  </p>
 ]]></content>
       <categories>
-        <category>碎碎念</category>
+        <category>瞎折腾</category>
       </categories>
-  </entry>
-  <entry>
-    <title>关于 Java 标签404</title>
-    <url>/2019/12/08/%E5%85%B3%E4%BA%8E-Java-%E6%A0%87%E7%AD%BE404/</url>
-    <content><![CDATA[<p><del>之前的标签名是 JAVA，后来改了小写，hexo 好像没有对标签的文件夹 <code>git mv</code>，有时间再手动改吧…</del></p>
-<p><del>干脆直接戳 <a href="https://www.yuyurbq.club/categories/JAVA/">https://www.yuyurbq.club/categories/JAVA/</a> 吧…</del></p>
-<p>没事了</p>
-]]></content>
-  </entry>
-  <entry>
-    <title>变量赋值与构造函数的执行顺序</title>
-    <url>/2019/09/06/%E5%8F%98%E9%87%8F%E8%B5%8B%E5%80%BC%E4%B8%8E%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E7%9A%84%E6%89%A7%E8%A1%8C%E9%A1%BA%E5%BA%8F/</url>
-    <content><![CDATA[<ol>
-<li>子类给成员变量分配空间，在栈中默认初始化成0</li>
-<li>调用子类构造函数，因为继承，调用 super();</li>
-<li>调用父类构造函数，因为覆盖，执行子类方法</li>
-<li>执行父类构造函数其他语句</li>
-<li>父类构造函数结束弹栈</li>
-<li>子类对成员变量显示初始化(赋值)</li>
-<li>调用子类构造函数其他语句   </li>
-</ol>
-<a id="more"></a>
-<p><strong>检验</strong></p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Fu</span></span>&#123;</span><br><span class="line">    Fu()</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">this</span>.getNum();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">getNum</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"父类"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Zi</span> <span class="keyword">extends</span> <span class="title">Fu</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> num=<span class="number">4</span>;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Zi</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>();</span><br><span class="line">        System.out.println(<span class="string">"子类构造函数中"</span>+<span class="keyword">this</span>.num);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">getNum</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"getNum方法"</span>+<span class="keyword">this</span>.num);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">learn</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">new</span> Zi();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>Java</category>
-      </categories>
-      <tags>
-        <tag>构造函数</tag>
-      </tags>
   </entry>
   <entry>
     <title>对象实例化过程</title>
@@ -2465,6 +2685,29 @@ tring&gt; comp = (first, second) -&gt; ... ;</code> ；如果方法只有一个�
       </tags>
   </entry>
   <entry>
+    <title>汇编课程记录 1</title>
+    <url>/2019/09/23/%E6%B1%87%E7%BC%96%E8%AF%BE%E7%A8%8B%E8%AE%B0%E5%BD%95-1/</url>
+    <content><![CDATA[<h1 id="存储器"><a href="#存储器" class="headerlink" title="存储器"></a>存储器</h1><p>为了区分不同的内存单元（一字节），每个单元会分配一个存储器地址；地址在计算机中用无符号二进制数表示，可简写成十六进制<br>而字，双字，四字数据类型占用多个单元，在低地址中存放低位字节数据，高地址存放高位字节数据，访问时根据最低单元的地址依此存取后续字节</p>
+<a id="more"></a>
+<blockquote>
+<p>MSB (Most Significant Byte)，最高有效字节，是一个数据中权值最大的那一个字节<br>LSB (Least Significant Byte)，最低有效字节，是一个数据中权值最小的那一个字节<br>Little-Endian，是指数据的高字节(MSB)保存在内存的高地址中，而数据的低字节(LSB)保存在内存的低地址中，这种存储模式将地址的高低和数据位权有效地结合起来，高地址部分权值高，低地址部分权值低<br>例如：整型数 0x1A2B3C4D 在内存中存储的方式如下:<br><img src="https://i.loli.net/2019/09/24/kiIS2B8DAxwZdWy.jpg" alt="ram.jpg"></p>
+</blockquote>
+<h1 id="实模式"><a href="#实模式" class="headerlink" title="实模式"></a>实模式</h1><p>本身意义是代表真实的物理地址<br>8086CPU 的数据总线为 16 位，一次最多读取 2^16=64KB 数据（故实模式每个段最大64KB），但地址总线为 20 位，最大寻址能力是 2^20=1MB<br>实模式下存储器物理地址由段基址和偏移量给出。段基址必须定位在 16 的整数倍上，使得在十六进制表示的地址中最低位为 0，于是 1MB 空间的的 20 位地址的低 4 位可以不表示，而高 16 位就可以放进段寄存器。偏移地址虽然是四位但放在十六位寄存器，即可能跨越本身的分段，所以同一个物理地址可以有不同表示。<br><strong>10H × 段基址 + 偏移量 = 物理地址</strong></p>
+<ul>
+<li>代码段为 CS:IP</li>
+<li>堆栈段为 SS:SP</li>
+</ul>
+]]></content>
+      <categories>
+        <category>汇编</category>
+      </categories>
+      <tags>
+        <tag>存储器</tag>
+        <tag>Little-Endian</tag>
+        <tag>实模式寻址</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>服务器驯化-之一</title>
     <url>/2020/03/02/%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%A9%AF%E5%8C%96-%E4%B9%8B%E4%B8%80/</url>
     <content><![CDATA[<h1 id="选择"><a href="#选择" class="headerlink" title="选择"></a>选择</h1><h2 id="Ivy-Bridge-EP"><a href="#Ivy-Bridge-EP" class="headerlink" title="Ivy Bridge EP"></a>Ivy Bridge EP</h2><p>制程比上一代新，价格也够便宜，可惜没有 AVX2 指令集。</p><p>撇掉高功耗也没啥可选的了：</p><table>
@@ -2537,77 +2780,6 @@ tring&gt; comp = (first, second) -&gt; ... ;</code> ；如果方法只有一个�
       </tags>
   </entry>
   <entry>
-    <title>汇编课程记录 1</title>
-    <url>/2019/09/23/%E6%B1%87%E7%BC%96%E8%AF%BE%E7%A8%8B%E8%AE%B0%E5%BD%95-1/</url>
-    <content><![CDATA[<h1 id="存储器"><a href="#存储器" class="headerlink" title="存储器"></a>存储器</h1><p>为了区分不同的内存单元（一字节），每个单元会分配一个存储器地址；地址在计算机中用无符号二进制数表示，可简写成十六进制<br>而字，双字，四字数据类型占用多个单元，在低地址中存放低位字节数据，高地址存放高位字节数据，访问时根据最低单元的地址依此存取后续字节</p>
-<a id="more"></a>
-<blockquote>
-<p>MSB (Most Significant Byte)，最高有效字节，是一个数据中权值最大的那一个字节<br>LSB (Least Significant Byte)，最低有效字节，是一个数据中权值最小的那一个字节<br>Little-Endian，是指数据的高字节(MSB)保存在内存的高地址中，而数据的低字节(LSB)保存在内存的低地址中，这种存储模式将地址的高低和数据位权有效地结合起来，高地址部分权值高，低地址部分权值低<br>例如：整型数 0x1A2B3C4D 在内存中存储的方式如下:<br><img src="https://i.loli.net/2019/09/24/kiIS2B8DAxwZdWy.jpg" alt="ram.jpg"></p>
-</blockquote>
-<h1 id="实模式"><a href="#实模式" class="headerlink" title="实模式"></a>实模式</h1><p>本身意义是代表真实的物理地址<br>8086CPU 的数据总线为 16 位，一次最多读取 2^16=64KB 数据（故实模式每个段最大64KB），但地址总线为 20 位，最大寻址能力是 2^20=1MB<br>实模式下存储器物理地址由段基址和偏移量给出。段基址必须定位在 16 的整数倍上，使得在十六进制表示的地址中最低位为 0，于是 1MB 空间的的 20 位地址的低 4 位可以不表示，而高 16 位就可以放进段寄存器。偏移地址虽然是四位但放在十六位寄存器，即可能跨越本身的分段，所以同一个物理地址可以有不同表示。<br><strong>10H × 段基址 + 偏移量 = 物理地址</strong></p>
-<ul>
-<li>代码段为 CS:IP</li>
-<li>堆栈段为 SS:SP</li>
-</ul>
-]]></content>
-      <categories>
-        <category>汇编</category>
-      </categories>
-      <tags>
-        <tag>存储器</tag>
-        <tag>Little-Endian</tag>
-        <tag>实模式寻址</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>汇编课程记录 2</title>
-    <url>/2019/10/06/%E6%B1%87%E7%BC%96%E8%AF%BE%E7%A8%8B%E8%AE%B0%E5%BD%95-2/</url>
-    <content><![CDATA[<p>太困了没听… 实际上不算课程记录…</p><h1 id="寄存器"><a href="#寄存器" class="headerlink" title="寄存器"></a>寄存器</h1><p>CPU 优先读写寄存器，依靠名称而非地址区分数据。80386 以上的 CPU 有 </p><p>8 个 32 位通用寄存器：</p><ul>
-<li>EAX 有时也是累加器</li>
-<li>EBX</li>
-<li>ECX</li>
-<li>EDX</li>
-<li>ESP 栈指针/栈顶指针，栈顶的偏移量</li>
-<li>EBP</li>
-<li>ESI</li>
-<li>EDI</li>
-</ul><p>6 个 16 位段寄存器</p><ul>
-<li>CS 代码段</li>
-<li>SS 堆栈段，配合 ESP 食用</li>
-<li>DS 主数据段</li>
-<li>ES 附加数据段</li>
-<li>FS</li>
-<li>GS</li>
-</ul><a id="more"></a>
-
-
-
-
-
-<p>2 个 32 位控制寄存器</p>
-<ul>
-<li>EIP 指令指针，存放偏移量部分，配合 CS 指出下一条指令的地址</li>
-<li>FLAGS 标志寄存器</li>
-</ul>
-<h1 id="内存"><a href="#内存" class="headerlink" title="内存"></a>内存</h1><p>堆 Heap<br>来自用户主动请求，从起始地址开始向高位增长，不会自动消失</p>
-<p>栈 Stack<br>函数运行而临时占用的内存区域，为每个函数建立一个桢，运行结束则回收桢释放内部变量不再占用内存，由内存区域的结束地址开始向低位，后进先出；<br>生成新的帧即入栈 push；栈的回收即出栈 pop</p>
-<h1 id="段寄存器装入"><a href="#段寄存器装入" class="headerlink" title="段寄存器装入"></a>段寄存器装入</h1><p>ASSUME 仅指出段和段寄存器之间的关系，并未真正装入</p>
-<p>DS/ES<br>串操作的目操作数必须为 ES:DI</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">MOV AX,DATA</span><br><span class="line">MOV DS,AX</span><br></pre></td></tr></table></figure>
-
-<p>CS IP<br>利用 END 后标号完成，系统自动将 START 所在段段地址送 CS 段内偏移地址送 IP</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">START:</span><br><span class="line">    .</span><br><span class="line">    .</span><br><span class="line">    .</span><br><span class="line">    END    START</span><br></pre></td></tr></table></figure>
-
-<p>SS SP<br>定义堆栈段时将参数写全，则系统自动装入，用于堆栈的内存段地址送 SS，该堆栈的栈顶送 SP</p>
-]]></content>
-      <categories>
-        <category>汇编</category>
-      </categories>
-      <tags>
-        <tag>寄存器</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>汇编课程记录 3</title>
     <url>/2019/10/27/%E6%B1%87%E7%BC%96%E8%AF%BE%E7%A8%8B%E8%AE%B0%E5%BD%95-3/</url>
     <content><![CDATA[<h1 id="数据寻址方式"><a href="#数据寻址方式" class="headerlink" title="数据寻址方式"></a>数据寻址方式</h1><p><strong>立即数寻址</strong><br>操作数直接存放于指令</p><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">MOV AX,1234H    ;即1234H</span><br></pre></td></tr></table></figure><p><strong>寄存器寻址</strong><br>操作数存放于 CPU 的某个寄存器中，不需访问存储器速度快<br>8 位操作数寄存器可以是 AH AL BH BL CH CL DH DL<br>16 位操作数寄存器可以是 AX BX CX DX SP BP SI DI</p><a id="more"></a>
@@ -2656,41 +2828,51 @@ tring&gt; comp = (first, second) -&gt; ... ;</code> ；如果方法只有一个�
       </tags>
   </entry>
   <entry>
-    <title>汇编课程记录 4</title>
-    <url>/2019/11/04/%E6%B1%87%E7%BC%96%E8%AF%BE%E7%A8%8B%E8%AE%B0%E5%BD%95-4/</url>
-    <content><![CDATA[<p>这篇里的指令都不影响标志位</p><h1 id="通用数据传送指令"><a href="#通用数据传送指令" class="headerlink" title="通用数据传送指令"></a>通用数据传送指令</h1><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">MOV DST,SRC ;传送指令</span><br></pre></td></tr></table></figure><p>目不能为 CS IP 或立即数<br>存储单元和段寄存器之间不能直接传送数据，要用通用寄存器为桥梁<br>立即数不能直接送到段寄存器，同样要用通用寄存器为桥梁</p><hr><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">PUSH SRC ;进栈指令</span><br><span class="line">;(SP) ⬅ (SP) -2</span><br><span class="line">;((SP+1), (SP)) ⬅ (SRC)</span><br><span class="line">POP DST ;出栈指令</span><br><span class="line">;(DST) ⬅ ((SP+1), (SP))</span><br><span class="line">;(SP) ⬅ (SP) +2</span><br></pre></td></tr></table></figure><a id="more"></a>
+    <title>汇编课程记录 2</title>
+    <url>/2019/10/06/%E6%B1%87%E7%BC%96%E8%AF%BE%E7%A8%8B%E8%AE%B0%E5%BD%95-2/</url>
+    <content><![CDATA[<p>太困了没听… 实际上不算课程记录…</p><h1 id="寄存器"><a href="#寄存器" class="headerlink" title="寄存器"></a>寄存器</h1><p>CPU 优先读写寄存器，依靠名称而非地址区分数据。80386 以上的 CPU 有 </p><p>8 个 32 位通用寄存器：</p><ul>
+<li>EAX 有时也是累加器</li>
+<li>EBX</li>
+<li>ECX</li>
+<li>EDX</li>
+<li>ESP 栈指针/栈顶指针，栈顶的偏移量</li>
+<li>EBP</li>
+<li>ESI</li>
+<li>EDI</li>
+</ul><p>6 个 16 位段寄存器</p><ul>
+<li>CS 代码段</li>
+<li>SS 堆栈段，配合 ESP 食用</li>
+<li>DS 主数据段</li>
+<li>ES 附加数据段</li>
+<li>FS</li>
+<li>GS</li>
+</ul><a id="more"></a>
 
 
 
 
 
+<p>2 个 32 位控制寄存器</p>
+<ul>
+<li>EIP 指令指针，存放偏移量部分，配合 CS 指出下一条指令的地址</li>
+<li>FLAGS 标志寄存器</li>
+</ul>
+<h1 id="内存"><a href="#内存" class="headerlink" title="内存"></a>内存</h1><p>堆 Heap<br>来自用户主动请求，从起始地址开始向高位增长，不会自动消失</p>
+<p>栈 Stack<br>函数运行而临时占用的内存区域，为每个函数建立一个桢，运行结束则回收桢释放内部变量不再占用内存，由内存区域的结束地址开始向低位，后进先出；<br>生成新的帧即入栈 push；栈的回收即出栈 pop</p>
+<h1 id="段寄存器装入"><a href="#段寄存器装入" class="headerlink" title="段寄存器装入"></a>段寄存器装入</h1><p>ASSUME 仅指出段和段寄存器之间的关系，并未真正装入</p>
+<p>DS/ES<br>串操作的目操作数必须为 ES:DI</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">MOV AX,DATA</span><br><span class="line">MOV DS,AX</span><br></pre></td></tr></table></figure>
 
-<p>PUSH 操作数为 16 位的寄存器，存储器，不允许立即数，避免 PUSH SP，因为 8086/8088 和 80286 对此的处理方式不同<br>POP 目为 16 位的寄存器（不允许 CS 段寄存器），存储器<br>堆栈的存取必须以字为单位，PUSH 和 POP 只能做字操作</p>
-<hr>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">XCHG DST, SCR ;交换指令</span><br></pre></td></tr></table></figure>
+<p>CS IP<br>利用 END 后标号完成，系统自动将 START 所在段段地址送 CS 段内偏移地址送 IP</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">START:</span><br><span class="line">    .</span><br><span class="line">    .</span><br><span class="line">    .</span><br><span class="line">    END    START</span><br></pre></td></tr></table></figure>
 
-<p>两个操作数必须有一个在寄存器中，且不允许段寄存器，允许字或字节操作（长度 8/16 位），允许立即数寻址以外的寻址方式</p>
-<h1 id="累加器专用传送指令"><a href="#累加器专用传送指令" class="headerlink" title="累加器专用传送指令"></a>累加器专用传送指令</h1><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">IN AL, PORT ;长格式-字节</span><br><span class="line">IN AX, PORT ;长格式-字</span><br><span class="line">IN AL, DX ;短格式-字节</span><br><span class="line">IN AX, DX ;短格式-字</span><br></pre></td></tr></table></figure>
-
-<p>将外部设备的信息输入到 CPU 的累加器 AL/AX 中，源操作数是外部设备端口地址，通过 DX 寄存器指明的地址可以间接寻址 65536 个端口，而用立即数直接指明的地址只能寻址 256 个</p>
-<hr>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">OUT PORT, AL ;长格式-字节</span><br><span class="line">OUT PORT, AX ;长格式-字</span><br><span class="line">OUT DX, AL ;短格式-字节</span><br><span class="line">OUT DX, AX ;短格式-字</span><br></pre></td></tr></table></figure>
-
-<p>将 CPU 累加器中的信息输出到外部设备，基本和 IN 反过来</p>
-<h1 id="地址传送指令"><a href="#地址传送指令" class="headerlink" title="地址传送指令"></a>地址传送指令</h1><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">LEA REG, SRC ;有效地址送寄存器指令</span><br><span class="line"></span><br><span class="line">LEA BX, TABLE</span><br><span class="line">MOV BX, OFFSET TABLE</span><br><span class="line">;两个功能相同，MOV 执行速度比 LEA 快，但 OFFSET 只能用简单符号地址</span><br><span class="line">;与 MOV DST,SRC 区别，此处得到的是有效地址而非存储单元的内容</span><br></pre></td></tr></table></figure>
-
-<p>REG 表示寄存器，将源操作数的有效地址送到指定寄存器，且必须为 16 位通用寄存器</p>
-<hr>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">LDS REG, SRC ;送寄存器和 DS 指令</span><br><span class="line">LES REG, SRC ;送寄存器和 ES 指令</span><br><span class="line">;(REG) ⬅ (SRC)</span><br><span class="line">;(SREG) ⬅ (SRC+2)</span><br><span class="line">;将存储单元中存放的 16 位偏移地址（即 SRC 的内容）装入</span><br><span class="line">;指定寄存器，然后将（SRC+2）中的 16 位段地址装入指定的</span><br><span class="line">;段寄存器</span><br></pre></td></tr></table></figure>
-
-<p>SREG 表示 DS 或 ES，源操作数只能用存储器寻址，目不允许段寄存器</p>
-<h1 id="类型转换指令"><a href="#类型转换指令" class="headerlink" title="类型转换指令"></a>类型转换指令</h1><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">CBW ;字节转字</span><br><span class="line">;将 AL 中的内容扩展到 AH，若 (AL) 最高有效位为 0，</span><br><span class="line">;则 (AH) 为 0，为 1，则 (AH) =0FFH</span><br><span class="line">CWD ;字转双字</span><br><span class="line">;将 AX 中的内容扩展到 DX，形成 DX:AX 双字，</span><br><span class="line">;若 (AX) 最高有效位为 0，则 (DX) 为 0，为 1，则 (DX) =0FFFFH</span><br></pre></td></tr></table></figure>]]></content>
+<p>SS SP<br>定义堆栈段时将参数写全，则系统自动装入，用于堆栈的内存段地址送 SS，该堆栈的栈顶送 SP</p>
+]]></content>
       <categories>
         <category>汇编</category>
       </categories>
       <tags>
-        <tag>指令系统</tag>
-        <tag>数据传送</tag>
+        <tag>寄存器</tag>
       </tags>
   </entry>
   <entry>
@@ -2958,6 +3140,44 @@ tring&gt; comp = (first, second) -&gt; ... ;</code> ；如果方法只有一个�
         <tag>指令系统</tag>
         <tag>控制转移</tag>
         <tag>处理器控制</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>汇编课程记录 4</title>
+    <url>/2019/11/04/%E6%B1%87%E7%BC%96%E8%AF%BE%E7%A8%8B%E8%AE%B0%E5%BD%95-4/</url>
+    <content><![CDATA[<p>这篇里的指令都不影响标志位</p><h1 id="通用数据传送指令"><a href="#通用数据传送指令" class="headerlink" title="通用数据传送指令"></a>通用数据传送指令</h1><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">MOV DST,SRC ;传送指令</span><br></pre></td></tr></table></figure><p>目不能为 CS IP 或立即数<br>存储单元和段寄存器之间不能直接传送数据，要用通用寄存器为桥梁<br>立即数不能直接送到段寄存器，同样要用通用寄存器为桥梁</p><hr><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">PUSH SRC ;进栈指令</span><br><span class="line">;(SP) ⬅ (SP) -2</span><br><span class="line">;((SP+1), (SP)) ⬅ (SRC)</span><br><span class="line">POP DST ;出栈指令</span><br><span class="line">;(DST) ⬅ ((SP+1), (SP))</span><br><span class="line">;(SP) ⬅ (SP) +2</span><br></pre></td></tr></table></figure><a id="more"></a>
+
+
+
+
+
+
+<p>PUSH 操作数为 16 位的寄存器，存储器，不允许立即数，避免 PUSH SP，因为 8086/8088 和 80286 对此的处理方式不同<br>POP 目为 16 位的寄存器（不允许 CS 段寄存器），存储器<br>堆栈的存取必须以字为单位，PUSH 和 POP 只能做字操作</p>
+<hr>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">XCHG DST, SCR ;交换指令</span><br></pre></td></tr></table></figure>
+
+<p>两个操作数必须有一个在寄存器中，且不允许段寄存器，允许字或字节操作（长度 8/16 位），允许立即数寻址以外的寻址方式</p>
+<h1 id="累加器专用传送指令"><a href="#累加器专用传送指令" class="headerlink" title="累加器专用传送指令"></a>累加器专用传送指令</h1><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">IN AL, PORT ;长格式-字节</span><br><span class="line">IN AX, PORT ;长格式-字</span><br><span class="line">IN AL, DX ;短格式-字节</span><br><span class="line">IN AX, DX ;短格式-字</span><br></pre></td></tr></table></figure>
+
+<p>将外部设备的信息输入到 CPU 的累加器 AL/AX 中，源操作数是外部设备端口地址，通过 DX 寄存器指明的地址可以间接寻址 65536 个端口，而用立即数直接指明的地址只能寻址 256 个</p>
+<hr>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">OUT PORT, AL ;长格式-字节</span><br><span class="line">OUT PORT, AX ;长格式-字</span><br><span class="line">OUT DX, AL ;短格式-字节</span><br><span class="line">OUT DX, AX ;短格式-字</span><br></pre></td></tr></table></figure>
+
+<p>将 CPU 累加器中的信息输出到外部设备，基本和 IN 反过来</p>
+<h1 id="地址传送指令"><a href="#地址传送指令" class="headerlink" title="地址传送指令"></a>地址传送指令</h1><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">LEA REG, SRC ;有效地址送寄存器指令</span><br><span class="line"></span><br><span class="line">LEA BX, TABLE</span><br><span class="line">MOV BX, OFFSET TABLE</span><br><span class="line">;两个功能相同，MOV 执行速度比 LEA 快，但 OFFSET 只能用简单符号地址</span><br><span class="line">;与 MOV DST,SRC 区别，此处得到的是有效地址而非存储单元的内容</span><br></pre></td></tr></table></figure>
+
+<p>REG 表示寄存器，将源操作数的有效地址送到指定寄存器，且必须为 16 位通用寄存器</p>
+<hr>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">LDS REG, SRC ;送寄存器和 DS 指令</span><br><span class="line">LES REG, SRC ;送寄存器和 ES 指令</span><br><span class="line">;(REG) ⬅ (SRC)</span><br><span class="line">;(SREG) ⬅ (SRC+2)</span><br><span class="line">;将存储单元中存放的 16 位偏移地址（即 SRC 的内容）装入</span><br><span class="line">;指定寄存器，然后将（SRC+2）中的 16 位段地址装入指定的</span><br><span class="line">;段寄存器</span><br></pre></td></tr></table></figure>
+
+<p>SREG 表示 DS 或 ES，源操作数只能用存储器寻址，目不允许段寄存器</p>
+<h1 id="类型转换指令"><a href="#类型转换指令" class="headerlink" title="类型转换指令"></a>类型转换指令</h1><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">CBW ;字节转字</span><br><span class="line">;将 AL 中的内容扩展到 AH，若 (AL) 最高有效位为 0，</span><br><span class="line">;则 (AH) 为 0，为 1，则 (AH) =0FFH</span><br><span class="line">CWD ;字转双字</span><br><span class="line">;将 AX 中的内容扩展到 DX，形成 DX:AX 双字，</span><br><span class="line">;若 (AX) 最高有效位为 0，则 (DX) 为 0，为 1，则 (DX) =0FFFFH</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>汇编</category>
+      </categories>
+      <tags>
+        <tag>指令系统</tag>
+        <tag>数据传送</tag>
       </tags>
   </entry>
   <entry>
