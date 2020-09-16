@@ -61,7 +61,7 @@
 <meta name="keywords" content="DDNS">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Padavan 添加 NameSilo DDNS 服务">
-<meta property="og:url" content="https://www.yuyurbq.club/2020/09/11/Padavan-添加-NameSilo-DDNS-服务/index.html">
+<meta property="og:url" content="https://www.yuyurbq.icu/2020/09/11/Padavan-添加-NameSilo-DDNS-服务/index.html">
 <meta property="og:site_name" content="卑微的 YuYu">
 <meta property="og:description" content="步骤同之前 Padavan 添加 GoDaddy DDNS 服务 ； apikey 到 https://www.namesilo.com/account/api-manager 创建； shell 脚本如下： 12345678910111213141516171819202122232425#!/bin/bashMYAPIKEY=&quot;填apikey&quot;MYDOMAIN=&quot;域名&quot;MYHOST=&quot;A记录名">
 <meta property="og:locale" content="zh-CN">
@@ -69,7 +69,7 @@
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Padavan 添加 NameSilo DDNS 服务">
 <meta name="twitter:description" content="步骤同之前 Padavan 添加 GoDaddy DDNS 服务 ； apikey 到 https://www.namesilo.com/account/api-manager 创建； shell 脚本如下： 12345678910111213141516171819202122232425#!/bin/bashMYAPIKEY=&quot;填apikey&quot;MYDOMAIN=&quot;域名&quot;MYHOST=&quot;A记录名">
-  <link rel="canonical" href="https://www.yuyurbq.club/2020/09/11/Padavan-添加-NameSilo-DDNS-服务/">
+  <link rel="canonical" href="https://www.yuyurbq.icu/2020/09/11/Padavan-添加-NameSilo-DDNS-服务/">
 
 
 <script id="page-configurations">
@@ -261,7 +261,7 @@
   
   
   <div class="post-block post">
-    <link itemprop="mainEntityOfPage" href="https://www.yuyurbq.club/2020/09/11/Padavan-添加-NameSilo-DDNS-服务/">
+    <link itemprop="mainEntityOfPage" href="https://www.yuyurbq.icu/2020/09/11/Padavan-添加-NameSilo-DDNS-服务/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Sun YuYu">
@@ -321,7 +321,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>步骤同之前 <a href="https://www.yuyurbq.icu/2020/03/15/Padavan-%E6%B7%BB%E5%8A%A0-GoDaddy-DDNS-%E6%9C%8D%E5%8A%A1/" target="_blank" rel="noopener">Padavan 添加 GoDaddy DDNS 服务</a> ；</p>
+        <p>步骤同之前 <a href="https://www.yuyurbq.icu/2020/03/15/Padavan-%E6%B7%BB%E5%8A%A0-GoDaddy-DDNS-%E6%9C%8D%E5%8A%A1/">Padavan 添加 GoDaddy DDNS 服务</a> ；</p>
 <p>apikey 到 <a href="https://www.namesilo.com/account/api-manager" target="_blank" rel="noopener">https://www.namesilo.com/account/api-manager</a> 创建；</p>
 <p>shell 脚本如下：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"></span><br><span class="line">MYAPIKEY=<span class="string">"填apikey"</span></span><br><span class="line">MYDOMAIN=<span class="string">"域名"</span></span><br><span class="line">MYHOST=<span class="string">"A记录名称"</span></span><br><span class="line">MYFULLDOMAIN=<span class="string">"<span class="variable">$MYHOST</span>.<span class="variable">$MYDOMAIN</span>"</span></span><br><span class="line"></span><br><span class="line">MYIP=`curl -s <span class="string">"https://api.ipify.org"</span>`</span><br><span class="line">OLDIP=$(tail -n 1 /home/root/iprecord.txt)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> [<span class="string">"<span class="variable">$OLDIP</span>"</span> == <span class="string">"<span class="variable">$MYIP</span>"</span>]; <span class="keyword">then</span></span><br><span class="line">  <span class="built_in">echo</span> <span class="string">"Nothing happened."</span></span><br><span class="line">  <span class="built_in">exit</span> 0</span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"<span class="variable">$MYIP</span>"</span> &gt; /home/root/iprecord.txt</span><br><span class="line"><span class="built_in">echo</span> <span class="string">"IP has changed."</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Fetch DNS record ID</span></span><br><span class="line">RESPONSE=<span class="string">"<span class="variable">$(curl -s "https://www.namesilo.com/api/dnsListRecords?version=1&amp;type=xml&amp;key=$MYAPIKEY&amp;domain=$MYDOMAIN")</span>"</span></span><br><span class="line">RECORD_ID=<span class="string">"<span class="variable">$(echo $RESPONSE | sed -n 's/^.*&lt;record_id&gt;\(.*\)&lt;\/record_id&gt;&lt;type&gt;A&lt;\/type&gt;&lt;host&gt;'$MYFULLDOMAIN'&lt;\/host&gt;.*$/\1/p')</span>"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Update</span></span><br><span class="line">RESPONSE=<span class="string">"<span class="variable">$(curl -s "https://www.namesilo.com/api/dnsUpdateRecord?version=1&amp;type=xml&amp;key=$MYAPIKEY&amp;domain=$MYDOMAIN&amp;rrid=$RECORD_ID&amp;rrhost=$MYHOST&amp;rrvalue=$MYIP&amp;rrttl=7207")</span>"</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">exit</span> 0</span><br></pre></td></tr></table></figure>
@@ -361,7 +361,7 @@
 
             <div class="post-nav-prev post-nav-item">
               
-                <a href="/2020/09/11/MySQL-性能/" rel="prev" title="MySQL 性能-优化">
+                <a href="/2020/09/11/MySQL-性能-优化/" rel="prev" title="MySQL 性能-优化">
                   MySQL 性能-优化 <i class="fa fa-chevron-right"></i>
                 </a>
               
@@ -428,7 +428,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">45</span>
+          <span class="site-state-item-count">46</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

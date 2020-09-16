@@ -57,19 +57,19 @@
   };
 </script>
 
-  <meta name="description" content="正则表达式即以行为单位，通过特殊符号查询删除替换某特定字符串的方法，在支持的工具里通用基础正则表达式语系避免编码造成的区别，建议使用特殊符号   特殊符号 意义    :alnum: A-Z a-z 0-9   :alpha: A-Z a-z   :upper: A-Z   :lower: a-z   :digit: 0-9">
-<meta name="keywords" content="文件,正则表达式">
+  <meta name="description" content="索引类型索引在存储引擎层实现。B-Tree 索引此处的 B 是平衡，而非二叉（演化自 AVLTree ）B-Tree 作为术语使用（即使是 T-Tree 结构），多数存储引擎其实是 B+Tree 。索引对多个值进行排序的依据是 create table 中定义索引时列的顺序。适合如下查询： 匹配全值，即所有列；  匹配最左前缀，即索引第一列；  匹配列前缀，即列值的开头部分；  匹配范围值；  精">
+<meta name="keywords" content="MySQL">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Linux 正则和文件格式化">
-<meta property="og:url" content="https://www.yuyurbq.icu/2019/11/28/Linux-正则和文件格式化/index.html">
+<meta property="og:title" content="MySQL 性能-索引">
+<meta property="og:url" content="https://www.yuyurbq.icu/2020/09/13/MySQL-性能-索引/index.html">
 <meta property="og:site_name" content="卑微的 YuYu">
-<meta property="og:description" content="正则表达式即以行为单位，通过特殊符号查询删除替换某特定字符串的方法，在支持的工具里通用基础正则表达式语系避免编码造成的区别，建议使用特殊符号   特殊符号 意义    :alnum: A-Z a-z 0-9   :alpha: A-Z a-z   :upper: A-Z   :lower: a-z   :digit: 0-9">
+<meta property="og:description" content="索引类型索引在存储引擎层实现。B-Tree 索引此处的 B 是平衡，而非二叉（演化自 AVLTree ）B-Tree 作为术语使用（即使是 T-Tree 结构），多数存储引擎其实是 B+Tree 。索引对多个值进行排序的依据是 create table 中定义索引时列的顺序。适合如下查询： 匹配全值，即所有列；  匹配最左前缀，即索引第一列；  匹配列前缀，即列值的开头部分；  匹配范围值；  精">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-08-30T09:08:21.755Z">
+<meta property="og:updated_time" content="2020-09-16T13:18:54.201Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Linux 正则和文件格式化">
-<meta name="twitter:description" content="正则表达式即以行为单位，通过特殊符号查询删除替换某特定字符串的方法，在支持的工具里通用基础正则表达式语系避免编码造成的区别，建议使用特殊符号   特殊符号 意义    :alnum: A-Z a-z 0-9   :alpha: A-Z a-z   :upper: A-Z   :lower: a-z   :digit: 0-9">
-  <link rel="canonical" href="https://www.yuyurbq.icu/2019/11/28/Linux-正则和文件格式化/">
+<meta name="twitter:title" content="MySQL 性能-索引">
+<meta name="twitter:description" content="索引类型索引在存储引擎层实现。B-Tree 索引此处的 B 是平衡，而非二叉（演化自 AVLTree ）B-Tree 作为术语使用（即使是 T-Tree 结构），多数存储引擎其实是 B+Tree 。索引对多个值进行排序的依据是 create table 中定义索引时列的顺序。适合如下查询： 匹配全值，即所有列；  匹配最左前缀，即索引第一列；  匹配列前缀，即列值的开头部分；  匹配范围值；  精">
+  <link rel="canonical" href="https://www.yuyurbq.icu/2020/09/13/MySQL-性能-索引/">
 
 
 <script id="page-configurations">
@@ -83,7 +83,7 @@
   };
 </script>
 
-  <title>Linux 正则和文件格式化 | 卑微的 YuYu</title>
+  <title>MySQL 性能-索引 | 卑微的 YuYu</title>
   <meta name="generator" content="Hexo 3.9.0">
   
 
@@ -261,7 +261,7 @@
   
   
   <div class="post-block post">
-    <link itemprop="mainEntityOfPage" href="https://www.yuyurbq.icu/2019/11/28/Linux-正则和文件格式化/">
+    <link itemprop="mainEntityOfPage" href="https://www.yuyurbq.icu/2020/09/13/MySQL-性能-索引/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Sun YuYu">
@@ -273,7 +273,7 @@
       <meta itemprop="name" content="卑微的 YuYu">
     </span>
       <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">Linux 正则和文件格式化
+        <h1 class="post-title" itemprop="name headline">MySQL 性能-索引
 
           
         </h1>
@@ -289,7 +289,7 @@
                 
               
 
-              <time title="创建时间：2019-11-28 21:22:53" itemprop="dateCreated datePublished" datetime="2019-11-28T21:22:53+08:00">2019-11-28</time>
+              <time title="创建时间：2020-09-13 10:27:26" itemprop="dateCreated datePublished" datetime="2020-09-13T10:27:26+08:00">2020-09-13</time>
             </span>
           
             
@@ -300,22 +300,9 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-08-30 17:08:21" itemprop="dateModified" datetime="2020-08-30T17:08:21+08:00">2020-08-30</time>
+                <time title="修改时间：2020-09-16 21:18:54" itemprop="dateModified" datetime="2020-09-16T21:18:54+08:00">2020-09-16</time>
               </span>
             
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a></span>
-
-                
-                
-              
-            </span>
           
 
           
@@ -329,131 +316,68 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>正则表达式即以行为单位，通过特殊符号查询删除替换某特定字符串的方法，在支持的工具里通用</p><h1 id="基础正则表达式"><a href="#基础正则表达式" class="headerlink" title="基础正则表达式"></a>基础正则表达式</h1><p><strong>语系</strong><br>避免编码造成的区别，建议使用特殊符号</p><table>
-<thead>
-<tr>
-<th align="center">特殊符号</th>
-<th align="center">意义</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">:alnum:</td>
-<td align="center">A-Z a-z 0-9</td>
-</tr>
-<tr>
-<td align="center">:alpha:</td>
-<td align="center">A-Z a-z</td>
-</tr>
-<tr>
-<td align="center">:upper:</td>
-<td align="center">A-Z</td>
-</tr>
-<tr>
-<td align="center">:lower:</td>
-<td align="center">a-z</td>
-</tr>
-<tr>
-<td align="center">:digit:</td>
-<td align="center">0-9</td>
-</tr>
-</tbody></table><a id="more"></a>
+        <h1 id="索引类型"><a href="#索引类型" class="headerlink" title="索引类型"></a>索引类型</h1><p>索引在存储引擎层实现。</p><h2 id="B-Tree-索引"><a href="#B-Tree-索引" class="headerlink" title="B-Tree 索引"></a>B-Tree 索引</h2><p><em>此处的 B 是平衡，而非二叉（演化自 AVLTree ）</em></p><p>B-Tree 作为术语使用（即使是 T-Tree 结构），多数存储引擎其实是 B+Tree 。</p><p>索引对多个值进行排序的依据是 create table 中定义索引时列的顺序。</p><p>适合如下查询：</p><ul>
+<li><p>匹配全值，即所有列；</p>
+</li>
+<li><p>匹配最左前缀，即索引第一列；</p>
+</li>
+<li><p>匹配列前缀，即列值的开头部分；</p>
+</li>
+<li><p>匹配范围值；</p>
+</li>
+<li><p>精确匹配某一列范围匹配另一列；</p>
+</li>
+<li><p>仅访问索引。</p>
+</li>
+</ul><a id="more"></a>
 
 
-<p><strong>字符</strong></p>
-<table>
-<thead>
-<tr>
-<th align="center">RE</th>
-<th align="center">意义</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">ˆword</td>
-<td align="center">待查找字符串在首行</td>
-</tr>
-<tr>
-<td align="center">word$</td>
-<td align="center">待查找字符串在尾行</td>
-</tr>
-<tr>
-<td align="center">.</td>
-<td align="center">一定有一个任意字符</td>
-</tr>
-<tr>
-<td align="center">\</td>
-<td align="center">转义</td>
-</tr>
-<tr>
-<td align="center">*</td>
-<td align="center">重复的零到无穷个前一个字符</td>
-</tr>
-<tr>
-<td align="center">[list]</td>
-<td align="center">list 中任意一个</td>
-</tr>
-<tr>
-<td align="center">[n1-n2]</td>
-<td align="center">要选取的字符范围</td>
-</tr>
-<tr>
-<td align="center">[ˆlist]</td>
-<td align="center">上上个取反</td>
-</tr>
-<tr>
-<td align="center">{n,m}</td>
-<td align="center">连续 n 到 m 个前一个字符</td>
-</tr>
-<tr>
-<td align="center">{n,}</td>
-<td align="center">连续 n 个以上的前一个字符</td>
-</tr>
-</tbody></table>
-<p><code># grep -n &#39;go\{2,3}g&#39; regular_express.txt</code> </p>
-<p><strong>sed 工具</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"># sed [-nefr] [动作]</span><br><span class="line">-n 安静模式，只显示 sed 处理过的列/操作</span><br><span class="line">默认列出所有 stdin 的数据</span><br><span class="line">-e 在命令行模式上进行 sed  的动作编辑</span><br><span class="line">-f 将 sed 的动作写入一个文件，可使用 -f filename 执行</span><br><span class="line">-r 使用扩展型正则表达式的语法</span><br><span class="line">-i 直接修改读取的文件内容而不由屏幕输出</span><br><span class="line">[n1],[n2] 动作 选择进行动作的行数，在 n1 到 n2 行之间进行</span><br><span class="line"></span><br><span class="line">function 参数</span><br><span class="line">a 新增，a 后的字符串在目前的下一行新增一行出现</span><br><span class="line">c 替换，c 后的字符串替换 n1,n2 之间的行</span><br><span class="line">d 删除</span><br><span class="line">i 插入，在目前的上一行新增一行出现</span><br><span class="line">p 打印，通常与 sed -n 用</span><br><span class="line">s 替换，通常接正则表达式</span><br></pre></td></tr></table></figure>
-
-<p>部分数据的查找并替换<br><code># sed &#39;s/旧字符串/新字符串/g&#39;</code></p>
-<p>例子🌰</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">nl /etc/passwd | sed &apos;3,$d&apos;</span><br><span class="line">删除第 3 到最后一行</span><br><span class="line">nl /etc/passwd | sed &apos;2a text1...\</span><br><span class="line">&gt; text2&apos;</span><br><span class="line">增加 2 行字符串</span><br><span class="line">nl /etc/passwd | sed -n &apos;2,3p&apos;</span><br><span class="line">仅显示 2-3 行，注意 -n </span><br><span class="line">/sbin/ifconfig eth0 | grep &apos;inet addr&apos; | sed &apos;s/ˆ.*addr://g&apos; | sed &apos;s/Bcast.*$//g&apos;</span><br></pre></td></tr></table></figure>
-
-<p>sed 可以直接修改文件内容，使用 -i</p>
-<h1 id="文件的格式化"><a href="#文件的格式化" class="headerlink" title="文件的格式化"></a>文件的格式化</h1><p><strong>printf</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"># printf &apos;打印格式&apos; 实际内容</span><br><span class="line">\a 警告音</span><br><span class="line">\b backspace 退格键</span><br><span class="line">\f 清除屏幕</span><br><span class="line">\n 输出新一行</span><br><span class="line">\r enter 回车键</span><br><span class="line">\t  水平 [tab]</span><br><span class="line">\v 垂直 [tab]</span><br><span class="line">\xNN 转换两位数 NN 数值为字符</span><br></pre></td></tr></table></figure>
-
-<p><strong>awk</strong><br>处理每一行的字段内的数据，默认分隔符是空格键或 [tab] 键</p>
-<p>内置变量</p>
-<table>
-<thead>
-<tr>
-<th align="center">名称</th>
-<th align="center">意义</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">NF</td>
-<td align="center">每行的字段总数</td>
-</tr>
-<tr>
-<td align="center">NR</td>
-<td align="center">目前是第几行</td>
-</tr>
-<tr>
-<td align="center">FS</td>
-<td align="center">目前的分隔符</td>
-</tr>
-</tbody></table>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># awk &apos;条件类型1&#123;动作1&#125; 条件类型2&#123;动作2&#125; ...&apos; filename</span><br></pre></td></tr></table></figure>
-
-<h1 id="文件比较工具"><a href="#文件比较工具" class="headerlink" title="文件比较工具"></a>文件比较工具</h1><p>以行为单位，用于同一文件新旧版本的区别，也可以比较目录，找出 only in 文件</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># diff [-bBi] fromfile tofile</span><br><span class="line">fromfile 欲比较的文件</span><br><span class="line">tofile 基准比较文件</span><br><span class="line">-b 一行中的多个空白视为一个</span><br><span class="line">-B 忽略空白行</span><br><span class="line">-i 忽略大小写</span><br></pre></td></tr></table></figure>
-
-<p>补丁文件，使用 diff 制作出来的比较文件扩展名为 .patch，以行为单位新文件看到 - 会删除，+ 会加入</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># patch -R -pN &lt; patch_file</span><br><span class="line">-R 还原，不加则为恢复</span><br><span class="line">-p 取消 N 层目录</span><br><span class="line"></span><br><span class="line">patch -p0 &lt; passwd.patch</span><br></pre></td></tr></table></figure>
-
-<p>以字节为单位，用于比较二进制文件</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># cmp [-s] file1 file2</span><br><span class="line">-s 列出所有不同点的字节处</span><br></pre></td></tr></table></figure>
 
 
+
+<p>因为索引树的节点有序，还可用于查询中的 order by 操作。</p>
+<p>限制：</p>
+<ul>
+<li>必须从索引的最左列 / 列的最左开始查找；</li>
+<li>不能跳过索引中的列；</li>
+<li>范围查询右边的所有列无法使用索引，<code>where last_name = &#39;S&#39; and first_name like &#39;J%&#39; and ...</code> 只能使用索引的前两项（<code>key(last_name, first_name, ...)</code>）。</li>
+</ul>
+<h2 id="哈希索引"><a href="#哈希索引" class="headerlink" title="哈希索引"></a>哈希索引</h2><p>仅 Memory 引擎显式支持。</p>
+<p><strong>创建自定义哈希索引</strong></p>
+<p>InnoDB 引擎中，某些索引值使用非常频繁时，会在内存中基于 B-Tree 索引再创建一个哈希索引。类似，在 B-Tree 基础上创建一个伪哈希索引，使用哈希值而不是键值本身进行索引查找（在 where 子句中使用哈希函数）：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">select id from url where url=&quot;http://...&quot;;</span><br><span class="line">-- 删除 url 列的索引，新增被索引的 url_crc 列，使用 CRC32 做哈希。</span><br><span class="line">select id from url where url=&quot;http://...&quot; and url_crc=CRC32(&quot;http://...&quot;);</span><br><span class="line">-- 缺陷：通过手动/触发器在插入和更新时维护 url_crc 列</span><br></pre></td></tr></table></figure>
+
+<p>ps：SHA1() 和 MD5() 计算出的哈希值过长，代价较大，除非最大限度消除冲突。</p>
+<p><strong>处理哈希冲突</strong></p>
+<p>数据表非常大时，考虑自己实现一个 64 位返回整数的哈希函数（比如截取 MD5() 的一部分）。</p>
+<p>使用哈希索引进行查询时，必须在 where 子句中包含常量值：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">-- 错误！哈希冲突可能导致返回多条记录。</span><br><span class="line">select id from url where url_crc=CRC32(&quot;http://...&quot;);</span><br></pre></td></tr></table></figure>
+
+<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p><strong>空间数据索引（R-Tree）</strong></p>
+<p>MyISAM 支持空间索引，用作地理数据存储。</p>
+<p><strong>全文索引</strong></p>
+<p>适用于 match against 操作而非 where 条件操作。</p>
+<h1 id="索引性能"><a href="#索引性能" class="headerlink" title="索引性能"></a>索引性能</h1><p>非常小的表使用简单的全表扫描可能更高效。</p>
+<h2 id="独立的列"><a href="#独立的列" class="headerlink" title="独立的列"></a>独立的列</h2><p>索引列不能是表达式的一部分，或是函数的参数：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">-- 错误！</span><br><span class="line">select id from actor where id + 1 = 5;</span><br></pre></td></tr></table></figure>
+
+<h2 id="前缀索引和索引选择性"><a href="#前缀索引和索引选择性" class="headerlink" title="前缀索引和索引选择性"></a>前缀索引和索引选择性</h2><p>对于很长的字符串，通常索引开始的部分字符，可以大大节约索引空间，但也会降低索引的选择性。</p>
+<p>索引的选择性：不重复的索引值（也称为基数，cardinality）和数据表的记录总数（#T）的比值，范围从 1/#T 到 1 之间，选择性越高则查询效率越高，因为选择性高的索引可以让 MySQL 在查找时过滤掉更多的行。</p>
+<p>前缀的基数应该接近完整列的基数：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">select count(distinct city) / count(*) from city_demo;</span><br><span class="line">select count(distinct left(city, 3)) / count(*) as sel3,</span><br><span class="line">-&gt; count(distinct left(city, 4)) / count(*) as sel4,</span><br><span class="line">-&gt; count(distinct left(city, 5)) / count(*) as sel5,</span><br><span class="line">-&gt;from city_demo;</span><br><span class="line">-- 平均选择性无法发现数据分布的不均匀。</span><br></pre></td></tr></table></figure>
+
+<p>创建前缀索引（MySQL 无法使用前缀索引做 order by 和 group by ，也无法做覆盖扫描）：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alert table city_demo add key(city(7));</span><br></pre></td></tr></table></figure>
+
+<h2 id="多列索引"><a href="#多列索引" class="headerlink" title="多列索引"></a>多列索引</h2><p>一个多列索引与多个列索引 MySQL 在解析执行上是不一样的，如果在 explain 中看到有索引合并，应该好好检查一下查询的表和结构是不是已经最优：</p>
+<ul>
+<li>当出现服务器对多个索引做交互操作时（通常有多个 and 条件），通常意味着需要一个包含所有相关列的多列索引，而不是多个独立的单列索引；</li>
+<li>当服务器需要对多个索引做联合操作时（通常有多个 or 条件），通常需要耗费大量CPU和内存资源在算法的缓存、排序和合并操作上。特别是当其中有些索引的选择性不高，需要合并扫描返回的大量数据的时候。</li>
+</ul>
+<h2 id="合适的索引列顺序（B-Tree）"><a href="#合适的索引列顺序（B-Tree）" class="headerlink" title="合适的索引列顺序（B-Tree）"></a>合适的索引列顺序（B-Tree）</h2><p>当不需要考虑排序和分组时，通常将选择性最高的列放在前面，此时索引只 用于优化 where 条件的查找。</p>
+<p>性能不只是依赖于所有索引列的选择性（整体基数），也和查询条件的具体值的分布有关。和选择前缀索引的长度需要考虑的地方一样，可能需要根据那些运行频率最高的查询来调整索引列的顺序，让这种情况下索引的选择性最高。</p>
+<p>不要假设平均情况下的性能也能代表特殊情况下的性能，特殊情况可能会摧毁整个应用的性能（当使用前缀索引时，在某些条件值的基数比正常值高的时候）。</p>
+<h2 id="聚簇索引"><a href="#聚簇索引" class="headerlink" title="聚簇索引"></a>聚簇索引</h2>
     </div>
 
     
@@ -468,9 +392,7 @@
           
           <div class="post-tags">
             
-              <a href="/tags/文件/" rel="tag"># 文件</a>
-            
-              <a href="/tags/正则表达式/" rel="tag"># 正则表达式</a>
+              <a href="/tags/MySQL/" rel="tag"># MySQL</a>
             
           </div>
         
@@ -480,8 +402,8 @@
           <div class="post-nav">
             <div class="post-nav-next post-nav-item">
               
-                <a href="/2019/11/17/汇编课程记录-6/" rel="next" title="汇编课程记录 6">
-                  <i class="fa fa-chevron-left"></i> 汇编课程记录 6
+                <a href="/2020/09/11/MySQL-性能-优化/" rel="next" title="MySQL 性能-优化">
+                  <i class="fa fa-chevron-left"></i> MySQL 性能-优化
                 </a>
               
             </div>
@@ -489,10 +411,6 @@
             <span class="post-nav-divider"></span>
 
             <div class="post-nav-prev post-nav-item">
-              
-                <a href="/2019/12/01/Java-补丁-基本程序设计结构/" rel="prev" title="Java 补丁-基本程序设计结构">
-                  Java 补丁-基本程序设计结构 <i class="fa fa-chevron-right"></i>
-                </a>
               
             </div>
           </div>
@@ -541,7 +459,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#基础正则表达式"><span class="nav-number">1.</span> <span class="nav-text">基础正则表达式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#文件的格式化"><span class="nav-number">2.</span> <span class="nav-text">文件的格式化</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#文件比较工具"><span class="nav-number">3.</span> <span class="nav-text">文件比较工具</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#索引类型"><span class="nav-number">1.</span> <span class="nav-text">索引类型</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#B-Tree-索引"><span class="nav-number">1.1.</span> <span class="nav-text">B-Tree 索引</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#哈希索引"><span class="nav-number">1.2.</span> <span class="nav-text">哈希索引</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#摘要"><span class="nav-number">1.3.</span> <span class="nav-text">摘要</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#索引性能"><span class="nav-number">2.</span> <span class="nav-text">索引性能</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#独立的列"><span class="nav-number">2.1.</span> <span class="nav-text">独立的列</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#前缀索引和索引选择性"><span class="nav-number">2.2.</span> <span class="nav-text">前缀索引和索引选择性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多列索引"><span class="nav-number">2.3.</span> <span class="nav-text">多列索引</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#合适的索引列顺序（B-Tree）"><span class="nav-number">2.4.</span> <span class="nav-text">合适的索引列顺序（B-Tree）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#聚簇索引"><span class="nav-number">2.5.</span> <span class="nav-text">聚簇索引</span></a></li></ol></li></ol></div>
         
       </div>
       <!--/noindex-->
