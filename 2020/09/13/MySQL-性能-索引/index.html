@@ -57,18 +57,18 @@
   };
 </script>
 
-  <meta name="description" content="索引类型索引在存储引擎层实现。B-Tree 索引此处的 B 是平衡，而非二叉（演化自 AVLTree ）B-Tree 作为术语使用（即使是 T-Tree 结构），多数存储引擎其实是 B+Tree 。索引对多个值进行排序的依据是 create table 中定义索引时列的顺序。适合如下查询： 匹配全值，即所有列；  匹配最左前缀，即索引第一列；  匹配列前缀，即列值的开头部分；  匹配范围值；  精">
+  <meta name="description" content="索引类型索引在存储引擎层实现。扫描索引本身很快，但按索引顺序读取数据的速度通常要比顺序的全表扫描慢，因为基本是随机 I/O。B-Tree 索引此处的 B 是平衡，而非二叉（演化自 AVLTree ）B-Tree 作为术语使用（即使是 T-Tree 结构），多数存储引擎其实是 B+Tree 。索引对多个值进行排序的依据是 create table 中定义索引时列的顺序。">
 <meta name="keywords" content="MySQL">
 <meta property="og:type" content="article">
 <meta property="og:title" content="MySQL 性能-索引">
 <meta property="og:url" content="https://www.yuyurbq.icu/2020/09/13/MySQL-性能-索引/index.html">
 <meta property="og:site_name" content="卑微的 YuYu">
-<meta property="og:description" content="索引类型索引在存储引擎层实现。B-Tree 索引此处的 B 是平衡，而非二叉（演化自 AVLTree ）B-Tree 作为术语使用（即使是 T-Tree 结构），多数存储引擎其实是 B+Tree 。索引对多个值进行排序的依据是 create table 中定义索引时列的顺序。适合如下查询： 匹配全值，即所有列；  匹配最左前缀，即索引第一列；  匹配列前缀，即列值的开头部分；  匹配范围值；  精">
+<meta property="og:description" content="索引类型索引在存储引擎层实现。扫描索引本身很快，但按索引顺序读取数据的速度通常要比顺序的全表扫描慢，因为基本是随机 I/O。B-Tree 索引此处的 B 是平衡，而非二叉（演化自 AVLTree ）B-Tree 作为术语使用（即使是 T-Tree 结构），多数存储引擎其实是 B+Tree 。索引对多个值进行排序的依据是 create table 中定义索引时列的顺序。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-09-16T13:18:54.201Z">
+<meta property="og:updated_time" content="2020-09-19T14:34:42.541Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MySQL 性能-索引">
-<meta name="twitter:description" content="索引类型索引在存储引擎层实现。B-Tree 索引此处的 B 是平衡，而非二叉（演化自 AVLTree ）B-Tree 作为术语使用（即使是 T-Tree 结构），多数存储引擎其实是 B+Tree 。索引对多个值进行排序的依据是 create table 中定义索引时列的顺序。适合如下查询： 匹配全值，即所有列；  匹配最左前缀，即索引第一列；  匹配列前缀，即列值的开头部分；  匹配范围值；  精">
+<meta name="twitter:description" content="索引类型索引在存储引擎层实现。扫描索引本身很快，但按索引顺序读取数据的速度通常要比顺序的全表扫描慢，因为基本是随机 I/O。B-Tree 索引此处的 B 是平衡，而非二叉（演化自 AVLTree ）B-Tree 作为术语使用（即使是 T-Tree 结构），多数存储引擎其实是 B+Tree 。索引对多个值进行排序的依据是 create table 中定义索引时列的顺序。">
   <link rel="canonical" href="https://www.yuyurbq.icu/2020/09/13/MySQL-性能-索引/">
 
 
@@ -300,7 +300,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-09-16 21:18:54" itemprop="dateModified" datetime="2020-09-16T21:18:54+08:00">2020-09-16</time>
+                <time title="修改时间：2020-09-19 22:34:42" itemprop="dateModified" datetime="2020-09-19T22:34:42+08:00">2020-09-19</time>
               </span>
             
           
@@ -316,7 +316,13 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="索引类型"><a href="#索引类型" class="headerlink" title="索引类型"></a>索引类型</h1><p>索引在存储引擎层实现。</p><h2 id="B-Tree-索引"><a href="#B-Tree-索引" class="headerlink" title="B-Tree 索引"></a>B-Tree 索引</h2><p><em>此处的 B 是平衡，而非二叉（演化自 AVLTree ）</em></p><p>B-Tree 作为术语使用（即使是 T-Tree 结构），多数存储引擎其实是 B+Tree 。</p><p>索引对多个值进行排序的依据是 create table 中定义索引时列的顺序。</p><p>适合如下查询：</p><ul>
+        <h1 id="索引类型"><a href="#索引类型" class="headerlink" title="索引类型"></a>索引类型</h1><p>索引在存储引擎层实现。</p><p>扫描索引本身很快，但按索引顺序读取数据的速度通常要比顺序的全表扫描慢，因为基本是随机 I/O。</p><h2 id="B-Tree-索引"><a href="#B-Tree-索引" class="headerlink" title="B-Tree 索引"></a>B-Tree 索引</h2><p><em>此处的 B 是平衡，而非二叉（演化自 AVLTree ）</em></p><p>B-Tree 作为术语使用（即使是 T-Tree 结构），多数存储引擎其实是 B+Tree 。</p><p>索引对多个值进行排序的依据是 create table 中定义索引时列的顺序。</p><a id="more"></a>
+
+
+
+
+<p>适合如下查询：</p>
+<ul>
 <li><p>匹配全值，即所有列；</p>
 </li>
 <li><p>匹配最左前缀，即索引第一列；</p>
@@ -329,12 +335,7 @@
 </li>
 <li><p>仅访问索引。</p>
 </li>
-</ul><a id="more"></a>
-
-
-
-
-
+</ul>
 <p>因为索引树的节点有序，还可用于查询中的 order by 操作。</p>
 <p>限制：</p>
 <ul>
@@ -374,10 +375,52 @@
 <li>当出现服务器对多个索引做交互操作时（通常有多个 and 条件），通常意味着需要一个包含所有相关列的多列索引，而不是多个独立的单列索引；</li>
 <li>当服务器需要对多个索引做联合操作时（通常有多个 or 条件），通常需要耗费大量CPU和内存资源在算法的缓存、排序和合并操作上。特别是当其中有些索引的选择性不高，需要合并扫描返回的大量数据的时候。</li>
 </ul>
-<h2 id="合适的索引列顺序（B-Tree）"><a href="#合适的索引列顺序（B-Tree）" class="headerlink" title="合适的索引列顺序（B-Tree）"></a>合适的索引列顺序（B-Tree）</h2><p>当不需要考虑排序和分组时，通常将选择性最高的列放在前面，此时索引只 用于优化 where 条件的查找。</p>
+<h2 id="合适的索引列顺序（B-Tree）"><a href="#合适的索引列顺序（B-Tree）" class="headerlink" title="合适的索引列顺序（B-Tree）"></a>合适的索引列顺序（B-Tree）</h2><p>当不需要考虑排序和分组时，通常将选择性最高的列放在前面，此时索引只用于优化 where 条件的查找。</p>
 <p>性能不只是依赖于所有索引列的选择性（整体基数），也和查询条件的具体值的分布有关。和选择前缀索引的长度需要考虑的地方一样，可能需要根据那些运行频率最高的查询来调整索引列的顺序，让这种情况下索引的选择性最高。</p>
 <p>不要假设平均情况下的性能也能代表特殊情况下的性能，特殊情况可能会摧毁整个应用的性能（当使用前缀索引时，在某些条件值的基数比正常值高的时候）。</p>
-<h2 id="聚簇索引"><a href="#聚簇索引" class="headerlink" title="聚簇索引"></a>聚簇索引</h2>
+<h2 id="聚簇索引"><a href="#聚簇索引" class="headerlink" title="聚簇索引"></a>聚簇索引</h2><p>一种数据存储方式，InnoDB 中实际是在同一个结构中保存了 B-Tree 索引和数据行。因为数据行不能同时存放在两个地方，所以一个表只能有一个聚簇索引（但覆盖索引可模拟）。</p>
+<p>InnoDB 使用主键聚集数据，若没有定义主键则选择一个唯一的非空索引代替，若仍没有则隐式定义一个主键作为聚簇索引；二级索引（非聚簇索引）的叶子节点是引用行的主键列（行指针并非指向行的物理地址而是主键值），即二级索引访问需要两次 B-Tree 查找，不过免去了行移动或页分裂时二级索引的维护工作。</p>
+<p>一些注意点：</p>
+<ul>
+<li>聚簇索引提高 I/O 密集型应用性能，若数据都放在内存里则没有多大优势；</li>
+<li>插入速度严重依赖插入顺序，最好按主键的顺序插入（比如自增长），若随机插入使用 optimize table 重新组织一下表；</li>
+<li>更新局促索引列的代价很高，每个被更新的行要移动到新位置；</li>
+<li>插入新行，或主键更新导致行移动时，可能有页分裂问题（内碎片和占用更多磁盘空间）；</li>
+</ul>
+<h2 id="覆盖索引"><a href="#覆盖索引" class="headerlink" title="覆盖索引"></a>覆盖索引</h2><p>索引中包含所有需要查询的字段的值，不需要回表查询；因为要存储值，所以只能用 B-Tree 索引。</p>
+<p>发起索引覆盖查询时，explain 的 extra 列为 using index 。</p>
+<p>使用<strong>延迟关联</strong>解决索引无法覆盖问题：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM products WHERE actor = &apos;SEAB CARREY&apos; AND title like &apos;%APPOLO%&apos;</span><br><span class="line">-- 1.没有覆盖全部列的索引；2.like操作只有在匹配左前缀时才能使用索引。</span><br></pre></td></tr></table></figure>
+
+<p>建立 (actor, title, prod_id) 索引。先在子查询中找到匹配的 prod_id ，然后在外层查询中匹配获取所有列值。优化效果取决于 where 条件匹配返回的行数：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM products </span><br><span class="line">    JOIN (SELECT prod_id FROM products </span><br><span class="line">          WHERE actor = &apos;SEAB CARREY&apos; AND title like &apos;%APPOLO%&apos;)</span><br><span class="line">	AS t1 ON (t1.prod_id = products.prod_id)</span><br></pre></td></tr></table></figure>
+
+<p>当符合 where 条件的数据数量远小于 actor 过滤出的数据数量的时效率尤其高。因为根据子查询的where过滤出数据之后才与外层查询关联，而后者使用 actor 读取出数据之后，再用 title 进行关联。</p>
+<h2 id="使用索引扫描做排序"><a href="#使用索引扫描做排序" class="headerlink" title="使用索引扫描做排序"></a>使用索引扫描做排序</h2><p>使用索引扫描排序时，explain 的 type 列为 index 。MySQL 可以使用一个索引既满足排序，又满足查找。只有当索引的列顺序和 order by 子句顺序一致，且列的排序方向（倒序或正序）都一样时，才能用索引对结果做排序。</p>
+<p>order by 子句需要满足索引的最左前缀要求，除非前导列制定为常量：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">key col_key (col1, col2, col3)</span><br><span class="line"></span><br><span class="line">...where col1 = 1 order by col2, col3; -- (√) </span><br><span class="line">...where col1 = 1 order by col2; -- (√)</span><br><span class="line">...where col1 &gt; 1 order by col1, col2; -- (√)</span><br><span class="line"></span><br><span class="line">...where col1 = 1 order by col2 desc, col3 asc; -- (X)</span><br><span class="line">...where col1 = 1 order by col2, col4; -- (X)</span><br><span class="line">...where col1 = 1 order by col3; -- (X)</span><br><span class="line">...where col1 &gt; 1 order by col2, col3; -- (X) 范围条件</span><br><span class="line">...where col1 = 1 and col2 in(1,3) order by col3; -- (X) 范围条件</span><br></pre></td></tr></table></figure>
+
+<h2 id="前缀压缩索引"><a href="#前缀压缩索引" class="headerlink" title="前缀压缩索引"></a>前缀压缩索引</h2><p>MyISAM 先保存索引块的第一个值，然后将其他值和第一个值进行比较得到相同前缀的字节数和剩余的不同后缀部分，如 “perform” “performance” 类似 “7,ance” 的形式。</p>
+<p>因为每个值的压缩前缀都依赖前面的值，所以查找时只能从头开始扫描（无法二分查找），倒序扫描的速度就更差了（order by desc）。</p>
+<h2 id="冗余和重复索引"><a href="#冗余和重复索引" class="headerlink" title="冗余和重复索引"></a>冗余和重复索引</h2><p>增加新索引将会导致 insert update delete 等操作的速度变慢。</p>
+<p>重复索引是指在相同的列上按照相同的顺序创建的<strong>相同类型</strong>的索引，索引类型不同不算重复。 </p>
+<p>主键限制和唯一限制是通过索引来实现的，如果再定义索引就会重复。</p>
+<p>对于 B-Tree 索引，若创建了索引 (A,B) 再创建索引 (A) 则冗余，而索引 (B,A) 和 (B) 不是，因为 (B) 不是最左前缀。</p>
+<p>冗余索引通常发生在添加新索引的时候。如已有索引 (A) ，增加 (A,B) 而不是扩展；或扩展为 (A,PK)，对于 InnoDB 而言主键列已经包含在二级索引中。</p>
+<ul>
+<li>避免扩展已有的索引导致其变得太大，从而影响其他使用该索引查询的性能。</li>
+</ul>
+<h2 id="索引和锁"><a href="#索引和锁" class="headerlink" title="索引和锁"></a>索引和锁</h2><p>InnoDB 只有在访问行的时候才会对其加锁，而索引能够减少 InnoDB 访问的行数，从而减少锁的数量。</p>
+<p>InnoDB在二级索引上使用共享锁（读锁），但在访问主键时使用排它锁（写锁）。</p>
+<p>ps 在即使使用了索引，也可能锁住一些不需要的行。</p>
+<h1 id="维护索引和表"><a href="#维护索引和表" class="headerlink" title="维护索引和表"></a>维护索引和表</h1><h2 id="表损坏"><a href="#表损坏" class="headerlink" title="表损坏"></a>表损坏</h2><blockquote>
+<p>当碰到古怪的问题，比如不应该发生的主键冲突，可以通过 CHECK TABLE 来检查是否发生了表损坏。该命令通常能够找出大多数表和索引的错误。 可以执行 REPAIR TABLE 来修复损坏的表。 也可以通过一个不做任何数据操作的 ALTER 操作来重建表，以达到修复的目的：ALTER TABLE innodb_tbl ENGINE=INNODB;</p>
+</blockquote>
+<h2 id="减少碎片"><a href="#减少碎片" class="headerlink" title="减少碎片"></a>减少碎片</h2><p>行碎片，行间碎片，剩余空间碎片（页内碎片）。</p>
+<p>InnoDB 会移动短小的行重写到一个片段中，不会出现短小的行碎片。</p>
+<p>通过 optimize table 或者导出再导入的方式重新整理数据。</p>
+<p>考虑数据是否已到稳定状态，以免之后的更新操作引发分页和重组。</p>
+
     </div>
 
     
@@ -459,7 +502,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#索引类型"><span class="nav-number">1.</span> <span class="nav-text">索引类型</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#B-Tree-索引"><span class="nav-number">1.1.</span> <span class="nav-text">B-Tree 索引</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#哈希索引"><span class="nav-number">1.2.</span> <span class="nav-text">哈希索引</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#摘要"><span class="nav-number">1.3.</span> <span class="nav-text">摘要</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#索引性能"><span class="nav-number">2.</span> <span class="nav-text">索引性能</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#独立的列"><span class="nav-number">2.1.</span> <span class="nav-text">独立的列</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#前缀索引和索引选择性"><span class="nav-number">2.2.</span> <span class="nav-text">前缀索引和索引选择性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多列索引"><span class="nav-number">2.3.</span> <span class="nav-text">多列索引</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#合适的索引列顺序（B-Tree）"><span class="nav-number">2.4.</span> <span class="nav-text">合适的索引列顺序（B-Tree）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#聚簇索引"><span class="nav-number">2.5.</span> <span class="nav-text">聚簇索引</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#索引类型"><span class="nav-number">1.</span> <span class="nav-text">索引类型</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#B-Tree-索引"><span class="nav-number">1.1.</span> <span class="nav-text">B-Tree 索引</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#哈希索引"><span class="nav-number">1.2.</span> <span class="nav-text">哈希索引</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#摘要"><span class="nav-number">1.3.</span> <span class="nav-text">摘要</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#索引性能"><span class="nav-number">2.</span> <span class="nav-text">索引性能</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#独立的列"><span class="nav-number">2.1.</span> <span class="nav-text">独立的列</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#前缀索引和索引选择性"><span class="nav-number">2.2.</span> <span class="nav-text">前缀索引和索引选择性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多列索引"><span class="nav-number">2.3.</span> <span class="nav-text">多列索引</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#合适的索引列顺序（B-Tree）"><span class="nav-number">2.4.</span> <span class="nav-text">合适的索引列顺序（B-Tree）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#聚簇索引"><span class="nav-number">2.5.</span> <span class="nav-text">聚簇索引</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#覆盖索引"><span class="nav-number">2.6.</span> <span class="nav-text">覆盖索引</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用索引扫描做排序"><span class="nav-number">2.7.</span> <span class="nav-text">使用索引扫描做排序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#前缀压缩索引"><span class="nav-number">2.8.</span> <span class="nav-text">前缀压缩索引</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#冗余和重复索引"><span class="nav-number">2.9.</span> <span class="nav-text">冗余和重复索引</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#索引和锁"><span class="nav-number">2.10.</span> <span class="nav-text">索引和锁</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#维护索引和表"><span class="nav-number">3.</span> <span class="nav-text">维护索引和表</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#表损坏"><span class="nav-number">3.1.</span> <span class="nav-text">表损坏</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#减少碎片"><span class="nav-number">3.2.</span> <span class="nav-text">减少碎片</span></a></li></ol></li></ol></div>
         
       </div>
       <!--/noindex-->
