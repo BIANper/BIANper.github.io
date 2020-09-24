@@ -65,7 +65,7 @@
 <meta property="og:site_name" content="卑微的 YuYu">
 <meta property="og:description" content="索引类型索引在存储引擎层实现。扫描索引本身很快，但按索引顺序读取数据的速度通常要比顺序的全表扫描慢，因为基本是随机 I/O。B-Tree 索引此处的 B 是平衡，而非二叉（演化自 AVLTree ）B-Tree 作为术语使用（即使是 T-Tree 结构），多数存储引擎其实是 B+Tree 。索引对多个值进行排序的依据是 create table 中定义索引时列的顺序。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-09-20T02:22:05.146Z">
+<meta property="og:updated_time" content="2020-09-24T05:35:54.418Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MySQL 性能-索引">
 <meta name="twitter:description" content="索引类型索引在存储引擎层实现。扫描索引本身很快，但按索引顺序读取数据的速度通常要比顺序的全表扫描慢，因为基本是随机 I/O。B-Tree 索引此处的 B 是平衡，而非二叉（演化自 AVLTree ）B-Tree 作为术语使用（即使是 T-Tree 结构），多数存储引擎其实是 B+Tree 。索引对多个值进行排序的依据是 create table 中定义索引时列的顺序。">
@@ -300,9 +300,22 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-09-20 10:22:05" itemprop="dateModified" datetime="2020-09-20T10:22:05+08:00">2020-09-20</time>
+                <time title="修改时间：2020-09-24 13:35:54" itemprop="dateModified" datetime="2020-09-24T13:35:54+08:00">2020-09-24</time>
               </span>
             
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/MySQL/" itemprop="url" rel="index"><span itemprop="name">MySQL</span></a></span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -346,29 +359,30 @@
 <h2 id="哈希索引"><a href="#哈希索引" class="headerlink" title="哈希索引"></a>哈希索引</h2><p>仅 Memory 引擎显式支持。</p>
 <p><strong>创建自定义哈希索引</strong></p>
 <p>InnoDB 引擎中，某些索引值使用非常频繁时，会在内存中基于 B-Tree 索引再创建一个哈希索引。类似，在 B-Tree 基础上创建一个伪哈希索引，使用哈希值而不是键值本身进行索引查找（在 where 子句中使用哈希函数）：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">select id from url where url=&quot;http://...&quot;;</span><br><span class="line">-- 删除 url 列的索引，新增被索引的 url_crc 列，使用 CRC32 做哈希。</span><br><span class="line">select id from url where url=&quot;http://...&quot; and url_crc=CRC32(&quot;http://...&quot;);</span><br><span class="line">-- 缺陷：通过手动/触发器在插入和更新时维护 url_crc 列</span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">id</span> <span class="keyword">from</span> <span class="keyword">url</span> <span class="keyword">where</span> <span class="keyword">url</span>=<span class="string">"http://..."</span>;</span><br><span class="line"><span class="comment">-- 删除 url 列的索引，新增被索引的 url_crc 列，使用 CRC32 做哈希。</span></span><br><span class="line"><span class="keyword">select</span> <span class="keyword">id</span> <span class="keyword">from</span> <span class="keyword">url</span> <span class="keyword">where</span> <span class="keyword">url</span>=<span class="string">"http://..."</span> <span class="keyword">and</span> url_crc=<span class="keyword">CRC32</span>(<span class="string">"http://..."</span>);</span><br><span class="line"><span class="comment">-- 缺陷：通过手动/触发器在插入和更新时维护 url_crc 列</span></span><br></pre></td></tr></table></figure>
 
 <p>ps：SHA1() 和 MD5() 计算出的哈希值过长，代价较大，除非最大限度消除冲突。</p>
 <p><strong>处理哈希冲突</strong></p>
 <p>数据表非常大时，考虑自己实现一个 64 位返回整数的哈希函数（比如截取 MD5() 的一部分）。</p>
 <p>使用哈希索引进行查询时，必须在 where 子句中包含常量值：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">-- 错误！哈希冲突可能导致返回多条记录。</span><br><span class="line">select id from url where url_crc=CRC32(&quot;http://...&quot;);</span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 错误！哈希冲突可能导致返回多条记录。</span></span><br><span class="line"><span class="keyword">select</span> <span class="keyword">id</span> <span class="keyword">from</span> <span class="keyword">url</span> <span class="keyword">where</span> url_crc=<span class="keyword">CRC32</span>(<span class="string">"http://..."</span>);</span><br></pre></td></tr></table></figure>
 
 <h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p><strong>空间数据索引（R-Tree）</strong></p>
 <p>MyISAM 支持空间索引，用作地理数据存储。</p>
 <p><strong>全文索引</strong></p>
 <p>适用于 match against 操作而非 where 条件操作。</p>
+<hr>
 <h1 id="索引策略"><a href="#索引策略" class="headerlink" title="索引策略"></a>索引策略</h1><p>非常小的表使用简单的全表扫描可能更高效。</p>
 <h2 id="独立的列"><a href="#独立的列" class="headerlink" title="独立的列"></a>独立的列</h2><p>索引列不能是表达式的一部分，或是函数的参数：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">-- 错误！</span><br><span class="line">select id from actor where id + 1 = 5;</span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 错误！</span></span><br><span class="line"><span class="keyword">select</span> <span class="keyword">id</span> <span class="keyword">from</span> actor <span class="keyword">where</span> <span class="keyword">id</span> + <span class="number">1</span> = <span class="number">5</span>;</span><br></pre></td></tr></table></figure>
 
 <h2 id="前缀索引和索引选择性"><a href="#前缀索引和索引选择性" class="headerlink" title="前缀索引和索引选择性"></a>前缀索引和索引选择性</h2><p>对于很长的字符串，通常索引开始的部分字符，可以大大节约索引空间，但也会降低索引的选择性。</p>
 <p>索引的选择性：不重复的索引值（也称为基数，cardinality）和数据表的记录总数（#T）的比值，范围从 1/#T 到 1 之间，选择性越高则查询效率越高，因为选择性高的索引可以让 MySQL 在查找时过滤掉更多的行。</p>
 <p>前缀的基数应该接近完整列的基数：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">select count(distinct city) / count(*) from city_demo;</span><br><span class="line">select count(distinct left(city, 3)) / count(*) as sel3,</span><br><span class="line">-&gt; count(distinct left(city, 4)) / count(*) as sel4,</span><br><span class="line">-&gt; count(distinct left(city, 5)) / count(*) as sel5,</span><br><span class="line">-&gt;from city_demo;</span><br><span class="line">-- 平均选择性无法发现数据分布的不均匀。</span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">count</span>(<span class="keyword">distinct</span> city) / <span class="keyword">count</span>(*) <span class="keyword">from</span> city_demo;</span><br><span class="line"><span class="keyword">select</span> <span class="keyword">count</span>(<span class="keyword">distinct</span> <span class="keyword">left</span>(city, <span class="number">3</span>)) / <span class="keyword">count</span>(*) <span class="keyword">as</span> sel3,</span><br><span class="line">-&gt; <span class="keyword">count</span>(<span class="keyword">distinct</span> <span class="keyword">left</span>(city, <span class="number">4</span>)) / <span class="keyword">count</span>(*) <span class="keyword">as</span> sel4,</span><br><span class="line">-&gt; <span class="keyword">count</span>(<span class="keyword">distinct</span> <span class="keyword">left</span>(city, <span class="number">5</span>)) / <span class="keyword">count</span>(*) <span class="keyword">as</span> sel5,</span><br><span class="line">-&gt;<span class="keyword">from</span> city_demo;</span><br><span class="line"><span class="comment">-- 平均选择性无法发现数据分布的不均匀。</span></span><br></pre></td></tr></table></figure>
 
 <p>创建前缀索引（MySQL 无法使用前缀索引做 order by 和 group by ，也无法做覆盖扫描）：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alert table city_demo add key(city(7));</span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alert table city_demo add key(city(7));</span><br></pre></td></tr></table></figure>
 
 <h2 id="多列索引"><a href="#多列索引" class="headerlink" title="多列索引"></a>多列索引</h2><p>一个多列索引与多个列索引 MySQL 在解析执行上是不一样的，如果在 explain 中看到有索引合并，应该好好检查一下查询的表和结构是不是已经最优：</p>
 <ul>
@@ -390,15 +404,15 @@
 <h2 id="覆盖索引"><a href="#覆盖索引" class="headerlink" title="覆盖索引"></a>覆盖索引</h2><p>索引中包含所有需要查询的字段的值，不需要回表查询；因为要存储值，所以只能用 B-Tree 索引。</p>
 <p>发起索引覆盖查询时，explain 的 extra 列为 using index 。</p>
 <p>使用<strong>延迟关联</strong>解决索引无法覆盖问题：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM products WHERE actor = &apos;SEAB CARREY&apos; AND title like &apos;%APPOLO%&apos;</span><br><span class="line">-- 1.没有覆盖全部列的索引；2.like操作只有在匹配左前缀时才能使用索引。</span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> products <span class="keyword">WHERE</span> actor = <span class="string">'SEAB CARREY'</span> <span class="keyword">AND</span> title <span class="keyword">like</span> <span class="string">'%APPOLO%'</span></span><br><span class="line"><span class="comment">-- 1.没有覆盖全部列的索引；2.like操作只有在匹配左前缀时才能使用索引。</span></span><br></pre></td></tr></table></figure>
 
 <p>建立 (actor, title, prod_id) 索引。先在子查询中找到匹配的 prod_id ，然后在外层查询中匹配获取所有列值。优化效果取决于 where 条件匹配返回的行数：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM products </span><br><span class="line">    JOIN (SELECT prod_id FROM products </span><br><span class="line">          WHERE actor = &apos;SEAB CARREY&apos; AND title like &apos;%APPOLO%&apos;)</span><br><span class="line">	AS t1 ON (t1.prod_id = products.prod_id)</span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> products </span><br><span class="line">    <span class="keyword">JOIN</span> (<span class="keyword">SELECT</span> prod_id <span class="keyword">FROM</span> products </span><br><span class="line">          <span class="keyword">WHERE</span> actor = <span class="string">'SEAB CARREY'</span> <span class="keyword">AND</span> title <span class="keyword">like</span> <span class="string">'%APPOLO%'</span>)</span><br><span class="line">	<span class="keyword">AS</span> t1 <span class="keyword">ON</span> (t1.prod_id = products.prod_id)</span><br></pre></td></tr></table></figure>
 
 <p>当符合 where 条件的数据数量远小于 actor 过滤出的数据数量的时效率尤其高。因为根据子查询的where过滤出数据之后才与外层查询关联，而后者使用 actor 读取出数据之后，再用 title 进行关联。</p>
 <h2 id="使用索引扫描做排序"><a href="#使用索引扫描做排序" class="headerlink" title="使用索引扫描做排序"></a>使用索引扫描做排序</h2><p>使用索引扫描排序时，explain 的 type 列为 index 。MySQL 可以使用一个索引既满足排序，又满足查找。只有当索引的列顺序和 order by 子句顺序一致，且列的排序方向（倒序或正序）都一样时，才能用索引对结果做排序。</p>
 <p>order by 子句需要满足索引的最左前缀要求，除非前导列制定为常量：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">key col_key (col1, col2, col3)</span><br><span class="line"></span><br><span class="line">...where col1 = 1 order by col2, col3; -- (√) </span><br><span class="line">...where col1 = 1 order by col2; -- (√)</span><br><span class="line">...where col1 &gt; 1 order by col1, col2; -- (√)</span><br><span class="line"></span><br><span class="line">...where col1 = 1 order by col2 desc, col3 asc; -- (X)</span><br><span class="line">...where col1 = 1 order by col2, col4; -- (X)</span><br><span class="line">...where col1 = 1 order by col3; -- (X)</span><br><span class="line">...where col1 &gt; 1 order by col2, col3; -- (X) 范围条件</span><br><span class="line">...where col1 = 1 and col2 in(1,3) order by col3; -- (X) 范围条件</span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">key col_key (col1, col2, col3)</span><br><span class="line"></span><br><span class="line">...where col1 = 1 order by col2, col3; <span class="comment">-- (√) </span></span><br><span class="line">...where col1 = 1 order by col2; <span class="comment">-- (√)</span></span><br><span class="line">...where col1 &gt; 1 order by col1, col2; -- (√)</span><br><span class="line"></span><br><span class="line">...where col1 = 1 order by col2 desc, col3 asc; <span class="comment">-- (X)</span></span><br><span class="line">...where col1 = 1 order by col2, col4; <span class="comment">-- (X)</span></span><br><span class="line">...where col1 = 1 order by col3; <span class="comment">-- (X)</span></span><br><span class="line">...where col1 &gt; 1 order by col2, col3; -- (X) 范围条件</span><br><span class="line">...where col1 = 1 and col2 in(1,3) order by col3; <span class="comment">-- (X) 范围条件</span></span><br></pre></td></tr></table></figure>
 
 <h2 id="前缀压缩索引"><a href="#前缀压缩索引" class="headerlink" title="前缀压缩索引"></a>前缀压缩索引</h2><p>MyISAM 先保存索引块的第一个值，然后将其他值和第一个值进行比较得到相同前缀的字节数和剩余的不同后缀部分，如 “perform” “performance” 类似 “7,ance” 的形式。</p>
 <p>因为每个值的压缩前缀都依赖前面的值，所以查找时只能从头开始扫描（无法二分查找），倒序扫描的速度就更差了（order by desc）。</p>
@@ -413,6 +427,7 @@
 <h2 id="索引和锁"><a href="#索引和锁" class="headerlink" title="索引和锁"></a>索引和锁</h2><p>InnoDB 只有在访问行的时候才会对其加锁，而索引能够减少 InnoDB 访问的行数，从而减少锁的数量。</p>
 <p>InnoDB在二级索引上使用共享锁（读锁），但在访问主键时使用排它锁（写锁）。</p>
 <p>ps 在即使使用了索引，也可能锁住一些不需要的行。</p>
+<hr>
 <h1 id="维护索引和表"><a href="#维护索引和表" class="headerlink" title="维护索引和表"></a>维护索引和表</h1><h2 id="表损坏"><a href="#表损坏" class="headerlink" title="表损坏"></a>表损坏</h2><blockquote>
 <p>当碰到古怪的问题，比如不应该发生的主键冲突，可以通过 CHECK TABLE 来检查是否发生了表损坏。该命令通常能够找出大多数表和索引的错误。 可以执行 REPAIR TABLE 来修复损坏的表。 也可以通过一个不做任何数据操作的 ALTER 操作来重建表，以达到修复的目的：ALTER TABLE innodb_tbl ENGINE=INNODB;</p>
 </blockquote>
@@ -555,7 +570,9 @@
         
           
         
-        <span class="site-state-item-count">8</span>
+          
+        
+        <span class="site-state-item-count">9</span>
         <span class="site-state-item-name">分类</span>
         </a>
       </div>
