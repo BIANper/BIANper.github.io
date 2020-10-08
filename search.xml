@@ -1,19 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Git 命令思维导图</title>
-    <url>/2020/02/02/Git-%E5%91%BD%E4%BB%A4%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE/</url>
-    <content><![CDATA[<p>没钱开 XMind… 理直气壮不去水印</p>
-<p><img src="https://i.loli.net/2020/03/06/UE3BOSHfsbQDtGd.png" alt="git.png"></p>
-]]></content>
-      <categories>
-        <category>Git</category>
-      </categories>
-      <tags>
-        <tag>思维导图</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Git-分支乱七八糟版</title>
     <url>/2019/12/07/Git-%E5%88%86%E6%94%AF%E4%B9%B1%E4%B8%83%E5%85%AB%E7%B3%9F%E7%89%88/</url>
     <content><![CDATA[<p>使用 git branch <name> 命令创建分支。git branch -d <name> 删除分支。git branch -v 命令查看每个分支的最后一次提交。git branch –no-merged 查看未合并的分支，未合并的分支 -D 才能删除。<br>切换到一个已存在的分支，使用 git checkout 命令。</name></name></p><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git checkout -b name</span><br><span class="line">等同于</span><br><span class="line">git branch name</span><br><span class="line">git checkout name</span><br></pre></td></tr></table></figure><a id="more"></a>
@@ -37,6 +24,32 @@
         <tag>版本控制系统</tag>
         <tag>分支</tag>
         <tag>变基</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Git 命令思维导图</title>
+    <url>/2020/02/02/Git-%E5%91%BD%E4%BB%A4%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE/</url>
+    <content><![CDATA[<p>没钱开 XMind… 理直气壮不去水印</p>
+<p><img src="https://i.loli.net/2020/03/06/UE3BOSHfsbQDtGd.png" alt="git.png"></p>
+]]></content>
+      <categories>
+        <category>Git</category>
+      </categories>
+      <tags>
+        <tag>思维导图</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Git 常用命令思维导图</title>
+    <url>/2020/02/10/Git-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE/</url>
+    <content><![CDATA[<p>没钱开 XMind… 理直气壮不去水印</p>
+<p><img src="https://i.loli.net/2020/03/06/mxNXZKJ8WRUeojn.png" alt="gitu.png"></p>
+]]></content>
+      <categories>
+        <category>Git</category>
+      </categories>
+      <tags>
+        <tag>思维导图</tag>
       </tags>
   </entry>
   <entry>
@@ -96,19 +109,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Git 常用命令思维导图</title>
-    <url>/2020/02/10/Git-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE/</url>
-    <content><![CDATA[<p>没钱开 XMind… 理直气壮不去水印</p>
-<p><img src="https://i.loli.net/2020/03/06/mxNXZKJ8WRUeojn.png" alt="gitu.png"></p>
-]]></content>
-      <categories>
-        <category>Git</category>
-      </categories>
-      <tags>
-        <tag>思维导图</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Java 补丁-集合</title>
     <url>/2019/12/25/Java%20%E8%A1%A5%E4%B8%81-%E9%9B%86%E5%90%88/</url>
     <content><![CDATA[<h1 id="具体集合部分"><a href="#具体集合部分" class="headerlink" title="具体集合部分"></a>具体集合部分</h1><p><strong>链表 LinkedList</strong><br>List 接口描述有序集合，有两种访问元素的协议，迭代器或 get set 方法，后者更适合数组。链表对于删除插入元素很有效，允许对象有重复的值。<br>Java 中链表都是双向链接的，即每个结点存放前驱结点和下一个结点的引用。如果链表有 n 个元素则有 n+1 个位置可以插入新元素。<br>链表只跟踪结构性修改，set 方法不被视为结构性修改。<br>避免使用整数索引表示链表中位置的方法，如果需要对集合进行指定访问，就使用数组或 ArrayList 而非链表。</p><a id="more"></a>
@@ -164,6 +164,289 @@
         <tag>队列</tag>
         <tag>散列</tag>
         <tag>映射</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Java 补丁-基本程序设计结构</title>
+    <url>/2019/12/01/Java-%E8%A1%A5%E4%B8%81-%E5%9F%BA%E6%9C%AC%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E7%BB%93%E6%9E%84/</url>
+    <content><![CDATA[<h1 id="数据类型部分"><a href="#数据类型部分" class="headerlink" title="数据类型部分"></a>数据类型部分</h1><p><strong>整型</strong><br>Java7 开始：允许通过加前缀 0b 写二进制数；允许为数字字面量加下划线：</p><ul>
+<li>1_000_000</li>
+<li>0b1111_0000_0100</li>
+</ul><p><strong>浮点型</strong><br>由于二进制系统无法精确表示分数 1/10，故浮点数值不适用金融计算，此时应使用 BigDecimal 类。</p><table>
+<thead>
+<tr>
+<th align="center">常量</th>
+<th align="center">数值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">Double.POSITIVE_INFINITY</td>
+<td align="center">正无穷</td>
+</tr>
+<tr>
+<td align="center">Double.NEGATIVE_INFINITY</td>
+<td align="center">负无穷</td>
+</tr>
+<tr>
+<td align="center">Double.NaN</td>
+<td align="center">非数字</td>
+</tr>
+</tbody></table><a id="more"></a>
+
+
+
+<p>判断一个特定值是否为 Double.NaN ：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span>(x == Double.NaN) <span class="comment">// never true</span></span><br><span class="line"><span class="keyword">if</span>(Double.isNaN(x)) <span class="comment">// √</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>char 类型</strong><br>char 数据类型是一个采用 UTF-16 编码表示 Unicode 码点的代码单元。<br>Unicode 转义序列会在解析代码前处理：</p>
+<ul>
+<li>“\u0022+\u0022” 会得到 “”+”” 即空串</li>
+<li>// \u00A0 is a newline 会替换成换行符</li>
+<li>// c:\users 会产生语法错误</li>
+</ul>
+<p><strong>枚举类型</strong><br>枚举类型的变量只能储存这个类型声明中给定的某个枚举值，或没有设置值 null</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">enum</span> Size &#123; SAMLL, MEDIUM, LARGE &#125;;</span><br><span class="line">Size s = Size.SMALL;</span><br></pre></td></tr></table></figure>
+
+<p>所有枚举类型都是 Enum 的子类，继承其方法。因为实际上是一个类，故比较时直接用 == 就好，也可以在枚举类型中添加构造器方法域。</p>
+<p><strong>相关：大数值</strong><br>java.math 包的 BigInteger 和 BigDecimal 类可以处理任意长度数字序列的数值，分别对应整数和浮点数运算。</p>
+<hr>
+<h1 id="运算符部分"><a href="#运算符部分" class="headerlink" title="运算符部分"></a>运算符部分</h1><p><strong>数学函数</strong><br>StrictMath 类使用 fdlibm 库实现算法，确保在所有平台上得到相同结果。</p>
+<p><strong>数值类型转换</strong><br>二元操作中的类型转换，以 double float long 的顺序进行判断，若都不是则两个操作数都转换成 int 型。<br>强制类型转换通过截断小数部分将浮点值转换为整型，若要得到最接近整型的数，使用 Math.round 对浮点数进行舍入：</p>
+<ul>
+<li><code>int newx = (int) Math.round(x);</code> // 返回的是 long 类型</li>
+</ul>
+<p>强制转换中若超出目标类型的表示范围，结果会截断成完全不同的值。<br>不要在 boolean 与任何数值类型间强制类型转换，转换为数值时可以使用条件表达式 boolean ? 1:0</p>
+<p><strong>自增自减和运算符级别</strong><br>自增自减中，用于表达式时前缀形式会先完成加减一：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> m = <span class="number">7</span>;</span><br><span class="line"><span class="keyword">int</span> n = <span class="number">7</span>;</span><br><span class="line"><span class="keyword">int</span> a = <span class="number">2</span> * ++m; <span class="comment">// a is 16, m is 8</span></span><br><span class="line"><span class="keyword">int</span> b = <span class="number">2</span> * n++; <span class="comment">// b is 14, n is 8</span></span><br></pre></td></tr></table></figure>
+
+<p>+= 是右结合运算符，所以 <code>a += b += c</code> 等价于 <code>a += (b += c)</code></p>
+<p><strong>位运算符</strong></p>
+<table>
+<thead>
+<tr>
+<th align="center">位运算符</th>
+<th align="center"></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">&amp;</td>
+<td align="center">and</td>
+</tr>
+<tr>
+<td align="center">&#124;</td>
+<td align="center">or</td>
+</tr>
+<tr>
+<td align="center">^</td>
+<td align="center">xor</td>
+</tr>
+<tr>
+<td align="center">~</td>
+<td align="center">not</td>
+</tr>
+</tbody></table>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> fourthBit = (n &amp; <span class="number">0b1000</span>) / <span class="number">0b1000</span>;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="字符串部分"><a href="#字符串部分" class="headerlink" title="字符串部分"></a>字符串部分</h1><p><strong>String API</strong><br>提取子串： substring 方法。<br>多个字符串放在一起用一个定界符分隔： String.join 方法。</p>
+<p><strong>不可变字符串</strong><br>String 类没有修改字符串的方法，可以先提取再拼接；编译器可以让字符串共享，即复制一个字符串变量，原始字符串与复制的字符串共享相同的字符。<br>但不要使用 == （此运算符确定是否在同一位置上）检测两个字符串是否相等，虚拟机实际上只有字符串常量是共享的，而 + 或 substring 等操作产生的结果并不共享。使用 equals equalsIgnoreCase 方法。</p>
+<p><strong>构建字符串</strong><br>用许多小段字符串构建时，字符串连接的方式效率较低，每次连接字符串都会构建一个新的 String 对象，应该 new 个空的字符串构造器：StringBuilder 类，相对 StringBuffer 类效率更高，但后者允许多线程方式执行操作。</p>
+<p><strong>Null 串</strong><br>null 上调用方法会出现错误，故检查字符串 null 和空 <code>if (str != null &amp;&amp; str.length() != 0)</code> ，空用 equals 也行。</p>
+<p><strong>码点和代码单元</strong><br>length 方法返回采用 UTF-16 编码表示的给定字符串所需要的代码单元数量（配合 char 数据类型食用）。大多数常用字符使用一个代码单元表示，辅助字符需要一对代码单元表示。故实际长度应该是码点数量：使用 codePointCount 方法获取。<br>如字符 𝕆 U+1D546 需要两个代码单元，若使用 <code>char ch = sentence.charAt(1)</code> 会返回第二个代码单元而非空格，所以此类不要用 char 类型。charAt 方法返回位置 n 的代码单元。</p>
+<blockquote>
+<p>一个 code point 可能由一个或多个 code unit(s) 表示。在 U+10000 之前的 code point 可以由一个 UTF-16 code unit 表示，U+10000 及之后的 code point 要由两个 UTF-16 code units 表示。</p>
+</blockquote>
+<hr>
+<h1 id="输入输出部分"><a href="#输入输出部分" class="headerlink" title="输入输出部分"></a>输入输出部分</h1><p><strong>格式化输出</strong></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">System.out.printf(<span class="string">"%,.2f"</span>, <span class="number">10000.0</span> / <span class="number">3.0</span>);</span><br><span class="line"><span class="comment">// 3,333.33</span></span><br></pre></td></tr></table></figure>
+
+<p>用于 printf 的转换符：</p>
+<table>
+<thead>
+<tr>
+<th align="center">转换符</th>
+<th align="center">类型</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">d</td>
+<td align="center">十进制整数</td>
+</tr>
+<tr>
+<td align="center">x</td>
+<td align="center">十六进制整数</td>
+</tr>
+<tr>
+<td align="center">o</td>
+<td align="center">八进制整数</td>
+</tr>
+<tr>
+<td align="center">f</td>
+<td align="center">定点浮点数</td>
+</tr>
+<tr>
+<td align="center">e</td>
+<td align="center">指数浮点值</td>
+</tr>
+<tr>
+<td align="center">g</td>
+<td align="center">通用浮点数</td>
+</tr>
+<tr>
+<td align="center">a</td>
+<td align="center">十六进制浮点数</td>
+</tr>
+<tr>
+<td align="center">s</td>
+<td align="center">字符串</td>
+</tr>
+<tr>
+<td align="center">c</td>
+<td align="center">字符</td>
+</tr>
+<tr>
+<td align="center">b</td>
+<td align="center">布尔</td>
+</tr>
+<tr>
+<td align="center">h</td>
+<td align="center">散列码</td>
+</tr>
+<tr>
+<td align="center">%</td>
+<td align="center">百分号</td>
+</tr>
+<tr>
+<td align="center">n</td>
+<td align="center">平台有关的行分隔符</td>
+</tr>
+</tbody></table>
+<p>用于 printf 的标志：</p>
+<table>
+<thead>
+<tr>
+<th align="center">标志</th>
+<th align="center">目的</th>
+<th align="center">举例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">+</td>
+<td align="center">打印正负数符号</td>
+<td align="center">+333</td>
+</tr>
+<tr>
+<td align="center">空格</td>
+<td align="center">在正数前加空格</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">0</td>
+<td align="center">数字前面补 0</td>
+<td align="center">00333.3</td>
+</tr>
+<tr>
+<td align="center">-</td>
+<td align="center">左对齐</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">(</td>
+<td align="center">将负数括在括号内</td>
+<td align="center">(3.3)</td>
+</tr>
+<tr>
+<td align="center">,</td>
+<td align="center">添加分组分隔符</td>
+<td align="center">3,333</td>
+</tr>
+<tr>
+<td align="center">#（f）</td>
+<td align="center">包含小数点</td>
+<td align="center">333.</td>
+</tr>
+<tr>
+<td align="center">#</td>
+<td align="center">添加前缀 0x 或 0</td>
+<td align="center">0xcafe</td>
+</tr>
+</tbody></table>
+<p><strong>文件输入和输出</strong><br>通过相对位置指定文件时，是 Java 虚拟机启动路径的相对位置。<br>记得捕获输入输出异常，以免文件不存在或不能被创建。</p>
+<p>读取通过构造 Scanner 对象，路径中要转义反斜杠；写入则构造 PrintWriter 对象。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Scanner in = <span class="keyword">new</span> Scanner(Paths.get(<span class="string">"c:\\my\\file"</span>), <span class="string">"UTF-8"</span>);</span><br><span class="line">Scanner in = <span class="keyword">new</span> Scanner(<span class="string">"c:\\my\\file"</span>); <span class="comment">// 允许但会变成字符数据</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="控制流程部分"><a href="#控制流程部分" class="headerlink" title="控制流程部分"></a>控制流程部分</h1><p><strong>switch 语句</strong><br>Java7 开始，case 标签可以是字符串字面量。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">String input = ...;</span><br><span class="line"><span class="keyword">switch</span> (input.toLowerCase())&#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="string">"yes"</span>:</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>中断语句</strong><br>带标签 break 语句用于跳出多重循环。标签放在最外层循环之前，并紧跟冒号，break 将跳转到带标签的语句块结尾。只能跳出，不能跳入。<br>带标签 break 甚至可以用于 if 语句或语句块中：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">label:</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span> (condition) <span class="keyword">break</span> label;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>continue 语句将控制转移到最内层循环的首部，带标签 continue 语句将跳到与标签匹配的循环首部。</p>
+<hr>
+<h1 id="数组部分"><a href="#数组部分" class="headerlink" title="数组部分"></a>数组部分</h1><p>数字数组初始化为 0，boolean 数组初始化为 false，对象数组则为 null。数组创建后不能改变大小，需要扩展应选择数组列表 array list。<br>Java 允许数组长度为 0，与 null 不同。</p>
+<p><strong>for each 循环</strong></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> (variable : collection) statement &#123;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>collection 可以是数组或实现了 Iterable 接口的类对象。<br>打印数组所有值可以用 Arrays.toString 方法，元素被放在 [] 内，用逗号分隔。</p>
+<p><strong>初始化和匿名</strong><br>不创建变量初始化一个数组：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">arr = <span class="keyword">new</span> <span class="keyword">int</span>[] &#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>&#125;;</span><br><span class="line"><span class="comment">// 即下列语句简写</span></span><br><span class="line"><span class="keyword">int</span>[] temp = &#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>&#125;;</span><br><span class="line">arr = temp;</span><br></pre></td></tr></table></figure>
+
+<p><strong>拷贝</strong><br>将一个数组变量拷贝给另一个数组变量后，两个变量引用的是同一个数组，即更改在两者生效。若要拷贝到新数组，使用 Arrays.copyOf 方法，这个方法也用于增加数组大小：<code>arr = Arrays.copyOf(arr, 2 * arr.length)</code> 。</p>
+<p><strong>命令行参数</strong><br>main 的 String[] args 用于存储命令行参数，不包含程序名。</p>
+<p><strong>不规则数组</strong><br>Java 实际上只有一维数组，多维数组定义为“数组的数组”。所以可以让两行交换，或是每一行有不同的长度：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span>[][] odds = <span class="keyword">new</span> <span class="keyword">int</span>[NMAX +<span class="number">1</span>][];</span><br><span class="line"><span class="comment">//new 一个具有行数的数组</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> n = <span class="number">0</span>; n &lt;= NMAX; n++)</span><br><span class="line">    odds[n] = <span class="keyword">new</span> <span class="keyword">int</span>[n + <span class="number">1</span>];</span><br><span class="line">    <span class="comment">//然后为每行添加元素</span></span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>数据类型</tag>
+        <tag>控制流程</tag>
+        <tag>数组</tag>
+        <tag>运算符</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Java 补丁-对象和类</title>
+    <url>/2019/12/08/Java-%E8%A1%A5%E4%B8%81-%E5%AF%B9%E8%B1%A1%E5%92%8C%E7%B1%BB/</url>
+    <content><![CDATA[<h1 id="预定义类部分"><a href="#预定义类部分" class="headerlink" title="预定义类部分"></a>预定义类部分</h1><p><strong>更改器和访问器</strong><br>更改器方法：调用方法后，会改变对象的状态。<br>访问器方法：只访问对象而不修改对象，通过生成新对象的方式应用改动。</p><h1 id="自定义类部分"><a href="#自定义类部分" class="headerlink" title="自定义类部分"></a>自定义类部分</h1><p><strong>封装</strong><br>注意是否返回了引用可变对象，即访问器方法返回了一个有更改器方法的对象；返回可变对象的引用时，应该先进行 clone。<br>Date 类有更改器方法 setTime，破坏了封装性：</p><a id="more"></a>
+
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">private Date hireDay;</span><br><span class="line">public Date getHireDay()&#123;</span><br><span class="line">	return hireDay;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>final</strong><br>将实例域定义为 final，则构建对象时必须初始化这样的域（在构造器之后），并且之后不能再修改。大多应用于不可变类的域，对于可变的类只表示变量中的对象引用不会再指向其他对象，但当前这个对象可以修改。</p>
+<ul>
+<li>不可变类：类中的的每个方法都不会改变其对象，如 String 类。<br>System.out 被声明为 final，但 System 类有 setOut 方法：本地方法不是用 Java 语言实现，可以绕过 Java 的存取控制机制。</li>
+</ul>
+<h1 id="静态部份"><a href="#静态部份" class="headerlink" title="静态部份"></a>静态部份</h1><p><strong>静态方法</strong><br>不能对对象实施操作，不使用其对象，即没有 this 参数的方法。使用：</p>
+<ul>
+<li>一个方法不需要访问对象状态，所需参数都通过显式参数提供。</li>
+<li>一个方法只需要访问类的静态域。</li>
+</ul>
+<h1 id="参数传递部分"><a href="#参数传递部分" class="headerlink" title="参数传递部分"></a>参数传递部分</h1><p>Java 总是采用按值调用。即方法得到的是参数值的一个拷贝。注意，Java 对对象采用的也是值调用，对象引用是按值传递的。</p>
+<ul>
+<li>一个方法不能修改一个基本数据类型的参数（数字型或布尔型）。</li>
+<li>一个方法可以改变一个对象参数的状态。</li>
+<li>一个方法不能让对象参数引用一个新的对象，因为方法结束后就被丢弃。</li>
+</ul>
+<h1 id="对象构造部分"><a href="#对象构造部分" class="headerlink" title="对象构造部分"></a>对象构造部分</h1><p><strong>重载</strong><br>方法的签名包含方法名和参数类型， 不包括返回类型和参数名。</p>
+<p><strong>无参数构造器</strong><br>当类没有提供任何构造器时，系统会提供一个无参数构造器，数值型设置为 0，布尔型设置为 false，对象变量设置为 null。</p>
+<p><strong>显式域初始化</strong><br>在类定义中直接将值赋给任何域，赋值操作会在 super(); 与构造器之间执行。可以调用方法进行初始化。</p>
+<p><strong>构造器执行步骤</strong><br>未包含继承部分。</p>
+<ol>
+<li>所有数据域初始化为默认值。</li>
+<li>按照在类声明中的出现次序，依次执行所有域初始化语句和初始化块。</li>
+<li>如果构造器第一行调用了第二个构造器，则执行第二个构造器主体。</li>
+<li>执行此构造器。</li>
+</ol>
+]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>对象构造</tag>
+        <tag>静态</tag>
+        <tag>封装</tag>
+        <tag>call by</tag>
       </tags>
   </entry>
   <entry>
@@ -441,286 +724,99 @@
       </tags>
   </entry>
   <entry>
-    <title>Java 补丁-对象和类</title>
-    <url>/2019/12/08/Java-%E8%A1%A5%E4%B8%81-%E5%AF%B9%E8%B1%A1%E5%92%8C%E7%B1%BB/</url>
-    <content><![CDATA[<h1 id="预定义类部分"><a href="#预定义类部分" class="headerlink" title="预定义类部分"></a>预定义类部分</h1><p><strong>更改器和访问器</strong><br>更改器方法：调用方法后，会改变对象的状态。<br>访问器方法：只访问对象而不修改对象，通过生成新对象的方式应用改动。</p><h1 id="自定义类部分"><a href="#自定义类部分" class="headerlink" title="自定义类部分"></a>自定义类部分</h1><p><strong>封装</strong><br>注意是否返回了引用可变对象，即访问器方法返回了一个有更改器方法的对象；返回可变对象的引用时，应该先进行 clone。<br>Date 类有更改器方法 setTime，破坏了封装性：</p><a id="more"></a>
+    <title>Java 补丁-异常、断言和日志</title>
+    <url>/2019/12/23/Java-%E8%A1%A5%E4%B8%81-%E5%BC%82%E5%B8%B8%E3%80%81%E6%96%AD%E8%A8%80%E5%92%8C%E6%97%A5%E5%BF%97/</url>
+    <content><![CDATA[<h1 id="异常部分"><a href="#异常部分" class="headerlink" title="异常部分"></a>异常部分</h1><p><strong>概念</strong><br>非受查 unchecked 异常：派生于 Error 类或 RuntimeException 类的所有异常，其它的异常称为受查 checked 异常。</p><p><strong>创建异常类</strong><br>派生于 Exception 或其子类。应该包含两个构造器：默认构造器和带描述信息的构造器（超类 Throwable 的 toString 方法会打印出详细信息）。</p><a id="more"></a>
 
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">private Date hireDay;</span><br><span class="line">public Date getHireDay()&#123;</span><br><span class="line">	return hireDay;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class FileFormatException extends IOException &#123;</span><br><span class="line">public FileFormatException() &#123;&#125;</span><br><span class="line">public FileFormatException(String gripe) &#123; super(gripe) &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p><strong>final</strong><br>将实例域定义为 final，则构建对象时必须初始化这样的域（在构造器之后），并且之后不能再修改。大多应用于不可变类的域，对于可变的类只表示变量中的对象引用不会再指向其他对象，但当前这个对象可以修改。</p>
+<p><strong>finally 子句</strong><br>建议解耦合 try/catch 和 try/finally 语句块，以提高清晰度（且会报告 finaly 子句的错误）。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">try &#123;</span><br><span class="line">	try &#123;</span><br><span class="line">	&#125;</span><br><span class="line">	finally &#123;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">catch (Exception e) &#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>finally 子句中的 return 语句将会覆盖 try 中 return 的值。</p>
+<p><strong>带资源的 try 语句</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">try (Resource res = ...; ...) &#123;</span><br><span class="line">	work with res</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>可以指定多个资源，try 块正常退出或存在异常时会自动调用 res.close()。catch 子句和 finally 子句将会在关闭资源后执行。</p>
+<p><strong>堆栈轨迹元素</strong><br>堆栈轨迹 stack trace：方法调用过程的列表。</p>
+<h1 id="断言部分"><a href="#断言部分" class="headerlink" title="断言部分"></a>断言部分</h1><p><strong>概念</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">assert 条件 ;</span><br><span class="line">assert 条件 : 表达式 ;</span><br><span class="line"></span><br><span class="line">assert x&gt;=0 : x;</span><br></pre></td></tr></table></figure>
+
+<p>assert 关键词，测试期间向代码插入一些检查语句，发布时会自动移走。<br>对条件进行检测，如果结果是 false 则抛出 AssertionError 异常。第二种还会将表达式传到 AssertionError 转换成消息字符串输出。</p>
+<p><strong>启用和禁用</strong><br>运行程序时用 -ea -da 选项，可以指定某个类或某个包。没有类加载器的系统类需要用 -esa 启用。例：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">java -ea:MyClass -ea:com.mycom... -da:YmClass MyApp</span><br></pre></td></tr></table></figure>
+
+<p>程序中使用 <code>setDefaultAssertionSatus (boolean b)</code> 等完成。</p>
+<h1 id="日志部分"><a href="#日志部分" class="headerlink" title="日志部分"></a>日志部分</h1><p><strong>基本日志</strong><br>即全局日志记录器的 info 方法：<code>Logger.getGlobal().info(&quot; ... &quot;)</code> 。</p>
+<p><strong>高级日志</strong><br>即自定义日志记录器，调用 getLogger 方法创建或获取，具有类似包名的层次结构，因为未被任何变量引用的日志记录器可能会被垃圾回收，要用一个静态变量存储引用：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">private static final Logger myLogger = Logger.getLogger(&apos;&apos;com.mycom...&apos;&apos;);</span><br></pre></td></tr></table></figure>
+
+<p>日志记录器的父子间共享某些属性如日志级别：</p>
 <ul>
-<li>不可变类：类中的的每个方法都不会改变其对象，如 String 类。<br>System.out 被声明为 final，但 System 类有 setOut 方法：本地方法不是用 Java 语言实现，可以绕过 Java 的存取控制机制。</li>
+<li>SEVERE</li>
+<li>WARNING</li>
+<li>INFO</li>
+<li>CONFIG</li>
+<li>FINE</li>
+<li>FINER</li>
+<li>FINEST</li>
 </ul>
-<h1 id="静态部份"><a href="#静态部份" class="headerlink" title="静态部份"></a>静态部份</h1><p><strong>静态方法</strong><br>不能对对象实施操作，不使用其对象，即没有 this 参数的方法。使用：</p>
-<ul>
-<li>一个方法不需要访问对象状态，所需参数都通过显式参数提供。</li>
-<li>一个方法只需要访问类的静态域。</li>
-</ul>
-<h1 id="参数传递部分"><a href="#参数传递部分" class="headerlink" title="参数传递部分"></a>参数传递部分</h1><p>Java 总是采用按值调用。即方法得到的是参数值的一个拷贝。注意，Java 对对象采用的也是值调用，对象引用是按值传递的。</p>
-<ul>
-<li>一个方法不能修改一个基本数据类型的参数（数字型或布尔型）。</li>
-<li>一个方法可以改变一个对象参数的状态。</li>
-<li>一个方法不能让对象参数引用一个新的对象，因为方法结束后就被丢弃。</li>
-</ul>
-<h1 id="对象构造部分"><a href="#对象构造部分" class="headerlink" title="对象构造部分"></a>对象构造部分</h1><p><strong>重载</strong><br>方法的签名包含方法名和参数类型， 不包括返回类型和参数名。</p>
-<p><strong>无参数构造器</strong><br>当类没有提供任何构造器时，系统会提供一个无参数构造器，数值型设置为 0，布尔型设置为 false，对象变量设置为 null。</p>
-<p><strong>显式域初始化</strong><br>在类定义中直接将值赋给任何域，赋值操作会在 super(); 与构造器之间执行。可以调用方法进行初始化。</p>
-<p><strong>构造器执行步骤</strong><br>未包含继承部分。</p>
-<ol>
-<li>所有数据域初始化为默认值。</li>
-<li>按照在类声明中的出现次序，依次执行所有域初始化语句和初始化块。</li>
-<li>如果构造器第一行调用了第二个构造器，则执行第二个构造器主体。</li>
-<li>执行此构造器。</li>
-</ol>
+<p>默认只记录前三个级别，通过 <code>logger.setLevel(Level.FINE);</code> 设置其他级别。</p>
 ]]></content>
       <categories>
         <category>Java</category>
       </categories>
       <tags>
-        <tag>对象构造</tag>
-        <tag>静态</tag>
-        <tag>封装</tag>
-        <tag>call by</tag>
+        <tag>异常</tag>
+        <tag>断言</tag>
+        <tag>日志</tag>
       </tags>
   </entry>
   <entry>
-    <title>Java 补丁-基本程序设计结构</title>
-    <url>/2019/12/01/Java-%E8%A1%A5%E4%B8%81-%E5%9F%BA%E6%9C%AC%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E7%BB%93%E6%9E%84/</url>
-    <content><![CDATA[<h1 id="数据类型部分"><a href="#数据类型部分" class="headerlink" title="数据类型部分"></a>数据类型部分</h1><p><strong>整型</strong><br>Java7 开始：允许通过加前缀 0b 写二进制数；允许为数字字面量加下划线：</p><ul>
-<li>1_000_000</li>
-<li>0b1111_0000_0100</li>
-</ul><p><strong>浮点型</strong><br>由于二进制系统无法精确表示分数 1/10，故浮点数值不适用金融计算，此时应使用 BigDecimal 类。</p><table>
-<thead>
-<tr>
-<th align="center">常量</th>
-<th align="center">数值</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">Double.POSITIVE_INFINITY</td>
-<td align="center">正无穷</td>
-</tr>
-<tr>
-<td align="center">Double.NEGATIVE_INFINITY</td>
-<td align="center">负无穷</td>
-</tr>
-<tr>
-<td align="center">Double.NaN</td>
-<td align="center">非数字</td>
-</tr>
-</tbody></table><a id="more"></a>
+    <title>Java 补丁-接口、lambda 和内部类</title>
+    <url>/2019/12/23/Java-%E8%A1%A5%E4%B8%81-%E6%8E%A5%E5%8F%A3%E3%80%81lambda-%E5%92%8C%E5%86%85%E9%83%A8%E7%B1%BB/</url>
+    <content><![CDATA[<h1 id="接口部分"><a href="#接口部分" class="headerlink" title="接口部分"></a>接口部分</h1><p><strong>特性</strong><br>可以使用 instanceof 检查一个对象是否实现某个接口：</p><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">if (anObject instanceof Comparable) &#123; ... &#125;</span><br></pre></td></tr></table></figure><p>接口中不能包含实例域或静态方法（ Java 8 支持静态方法），允许常量。接口中的方法默认为 public，域默认为 public static final。</p><a id="more"></a>
 
 
 
-<p>判断一个特定值是否为 Double.NaN ：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span>(x == Double.NaN) <span class="comment">// never true</span></span><br><span class="line"><span class="keyword">if</span>(Double.isNaN(x)) <span class="comment">// √</span></span><br></pre></td></tr></table></figure>
-
-<p><strong>char 类型</strong><br>char 数据类型是一个采用 UTF-16 编码表示 Unicode 码点的代码单元。<br>Unicode 转义序列会在解析代码前处理：</p>
-<ul>
-<li>“\u0022+\u0022” 会得到 “”+”” 即空串</li>
-<li>// \u00A0 is a newline 会替换成换行符</li>
-<li>// c:\users 会产生语法错误</li>
-</ul>
-<p><strong>枚举类型</strong><br>枚举类型的变量只能储存这个类型声明中给定的某个枚举值，或没有设置值 null</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">enum</span> Size &#123; SAMLL, MEDIUM, LARGE &#125;;</span><br><span class="line">Size s = Size.SMALL;</span><br></pre></td></tr></table></figure>
-
-<p>所有枚举类型都是 Enum 的子类，继承其方法。因为实际上是一个类，故比较时直接用 == 就好，也可以在枚举类型中添加构造器方法域。</p>
-<p><strong>相关：大数值</strong><br>java.math 包的 BigInteger 和 BigDecimal 类可以处理任意长度数字序列的数值，分别对应整数和浮点数运算。</p>
-<hr>
-<h1 id="运算符部分"><a href="#运算符部分" class="headerlink" title="运算符部分"></a>运算符部分</h1><p><strong>数学函数</strong><br>StrictMath 类使用 fdlibm 库实现算法，确保在所有平台上得到相同结果。</p>
-<p><strong>数值类型转换</strong><br>二元操作中的类型转换，以 double float long 的顺序进行判断，若都不是则两个操作数都转换成 int 型。<br>强制类型转换通过截断小数部分将浮点值转换为整型，若要得到最接近整型的数，使用 Math.round 对浮点数进行舍入：</p>
-<ul>
-<li><code>int newx = (int) Math.round(x);</code> // 返回的是 long 类型</li>
-</ul>
-<p>强制转换中若超出目标类型的表示范围，结果会截断成完全不同的值。<br>不要在 boolean 与任何数值类型间强制类型转换，转换为数值时可以使用条件表达式 boolean ? 1:0</p>
-<p><strong>自增自减和运算符级别</strong><br>自增自减中，用于表达式时前缀形式会先完成加减一：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> m = <span class="number">7</span>;</span><br><span class="line"><span class="keyword">int</span> n = <span class="number">7</span>;</span><br><span class="line"><span class="keyword">int</span> a = <span class="number">2</span> * ++m; <span class="comment">// a is 16, m is 8</span></span><br><span class="line"><span class="keyword">int</span> b = <span class="number">2</span> * n++; <span class="comment">// b is 14, n is 8</span></span><br></pre></td></tr></table></figure>
-
-<p>+= 是右结合运算符，所以 <code>a += b += c</code> 等价于 <code>a += (b += c)</code></p>
-<p><strong>位运算符</strong></p>
-<table>
-<thead>
-<tr>
-<th align="center">位运算符</th>
-<th align="center"></th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">&amp;</td>
-<td align="center">and</td>
-</tr>
-<tr>
-<td align="center">&#124;</td>
-<td align="center">or</td>
-</tr>
-<tr>
-<td align="center">^</td>
-<td align="center">xor</td>
-</tr>
-<tr>
-<td align="center">~</td>
-<td align="center">not</td>
-</tr>
-</tbody></table>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> fourthBit = (n &amp; <span class="number">0b1000</span>) / <span class="number">0b1000</span>;</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h1 id="字符串部分"><a href="#字符串部分" class="headerlink" title="字符串部分"></a>字符串部分</h1><p><strong>String API</strong><br>提取子串： substring 方法。<br>多个字符串放在一起用一个定界符分隔： String.join 方法。</p>
-<p><strong>不可变字符串</strong><br>String 类没有修改字符串的方法，可以先提取再拼接；编译器可以让字符串共享，即复制一个字符串变量，原始字符串与复制的字符串共享相同的字符。<br>但不要使用 == （此运算符确定是否在同一位置上）检测两个字符串是否相等，虚拟机实际上只有字符串常量是共享的，而 + 或 substring 等操作产生的结果并不共享。使用 equals equalsIgnoreCase 方法。</p>
-<p><strong>构建字符串</strong><br>用许多小段字符串构建时，字符串连接的方式效率较低，每次连接字符串都会构建一个新的 String 对象，应该 new 个空的字符串构造器：StringBuilder 类，相对 StringBuffer 类效率更高，但后者允许多线程方式执行操作。</p>
-<p><strong>Null 串</strong><br>null 上调用方法会出现错误，故检查字符串 null 和空 <code>if (str != null &amp;&amp; str.length() != 0)</code> ，空用 equals 也行。</p>
-<p><strong>码点和代码单元</strong><br>length 方法返回采用 UTF-16 编码表示的给定字符串所需要的代码单元数量（配合 char 数据类型食用）。大多数常用字符使用一个代码单元表示，辅助字符需要一对代码单元表示。故实际长度应该是码点数量：使用 codePointCount 方法获取。<br>如字符 𝕆 U+1D546 需要两个代码单元，若使用 <code>char ch = sentence.charAt(1)</code> 会返回第二个代码单元而非空格，所以此类不要用 char 类型。charAt 方法返回位置 n 的代码单元。</p>
+<p> <strong>default 默认方法</strong><br>与超类冲突：超类的方法和接口的默认方法冲突时，超类优先。<br>与接口冲突：只要有一个接口有默认方法，就需要提供一个实现覆盖掉。若接口们都没有提供默认方法，则不存在冲突 - 全部实现或不实现（使自身抽象）。</p>
 <blockquote>
-<p>一个 code point 可能由一个或多个 code unit(s) 表示。在 U+10000 之前的 code point 可以由一个 UTF-16 code unit 表示，U+10000 及之后的 code point 要由两个 UTF-16 code units 表示。</p>
+<p>所以不要用接口的默认方法重新定义 Object 类中的方法如 equals 等，因为超类优先规则默认方法会永远被忽略。</p>
 </blockquote>
-<hr>
-<h1 id="输入输出部分"><a href="#输入输出部分" class="headerlink" title="输入输出部分"></a>输入输出部分</h1><p><strong>格式化输出</strong></p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">System.out.printf(<span class="string">"%,.2f"</span>, <span class="number">10000.0</span> / <span class="number">3.0</span>);</span><br><span class="line"><span class="comment">// 3,333.33</span></span><br></pre></td></tr></table></figure>
+<p><strong>clone 方法</strong><br>copy 一个新对象而不是引用。clone 方法是 Objects 的一个 protected 方法，子类只能克隆它自己的对象，会产生问题：若拷贝的是相同子对象的引用，原对象和克隆对象仍会共享一些信息。默认的拷贝是浅拷贝，若共享的子对象不可变（如 String 类），在生命周期里没有更改器改变它，也没有方法生成它的引用，则是安全的。</p>
+<p>若默认 clone 方法满足需求，需要实现 Cloneable 接口（标记接口），调用 <code>super.clone()</code>；若要在可变的子对象上调用 clone 进行修补，则还重新定义一个 public 的 clone 方法。</p>
+<h1 id="lambda-表达式部分"><a href="#lambda-表达式部分" class="headerlink" title="lambda 表达式部分 *"></a>lambda 表达式部分 *</h1><p><strong>规范</strong><br>一个可传递的代码块，以及其变量规范。即使 lambda 表达式没有参数仍然要提供空括号：<code>() -&gt; { ... }</code> ；如果可以推导出参数类型则可以忽略其类型：<code>Comparator&lt;S
+tring&gt; comp = (first, second) -&gt; ... ;</code> ；如果方法只有一个参数，且可以推导出类型，可以省略小括号：<code>ActionListener listener = event -&gt; ... ;</code> 。<br>lambda 表达式的返回类型会由上下文推导得出；只在某些分支返回一个值是不合法的。</p>
+<p><strong>函数式接口</strong><br>对于只有一个抽象方法的接口，需要其对象时，可以提供一个 lambda 表达式。Java 中对 lambda 表达式所能做的只是转换为函数式接口。</p>
+<p><strong>引用方法</strong><br>使用现有方法代替要传递的内容，用 :: 分隔方法名和对象名，允许使用 this 和 super。</p>
+<ul>
+<li>object::instanceMethod</li>
+<li>Class::staticMethod</li>
+<li>Class::instanceMethod</li>
+</ul>
+<p>前两种情况中方法引用等价于提供方法参数的 lambda 表达式，如 <code>System.out::println</code> 等价于 <code>x -&gt; System.out.println(x)</code> 。第三种情况第一个参数会成为方法的目标，如 <code>String::compareToIgnoreCase</code> 等价于 <code>(x,y) -&gt; x.compareToIgnoreCase(y)</code> 。</p>
+<p><strong>构造器引用</strong><br>构造器引用类似于方法引用，不过方法名为 new。编译器通过上下文选择构造器。<br>可以用数组类型建立构造器引用，如 <code>int[]::new</code> 有一个数组长度参数，等价于 <code>x -&gt; new int[x]</code>。但无法构造泛型类型 T 的数组，通过 Stream 接口的 toArray 方法调用构造器获得某类型的数组。</p>
+<p><strong>变量作用域</strong><br>lambda 表达式可以捕获外围方法或类中变量的值，即可以存储自由变量（非参数且不在表达式中定义）的值。<br>不能改变引用值，或在外部改变引用变量。即捕获的变量必须实际上是最终变量，初始化后就不会再为它赋新值。<br>this 关键字是指创建这个 lambda 表达式的方法的 this 参数。</p>
+<h1 id="内部类部分"><a href="#内部类部分" class="headerlink" title="内部类部分"></a>内部类部分</h1><p><strong>规则</strong><br>内部类的对象总有一个隐式引用（OuterClass.this）指向外部类对象，故可以访问创建它的外围类对象的实例域。<br>每个外部对象会分别有一个内部类实例，故内部类的静态域要加 final 确保唯一。而其方法不允许 static，可能因为弊大于利。</p>
+<p><strong>局部内部类</strong><br>定义在方法中，不能用 public 和 private 声明。对外部世界完全隐藏，外部类也不能访问它。</p>
+<p><strong>匿名内部类</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">new SuperType(construction parameters)</span><br><span class="line">	&#123;</span><br><span class="line">		inner class methods and data</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
 
-<p>用于 printf 的转换符：</p>
-<table>
-<thead>
-<tr>
-<th align="center">转换符</th>
-<th align="center">类型</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">d</td>
-<td align="center">十进制整数</td>
-</tr>
-<tr>
-<td align="center">x</td>
-<td align="center">十六进制整数</td>
-</tr>
-<tr>
-<td align="center">o</td>
-<td align="center">八进制整数</td>
-</tr>
-<tr>
-<td align="center">f</td>
-<td align="center">定点浮点数</td>
-</tr>
-<tr>
-<td align="center">e</td>
-<td align="center">指数浮点值</td>
-</tr>
-<tr>
-<td align="center">g</td>
-<td align="center">通用浮点数</td>
-</tr>
-<tr>
-<td align="center">a</td>
-<td align="center">十六进制浮点数</td>
-</tr>
-<tr>
-<td align="center">s</td>
-<td align="center">字符串</td>
-</tr>
-<tr>
-<td align="center">c</td>
-<td align="center">字符</td>
-</tr>
-<tr>
-<td align="center">b</td>
-<td align="center">布尔</td>
-</tr>
-<tr>
-<td align="center">h</td>
-<td align="center">散列码</td>
-</tr>
-<tr>
-<td align="center">%</td>
-<td align="center">百分号</td>
-</tr>
-<tr>
-<td align="center">n</td>
-<td align="center">平台有关的行分隔符</td>
-</tr>
-</tbody></table>
-<p>用于 printf 的标志：</p>
-<table>
-<thead>
-<tr>
-<th align="center">标志</th>
-<th align="center">目的</th>
-<th align="center">举例</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">+</td>
-<td align="center">打印正负数符号</td>
-<td align="center">+333</td>
-</tr>
-<tr>
-<td align="center">空格</td>
-<td align="center">在正数前加空格</td>
-<td align="center"></td>
-</tr>
-<tr>
-<td align="center">0</td>
-<td align="center">数字前面补 0</td>
-<td align="center">00333.3</td>
-</tr>
-<tr>
-<td align="center">-</td>
-<td align="center">左对齐</td>
-<td align="center"></td>
-</tr>
-<tr>
-<td align="center">(</td>
-<td align="center">将负数括在括号内</td>
-<td align="center">(3.3)</td>
-</tr>
-<tr>
-<td align="center">,</td>
-<td align="center">添加分组分隔符</td>
-<td align="center">3,333</td>
-</tr>
-<tr>
-<td align="center">#（f）</td>
-<td align="center">包含小数点</td>
-<td align="center">333.</td>
-</tr>
-<tr>
-<td align="center">#</td>
-<td align="center">添加前缀 0x 或 0</td>
-<td align="center">0xcafe</td>
-</tr>
-</tbody></table>
-<p><strong>文件输入和输出</strong><br>通过相对位置指定文件时，是 Java 虚拟机启动路径的相对位置。<br>记得捕获输入输出异常，以免文件不存在或不能被创建。</p>
-<p>读取通过构造 Scanner 对象，路径中要转义反斜杠；写入则构造 PrintWriter 对象。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Scanner in = <span class="keyword">new</span> Scanner(Paths.get(<span class="string">"c:\\my\\file"</span>), <span class="string">"UTF-8"</span>);</span><br><span class="line">Scanner in = <span class="keyword">new</span> Scanner(<span class="string">"c:\\my\\file"</span>); <span class="comment">// 允许但会变成字符数据</span></span><br></pre></td></tr></table></figure>
+<p>若构造一个数组列表并将其传递到方法后就不再需要，可以作为匿名列表：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">invite(new ArrayList&lt;String&gt;() &#123;&#123; add(&quot;A&quot;; add(&quot;B&quot;); )&#125;&#125;);</span><br></pre></td></tr></table></figure>
 
-<hr>
-<h1 id="控制流程部分"><a href="#控制流程部分" class="headerlink" title="控制流程部分"></a>控制流程部分</h1><p><strong>switch 语句</strong><br>Java7 开始，case 标签可以是字符串字面量。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">String input = ...;</span><br><span class="line"><span class="keyword">switch</span> (input.toLowerCase())&#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="string">"yes"</span>:</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>中断语句</strong><br>带标签 break 语句用于跳出多重循环。标签放在最外层循环之前，并紧跟冒号，break 将跳转到带标签的语句块结尾。只能跳出，不能跳入。<br>带标签 break 甚至可以用于 if 语句或语句块中：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">label:</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span> (condition) <span class="keyword">break</span> label;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>continue 语句将控制转移到最内层循环的首部，带标签 continue 语句将跳到与标签匹配的循环首部。</p>
-<hr>
-<h1 id="数组部分"><a href="#数组部分" class="headerlink" title="数组部分"></a>数组部分</h1><p>数字数组初始化为 0，boolean 数组初始化为 false，对象数组则为 null。数组创建后不能改变大小，需要扩展应选择数组列表 array list。<br>Java 允许数组长度为 0，与 null 不同。</p>
-<p><strong>for each 循环</strong></p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> (variable : collection) statement &#123;&#125;</span><br></pre></td></tr></table></figure>
-
-<p>collection 可以是数组或实现了 Iterable 接口的类对象。<br>打印数组所有值可以用 Arrays.toString 方法，元素被放在 [] 内，用逗号分隔。</p>
-<p><strong>初始化和匿名</strong><br>不创建变量初始化一个数组：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">arr = <span class="keyword">new</span> <span class="keyword">int</span>[] &#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>&#125;;</span><br><span class="line"><span class="comment">// 即下列语句简写</span></span><br><span class="line"><span class="keyword">int</span>[] temp = &#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>&#125;;</span><br><span class="line">arr = temp;</span><br></pre></td></tr></table></figure>
-
-<p><strong>拷贝</strong><br>将一个数组变量拷贝给另一个数组变量后，两个变量引用的是同一个数组，即更改在两者生效。若要拷贝到新数组，使用 Arrays.copyOf 方法，这个方法也用于增加数组大小：<code>arr = Arrays.copyOf(arr, 2 * arr.length)</code> 。</p>
-<p><strong>命令行参数</strong><br>main 的 String[] args 用于存储命令行参数，不包含程序名。</p>
-<p><strong>不规则数组</strong><br>Java 实际上只有一维数组，多维数组定义为“数组的数组”。所以可以让两行交换，或是每一行有不同的长度：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span>[][] odds = <span class="keyword">new</span> <span class="keyword">int</span>[NMAX +<span class="number">1</span>][];</span><br><span class="line"><span class="comment">//new 一个具有行数的数组</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> n = <span class="number">0</span>; n &lt;= NMAX; n++)</span><br><span class="line">    odds[n] = <span class="keyword">new</span> <span class="keyword">int</span>[n + <span class="number">1</span>];</span><br><span class="line">    <span class="comment">//然后为每行添加元素</span></span><br></pre></td></tr></table></figure>]]></content>
+<p>外层括号建立了 ArrayList 的一个匿名子类，内层括号为子类添加元素。</p>
+<p>调用 getClass() 是实际是 this.getClass() 而静态方法没有 this，所以应该：<code>new Object(){}.getClass().getEnclosingClass()</code> 。<code>new Object(){}</code> 会建立 Object 的一个匿名子类的匿名对象，<code>getEnclosingClass()</code> 则得到其外围类即包含对应静态方法的类。</p>
+<p><strong>静态内部类</strong><br>当使用内部类只是为了隐藏在另一个类内部，不引用外围类对象，可以声明成 static 以便取消产生的引用。（有时内部类对象在静态方法中构造）<br>可以有静态域和方法。</p>
+]]></content>
       <categories>
         <category>Java</category>
       </categories>
       <tags>
-        <tag>数据类型</tag>
-        <tag>控制流程</tag>
-        <tag>数组</tag>
-        <tag>运算符</tag>
+        <tag>接口</tag>
+        <tag>内部类</tag>
+        <tag>lambda</tag>
+        <tag>泛型</tag>
       </tags>
   </entry>
   <entry>
@@ -815,102 +911,6 @@
       <tags>
         <tag>线程</tag>
         <tag>同步</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Java 补丁-异常、断言和日志</title>
-    <url>/2019/12/23/Java-%E8%A1%A5%E4%B8%81-%E5%BC%82%E5%B8%B8%E3%80%81%E6%96%AD%E8%A8%80%E5%92%8C%E6%97%A5%E5%BF%97/</url>
-    <content><![CDATA[<h1 id="异常部分"><a href="#异常部分" class="headerlink" title="异常部分"></a>异常部分</h1><p><strong>概念</strong><br>非受查 unchecked 异常：派生于 Error 类或 RuntimeException 类的所有异常，其它的异常称为受查 checked 异常。</p><p><strong>创建异常类</strong><br>派生于 Exception 或其子类。应该包含两个构造器：默认构造器和带描述信息的构造器（超类 Throwable 的 toString 方法会打印出详细信息）。</p><a id="more"></a>
-
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class FileFormatException extends IOException &#123;</span><br><span class="line">public FileFormatException() &#123;&#125;</span><br><span class="line">public FileFormatException(String gripe) &#123; super(gripe) &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>finally 子句</strong><br>建议解耦合 try/catch 和 try/finally 语句块，以提高清晰度（且会报告 finaly 子句的错误）。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">try &#123;</span><br><span class="line">	try &#123;</span><br><span class="line">	&#125;</span><br><span class="line">	finally &#123;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">catch (Exception e) &#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>finally 子句中的 return 语句将会覆盖 try 中 return 的值。</p>
-<p><strong>带资源的 try 语句</strong></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">try (Resource res = ...; ...) &#123;</span><br><span class="line">	work with res</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>可以指定多个资源，try 块正常退出或存在异常时会自动调用 res.close()。catch 子句和 finally 子句将会在关闭资源后执行。</p>
-<p><strong>堆栈轨迹元素</strong><br>堆栈轨迹 stack trace：方法调用过程的列表。</p>
-<h1 id="断言部分"><a href="#断言部分" class="headerlink" title="断言部分"></a>断言部分</h1><p><strong>概念</strong></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">assert 条件 ;</span><br><span class="line">assert 条件 : 表达式 ;</span><br><span class="line"></span><br><span class="line">assert x&gt;=0 : x;</span><br></pre></td></tr></table></figure>
-
-<p>assert 关键词，测试期间向代码插入一些检查语句，发布时会自动移走。<br>对条件进行检测，如果结果是 false 则抛出 AssertionError 异常。第二种还会将表达式传到 AssertionError 转换成消息字符串输出。</p>
-<p><strong>启用和禁用</strong><br>运行程序时用 -ea -da 选项，可以指定某个类或某个包。没有类加载器的系统类需要用 -esa 启用。例：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">java -ea:MyClass -ea:com.mycom... -da:YmClass MyApp</span><br></pre></td></tr></table></figure>
-
-<p>程序中使用 <code>setDefaultAssertionSatus (boolean b)</code> 等完成。</p>
-<h1 id="日志部分"><a href="#日志部分" class="headerlink" title="日志部分"></a>日志部分</h1><p><strong>基本日志</strong><br>即全局日志记录器的 info 方法：<code>Logger.getGlobal().info(&quot; ... &quot;)</code> 。</p>
-<p><strong>高级日志</strong><br>即自定义日志记录器，调用 getLogger 方法创建或获取，具有类似包名的层次结构，因为未被任何变量引用的日志记录器可能会被垃圾回收，要用一个静态变量存储引用：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">private static final Logger myLogger = Logger.getLogger(&apos;&apos;com.mycom...&apos;&apos;);</span><br></pre></td></tr></table></figure>
-
-<p>日志记录器的父子间共享某些属性如日志级别：</p>
-<ul>
-<li>SEVERE</li>
-<li>WARNING</li>
-<li>INFO</li>
-<li>CONFIG</li>
-<li>FINE</li>
-<li>FINER</li>
-<li>FINEST</li>
-</ul>
-<p>默认只记录前三个级别，通过 <code>logger.setLevel(Level.FINE);</code> 设置其他级别。</p>
-]]></content>
-      <categories>
-        <category>Java</category>
-      </categories>
-      <tags>
-        <tag>异常</tag>
-        <tag>断言</tag>
-        <tag>日志</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Java 补丁-接口、lambda 和内部类</title>
-    <url>/2019/12/23/Java-%E8%A1%A5%E4%B8%81-%E6%8E%A5%E5%8F%A3%E3%80%81lambda-%E5%92%8C%E5%86%85%E9%83%A8%E7%B1%BB/</url>
-    <content><![CDATA[<h1 id="接口部分"><a href="#接口部分" class="headerlink" title="接口部分"></a>接口部分</h1><p><strong>特性</strong><br>可以使用 instanceof 检查一个对象是否实现某个接口：</p><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">if (anObject instanceof Comparable) &#123; ... &#125;</span><br></pre></td></tr></table></figure><p>接口中不能包含实例域或静态方法（ Java 8 支持静态方法），允许常量。接口中的方法默认为 public，域默认为 public static final。</p><a id="more"></a>
-
-
-
-<p> <strong>default 默认方法</strong><br>与超类冲突：超类的方法和接口的默认方法冲突时，超类优先。<br>与接口冲突：只要有一个接口有默认方法，就需要提供一个实现覆盖掉。若接口们都没有提供默认方法，则不存在冲突 - 全部实现或不实现（使自身抽象）。</p>
-<blockquote>
-<p>所以不要用接口的默认方法重新定义 Object 类中的方法如 equals 等，因为超类优先规则默认方法会永远被忽略。</p>
-</blockquote>
-<p><strong>clone 方法</strong><br>copy 一个新对象而不是引用。clone 方法是 Objects 的一个 protected 方法，子类只能克隆它自己的对象，会产生问题：若拷贝的是相同子对象的引用，原对象和克隆对象仍会共享一些信息。默认的拷贝是浅拷贝，若共享的子对象不可变（如 String 类），在生命周期里没有更改器改变它，也没有方法生成它的引用，则是安全的。</p>
-<p>若默认 clone 方法满足需求，需要实现 Cloneable 接口（标记接口），调用 <code>super.clone()</code>；若要在可变的子对象上调用 clone 进行修补，则还重新定义一个 public 的 clone 方法。</p>
-<h1 id="lambda-表达式部分"><a href="#lambda-表达式部分" class="headerlink" title="lambda 表达式部分 *"></a>lambda 表达式部分 *</h1><p><strong>规范</strong><br>一个可传递的代码块，以及其变量规范。即使 lambda 表达式没有参数仍然要提供空括号：<code>() -&gt; { ... }</code> ；如果可以推导出参数类型则可以忽略其类型：<code>Comparator&lt;S
-tring&gt; comp = (first, second) -&gt; ... ;</code> ；如果方法只有一个参数，且可以推导出类型，可以省略小括号：<code>ActionListener listener = event -&gt; ... ;</code> 。<br>lambda 表达式的返回类型会由上下文推导得出；只在某些分支返回一个值是不合法的。</p>
-<p><strong>函数式接口</strong><br>对于只有一个抽象方法的接口，需要其对象时，可以提供一个 lambda 表达式。Java 中对 lambda 表达式所能做的只是转换为函数式接口。</p>
-<p><strong>引用方法</strong><br>使用现有方法代替要传递的内容，用 :: 分隔方法名和对象名，允许使用 this 和 super。</p>
-<ul>
-<li>object::instanceMethod</li>
-<li>Class::staticMethod</li>
-<li>Class::instanceMethod</li>
-</ul>
-<p>前两种情况中方法引用等价于提供方法参数的 lambda 表达式，如 <code>System.out::println</code> 等价于 <code>x -&gt; System.out.println(x)</code> 。第三种情况第一个参数会成为方法的目标，如 <code>String::compareToIgnoreCase</code> 等价于 <code>(x,y) -&gt; x.compareToIgnoreCase(y)</code> 。</p>
-<p><strong>构造器引用</strong><br>构造器引用类似于方法引用，不过方法名为 new。编译器通过上下文选择构造器。<br>可以用数组类型建立构造器引用，如 <code>int[]::new</code> 有一个数组长度参数，等价于 <code>x -&gt; new int[x]</code>。但无法构造泛型类型 T 的数组，通过 Stream 接口的 toArray 方法调用构造器获得某类型的数组。</p>
-<p><strong>变量作用域</strong><br>lambda 表达式可以捕获外围方法或类中变量的值，即可以存储自由变量（非参数且不在表达式中定义）的值。<br>不能改变引用值，或在外部改变引用变量。即捕获的变量必须实际上是最终变量，初始化后就不会再为它赋新值。<br>this 关键字是指创建这个 lambda 表达式的方法的 this 参数。</p>
-<h1 id="内部类部分"><a href="#内部类部分" class="headerlink" title="内部类部分"></a>内部类部分</h1><p><strong>规则</strong><br>内部类的对象总有一个隐式引用（OuterClass.this）指向外部类对象，故可以访问创建它的外围类对象的实例域。<br>每个外部对象会分别有一个内部类实例，故内部类的静态域要加 final 确保唯一。而其方法不允许 static，可能因为弊大于利。</p>
-<p><strong>局部内部类</strong><br>定义在方法中，不能用 public 和 private 声明。对外部世界完全隐藏，外部类也不能访问它。</p>
-<p><strong>匿名内部类</strong></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">new SuperType(construction parameters)</span><br><span class="line">	&#123;</span><br><span class="line">		inner class methods and data</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
-
-<p>若构造一个数组列表并将其传递到方法后就不再需要，可以作为匿名列表：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">invite(new ArrayList&lt;String&gt;() &#123;&#123; add(&quot;A&quot;; add(&quot;B&quot;); )&#125;&#125;);</span><br></pre></td></tr></table></figure>
-
-<p>外层括号建立了 ArrayList 的一个匿名子类，内层括号为子类添加元素。</p>
-<p>调用 getClass() 是实际是 this.getClass() 而静态方法没有 this，所以应该：<code>new Object(){}.getClass().getEnclosingClass()</code> 。<code>new Object(){}</code> 会建立 Object 的一个匿名子类的匿名对象，<code>getEnclosingClass()</code> 则得到其外围类即包含对应静态方法的类。</p>
-<p><strong>静态内部类</strong><br>当使用内部类只是为了隐藏在另一个类内部，不引用外围类对象，可以声明成 static 以便取消产生的引用。（有时内部类对象在静态方法中构造）<br>可以有静态域和方法。</p>
-]]></content>
-      <categories>
-        <category>Java</category>
-      </categories>
-      <tags>
-        <tag>接口</tag>
-        <tag>内部类</tag>
-        <tag>lambda</tag>
-        <tag>泛型</tag>
       </tags>
   </entry>
   <entry>
@@ -1612,72 +1612,34 @@ tring&gt; comp = (first, second) -&gt; ... ;</code> ；如果方法只有一个�
       </tags>
   </entry>
   <entry>
-    <title>Linux 文件系统</title>
-    <url>/2019/09/18/Linux-%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F/</url>
-    <content><![CDATA[<h1 id="回顾硬盘"><a href="#回顾硬盘" class="headerlink" title="回顾硬盘"></a>回顾硬盘</h1><h2 id="分区"><a href="#分区" class="headerlink" title="分区"></a>分区</h2><p>磁盘分区指定分区的起始与结束<strong>柱面</strong>，分区的柱面范围记录在第一个扇区的分区表里面</p><p>硬盘的第一个扇区中有主引导记录 <strong>MBR 446bytes</strong> 和分区表 <strong>partition table 64bytes</strong>，由于大小限制最多只能记录四条分区的记录，即主分区或扩展分区</p><ul>
-<li>GPT + UEFI 则扫描整块磁盘上的分区，读取 EFI 分区里的引导文件，所以不再限制在扇区开头的 512bytes 中</li>
-</ul><a id="more"></a>
+    <title>Linux 文件系统操作</title>
+    <url>/2019/09/28/Linux-%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E6%93%8D%E4%BD%9C/</url>
+    <content><![CDATA[<h1 id="df-du"><a href="#df-du" class="headerlink" title="df du"></a>df du</h1><p>根据 super block 中的信息</p><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># df [-ahikHTm] [filenamedirname]</span><br><span class="line">-a : 列出所有文件系统，比默认多显示如内存中的</span><br><span class="line">-k : 以 KB 显示各文件系统</span><br><span class="line">-m : 同上</span><br><span class="line">-h : 自行以易阅读的单位显示</span><br><span class="line">-H : 以 1M=1000K 计算</span><br><span class="line">-T : 增加显示文件系统名称 type</span><br><span class="line">-i : 以 inode 数量显示</span><br></pre></td></tr></table></figure><a id="more"></a>
 
 
-<p>硬盘限制主分区和扩展分区最多可以有四个，操作系统限制扩展分区只能有一个，无法被格式化即无法作为数据访问，但扩展分区可以再分出逻辑分区</p>
-<h2 id="格式化"><a href="#格式化" class="headerlink" title="格式化"></a>格式化</h2><p>文件系统通过格式化将 inode 和 block 规划好，并不再变动；不同文件系统格式化方法不同，所以不能相互识别利用</p>
-<ul>
-<li>inode 记录文件属性和此文件的数据所在的 block，一个文件占用一个 inode</li>
-<li>block 实际记录文件内容，可占用多个</li>
-<li>super block 记录此文件系统的整体信息，如 inode/block 总量使用量剩余量，文件系统的格式等</li>
-</ul>
-<p>碎片整理即因为文件写入的 block 过于离散，影响文件读取性能，需要将它们汇合到一起；这针对没有 inode 的 FAT 系统，Linux 的索引式文件系统基本不需要</p>
+<p>/proc 这个挂载点在内存中，没有占用任何硬盘空间故大小为 0<br>/dev/shm 是利用内存虚拟的磁盘空间</p>
 <hr>
-<h1 id="文件系统"><a href="#文件系统" class="headerlink" title="文件系统"></a>文件系统</h1><p>当 inode 和 block 数量极大时不容易管理，Ext2 在格式化时区分为多个块组 block group，每个块组有独立的 inode/block/superblock 系统<br><img src="http://cn.linux.vbird.org/linux_basic/0230filesystem_files/ext2_filesystem.jpg" alt="avatar"><br>boot sector 启动扇区<br>在文件系统最前面，用于安装引导装载程序，这样不用覆盖整块硬盘唯一的 MBR，制作多重引导环境</p>
-<p>data block 数据块<br>放置文件内容，每个 block 最多放置一个文件的数据，若有剩余空间则浪费；Ext2 支持 1KB 2KB 4KB 三种 block 大小，其决定最大总容量和最大单一文件容量</p>
-<p>inodetable<br>至少记录访问模式 所有者和组 大小 ctime atime mtime 内容指向 文件特性，系统读取文件时会先分析 inode 所记录的权限与用户是否符合；每个文件占用一个inode，所以文件系统能创建的文件数量与 inode 数量有关<br>inode 大小固定为 128bytes，当文件较大则不足以记录下所有的 block 编号，故定义了 12 个直接，一个间接，一个双间接，一个三间接记录区</p>
-<ul>
-<li>用一个 block 来记录额外的编号，若依然不够则用一个 block 指出下一个记录编号的 block，依此最多三层；以 1KB 大小的 block 计算，12*1K + 256*1K + 256*256*1K + 256*256*256*1K = 16GB，即该文件系统最大容量</li>
-</ul>
-<p>superblock<br>一般为 1024bytes，除了第一个 blockgroup 中含有 superblock 外，后面的不一定含有，若有则为备份</p>
-<p>文件系统描述 File system Dscription<br>描述每个 blockgroup 的开始与结束编号，说明每个区段介于哪个 block 之间</p>
-<ul>
-<li>区段指 superblock bitmap inodemap datablock</li>
-<li>block bitmap 标记/修改某个 block 是否被使用</li>
-<li>inode bitmap同上</li>
-</ul>
-<p>查询文件系统</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># df         &lt;== 查询目前挂载的设备</span><br><span class="line"># dumpe2fs [-bh] devname</span><br><span class="line">-b ：列出坏道部分</span><br><span class="line">-h ：仅列出 superblock 数据</span><br></pre></td></tr></table></figure>
+<p>通过搜索文件计算每个的大小然后累加</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># du [-ahskm] filenamedirname</span><br><span class="line">-a : 列出所有文件和目录容量，默认仅统计目录</span><br><span class="line">-hkm : 同 df</span><br><span class="line">-s : 仅显示最后加总的值</span><br><span class="line">-S : 类似 -s 不包括子目录的大小</span><br></pre></td></tr></table></figure>
 
-<p>新增文件的过程</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># du –hs xxx          显示目录总大小，不会列出目录中的每一个文件</span><br><span class="line"># du –hs xxx/*        列出 xxx 下每个目录和文件所占容量</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>du 能看到的文件是当前存在没有被删除的，删除一个文件的时候，这个文件不是马上就在文件系统当中消失了，而是暂时消失了，当所有程序都不用时，才会根据OS的规则释放掉已经删除的文件<br><strong>不要直接执行 du 命令，它会遍历并列出目录下的所有文件</strong></p>
+</blockquote>
+<h1 id="连接文件"><a href="#连接文件" class="headerlink" title="连接文件"></a>连接文件</h1><p>hard link 硬连接/实际连接<br>新建一个文件名连接到 inode 上</p>
 <ul>
-<li>检查目录是否有 w 和 x 权限</li>
-<li>根据 inode bitmap 查找没有使用的 inode 编号并写入新文件的权限属性</li>
-<li>根据 block bitmap 查找没有使用的 block 编号并写入实际数据，更新 inode 的指向</li>
-<li>将 inode 和 block 信息更新到 inode bitmap 与 block bitmap，并更新 superblock</li>
+<li>文件内容和 inode 有关</li>
+<li>通过文件名指向到对应 inode 读取文件</li>
 </ul>
-<p>由于 superblock inodebitmap blockbitmap 的数据经常变动，被称为 metadata 中间数据，而 inode table 和 data block 称为数据存放区域</p>
-<p>异步处理 asynchronoly<br>提高效率：系统加载一个文件到内存后，若文件没有被改动，则被设置成 <strong>clean</strong>，更改过则为 <strong>dirty</strong>，系统不定时将 dirty 数据写回硬盘</p>
-<ul>
-<li>可以 sync 命令手动写回</li>
-<li>正常关机会主动调用 sync 命令</li>
-</ul>
-<hr>
-<h1 id="与目录树的关系"><a href="#与目录树的关系" class="headerlink" title="与目录树的关系"></a>与目录树的关系</h1><p>ext2 中的目录<br>新建目录时，会分配一个 inode 和至少一块 block，inode 记录目录的相关权限，属性，和分配到的 block 编号；block 记录此目录下的文件名与文件名的 inode 编号数据</p>
-<p>ext2 中的文件<br>新建一般文件时，会分配一个 inode 和对应大小的 block 数量，由于只有 12 个直接指向，可能分配额外的 block 用来记录块编号</p>
-<p><strong>inode 本身不记录文件名，而是在目录的 block 中，所以增删改文件名与目录的 w 权限有关。<br>当读取某个文件时务必会经过目录的 inode 和 block，然后找到文件的 inode 最终获得 block 中的数据<br>系统通过挂载信息获得根目录的 inode 号码，并据此获得根目录 block 内的文件名数据，再一层层向下</strong></p>
-<hr>
-<h1 id="日志文件系统"><a href="#日志文件系统" class="headerlink" title="日志文件系统"></a>日志文件系统</h1><p>inconsistent 状态<br>文件在写入文件系统时发生中断，未同步更新 metadata 导致 metadata 的内容和实际数据存放区不一致</p>
-<p>避免 inconsistent 发生</p>
-<ul>
-<li>写入文件前先在日志记录块记录准备要写入的信息</li>
-<li>实际写入，包括更新 metadata 的数据</li>
-<li>在日志记录块中完成该文件的记录</li>
-</ul>
-<p>发生问题时通过检查日志记录块定位到文件，不必检查整个文件系统，Ext2 中没有文件日志系统，需要对比 metadata 区域和数据存放区</p>
-]]></content>
+<p>所以 hard link 和源文件除了文件名，相关信息完全一样，若将其中一个文件删除，因为 inode 还有连接故实际还存在<br>不能跨文件系统，不能连接到目录（因为会产生大量连接造成开销）</p>
+<p>symbolic link 符号连接/快捷方式<br>创建一个独立文件让数据读取指向连接的文件名<br>所以源文件删除后 symbolic link 将无法打开，两个文件指向不同的 indoe<br>目录快捷方式时将同步删除等，新建目录连接至少产生三个：本身 . .. 而上层目录连接数会加一，新目录连接数为二</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># ln [-sf] 源文件 目标文件</span><br><span class="line">-s ：symbolic link，不加参数为 hard link</span><br><span class="line">-f ：目标文件若存在则先删除再创建</span><br></pre></td></tr></table></figure>]]></content>
       <categories>
         <category>Linux</category>
       </categories>
       <tags>
-        <tag>日志</tag>
-        <tag>目录树</tag>
-        <tag>存储器</tag>
+        <tag>连接文件</tag>
         <tag>文件系统</tag>
       </tags>
   </entry>
@@ -1747,6 +1709,102 @@ tring&gt; comp = (first, second) -&gt; ... ;</code> ；如果方法只有一个�
         <tag>文件</tag>
         <tag>目录</tag>
         <tag>属性权限</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Linux 磁盘管理</title>
+    <url>/2019/10/10/Linux-%E7%A3%81%E7%9B%98%E7%AE%A1%E7%90%86/</url>
+    <content><![CDATA[<h1 id="磁盘分区程序"><a href="#磁盘分区程序" class="headerlink" title="磁盘分区程序"></a>磁盘分区程序</h1><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># fdisk [-l] 设备名称</span><br><span class="line">-l ：输出对应设备的所有的分区，未指定设备则显示系统内能找到的所有分区</span><br><span class="line"></span><br><span class="line">相关命令 m 查看</span><br><span class="line">cylinder 可以通过 +sizeM 让系统自动分配</span><br><span class="line"></span><br><span class="line"># partprobe     &lt;==强制内核重新读取分区表（不重启更新分区表信息）</span><br></pre></td></tr></table></figure><p>无法处理 2TB 以上的磁盘分区，使用 parted 命令<br>设备名称不应该加上数字如 /dev/hdc1 因为分区针对的是整个硬盘设备</p><a id="more"></a>
+
+
+<h1 id="磁盘格式化"><a href="#磁盘格式化" class="headerlink" title="磁盘格式化"></a>磁盘格式化</h1><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># mkfs [-t 文件系统格式] 设备文件名</span><br></pre></td></tr></table></figure>
+
+<h1 id="磁盘检验"><a href="#磁盘检验" class="headerlink" title="磁盘检验"></a>磁盘检验</h1><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># fsck [-t 文件系统] [-ACay] 设备名称</span><br><span class="line">-t ：Linux 会通过 super block 分辨文件系统，可省略</span><br></pre></td></tr></table></figure>
+
+<p>检查文件系统是否出错，可能会造成部分损坏，故执行 fsck 时被检查分区需要在卸载状态</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># badblocks [-svw] 设备名称</span><br></pre></td></tr></table></figure>
+
+<p>检查扇区是否有坏轨</p>
+<h1 id="磁盘挂载与卸载"><a href="#磁盘挂载与卸载" class="headerlink" title="磁盘挂载与卸载"></a>磁盘挂载与卸载</h1><p>被挂载的目录理论上应该是空目录，否则原有内容会隐藏到新分区卸载</p>
+<blockquote>
+<p>放弃磁盘，这部分还是面向谷歌吧x</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>存储器</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Linux 文件系统</title>
+    <url>/2019/09/18/Linux-%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F/</url>
+    <content><![CDATA[<h1 id="回顾硬盘"><a href="#回顾硬盘" class="headerlink" title="回顾硬盘"></a>回顾硬盘</h1><h2 id="分区"><a href="#分区" class="headerlink" title="分区"></a>分区</h2><p>磁盘分区指定分区的起始与结束<strong>柱面</strong>，分区的柱面范围记录在第一个扇区的分区表里面</p><p>硬盘的第一个扇区中有主引导记录 <strong>MBR 446bytes</strong> 和分区表 <strong>partition table 64bytes</strong>，由于大小限制最多只能记录四条分区的记录，即主分区或扩展分区</p><ul>
+<li>GPT + UEFI 则扫描整块磁盘上的分区，读取 EFI 分区里的引导文件，所以不再限制在扇区开头的 512bytes 中</li>
+</ul><a id="more"></a>
+
+
+<p>硬盘限制主分区和扩展分区最多可以有四个，操作系统限制扩展分区只能有一个，无法被格式化即无法作为数据访问，但扩展分区可以再分出逻辑分区</p>
+<h2 id="格式化"><a href="#格式化" class="headerlink" title="格式化"></a>格式化</h2><p>文件系统通过格式化将 inode 和 block 规划好，并不再变动；不同文件系统格式化方法不同，所以不能相互识别利用</p>
+<ul>
+<li>inode 记录文件属性和此文件的数据所在的 block，一个文件占用一个 inode</li>
+<li>block 实际记录文件内容，可占用多个</li>
+<li>super block 记录此文件系统的整体信息，如 inode/block 总量使用量剩余量，文件系统的格式等</li>
+</ul>
+<p>碎片整理即因为文件写入的 block 过于离散，影响文件读取性能，需要将它们汇合到一起；这针对没有 inode 的 FAT 系统，Linux 的索引式文件系统基本不需要</p>
+<hr>
+<h1 id="文件系统"><a href="#文件系统" class="headerlink" title="文件系统"></a>文件系统</h1><p>当 inode 和 block 数量极大时不容易管理，Ext2 在格式化时区分为多个块组 block group，每个块组有独立的 inode/block/superblock 系统<br><img src="http://cn.linux.vbird.org/linux_basic/0230filesystem_files/ext2_filesystem.jpg" alt="avatar"><br>boot sector 启动扇区<br>在文件系统最前面，用于安装引导装载程序，这样不用覆盖整块硬盘唯一的 MBR，制作多重引导环境</p>
+<p>data block 数据块<br>放置文件内容，每个 block 最多放置一个文件的数据，若有剩余空间则浪费；Ext2 支持 1KB 2KB 4KB 三种 block 大小，其决定最大总容量和最大单一文件容量</p>
+<p>inodetable<br>至少记录访问模式 所有者和组 大小 ctime atime mtime 内容指向 文件特性，系统读取文件时会先分析 inode 所记录的权限与用户是否符合；每个文件占用一个inode，所以文件系统能创建的文件数量与 inode 数量有关<br>inode 大小固定为 128bytes，当文件较大则不足以记录下所有的 block 编号，故定义了 12 个直接，一个间接，一个双间接，一个三间接记录区</p>
+<ul>
+<li>用一个 block 来记录额外的编号，若依然不够则用一个 block 指出下一个记录编号的 block，依此最多三层；以 1KB 大小的 block 计算，12*1K + 256*1K + 256*256*1K + 256*256*256*1K = 16GB，即该文件系统最大容量</li>
+</ul>
+<p>superblock<br>一般为 1024bytes，除了第一个 blockgroup 中含有 superblock 外，后面的不一定含有，若有则为备份</p>
+<p>文件系统描述 File system Dscription<br>描述每个 blockgroup 的开始与结束编号，说明每个区段介于哪个 block 之间</p>
+<ul>
+<li>区段指 superblock bitmap inodemap datablock</li>
+<li>block bitmap 标记/修改某个 block 是否被使用</li>
+<li>inode bitmap同上</li>
+</ul>
+<p>查询文件系统</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># df         &lt;== 查询目前挂载的设备</span><br><span class="line"># dumpe2fs [-bh] devname</span><br><span class="line">-b ：列出坏道部分</span><br><span class="line">-h ：仅列出 superblock 数据</span><br></pre></td></tr></table></figure>
+
+<p>新增文件的过程</p>
+<ul>
+<li>检查目录是否有 w 和 x 权限</li>
+<li>根据 inode bitmap 查找没有使用的 inode 编号并写入新文件的权限属性</li>
+<li>根据 block bitmap 查找没有使用的 block 编号并写入实际数据，更新 inode 的指向</li>
+<li>将 inode 和 block 信息更新到 inode bitmap 与 block bitmap，并更新 superblock</li>
+</ul>
+<p>由于 superblock inodebitmap blockbitmap 的数据经常变动，被称为 metadata 中间数据，而 inode table 和 data block 称为数据存放区域</p>
+<p>异步处理 asynchronoly<br>提高效率：系统加载一个文件到内存后，若文件没有被改动，则被设置成 <strong>clean</strong>，更改过则为 <strong>dirty</strong>，系统不定时将 dirty 数据写回硬盘</p>
+<ul>
+<li>可以 sync 命令手动写回</li>
+<li>正常关机会主动调用 sync 命令</li>
+</ul>
+<hr>
+<h1 id="与目录树的关系"><a href="#与目录树的关系" class="headerlink" title="与目录树的关系"></a>与目录树的关系</h1><p>ext2 中的目录<br>新建目录时，会分配一个 inode 和至少一块 block，inode 记录目录的相关权限，属性，和分配到的 block 编号；block 记录此目录下的文件名与文件名的 inode 编号数据</p>
+<p>ext2 中的文件<br>新建一般文件时，会分配一个 inode 和对应大小的 block 数量，由于只有 12 个直接指向，可能分配额外的 block 用来记录块编号</p>
+<p><strong>inode 本身不记录文件名，而是在目录的 block 中，所以增删改文件名与目录的 w 权限有关。<br>当读取某个文件时务必会经过目录的 inode 和 block，然后找到文件的 inode 最终获得 block 中的数据<br>系统通过挂载信息获得根目录的 inode 号码，并据此获得根目录 block 内的文件名数据，再一层层向下</strong></p>
+<hr>
+<h1 id="日志文件系统"><a href="#日志文件系统" class="headerlink" title="日志文件系统"></a>日志文件系统</h1><p>inconsistent 状态<br>文件在写入文件系统时发生中断，未同步更新 metadata 导致 metadata 的内容和实际数据存放区不一致</p>
+<p>避免 inconsistent 发生</p>
+<ul>
+<li>写入文件前先在日志记录块记录准备要写入的信息</li>
+<li>实际写入，包括更新 metadata 的数据</li>
+<li>在日志记录块中完成该文件的记录</li>
+</ul>
+<p>发生问题时通过检查日志记录块定位到文件，不必检查整个文件系统，Ext2 中没有文件日志系统，需要对比 metadata 区域和数据存放区</p>
+]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>日志</tag>
+        <tag>文件系统</tag>
+        <tag>存储器</tag>
+        <tag>目录树</tag>
       </tags>
   </entry>
   <entry>
@@ -1883,64 +1941,6 @@ tring&gt; comp = (first, second) -&gt; ... ;</code> ；如果方法只有一个�
       <tags>
         <tag>文件</tag>
         <tag>正则表达式</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Linux 文件系统操作</title>
-    <url>/2019/09/28/Linux-%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E6%93%8D%E4%BD%9C/</url>
-    <content><![CDATA[<h1 id="df-du"><a href="#df-du" class="headerlink" title="df du"></a>df du</h1><p>根据 super block 中的信息</p><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># df [-ahikHTm] [filenamedirname]</span><br><span class="line">-a : 列出所有文件系统，比默认多显示如内存中的</span><br><span class="line">-k : 以 KB 显示各文件系统</span><br><span class="line">-m : 同上</span><br><span class="line">-h : 自行以易阅读的单位显示</span><br><span class="line">-H : 以 1M=1000K 计算</span><br><span class="line">-T : 增加显示文件系统名称 type</span><br><span class="line">-i : 以 inode 数量显示</span><br></pre></td></tr></table></figure><a id="more"></a>
-
-
-<p>/proc 这个挂载点在内存中，没有占用任何硬盘空间故大小为 0<br>/dev/shm 是利用内存虚拟的磁盘空间</p>
-<hr>
-<p>通过搜索文件计算每个的大小然后累加</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># du [-ahskm] filenamedirname</span><br><span class="line">-a : 列出所有文件和目录容量，默认仅统计目录</span><br><span class="line">-hkm : 同 df</span><br><span class="line">-s : 仅显示最后加总的值</span><br><span class="line">-S : 类似 -s 不包括子目录的大小</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># du –hs xxx          显示目录总大小，不会列出目录中的每一个文件</span><br><span class="line"># du –hs xxx/*        列出 xxx 下每个目录和文件所占容量</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>du 能看到的文件是当前存在没有被删除的，删除一个文件的时候，这个文件不是马上就在文件系统当中消失了，而是暂时消失了，当所有程序都不用时，才会根据OS的规则释放掉已经删除的文件<br><strong>不要直接执行 du 命令，它会遍历并列出目录下的所有文件</strong></p>
-</blockquote>
-<h1 id="连接文件"><a href="#连接文件" class="headerlink" title="连接文件"></a>连接文件</h1><p>hard link 硬连接/实际连接<br>新建一个文件名连接到 inode 上</p>
-<ul>
-<li>文件内容和 inode 有关</li>
-<li>通过文件名指向到对应 inode 读取文件</li>
-</ul>
-<p>所以 hard link 和源文件除了文件名，相关信息完全一样，若将其中一个文件删除，因为 inode 还有连接故实际还存在<br>不能跨文件系统，不能连接到目录（因为会产生大量连接造成开销）</p>
-<p>symbolic link 符号连接/快捷方式<br>创建一个独立文件让数据读取指向连接的文件名<br>所以源文件删除后 symbolic link 将无法打开，两个文件指向不同的 indoe<br>目录快捷方式时将同步删除等，新建目录连接至少产生三个：本身 . .. 而上层目录连接数会加一，新目录连接数为二</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># ln [-sf] 源文件 目标文件</span><br><span class="line">-s ：symbolic link，不加参数为 hard link</span><br><span class="line">-f ：目标文件若存在则先删除再创建</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>Linux</category>
-      </categories>
-      <tags>
-        <tag>文件系统</tag>
-        <tag>连接文件</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Linux 磁盘管理</title>
-    <url>/2019/10/10/Linux-%E7%A3%81%E7%9B%98%E7%AE%A1%E7%90%86/</url>
-    <content><![CDATA[<h1 id="磁盘分区程序"><a href="#磁盘分区程序" class="headerlink" title="磁盘分区程序"></a>磁盘分区程序</h1><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># fdisk [-l] 设备名称</span><br><span class="line">-l ：输出对应设备的所有的分区，未指定设备则显示系统内能找到的所有分区</span><br><span class="line"></span><br><span class="line">相关命令 m 查看</span><br><span class="line">cylinder 可以通过 +sizeM 让系统自动分配</span><br><span class="line"></span><br><span class="line"># partprobe     &lt;==强制内核重新读取分区表（不重启更新分区表信息）</span><br></pre></td></tr></table></figure><p>无法处理 2TB 以上的磁盘分区，使用 parted 命令<br>设备名称不应该加上数字如 /dev/hdc1 因为分区针对的是整个硬盘设备</p><a id="more"></a>
-
-
-<h1 id="磁盘格式化"><a href="#磁盘格式化" class="headerlink" title="磁盘格式化"></a>磁盘格式化</h1><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># mkfs [-t 文件系统格式] 设备文件名</span><br></pre></td></tr></table></figure>
-
-<h1 id="磁盘检验"><a href="#磁盘检验" class="headerlink" title="磁盘检验"></a>磁盘检验</h1><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># fsck [-t 文件系统] [-ACay] 设备名称</span><br><span class="line">-t ：Linux 会通过 super block 分辨文件系统，可省略</span><br></pre></td></tr></table></figure>
-
-<p>检查文件系统是否出错，可能会造成部分损坏，故执行 fsck 时被检查分区需要在卸载状态</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># badblocks [-svw] 设备名称</span><br></pre></td></tr></table></figure>
-
-<p>检查扇区是否有坏轨</p>
-<h1 id="磁盘挂载与卸载"><a href="#磁盘挂载与卸载" class="headerlink" title="磁盘挂载与卸载"></a>磁盘挂载与卸载</h1><p>被挂载的目录理论上应该是空目录，否则原有内容会隐藏到新分区卸载</p>
-<blockquote>
-<p>放弃磁盘，这部分还是面向谷歌吧x</p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>Linux</category>
-      </categories>
-      <tags>
-        <tag>存储器</tag>
       </tags>
   </entry>
   <entry>
@@ -2108,6 +2108,44 @@ tring&gt; comp = (first, second) -&gt; ... ;</code> ；如果方法只有一个�
       </tags>
   </entry>
   <entry>
+    <title>P420i 阵列卡开启 HBA 直通</title>
+    <url>/2020/03/16/P420i-%E9%98%B5%E5%88%97%E5%8D%A1%E5%BC%80%E5%90%AF-HBA-%E7%9B%B4%E9%80%9A/</url>
+    <content><![CDATA[<p>HP P420i 阵列卡 ESXi 下开启 HBA 直通：</p>
+<p>教程：<a href="https://communities.vmware.com/thread/484114" target="_blank" rel="noopener">https://communities.vmware.com/thread/484114</a></p>
+<p>因为时间久远与现在有一些出入，故作补丁。</p>
+<ol>
+<li><p>自检界面根据提示进入 SmartArray，删除所有已配置的硬盘，重启；</p>
+</li>
+<li><p>在 ESXi 管理界面启用 shell ；</p>
+</li>
+<li><p>ssh 连接 ESXi (原教程 iLO 的延迟太痛苦了)强制开启 HBA：</p>
+ <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">esxcli ssacli cmd -q "controller slot=0 modify hbamode=on forced"</span><br></pre></td></tr></table></figure>
+
+<p> 我的机器上 hpssacli 叫 ssacli，不确定可以直接 <code>esxcli</code> 一下看提示；</p>
+<p> 没有反馈就是最好的反馈，不放心就手动确认是否成功：</p>
+ <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">esxcli ssacli cmd -q "controller slot=0 show config detail"</span><br></pre></td></tr></table></figure>
+
+<p> <code>HBA Mode Enabled</code> 为 True 即可；</p>
+</li>
+<li><p>硬盘全部插回去，然后你就会发现 ESXi 将 disks 一律当做 SAS 通信了(笑</p>
+<p> 而且这是不可修改项 (笑</p>
+<p> 所以只有 SAS 硬盘才能成功建立 datastore，即 SSD 无法被添加 (笑</p>
+</li>
+<li><p>感觉索然无味的话就回到 RAID 吧：</p>
+ <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">esxcli ssacli cmd -q "controller slot=0 modify hbamode=off"</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+]]></content>
+      <categories>
+        <category>瞎折腾</category>
+      </categories>
+      <tags>
+        <tag>ESXi</tag>
+        <tag>HBA</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>MySQL 性能-索引</title>
     <url>/2020/09/13/MySQL-%E6%80%A7%E8%83%BD-%E7%B4%A2%E5%BC%95/</url>
     <content><![CDATA[<h1 id="索引类型"><a href="#索引类型" class="headerlink" title="索引类型"></a>索引类型</h1><p>索引在存储引擎层实现。</p><p>扫描索引本身很快，但按索引顺序读取数据的速度通常要比顺序的全表扫描慢，因为基本是随机 I/O。</p><h2 id="B-Tree-索引"><a href="#B-Tree-索引" class="headerlink" title="B-Tree 索引"></a>B-Tree 索引</h2><p><em>此处的 B 是平衡，而非二叉（演化自 AVLTree ）</em></p><p>B-Tree 作为术语使用（即使是 T-Tree 结构），多数存储引擎其实是 B+Tree 。</p><p>索引对多个值进行排序的依据是 create table 中定义索引时列的顺序。</p><a id="more"></a>
@@ -2225,44 +2263,6 @@ tring&gt; comp = (first, second) -&gt; ... ;</code> ；如果方法只有一个�
       </tags>
   </entry>
   <entry>
-    <title>P420i 阵列卡开启 HBA 直通</title>
-    <url>/2020/03/16/P420i-%E9%98%B5%E5%88%97%E5%8D%A1%E5%BC%80%E5%90%AF-HBA-%E7%9B%B4%E9%80%9A/</url>
-    <content><![CDATA[<p>HP P420i 阵列卡 ESXi 下开启 HBA 直通：</p>
-<p>教程：<a href="https://communities.vmware.com/thread/484114" target="_blank" rel="noopener">https://communities.vmware.com/thread/484114</a></p>
-<p>因为时间久远与现在有一些出入，故作补丁。</p>
-<ol>
-<li><p>自检界面根据提示进入 SmartArray，删除所有已配置的硬盘，重启；</p>
-</li>
-<li><p>在 ESXi 管理界面启用 shell ；</p>
-</li>
-<li><p>ssh 连接 ESXi (原教程 iLO 的延迟太痛苦了)强制开启 HBA：</p>
- <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">esxcli ssacli cmd -q "controller slot=0 modify hbamode=on forced"</span><br></pre></td></tr></table></figure>
-
-<p> 我的机器上 hpssacli 叫 ssacli，不确定可以直接 <code>esxcli</code> 一下看提示；</p>
-<p> 没有反馈就是最好的反馈，不放心就手动确认是否成功：</p>
- <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">esxcli ssacli cmd -q "controller slot=0 show config detail"</span><br></pre></td></tr></table></figure>
-
-<p> <code>HBA Mode Enabled</code> 为 True 即可；</p>
-</li>
-<li><p>硬盘全部插回去，然后你就会发现 ESXi 将 disks 一律当做 SAS 通信了(笑</p>
-<p> 而且这是不可修改项 (笑</p>
-<p> 所以只有 SAS 硬盘才能成功建立 datastore，即 SSD 无法被添加 (笑</p>
-</li>
-<li><p>感觉索然无味的话就回到 RAID 吧：</p>
- <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">esxcli ssacli cmd -q "controller slot=0 modify hbamode=off"</span><br></pre></td></tr></table></figure>
-
-</li>
-</ol>
-]]></content>
-      <categories>
-        <category>瞎折腾</category>
-      </categories>
-      <tags>
-        <tag>ESXi</tag>
-        <tag>HBA</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Padavan 添加 GoDaddy DDNS 服务</title>
     <url>/2020/03/15/Padavan-%E6%B7%BB%E5%8A%A0-GoDaddy-DDNS-%E6%9C%8D%E5%8A%A1/</url>
     <content><![CDATA[<p>04-04 更新，将历史 ip 保存在本地，不通过 api 获取（国内访问 Godaddy 太慢了）。</p>
@@ -2297,253 +2297,34 @@ tring&gt; comp = (first, second) -&gt; ... ;</code> ；如果方法只有一个�
       </tags>
   </entry>
   <entry>
-    <title>Padavan 添加 NameSilo DDNS 服务</title>
-    <url>/2020/09/11/Padavan-%E6%B7%BB%E5%8A%A0-NameSilo-DDNS-%E6%9C%8D%E5%8A%A1/</url>
-    <content><![CDATA[<p>步骤同之前 <a href="https://www.yuyurbq.icu/2020/03/15/Padavan-%E6%B7%BB%E5%8A%A0-GoDaddy-DDNS-%E6%9C%8D%E5%8A%A1/">Padavan 添加 GoDaddy DDNS 服务</a> ；</p>
-<p>apikey 到 <a href="https://www.namesilo.com/account/api-manager" target="_blank" rel="noopener">https://www.namesilo.com/account/api-manager</a> 创建；</p>
-<p>shell 脚本如下：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"></span><br><span class="line">MYAPIKEY=<span class="string">"填apikey"</span></span><br><span class="line">MYDOMAIN=<span class="string">"域名"</span></span><br><span class="line">MYHOST=<span class="string">"A记录名称"</span></span><br><span class="line">MYFULLDOMAIN=<span class="string">"<span class="variable">$MYHOST</span>.<span class="variable">$MYDOMAIN</span>"</span></span><br><span class="line"></span><br><span class="line">MYIP=`curl -s <span class="string">"https://api.ipify.org"</span>`</span><br><span class="line">OLDIP=$(tail -n 1 /home/root/iprecord.txt)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> [<span class="string">"<span class="variable">$OLDIP</span>"</span> == <span class="string">"<span class="variable">$MYIP</span>"</span>]; <span class="keyword">then</span></span><br><span class="line">  <span class="built_in">echo</span> <span class="string">"Nothing happened."</span></span><br><span class="line">  <span class="built_in">exit</span> 0</span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"<span class="variable">$MYIP</span>"</span> &gt; /home/root/iprecord.txt</span><br><span class="line"><span class="built_in">echo</span> <span class="string">"IP has changed."</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Fetch DNS record ID</span></span><br><span class="line">RESPONSE=<span class="string">"<span class="variable">$(curl -s "https://www.namesilo.com/api/dnsListRecords?version=1&amp;type=xml&amp;key=$MYAPIKEY&amp;domain=$MYDOMAIN")</span>"</span></span><br><span class="line">RECORD_ID=<span class="string">"<span class="variable">$(echo $RESPONSE | sed -n 's/^.*&lt;record_id&gt;\(.*\)&lt;\/record_id&gt;&lt;type&gt;A&lt;\/type&gt;&lt;host&gt;'$MYFULLDOMAIN'&lt;\/host&gt;.*$/\1/p')</span>"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Update</span></span><br><span class="line">RESPONSE=<span class="string">"<span class="variable">$(curl -s "https://www.namesilo.com/api/dnsUpdateRecord?version=1&amp;type=xml&amp;key=$MYAPIKEY&amp;domain=$MYDOMAIN&amp;rrid=$RECORD_ID&amp;rrhost=$MYHOST&amp;rrvalue=$MYIP&amp;rrttl=7207")</span>"</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">exit</span> 0</span><br></pre></td></tr></table></figure>
-
+    <title>Vim 思维导图</title>
+    <url>/2020/02/02/Vim-%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE/</url>
+    <content><![CDATA[<p>没钱开 XMind… 理直气壮不去水印</p>
+<p><img src="https://i.loli.net/2020/03/06/nqQfTsWvU2C54hc.png" alt="vim.png"></p>
 ]]></content>
       <categories>
-        <category>瞎折腾</category>
+        <category>Linux</category>
       </categories>
       <tags>
-        <tag>DDNS</tag>
+        <tag>思维导图</tag>
+        <tag>vim</tag>
       </tags>
   </entry>
   <entry>
-    <title>MySQL 性能-查询</title>
-    <url>/2020/09/20/MySQL-%E6%80%A7%E8%83%BD-%E6%9F%A5%E8%AF%A2/</url>
-    <content><![CDATA[<p>优化查询，实际上要优化其子任务，要么消除其中一些子任务，要么减少子任务的执行次数，要么让子任务运行得更快。<br>查询的生命周期大致可以按照：从客户端，到服务器，然后在服务器上进行解析，生成执行计划，执行，并返回结果给客户端。</p><h1 id="优化数据访问"><a href="#优化数据访问" class="headerlink" title="优化数据访问"></a>优化数据访问</h1><h2 id="不要请求不需要的数据"><a href="#不要请求不需要的数据" class="headerlink" title="不要请求不需要的数据"></a>不要请求不需要的数据</h2><ol>
-<li><p>查询不需要的记录</p>
-<p> 例如在处理分页时，应该使用 limit 限制 MySQL 只返回一页的数据，而不是向应用程序返回全部数据后，再由应用程序过滤不需要的行。</p>
-</li>
-<li><p>多表关联时返回全部列</p>
-<p> 只取需要的列。</p>
-</li>
-<li><p>总是取出全部列</p>
-<p> select * 会让优化器无法完成索引覆盖扫描这类优化，带来额外的 I/O 内存 CPU 消耗。</p>
-</li>
-<li><p>重复查询相同的数据</p>
-<p> 当一行数据被多次使用时可以考虑缓存起来，避免每次使用都要到MySql查询。</p>
-</li>
-</ol><a id="more"></a>
-
-<h2 id="避免扫描额外的记录"><a href="#避免扫描额外的记录" class="headerlink" title="避免扫描额外的记录"></a>避免扫描额外的记录</h2><p>响应时间：数据库处理查询所用的服务时间，和服务器等待资源的排队时间。并无规律和公式，尝试上限估计法。</p>
-<p>扫描的行数：不是所有行的访问代价都相同；较短的行的访问速度更快，内存中的行也比磁盘中的行的访问速度要快得多。</p>
-<p>访问类型：explain 中的 type 列反应了访问类型，全表扫描，索引扫描，范围扫描，唯一索引扫描，常数引用，速度从慢到快；通常增加合适的索引。</p>
-<p>where 条件从好到坏：</p>
-<ul>
-<li>在索引中使用 where 条件来过滤不匹配的记录，在存储引擎层完成；</li>
-<li>使用索引覆盖扫描返回记录，直接从索引中过滤不需要的记录并返回命中结果，在服务器层完成但无需回表查询；</li>
-<li>从数据表中返回数据，然后过滤不满足条件的记录（Extra 列中出现 Using Where）</li>
-</ul>
-<p>若发现查询需要扫描大量数据但只返回少数的行：</p>
-<ul>
-<li>使用索引覆盖扫描（见索引）；</li>
-<li>改变库表结构，如使用单独的汇总表（见库表）；</li>
-<li>重写这个查询以适应优化器</li>
-</ul>
-<hr>
-<h1 id="重构查询的方式"><a href="#重构查询的方式" class="headerlink" title="重构查询的方式"></a>重构查询的方式</h1><h2 id="一个复杂查询-or-多个简单查询"><a href="#一个复杂查询-or-多个简单查询" class="headerlink" title="一个复杂查询 or 多个简单查询"></a>一个复杂查询 or 多个简单查询</h2><p>一些情况下分解很有必要，但不要对能够胜任的查询下手。</p>
-<h2 id="切分查询"><a href="#切分查询" class="headerlink" title="切分查询"></a>切分查询</h2><p>分治，将大查询切分成小查询，每个查询功能完全一样，只完成一小部分，每次只返回一小部分查询结果，可以避免锁住很多数据、占满事务日志、耗尽系统资源、阻塞很多小的但重要的查询。</p>
-<h2 id="分解关联查询"><a href="#分解关联查询" class="headerlink" title="分解关联查询"></a>分解关联查询</h2><p>对每个要关联的表进行单表查询，然后将结果在应用程序中进行关联：</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> tag</span><br><span class="line">-&gt;	<span class="keyword">join</span> tag_post <span class="keyword">on</span> tag_post.tag_id=tag.id</span><br><span class="line">-&gt;	<span class="keyword">join</span> post <span class="keyword">on</span> tag_post.post_id=post.id</span><br><span class="line"><span class="keyword">where</span> tag.tag=<span class="string">'mysql'</span>;</span><br></pre></td></tr></table></figure>
-
-<p>可以分解成：</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> tag <span class="keyword">where</span> tag=<span class="string">'mysql'</span>;</span><br><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> tag_post <span class="keyword">where</span> tag_id=<span class="number">1234</span>;</span><br><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> post <span class="keyword">where</span> post.id <span class="keyword">in</span>(<span class="number">123</span>,<span class="number">456</span>,<span class="number">789</span>);</span><br></pre></td></tr></table></figure>
-
-<p>优势：</p>
-<ul>
-<li>让缓存的效率更高。如果缓存的是关联查询的结果，那么其中的一个表发生变化，整个缓存就失效了。而拆分后，如果只是某个表很少的改动，并不会破坏所有的缓存；</li>
-<li>可以减少锁的竞争；</li>
-<li>应用层做关联，更容易对数据库进行拆分，做到高性能和可扩展；</li>
-<li>查询本身的效率也有可能会有所提升。例如用 in() 代替关联查询比随机的关联更加高效；</li>
-<li>可以减少冗余记录的查询，对于某条记录应用只需要查询一次；、、</li>
-<li>相当于在应用中实现了哈希关联，而不是使用 MySQL 的嵌套循环关联。</li>
-</ul>
-<p>场景：</p>
-<ul>
-<li>应用能够方便地缓存单个查询的结果的时候；</li>
-<li>数据分布到不同的 MySQL 服务器上的时候；</li>
-<li>能够使用 IN() 的方式代替关联查询的时候；</li>
-<li>查询中使用同一个数据表的时候。</li>
-</ul>
-<hr>
-<h1 id="查询执行基础"><a href="#查询执行基础" class="headerlink" title="查询执行基础"></a>查询执行基础</h1><ol>
-<li><p>客户端发送一条查询给服务器；</p>
-</li>
-<li><p>服务器先检查查询缓存，如果命中则立刻返回结果，否则进入下一阶段；</p>
-</li>
-<li><p>服务器端进行 SQL 解析、预处理，再由优化器生成对应的执行计划；</p>
-</li>
-<li><p>MySQL 根据优化器生成的执行计划，调用存储引擎的 API 来执行查询；</p>
-</li>
-<li><p>将结果返回给客户端。</p>
-</li>
-</ol>
-<h2 id="MySQL-CS间的通信"><a href="#MySQL-CS间的通信" class="headerlink" title="MySQL CS间的通信"></a>MySQL CS间的通信</h2><p>半双工，无法进行流量控制，一旦一端开始发生消息，另一端要接收完整个消息才能响应它。</p>
-<p>多数连接 MySQL 的库函数从 MySQL 获取数据时，实际是从这个库函数的缓存获取数据，这样可以尽早释放服务器的资源。</p>
-<p>查询连接/线程状态，SHOW FULL PROCESSLIST 命令 Command 列：</p>
-<ul>
-<li><p>Sleep，线程正在等待客户端发送新的请求；</p>
-</li>
-<li><p>Query，线程正在执行查询或者正在将结果发送给客户端；</p>
-</li>
-<li><p>Locked，在 MySQL 服务器层，该线程正在等待表锁。存储引擎级别的锁如 InnoDB 的行锁，不会体现在线程状态；</p>
-</li>
-<li><p>Analyzing and statistics，线程正在收集存储引擎的统计信息，并生成查询的执行计划；</p>
-</li>
-<li><p>Copying to tmp table [on disk]，线程正在执行查询，并且将其结果集都复制到一个临时表中，要么是在做 group by 操作，要么是文件排序操作，或者是 union 操作。on disk 则正在将内存临时表放到磁盘上；</p>
-</li>
-<li><p>Sorting result，线程正在对结果集进行排序；</p>
-</li>
-<li><p>Sending data，线程可能在多个状态之间传送数据，或者在生成结果集，或者在向客户端返回数据。</p>
-</li>
-</ul>
-<h2 id="查询缓存"><a href="#查询缓存" class="headerlink" title="查询缓存"></a>查询缓存</h2><p>若查询缓存是打开的，MySQL 通过一个对大小写敏感的哈希查找检查是否命中。若恰好命中，返回查询结果之前 MySQL 会检查一次用户权限。</p>
-<p>查询不会被解析，不用生成执行计划，不会被执行。</p>
-<h2 id="查询优化处理"><a href="#查询优化处理" class="headerlink" title="查询优化处理"></a>查询优化处理</h2><p>未匹配缓存时，查询的生命周期的下一步是将 SQL 转换成一个执行计划，MySQL 再依照执行计划和存储引擎交互。这些包括：解析 SQL，预处理，优化执行计划。</p>
-<p><strong>语法解析器和预处理</strong></p>
-<p>MySQL 解析器使用语法规则验证和解析查询，是否使用错误的关键字，其顺序是否正确，引号能否前后匹配等。</p>
-<p>预处理器则根据一些 MySQL 规则进一步检查是否合法。检查数据表和数据列是否存在，名字和别名是否有歧义等，然后验证权限。</p>
-<p><strong>查询优化器</strong></p>
-<p>一条查询可以有多种执行方式，优化器从中找到最好的执行计划。</p>
-<p>MySQL 使用基于成本的优化器，其尝试预测一个查询使用某种执行计划时的成本（不考虑任何缓存），并选择其中成本最小的一个。使用<code>show status like &#39;Last_query_cost&#39;;</code> 查看需要多少个数据页的随机查找。</p>
-<p>导致优化器选择错误的执行计划的原因：</p>
-<ul>
-<li><p>统计信息不准确，依赖存储引擎提供的统计信息进行评估，如 InnoDB 引擎不能维护一个数据表的行数的精确统计信息（因为 MVCC）；</p>
-</li>
-<li><p>执行计划中的成本估算不等同于实际执行的成本，无法得知真实的物理 I/O，比如顺序读或者在内存中；</p>
-</li>
-<li><p>MySQL 的最优基于成本模型，而不是时间尽可能短；</p>
-</li>
-<li><p>MySQL 从不考虑其他并发执行的查询；</p>
-</li>
-<li><p>MySQL 也并不是任何时候都是基于成本的优化，一些固定规则有更高优先级，如 match() 子句（即使别的索引或 where 条件更快，仍使用对应的全文索引）；</p>
-</li>
-<li><p>MySQL 不会考虑不受其控制的操作的成本，如执行存储过程或用户自定义函数；</p>
-</li>
-<li><p>优化器无法去估算所有可能的执行计划。</p>
-</li>
-</ul>
-<p>查询优化器的策略可以简单分为静态优化和动态优化。静态优化不依赖于特别的值，在第一次完成后就一直有效即使用不同的参数重复执行查询也不会发生变化，比如通过一些简单的代数变化将条件转换成另一种等价形式。动态优化和查询的上下文有关，每次执行都要重新评估，比如 where 条件中的取值，索引中条目对应的数据行数等。MySQL 可以处理：</p>
-<ul>
-<li><p>重新定义关联表的顺序；</p>
-</li>
-<li><p>将外连接转化成内连接，where 条件，库表结构等因素可能让外连接等价于一个内连接；</p>
-</li>
-<li><p>使用等价变换规则，合并和减少一些比较，移除一些恒成立和恒不成立的判断，比如 <code>(a&lt;b and b=c) and a=5</code> 会改写成 <code>b&gt;5 and b=c and a=5</code> 。</p>
-</li>
-<li><p>优化 count() min() max() ，要找到某一列的最小值，只需要查找对应 B-Tree 索引的最左端即直接获取第一行记录，查找最大值则是最后一条记录，在 explain 中可以看到 “Select tables optimized away”，表示优化器已经从执行计划中移除了该表，并以一个常数取而代之。类似的， count(*) 查询通常可以使用存储引擎提供的数据。</p>
-</li>
-<li><p>预估并转化为常数表达式，如一个用户自定义变量在查询中没有发生变化时就转换为一个常数。如果 where 子句中使用了索引的常数条件，MySQL 可以在查询开始阶段就先查找到这些值，优化器将其转换为常数表达式：</p>
-  <figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">   <span class="keyword">select</span> film.film_id, film_actor.actor_id</span><br><span class="line">   -&gt; <span class="keyword">from</span> film</span><br><span class="line">-&gt;     <span class="keyword">inner</span> <span class="keyword">join</span> film_actor <span class="keyword">using</span>(film_id)</span><br><span class="line">   -&gt; <span class="keyword">where</span> film.film_id=<span class="number">1</span>;</span><br></pre></td></tr></table></figure>
-
-
-</li>
-</ul>
-<pre><code>&gt; MySQL 会分成两步来执行这个查询，也就是上面的两行输出。第一步先从 film 表找到需要的行。因为在 film_id 字段上有主键索引，所以 MySQL 优化器知道这只会返回一行数据，优化器在生成执行计划的时候，就已经通过索引信息知道将返回多少行数据。因为优化器已经明确知道有多少个值（ WHERE 条件中的值）需要做索引查询，所以这里的表访问类型是 const 。
-在执行计划的第二步，MySQL 将第一步中返回的 film_id 列当作一个已知取值的列来处理。因为优化器清楚在第一步执行完后，该值就是明确的了。注意到正如第一步一样，使用film_actor字段对表的访问类型也是 coonst 。
-另一种会看到常数条件的情况是通过等式将常数值从一个表传到另一个表，这可以通过 WHERE、USING 或者 ON 语句来限制某列数的值为常数。在上面的例子中，因为使用了 USING 子句，优化器知道这也限制了 film_id 在整个查询过程中都始终是一个常量——因为他必须等于 WHERE 子句中的那个取值。</code></pre><ul>
-<li><p>覆盖索引扫描，当索引中的列包含所有查询中需要使用的列的时候，就可以使用索引返回需要的数据，而无须查询对应的数据行；</p>
-</li>
-<li><p>子查询优化，某些情况下 MySQL 将子查询转换为效率更高的形式，以减少多个查询多次对数据访问；</p>
-</li>
-<li><p>提前终止查询，在发现已经满足查询需求的时候，MySQL 能够立刻终止查询，如 limit 子句。若发现了一个不成立的条件，MySQL 会立刻返回一个空结果。当存储引擎需要检索不同取值或判断存在性时，会提前终止查询判断下一个，类似这种 不同值 不存在 的优化一般可用于 DISTINCT、NOT EXIST() 或者 LEFT JOIN 类型的查询；</p>
-</li>
-<li><p>等值传播，如果两个列的值通过等式关联，那么MySQL能够把其中一列的WHERE条件传递到另一列上：</p>
-  <figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> film.film_id</span><br><span class="line">-&gt; <span class="keyword">from</span> sakila.film</span><br><span class="line">-&gt;     <span class="keyword">inner</span> <span class="keyword">join</span> sakila.film_actor <span class="keyword">using</span>(film_id)</span><br><span class="line">-&gt; <span class="keyword">where</span> film.film_id &gt; <span class="number">500</span>;</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>因为这里使用了film_id字段进行等值关联，MySQL知道这里的WHERE子句不仅适用于film表，而且对于film_actor表同样适用。</p>
-</blockquote>
-</li>
-<li><p>列表 in() 的比较，在 MySQL 中，in() 先将自己列表中的数据进行排序，然后通过二分查找的方式确定列的值是否在 in() 的列表中，这个时间复杂度是 O(logn) 。如果换成 or 操作，则时间复杂度是 O(n) 。所以，对于 in() 的列表中有大量取值的时候，用 in() 替换 or 操作将会更快。</p>
-</li>
-</ul>
-<p><strong>数据和索引的统计信息</strong></p>
-<p>服务器层有查询优化器，但不保存数据和索引的统计信息，统计信息由存储引擎实现，不同的存储引擎可能会存储不同的统计信息（甚至没有）。查询优化器在生成查询的执行计划时需要向存储引擎获取。</p>
-<p><strong>MySQL 执行关联查询 (join)</strong></p>
-<p>在 MySQL 中，任何一个查询都是一次关联，即使只有一个表的查询也是如此。</p>
-<p>对于 union 查询，MySQL 先将一系列的单个查询结果放到一个临时表中，然后再重新读出临时表数据来完成 union 查询。MySQL 读取结果临时表和普通表一样，也是采用的关联方式。</p>
-<p>当遇到子查询时，先执行子查询并将结果放到一个临时表中，然后再将这个临时表当做一个普通表对待。MySQL 的临时表是没有任何索引的，在编写复杂的子查询和关联查询的时候需要注意这一点，临时表也叫派生表。</p>
-<p>MySQL 对任何关联都执行嵌套循环关联操作，即先在一个表中循环取出单条数据，然后再嵌套到下一个表中寻找匹配的行，直到找到所有表中匹配的行为止。例如对于 SQL 语句：</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> tbl1.col1,tbl2.col2</span><br><span class="line">-&gt; <span class="keyword">FROM</span> tbl1 <span class="keyword">INNER</span> <span class="keyword">JOIN</span> tbl2 <span class="keyword">USING</span>(col3)</span><br><span class="line">-&gt; <span class="keyword">WHERE</span> tbl1.col1 <span class="keyword">IN</span>(<span class="number">5</span>,<span class="number">6</span>);</span><br></pre></td></tr></table></figure>
-
-<p>伪代码表示：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">out_iter = iterator over tbl1 where col1 IN(5,6)</span><br><span class="line">outer_row = out_iter.next</span><br><span class="line">while outer_row</span><br><span class="line">    inner_iter = iterator over tbl2 where col3 = outer_row.col3</span><br><span class="line">    inner_row = inner_iter.next</span><br><span class="line">    while inner_row</span><br><span class="line">        output[outer_row.col1, inner_row.col2]</span><br><span class="line">        inner_row = inner_iter.next</span><br><span class="line">    end</span><br><span class="line">    outer_row = outer_iter.next</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
-
-<p>对于单表查询，那么只需要完成外层的基本操作。</p>
-<p><strong>关联查询优化器</strong></p>
-<p>尝试在所有的关联顺序中选择一个成本最小的来生成执行计划树（MySQL 不生成查询字节码而是指令树）。</p>
-<p>如果可能，优化器会遍历每一个表然后逐个做嵌套循环计算每一棵可能的执行树的成本，最后返回一个最优的执行计划，如果有超过 n 个表的关联，那么需要检查 n 的阶乘关联顺序，此时搜索空间的增长速度非常快。一旦超过 optimizer_search_depth 的限制，优化器会选择贪婪搜索模式。</p>
-<p>有时各个查询的顺序不能随意安排，比如左连接等需要依赖前表的结果。这会大大减少搜索空间。</p>
-<p><strong>排序优化</strong></p>
-<p>应该尽量让 MySQL 使用索引进行排序。当不能使用索引生成排序结果的时候，如果数据量小于“排序缓冲区”的大小，则 MySQL 使用内存进行“快速排序”操作。如果数据量太大超过“排序缓冲区”的大小，那么 MySQL 会将数据分块，对每个块“快速排序”并将结果存放在磁盘上，最后合并返回。</p>
-<p>MySQL 文件排序操作使用的临时存储空间可能相当大，因为每一个排序记录都会分配一个足够长的定长空间，此空间必须能容纳其中最长的字符串（varchar 列需要分配完整长度，UTF-8 每个字符预留三字节）。</p>
-<h2 id="返回结果"><a href="#返回结果" class="headerlink" title="返回结果"></a>返回结果</h2><p>经查询执行引擎逐步执行指令后（并非字节码），将结果增量、逐步的返回客户端，比如服务器处理完最后一个关联表开始生成第一条结果时，就可以逐步返回结果集了。</p>
-<p>即使不需要返回结果集，MySQL 仍会返回查询的一些信息，比如影响到的行数。</p>
-<hr>
-<h1 id="查询优化器的局限性"><a href="#查询优化器的局限性" class="headerlink" title="查询优化器的局限性"></a>查询优化器的局限性</h1><h2 id="关联子查询"><a href="#关联子查询" class="headerlink" title="关联子查询"></a>关联子查询</h2><p>MySQL 的子查询实现的非常糟糕。最糟糕的一类查询是 where 条件中包含 in() 的子查询语句。MySQL 会将外层表压到子查询中，导致关联子查询，比如：</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> film</span><br><span class="line">-&gt; <span class="keyword">where</span> film_id <span class="keyword">in</span>(</span><br><span class="line">-&gt;     <span class="keyword">select</span> film_id <span class="keyword">from</span> film_actor <span class="keyword">where</span> actor_id=<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 预想的处理</span></span><br><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> film</span><br><span class="line">-&gt; <span class="keyword">where</span> film_id</span><br><span class="line">-&gt;     <span class="keyword">in</span>(<span class="number">1</span>,<span class="number">23</span>,<span class="number">25</span>,<span class="number">213</span>,<span class="number">344</span>,<span class="number">546</span>,<span class="number">788</span>,<span class="number">907</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 实际的处理</span></span><br><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> film</span><br><span class="line">-&gt; <span class="keyword">where</span> <span class="keyword">exists</span>(</span><br><span class="line">-&gt;     <span class="keyword">select</span> * <span class="keyword">from</span> film_actor <span class="keyword">where</span> actor_id=<span class="number">1</span></span><br><span class="line">-&gt;     <span class="keyword">and</span> film_actor.film_id = film.film_id);</span><br></pre></td></tr></table></figure>
-
-<p>MySQL 先对 film 表全表扫描，然后根据返回的 film_id 逐个执行子查询。</p>
-<p>应该尽可能用关联替换子查询，可以提高查询效率（如果使用MySQL5.6以上或MariaDB则可以忽略）。当然，子查询不一定是最慢的，应该用测试来验证。</p>
-<h2 id="union-的限制"><a href="#union-的限制" class="headerlink" title="union 的限制"></a>union 的限制</h2><p>如果希望 union 的各个子句能根据 limit 只取部分结果集，或先排好序再合并结果集的话，则需要在各个子句中分别使用 ：</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- 将 actor 和 customer 的所有记录存放在临时表</span></span><br><span class="line">(<span class="keyword">select</span> first_name, last_name <span class="keyword">from</span> actor <span class="keyword">order</span> <span class="keyword">by</span> last_name)</span><br><span class="line">-&gt; <span class="keyword">union</span> <span class="keyword">all</span></span><br><span class="line">-&gt; (<span class="keyword">select</span> first_name, last_name <span class="keyword">from</span> customer <span class="keyword">order</span> <span class="keyword">by</span> last_name)</span><br><span class="line">-&gt; <span class="keyword">limit</span> <span class="number">20</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 临时表只包含 40 条记录</span></span><br><span class="line">(<span class="keyword">select</span> first_name, last_name <span class="keyword">from</span> actor <span class="keyword">order</span> <span class="keyword">by</span> last_name <span class="keyword">limit</span> <span class="number">20</span>)</span><br><span class="line">-&gt; <span class="keyword">union</span> <span class="keyword">all</span></span><br><span class="line">-&gt; (<span class="keyword">select</span> first_name, last_name <span class="keyword">from</span> customer <span class="keyword">order</span> <span class="keyword">by</span> last_name <span class="keyword">limit</span> <span class="number">20</span>)</span><br><span class="line">-&gt; <span class="keyword">limit</span> <span class="number">20</span>;</span><br></pre></td></tr></table></figure>
-
-<h2 id="最大值最小值优化"><a href="#最大值最小值优化" class="headerlink" title="最大值最小值优化"></a>最大值最小值优化</h2><p>比如：</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- first_name 字段没有索引，将会全表扫描</span></span><br><span class="line"><span class="keyword">select</span> <span class="keyword">min</span>(actor_id) <span class="keyword">from</span> actor <span class="keyword">where</span> first_name=<span class="string">'xxx'</span>;</span><br></pre></td></tr></table></figure>
-
-<p>MySQL 读到第一个满足条件的记录时就是最小值了，因为 actor_id 上主键索引是按大小顺序排列的。曲线优化：</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> actor_id <span class="keyword">from</span> actor <span class="keyword">use</span> <span class="keyword">index</span>(primary)</span><br><span class="line">-&gt; <span class="keyword">where</span> first_name=<span class="string">'xxx'</span> <span class="keyword">limit</span> <span class="number">1</span>;</span><br></pre></td></tr></table></figure>
-
-<h2 id="在同一张表上查询和更新"><a href="#在同一张表上查询和更新" class="headerlink" title="在同一张表上查询和更新"></a>在同一张表上查询和更新</h2><p>MySQL 不允许同时进行：</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- 将表中相似行的数量记录到字段里</span></span><br><span class="line"><span class="keyword">update</span> tb1 <span class="keyword">as</span> outer_tb1</span><br><span class="line">-&gt;     <span class="keyword">set</span> cnt = (</span><br><span class="line">-&gt;         <span class="keyword">select</span> <span class="keyword">count</span>(*) <span class="keyword">from</span> tb1 <span class="keyword">as</span> inner_tb1</span><br><span class="line">-&gt;         <span class="keyword">where</span> inner_tb1.type = outer_tb1.type</span><br><span class="line">-&gt;     );</span><br></pre></td></tr></table></figure>
-
-<p>使用临时表来处理：</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">update</span> tb1</span><br><span class="line">-&gt;     <span class="keyword">inner</span> <span class="keyword">join</span>(</span><br><span class="line">-&gt;         <span class="keyword">select</span> <span class="keyword">type</span>, <span class="keyword">count</span>(*) <span class="keyword">as</span> cnt <span class="keyword">from</span> tb1</span><br><span class="line">-&gt;         <span class="keyword">group</span> <span class="keyword">by</span> <span class="keyword">type</span></span><br><span class="line">-&gt;     ) <span class="keyword">as</span> der <span class="keyword">using</span>(<span class="keyword">type</span>)</span><br><span class="line">-&gt; <span class="keyword">set</span> tb1.cnt = der.cnt;</span><br></pre></td></tr></table></figure>
-
-<p>子查询在 update 打开表之前完成，update 关联的表是一个临时表。</p>
-<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p>MySQL 无法利用多核特性来并行执行查询。</p>
-<p>MySQL 不支持哈希关联，其关联都是嵌套循环关联。</p>
-<p>MySQL 不支持松散索引扫描，5.0 后在分组查询中需要找到分组的最大值和最小值时可以使用。5.6 后通过<em>索引条件下推</em>的方式解决。</p>
-<hr>
-<h1 id="优化特定类型的查询"><a href="#优化特定类型的查询" class="headerlink" title="优化特定类型的查询"></a>优化特定类型的查询</h1><h2 id="count"><a href="#count" class="headerlink" title="count()"></a>count()</h2><p>count() 有两个不同的作用：</p>
-<ol>
-<li>统计某个列值的数量，即统计某列值不为 null 的个数。</li>
-<li>统计行数。</li>
-</ol>
-<p>当使用 count(*) 时，统计的是行数，它会忽略所有的列而直接统计所有的行数。而在括号中指定了一个列的话，则统计的是这个列上值不为 null 的个数。</p>
-<p>比如将条件反转：</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- 扫描记录较多</span></span><br><span class="line"><span class="keyword">select</span> <span class="keyword">count</span>(*) <span class="keyword">from</span> city <span class="keyword">where</span> <span class="keyword">id</span>&gt;<span class="number">5</span>;</span><br><span class="line"><span class="comment">-- 用总数减去</span></span><br><span class="line"><span class="comment">-- 子查询会直接作为常数处理</span></span><br><span class="line"><span class="keyword">select</span> (<span class="keyword">select</span> <span class="keyword">count</span>(*) <span class="keyword">from</span> city) - <span class="keyword">count</span>(*) <span class="keyword">from</span> city <span class="keyword">where</span> <span class="keyword">id</span>&lt;=<span class="number">5</span>;</span><br></pre></td></tr></table></figure>
-
-<h2 id="关联查询"><a href="#关联查询" class="headerlink" title="关联查询"></a>关联查询</h2><p>确保 on 或者 using 子句中的列上有索引。</p>
-<p>确保任何的 group by 和 order by 中的表达式只涉及到一个表中的列，这样 MySQL 才有可能使用索引优化这个过程。</p>
-<h2 id="limit-分页"><a href="#limit-分页" class="headerlink" title="limit 分页"></a>limit 分页</h2><p>处理分页会使用到 limit ，当翻页到非常靠后的页面的时候，偏移量会非常大，这时 limit 的效率会非常差。例如对于 <code>LIMIT 10000，20</code> 这样的查询，MySQL 需要查询 10020 条记录，将前面 10000 条记录抛弃，只返回最后的 20 条。这样的代价非常高，如果所有的页面被访问的频率都相同，那么这样的查询平均需要访问半个表的数据。</p>
-<p>优化此类分页查询的一个最简单的办法就是尽可能地使用索引覆盖扫描，而不是查询所有的列。然后根据需要与原表做一次关联操作返回所需的列。对于偏移量很大的时候，这样的效率会提升非常大。考虑下面的查询：</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> film_id, description <span class="keyword">FROM</span> sakila.film <span class="keyword">ORDER</span> <span class="keyword">BY</span> title <span class="keyword">LIMIT</span> <span class="number">50</span>, <span class="number">5</span>;</span><br></pre></td></tr></table></figure>
-
-<p>如果这个表非常大，那么这个查询最好改写成下面的这样子：</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> film.film_id, film.description <span class="keyword">FROM</span> film</span><br><span class="line">-&gt; <span class="keyword">INNER</span> <span class="keyword">JOIN</span> </span><br><span class="line">-&gt; (<span class="keyword">SELECT</span> film_id <span class="keyword">FROM</span> film <span class="keyword">ORDER</span> <span class="keyword">BY</span> title <span class="keyword">LIMIT</span> <span class="number">50</span>,<span class="number">5</span>) <span class="keyword">AS</span> lim</span><br><span class="line">-&gt; <span class="keyword">USING</span>(film_id);</span><br></pre></td></tr></table></figure>
-
-<p>注意优化中关联的子查询，因为只查询 film_id 一个列，数据量小，使得一个内存页可以容纳更多的数据，这让 MySQL 扫描尽可能少的页面。在获取到所需要的所有行之后再与原表进行关联以获得需要的全部列。<br>limit 的优化问题，其实是 offset 的问题，它会导致 MySQL 扫描大量不需要的行然后再抛弃掉。可以借助书签的思想记录上次取数据的位置，那么下次就可以直接从该书签记录的位置开始扫描，这样就避免了使用 offset 。可以把主键当做书签使用，例如下面的查询：</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> rental <span class="keyword">ORDER</span> <span class="keyword">BY</span> rental_id <span class="keyword">DESC</span> <span class="keyword">LIMIT</span> <span class="number">20</span>;</span><br></pre></td></tr></table></figure>
-
-<p>假设上面的查询返回的是主键为 16049 到 16030 的租借记录，那么下一页查询就可以直接从 16030 这个点开始：</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> rental <span class="keyword">WHERE</span> rental_id &lt; <span class="number">16030</span></span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> rental_id <span class="keyword">DESC</span> <span class="keyword">LIMIT</span> <span class="number">20</span>;</span><br></pre></td></tr></table></figure>
-
-<p>该技术的好处是无论翻页到多么后面，其性能都会很好。此外，也可以用关联到一个冗余表的方式提高 limit 的性能，冗余表只包含主键列和需要做排序的数据列。</p>
-<h2 id="union-查询"><a href="#union-查询" class="headerlink" title="union 查询"></a>union 查询</h2><p>除非确实需要服务器消除重复的行，否则一定要使用 union all 。如果没有 all 关键字，MySQL 会给临时表加上 distinct 选项，这会导致对整个临时表的数据做唯一性检查，这样做的代价非常高。</p>
+    <title>Tomcat 乱涂画</title>
+    <url>/2020/10/08/Tomcat-%E4%B9%B1%E6%B6%82%E7%94%BB/</url>
+    <content><![CDATA[<p><img src="https://i.loli.net/2020/10/08/PmqflziGEUTnFSb.jpg" alt="01.jpg"></p>
+<p><img src="https://i.loli.net/2020/10/08/DUshVk2iE68YHMA.jpg" alt="02.jpg"></p>
 ]]></content>
       <categories>
-        <category>MySQL</category>
+        <category>Tomcat</category>
       </categories>
-      <tags>
-        <tag>MySQL</tag>
-      </tags>
+  </entry>
+  <entry>
+    <title>Hello World</title>
+    <url>/2019/09/04/hello-world/</url>
+    <content><![CDATA[<center>九月四日，YUYU向宇宙发出的第一声啼鸣，以太阳为中心，以光速向宇宙深处飞驰......(x<center>
+</center></center>]]></content>
   </entry>
   <entry>
     <title>ssh 修改 iLO 的 SSL 端口</title>
@@ -2641,20 +2422,6 @@ tring&gt; comp = (first, second) -&gt; ... ;</code> ；如果方法只有一个�
       </tags>
   </entry>
   <entry>
-    <title>Vim 思维导图</title>
-    <url>/2020/02/02/Vim-%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE/</url>
-    <content><![CDATA[<p>没钱开 XMind… 理直气壮不去水印</p>
-<p><img src="https://i.loli.net/2020/03/06/nqQfTsWvU2C54hc.png" alt="vim.png"></p>
-]]></content>
-      <categories>
-        <category>Linux</category>
-      </categories>
-      <tags>
-        <tag>思维导图</tag>
-        <tag>vim</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>久久久远的2017</title>
     <url>/2020/01/30/%E4%B9%85%E4%B9%85%E4%B9%85%E8%BF%9C%E7%9A%842017/</url>
     <content><![CDATA[<p>图片已压缩… 阿里云 OSS 太贵了 qvq</p>
@@ -2738,101 +2505,6 @@ tring&gt; comp = (first, second) -&gt; ... ;</code> ；如果方法只有一个�
       <tags>
         <tag>构造函数</tag>
         <tag>实例化</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>服务器驯化-之一</title>
-    <url>/2020/03/02/%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%A9%AF%E5%8C%96-%E4%B9%8B%E4%B8%80/</url>
-    <content><![CDATA[<h1 id="选择"><a href="#选择" class="headerlink" title="选择"></a>选择</h1><h2 id="Ivy-Bridge-EP"><a href="#Ivy-Bridge-EP" class="headerlink" title="Ivy Bridge EP"></a>Ivy Bridge EP</h2><p>制程比上一代新，价格也够便宜，可惜没有 AVX2 指令集。</p><p>撇掉高功耗也没啥可选的了：</p><table>
-<thead>
-<tr>
-<th align="center">E5-2650V2</th>
-<th align="center">E5-2630V2</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">8C 16 T</td>
-<td align="center">6C 12T</td>
-</tr>
-<tr>
-<td align="center">95 W</td>
-<td align="center">80 W</td>
-</tr>
-<tr>
-<td align="center">2.60 GHz</td>
-<td align="center">2.60 GHz</td>
-</tr>
-</tbody></table><h2 id="服务器"><a href="#服务器" class="headerlink" title="服务器"></a>服务器</h2><p>多是 2012-2015 年的机器，大概来自测试机房；</p><a id="more"></a>
-
-
-
-<p>对外观锋利的东西没有抵抗力，超喜欢 1U 的外观，2.5 寸硬盘同理，所以在联想的 R620 和 HP DL360pG8 间进行选择；</p>
-<p>最后选择 HP，因为同系列下还有一款 MicroServer Gen8，因为造型小巧玩家群体很广，有问题时可以进行参考，况且：风扇实在太好看了。</p>
-<h1 id="风扇"><a href="#风扇" class="headerlink" title="风扇"></a>风扇</h1><p>再好看的风扇都难逃卸载 [，___________都 ________ ]。</p>
-<p>定义如下：</p>
-<img src="https://i.loli.net/2020/03/03/mFD9CbKB1lncjaH.jpg" alt="IMG_20200303_110558.jpg" style="zoom: 25%;">
-
-<h2 id="降噪"><a href="#降噪" class="headerlink" title="降噪"></a>降噪</h2><p>1U 服务器的改造空间有限，要保持整机结构不变得从原装风扇位上动手：替换 or 优化，替换明显比改造代价要大，对于结果没有预期，可以在整机可用后再考虑。</p>
-<p>现有手段分两种，减速和移除，减速即串联电阻降低风扇供电，网上有教程可以自己做，TB 上也有现成的减速线卖，而金钱与物理双缺失下的我选择了移除。ps：服务器风扇一般 20W+，务必关注电阻发热情况。</p>
-<p>服务器主板通过独立硬件监控风扇状态，在损坏或缺失情况下会执行关机。所以只好找方法欺骗主板插槽上仍有风扇在运行：</p>
-<ul>
-<li><p><del>由在线风扇提供转速信号，短接地线</del>：</p>
-<p>  <img src="https://i.loli.net/2020/03/02/ycJSb8j9k2wCvqR.jpg" alt="0302-06.jpeg"></p>
-<p>  流行且省事的方法，要注意主板对每个模组的转速是动态调整的，借用其他风扇的信号可能会（因为转速不符）触发保护机制。HP 虽然是动态但不存在这个顾虑，原因下面说；</p>
-</li>
-<li><p>推荐：短接地线和测速线：</p>
-<p>  <img src="https://i.loli.net/2020/03/02/Wz4mpvOTIXM8lNB.jpg" alt="0302-05.jpeg"></p>
-<p>  来自 <a href="https://homeservershow.com/" target="_blank" rel="noopener">https://homeservershow.com/</a> Microserver Gen 8 版的方法，不出意外在 DL360p 上也通用：</p>
-<p>  原贴：<a href="https://homeservershow.com/forums/topic/7294-faking-the-fan-signal/" target="_blank" rel="noopener">Faking the fan signal</a></p>
-<blockquote>
-<p>There is no need for external circuitry, the type of fan present in the MS Gen8 has a RD ( rotational detect ) tachometer signal.</p>
-<p>What that means ? It means that it doesn’t output pulses but just a low voltage ( 0.12V measured ) if the fan spins.</p>
-<p>Connection: </p>
-<p>You must tie the RD sense pin (yellow cable on the fan wire harness ) to both grounds ( black ).</p>
-</blockquote>
-<p>  补充 服务器（通常）不可能更换原厂以外的风扇，所以 pwm 控速已经按照原厂风扇的转速曲线固定了，无需接收风扇的脉冲信号。之后控制台的转速监控也证实了这点（显示的是输出值）。<br>  当然，对于更换 pwm 风扇来说就是弊端了，因为转速曲线与原厂不一致，调速效果基本看脸。</p>
-</li>
-<li><p><del>购买脉冲发生器</del>：</p>
-<p>  模拟转速信号给主板，设定好频率后就固定了。原理和第一条一样，提出来在于可以把原装风扇全部移除，而且信号衰减问题会小一点。<br>  (监控转速的无法用定频，不检测转速直接短接就是。</p>
-</li>
-<li><p>购买风扇拟速器：</p>
-<p>  矿场的神奇造物，根据 pwm 信号反馈对应的转速信号，最近更新了模拟 1700-20000 转正好可以模拟服务器风扇，不过是 4pin 需要改一下。适合监控机制特别严苛的主板。</p>
-</li>
-</ul>
-<h2 id="散热"><a href="#散热" class="headerlink" title="散热"></a>散热</h2><p>当前安装的 HPE 定制版 ESXi6.0U3，气温 10℃，风扇基础转速 19%，我的方案是保留 #2 #6 #7 三个风扇，发热大户都在右边，整机控制如下。</p>
-<p><img src="https://i.loli.net/2020/03/03/rgO5WuoY7J1UDhE.png" alt="2020-03-03 11-14.png"></p>
-<p>需要特别注意 HD Controller 的温度：</p>
-<p><img src="https://i.loli.net/2020/03/02/wFQKfha3RUCsIkx.jpg" alt="0302-04.jpeg"></p>
-<p>↑开机后从 60 ℃ 起步；风扇没留几个的话建议单独给一个 4010/2010 风扇，供电可以从主板内的 USB 口引。</p>
-]]></content>
-      <categories>
-        <category>瞎折腾</category>
-      </categories>
-      <tags>
-        <tag>硬件</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>汇编课程记录 1</title>
-    <url>/2019/09/23/%E6%B1%87%E7%BC%96%E8%AF%BE%E7%A8%8B%E8%AE%B0%E5%BD%95-1/</url>
-    <content><![CDATA[<h1 id="存储器"><a href="#存储器" class="headerlink" title="存储器"></a>存储器</h1><p>为了区分不同的内存单元（一字节），每个单元会分配一个存储器地址；地址在计算机中用无符号二进制数表示，可简写成十六进制<br>而字，双字，四字数据类型占用多个单元，在低地址中存放低位字节数据，高地址存放高位字节数据，访问时根据最低单元的地址依此存取后续字节</p>
-<a id="more"></a>
-<blockquote>
-<p>MSB (Most Significant Byte)，最高有效字节，是一个数据中权值最大的那一个字节<br>LSB (Least Significant Byte)，最低有效字节，是一个数据中权值最小的那一个字节<br>Little-Endian，是指数据的高字节(MSB)保存在内存的高地址中，而数据的低字节(LSB)保存在内存的低地址中，这种存储模式将地址的高低和数据位权有效地结合起来，高地址部分权值高，低地址部分权值低<br>例如：整型数 0x1A2B3C4D 在内存中存储的方式如下:<br><img src="https://i.loli.net/2019/09/24/kiIS2B8DAxwZdWy.jpg" alt="ram.jpg"></p>
-</blockquote>
-<h1 id="实模式"><a href="#实模式" class="headerlink" title="实模式"></a>实模式</h1><p>本身意义是代表真实的物理地址<br>8086CPU 的数据总线为 16 位，一次最多读取 2^16=64KB 数据（故实模式每个段最大64KB），但地址总线为 20 位，最大寻址能力是 2^20=1MB<br>实模式下存储器物理地址由段基址和偏移量给出。段基址必须定位在 16 的整数倍上，使得在十六进制表示的地址中最低位为 0，于是 1MB 空间的的 20 位地址的低 4 位可以不表示，而高 16 位就可以放进段寄存器。偏移地址虽然是四位但放在十六位寄存器，即可能跨越本身的分段，所以同一个物理地址可以有不同表示。<br><strong>10H × 段基址 + 偏移量 = 物理地址</strong></p>
-<ul>
-<li>代码段为 CS:IP</li>
-<li>堆栈段为 SS:SP</li>
-</ul>
-]]></content>
-      <categories>
-        <category>汇编</category>
-      </categories>
-      <tags>
-        <tag>存储器</tag>
-        <tag>Little-Endian</tag>
-        <tag>实模式寻址</tag>
       </tags>
   </entry>
   <entry>
@@ -3130,6 +2802,101 @@ tring&gt; comp = (first, second) -&gt; ... ;</code> ；如果方法只有一个�
       </categories>
   </entry>
   <entry>
+    <title>服务器驯化-之一</title>
+    <url>/2020/03/02/%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%A9%AF%E5%8C%96-%E4%B9%8B%E4%B8%80/</url>
+    <content><![CDATA[<h1 id="选择"><a href="#选择" class="headerlink" title="选择"></a>选择</h1><h2 id="Ivy-Bridge-EP"><a href="#Ivy-Bridge-EP" class="headerlink" title="Ivy Bridge EP"></a>Ivy Bridge EP</h2><p>制程比上一代新，价格也够便宜，可惜没有 AVX2 指令集。</p><p>撇掉高功耗也没啥可选的了：</p><table>
+<thead>
+<tr>
+<th align="center">E5-2650V2</th>
+<th align="center">E5-2630V2</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">8C 16 T</td>
+<td align="center">6C 12T</td>
+</tr>
+<tr>
+<td align="center">95 W</td>
+<td align="center">80 W</td>
+</tr>
+<tr>
+<td align="center">2.60 GHz</td>
+<td align="center">2.60 GHz</td>
+</tr>
+</tbody></table><h2 id="服务器"><a href="#服务器" class="headerlink" title="服务器"></a>服务器</h2><p>多是 2012-2015 年的机器，大概来自测试机房；</p><a id="more"></a>
+
+
+
+<p>对外观锋利的东西没有抵抗力，超喜欢 1U 的外观，2.5 寸硬盘同理，所以在联想的 R620 和 HP DL360pG8 间进行选择；</p>
+<p>最后选择 HP，因为同系列下还有一款 MicroServer Gen8，因为造型小巧玩家群体很广，有问题时可以进行参考，况且：风扇实在太好看了。</p>
+<h1 id="风扇"><a href="#风扇" class="headerlink" title="风扇"></a>风扇</h1><p>再好看的风扇都难逃卸载 [，___________都 ________ ]。</p>
+<p>定义如下：</p>
+<img src="https://i.loli.net/2020/03/03/mFD9CbKB1lncjaH.jpg" alt="IMG_20200303_110558.jpg" style="zoom: 25%;">
+
+<h2 id="降噪"><a href="#降噪" class="headerlink" title="降噪"></a>降噪</h2><p>1U 服务器的改造空间有限，要保持整机结构不变得从原装风扇位上动手：替换 or 优化，替换明显比改造代价要大，对于结果没有预期，可以在整机可用后再考虑。</p>
+<p>现有手段分两种，减速和移除，减速即串联电阻降低风扇供电，网上有教程可以自己做，TB 上也有现成的减速线卖，而金钱与物理双缺失下的我选择了移除。ps：服务器风扇一般 20W+，务必关注电阻发热情况。</p>
+<p>服务器主板通过独立硬件监控风扇状态，在损坏或缺失情况下会执行关机。所以只好找方法欺骗主板插槽上仍有风扇在运行：</p>
+<ul>
+<li><p><del>由在线风扇提供转速信号，短接地线</del>：</p>
+<p>  <img src="https://i.loli.net/2020/03/02/ycJSb8j9k2wCvqR.jpg" alt="0302-06.jpeg"></p>
+<p>  流行且省事的方法，要注意主板对每个模组的转速是动态调整的，借用其他风扇的信号可能会（因为转速不符）触发保护机制。HP 虽然是动态但不存在这个顾虑，原因下面说；</p>
+</li>
+<li><p>推荐：短接地线和测速线：</p>
+<p>  <img src="https://i.loli.net/2020/03/02/Wz4mpvOTIXM8lNB.jpg" alt="0302-05.jpeg"></p>
+<p>  来自 <a href="https://homeservershow.com/" target="_blank" rel="noopener">https://homeservershow.com/</a> Microserver Gen 8 版的方法，不出意外在 DL360p 上也通用：</p>
+<p>  原贴：<a href="https://homeservershow.com/forums/topic/7294-faking-the-fan-signal/" target="_blank" rel="noopener">Faking the fan signal</a></p>
+<blockquote>
+<p>There is no need for external circuitry, the type of fan present in the MS Gen8 has a RD ( rotational detect ) tachometer signal.</p>
+<p>What that means ? It means that it doesn’t output pulses but just a low voltage ( 0.12V measured ) if the fan spins.</p>
+<p>Connection: </p>
+<p>You must tie the RD sense pin (yellow cable on the fan wire harness ) to both grounds ( black ).</p>
+</blockquote>
+<p>  补充 服务器（通常）不可能更换原厂以外的风扇，所以 pwm 控速已经按照原厂风扇的转速曲线固定了，无需接收风扇的脉冲信号。之后控制台的转速监控也证实了这点（显示的是输出值）。<br>  当然，对于更换 pwm 风扇来说就是弊端了，因为转速曲线与原厂不一致，调速效果基本看脸。</p>
+</li>
+<li><p><del>购买脉冲发生器</del>：</p>
+<p>  模拟转速信号给主板，设定好频率后就固定了。原理和第一条一样，提出来在于可以把原装风扇全部移除，而且信号衰减问题会小一点。<br>  (监控转速的无法用定频，不检测转速直接短接就是。</p>
+</li>
+<li><p>购买风扇拟速器：</p>
+<p>  矿场的神奇造物，根据 pwm 信号反馈对应的转速信号，最近更新了模拟 1700-20000 转正好可以模拟服务器风扇，不过是 4pin 需要改一下。适合监控机制特别严苛的主板。</p>
+</li>
+</ul>
+<h2 id="散热"><a href="#散热" class="headerlink" title="散热"></a>散热</h2><p>当前安装的 HPE 定制版 ESXi6.0U3，气温 10℃，风扇基础转速 19%，我的方案是保留 #2 #6 #7 三个风扇，发热大户都在右边，整机控制如下。</p>
+<p><img src="https://i.loli.net/2020/03/03/rgO5WuoY7J1UDhE.png" alt="2020-03-03 11-14.png"></p>
+<p>需要特别注意 HD Controller 的温度：</p>
+<p><img src="https://i.loli.net/2020/03/02/wFQKfha3RUCsIkx.jpg" alt="0302-04.jpeg"></p>
+<p>↑开机后从 60 ℃ 起步；风扇没留几个的话建议单独给一个 4010/2010 风扇，供电可以从主板内的 USB 口引。</p>
+]]></content>
+      <categories>
+        <category>瞎折腾</category>
+      </categories>
+      <tags>
+        <tag>硬件</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>汇编课程记录 1</title>
+    <url>/2019/09/23/%E6%B1%87%E7%BC%96%E8%AF%BE%E7%A8%8B%E8%AE%B0%E5%BD%95-1/</url>
+    <content><![CDATA[<h1 id="存储器"><a href="#存储器" class="headerlink" title="存储器"></a>存储器</h1><p>为了区分不同的内存单元（一字节），每个单元会分配一个存储器地址；地址在计算机中用无符号二进制数表示，可简写成十六进制<br>而字，双字，四字数据类型占用多个单元，在低地址中存放低位字节数据，高地址存放高位字节数据，访问时根据最低单元的地址依此存取后续字节</p>
+<a id="more"></a>
+<blockquote>
+<p>MSB (Most Significant Byte)，最高有效字节，是一个数据中权值最大的那一个字节<br>LSB (Least Significant Byte)，最低有效字节，是一个数据中权值最小的那一个字节<br>Little-Endian，是指数据的高字节(MSB)保存在内存的高地址中，而数据的低字节(LSB)保存在内存的低地址中，这种存储模式将地址的高低和数据位权有效地结合起来，高地址部分权值高，低地址部分权值低<br>例如：整型数 0x1A2B3C4D 在内存中存储的方式如下:<br><img src="https://i.loli.net/2019/09/24/kiIS2B8DAxwZdWy.jpg" alt="ram.jpg"></p>
+</blockquote>
+<h1 id="实模式"><a href="#实模式" class="headerlink" title="实模式"></a>实模式</h1><p>本身意义是代表真实的物理地址<br>8086CPU 的数据总线为 16 位，一次最多读取 2^16=64KB 数据（故实模式每个段最大64KB），但地址总线为 20 位，最大寻址能力是 2^20=1MB<br>实模式下存储器物理地址由段基址和偏移量给出。段基址必须定位在 16 的整数倍上，使得在十六进制表示的地址中最低位为 0，于是 1MB 空间的的 20 位地址的低 4 位可以不表示，而高 16 位就可以放进段寄存器。偏移地址虽然是四位但放在十六位寄存器，即可能跨越本身的分段，所以同一个物理地址可以有不同表示。<br><strong>10H × 段基址 + 偏移量 = 物理地址</strong></p>
+<ul>
+<li>代码段为 CS:IP</li>
+<li>堆栈段为 SS:SP</li>
+</ul>
+]]></content>
+      <categories>
+        <category>汇编</category>
+      </categories>
+      <tags>
+        <tag>存储器</tag>
+        <tag>Little-Endian</tag>
+        <tag>实模式寻址</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>汇编课程记录 2</title>
     <url>/2019/10/06/%E6%B1%87%E7%BC%96%E8%AF%BE%E7%A8%8B%E8%AE%B0%E5%BD%95-2/</url>
     <content><![CDATA[<p>太困了没听… 实际上不算课程记录…</p><h1 id="寄存器"><a href="#寄存器" class="headerlink" title="寄存器"></a>寄存器</h1><p>CPU 优先读写寄存器，依靠名称而非地址区分数据。80386 以上的 CPU 有 </p><p>8 个 32 位通用寄存器：</p><ul>
@@ -3261,6 +3028,90 @@ tring&gt; comp = (first, second) -&gt; ... ;</code> ；如果方法只有一个�
       <tags>
         <tag>指令系统</tag>
         <tag>数据传送</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>汇编课程记录 5</title>
+    <url>/2019/11/16/%E6%B1%87%E7%BC%96%E8%AF%BE%E7%A8%8B%E8%AE%B0%E5%BD%95-5/</url>
+    <content><![CDATA[<h1 id="算术运算指令"><a href="#算术运算指令" class="headerlink" title="算术运算指令"></a>算术运算指令</h1><p>双操作数指令必须有一个操作数在寄存器中（除源操作数是立即数的情况）<br>单操作数指令不允许使用立即数</p><p>条件标志位<br>CF 有进位为 1 无进位为 0<br>ZF 结果为零<br>SF 符号<br>OF 溢出，若两个操作数符号相同而结果的符号与之相反时为 1</p><p><strong>加法指令</strong></p><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">ADD DST,SRC</span><br><span class="line"></span><br><span class="line">ADC DST,SRC</span><br><span class="line">;(DST) ← (SRC)+(DST)+CF</span><br><span class="line">;带进位加法指令</span><br><span class="line"></span><br><span class="line">INC OPR</span><br><span class="line">;(OPR) ← (OPR)+1</span><br><span class="line">;加 1 指令</span><br></pre></td></tr></table></figure><a id="more"></a>
+
+
+
+
+<p>除 INC 指令不影响 CF 外，其余都影响标志位</p>
+<p><strong>减法指令</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">SUB DST,SRC</span><br><span class="line"></span><br><span class="line">SBB DST,SRC</span><br><span class="line">;(DST) ← (DST)-(SRC)-CF</span><br><span class="line">;带借位减法指令</span><br><span class="line"></span><br><span class="line">DEC OPR</span><br><span class="line">;减 1 指令</span><br><span class="line"></span><br><span class="line">NEG OPR</span><br><span class="line">;类似 (OPR) ← 0FFFFH-(OPR)+1</span><br><span class="line">;求补指令</span><br><span class="line"></span><br><span class="line">CMP OPR1,OPR2</span><br><span class="line">;比较指令，执行 SUB 操作但不保存结果，只根据结果设置条件标志位</span><br><span class="line">;两操作数不能同时为存储器操作数</span><br></pre></td></tr></table></figure>
+
+<p><strong>乘法指令</strong><br>目操作数必须是累加器，字节运算为 AL，字运算为 AX<br>源操作数允许立即数外的寻址方式<br>两个 8 位数相乘得 16 位乘积存放在 AX；两个 16 位数相乘得 32 位乘积，高字位送 DX 低字位送 AX</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">MUL SRC</span><br><span class="line">;无符号数乘法指令</span><br><span class="line">;(AX) ← (AL)*(SRC)</span><br><span class="line">;(DX,AX) ← (AX)*(SRC)</span><br><span class="line"></span><br><span class="line">IMUL SRC</span><br><span class="line">;有符号数乘法指令</span><br></pre></td></tr></table></figure>
+
+<p>MUL 指令中，若高一半为 0，即字节操作的 (AH) 或字操作的 (DX) 为 0，则 CF OF 为 0，否则为 1，可以用于检查字节相乘的结果是字节还是字，或检查字相乘的结果是字还是双字<br>IMUL 指令中，若乘积的高一半是低一半的符号扩展，则 CF OF 均为 0，否则均为 1</p>
+<p><strong>除法指令</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">DIV SRC</span><br><span class="line">;(AL) ← (AX)/(SRC) 的商</span><br><span class="line">;(AH) ← (AX)/(SRC) 的余数</span><br><span class="line">;源操作数为 8 位时，被除数必须 16 位</span><br><span class="line">;被除数必须预先存在 AX 中</span><br><span class="line">;(AX) ← (DX,AX)/(SRC) 的商</span><br><span class="line">;(DX) ← (DX,AX)/(SRC) 的余数</span><br><span class="line">;被除数必须预先存在 DX,AX 中</span><br><span class="line"></span><br><span class="line">IDIV SRC</span><br><span class="line">;有符号数除法指令</span><br></pre></td></tr></table></figure>
+
+<h1 id="逻辑操作指令"><a href="#逻辑操作指令" class="headerlink" title="逻辑操作指令"></a>逻辑操作指令</h1><p><strong>逻辑运算指令</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">AND DST,SRC</span><br><span class="line">;(DST) ← (DST)∧(SRC)</span><br><span class="line">;逻辑与指令</span><br><span class="line">;源为立即数，需要清零的位为 0，不变的位设为 1</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">OR DST,SRC</span><br><span class="line">;(DST) ← (DST)V(SRC)</span><br><span class="line">;逻辑或指令</span><br><span class="line">;需要置一的位为 1，不变的位设为 0</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">NOT OPR</span><br><span class="line">;逻辑非指令，按位取反</span><br><span class="line"></span><br><span class="line">XOR DST,SRC</span><br><span class="line">;异或指令</span><br><span class="line">;需要取反的位设为 1，不变的位设为 0</span><br><span class="line">XOR AX,AX</span><br><span class="line">;给寄存器清零，同时使 CF 清零</span><br><span class="line"></span><br><span class="line">TEST OPR1,OPR2</span><br><span class="line">;用 AND 的结果设置条件标志位 ZF</span><br><span class="line">;可测试目的某些位是否为 0</span><br></pre></td></tr></table></figure>
+
+<p><strong>移位指令</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">SHL OPR,CNT</span><br><span class="line">SAL OPR,CN</span><br><span class="line">;逻辑左移指令和算术左移指令</span><br></pre></td></tr></table></figure>
+
+<p>将操作数 OPR 向左移动 CNT 指定的次数，低位补入相应个数的 0，CF 的内容为 OPR 最后移出的数位值<br>若需要移位的次数大于 1 则需要把位移次数置于 CL 寄存器</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">SHR OPR,CNT</span><br><span class="line">;逻辑右移指令，参考逻辑左移</span><br><span class="line"></span><br><span class="line">SAR OPR,CNT</span><br><span class="line">;算术右移指令</span><br><span class="line">;最高位保持不变</span><br></pre></td></tr></table></figure>
+
+<p>上面四条移位指令都可作字或字节操作，当 CNT=1 时，且移位后最高有效位发生改变，则 OF 置 1，否则置 0<br>算术位移指令适用于有符号数，逻辑移位指令用于无符号数</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">ROL OPR,CNT</span><br><span class="line">ROR OPR,CNT</span><br><span class="line">;循环左移指令和循环右移指令</span><br><span class="line">;将操作数 OPR 的最高最低位连接</span><br><span class="line">;将环中所有位一起向左/右循环移动 CNT 次</span><br><span class="line">;CF 的内容为 OPR 中最后移出的数值位</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">RCL OPR,CNT</span><br><span class="line">RCR OPR,CNT</span><br><span class="line">;带进位循环左移指令和循环右移指令</span><br><span class="line">;将操作数 OPR 与 CF 标志位一起连接成环</span><br><span class="line">;CF 为 OPR 最后移到 CF 中的数值</span><br></pre></td></tr></table></figure>
+
+<p>这四条指令也只影响 OF(当 CNT=1 时) 和 CF 位，循环移位指令可以改变操作数中所有位的位置</p>
+<h1 id="串处理指令"><a href="#串处理指令" class="headerlink" title="串处理指令"></a>串处理指令</h1><p>将一组存放在存储器连续单元的数据称为数据串。而数据传送指令每次只能传送一个数据，故 CPU 为数据串提供了一组完成数据串传送的指令</p>
+<p>若加重复前缀则要求将数据串长度/重复次数送 CX<br>源串地址应设置在 (DS:SI) 中，可指定段跨越前缀；目的串地址应设置在 (ES:DI) 中，不能指定段跨越前缀<br>操作数不是串时只能使用累加器 (AL/AX)<br>所有串处理指令前都必先对方向标志 (DF) 置值</p>
+<ul>
+<li>CLD 使 DF=0，控制地址自动增加 1(字)/2(字节)</li>
+<li>STD 使 DF=1，控制地址自动减少 1(字)/2(字节)</li>
+</ul>
+<p><strong>重复前缀</strong><br>配合串处理指令的重复操作</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">REP 串指令</span><br><span class="line">;重复串操作</span><br><span class="line">;1. 如 (CX)=0，则退出串操作，否则继续执行</span><br><span class="line">;2. (CX) ← (CX)-1</span><br><span class="line">;3. 执行其后的串操作</span><br><span class="line">;4. 从 1 重复</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">REPE/REPZ 串指令</span><br><span class="line">;相等则重复串操作</span><br><span class="line">;即 (CX)=0 或 ZF=0 </span><br><span class="line">;增加了两个操作数不等则退出串操作</span><br><span class="line"></span><br><span class="line">REPNE/REPNZ 串指令</span><br><span class="line">;不相等则重复串操作</span><br><span class="line">;即 (CX)=0 或 ZF=1</span><br></pre></td></tr></table></figure>
+
+<p><strong>与 REP 配合的指令</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">MOVS DST,SRC</span><br><span class="line">MOVSB</span><br><span class="line">MOVSW</span><br><span class="line">;串传送指令</span><br><span class="line">;((ES:DI)) ← ((DS:SI))</span><br><span class="line">;(SI) ← (SI) ±1/±2</span><br><span class="line">;(DI) ← (DI) ±1/±2</span><br></pre></td></tr></table></figure>
+
+<p>不影响标志位<br>执行前的准备工作：</p>
+<ul>
+<li>将存放于数据段的源串首地址(DF=0)或末地址(DF=1)放入 SI</li>
+<li>将存放于附加段的目的串首地址(DF=0)或末地址(DF=1)放入 SI</li>
+<li>将数据串长度放入 CX 寄存器</li>
+<li>建立方向标志</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">STOS DST</span><br><span class="line">STOSB</span><br><span class="line">STOSW</span><br><span class="line">;将数存入串指令</span><br><span class="line">;((ES:DI)) ← (AL) 或 (AX)</span><br><span class="line">;(DI) ← (DI) ±1/±2</span><br></pre></td></tr></table></figure>
+
+<p>与 REP 配合时可把 AL/AX 的内容存入长度为 (CX) 的缓冲区，常用于对一段数据区进行初始化，不影响标志位</p>
+<p><strong>与 REPE/REPZ REPNE/REPNZ 配合的指令</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">CMPS SRC,DST</span><br><span class="line">CMPSB</span><br><span class="line">CMPSW</span><br><span class="line">;串比较指令</span><br><span class="line">;以 ((ES:DI)) - ((DS:SI)) 的结果设置标志位</span><br><span class="line">;(SI) ← (SI) ±1/±2</span><br><span class="line">;(DI) ← (DI) ±1/±2</span><br></pre></td></tr></table></figure>
+
+<p>可配合找出两组数据串中不同/相同的字符</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">SCAS DST</span><br><span class="line">SCASB</span><br><span class="line">SCASW</span><br><span class="line">;串查找指令</span><br><span class="line">;以 (AL) 或 (AX) - ((ES:DI)) 的结果设置标志位</span><br><span class="line">;(DI) ← (DI) ±1/±2</span><br></pre></td></tr></table></figure>
+
+<p>可配合找出两组数据串中与指定字符不同/相同的元素</p>
+<p><strong>不与重复前缀配合的指令</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">LODS SRC</span><br><span class="line">LODSB</span><br><span class="line">LODSW</span><br><span class="line">;从串中取数指令</span><br><span class="line">;(AL) 或 (AX) ← ((DS:SI))</span><br><span class="line">;(SI) ← (SI) ±1/±2</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>汇编</category>
+      </categories>
+      <tags>
+        <tag>指令系统</tag>
+        <tag>算数运算</tag>
+        <tag>逻辑操作</tag>
+        <tag>串处理</tag>
+        <tag>控制转移</tag>
       </tags>
   </entry>
   <entry>
@@ -3447,94 +3298,253 @@ tring&gt; comp = (first, second) -&gt; ... ;</code> ；如果方法只有一个�
       </tags>
   </entry>
   <entry>
-    <title>汇编课程记录 5</title>
-    <url>/2019/11/16/%E6%B1%87%E7%BC%96%E8%AF%BE%E7%A8%8B%E8%AE%B0%E5%BD%95-5/</url>
-    <content><![CDATA[<h1 id="算术运算指令"><a href="#算术运算指令" class="headerlink" title="算术运算指令"></a>算术运算指令</h1><p>双操作数指令必须有一个操作数在寄存器中（除源操作数是立即数的情况）<br>单操作数指令不允许使用立即数</p><p>条件标志位<br>CF 有进位为 1 无进位为 0<br>ZF 结果为零<br>SF 符号<br>OF 溢出，若两个操作数符号相同而结果的符号与之相反时为 1</p><p><strong>加法指令</strong></p><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">ADD DST,SRC</span><br><span class="line"></span><br><span class="line">ADC DST,SRC</span><br><span class="line">;(DST) ← (SRC)+(DST)+CF</span><br><span class="line">;带进位加法指令</span><br><span class="line"></span><br><span class="line">INC OPR</span><br><span class="line">;(OPR) ← (OPR)+1</span><br><span class="line">;加 1 指令</span><br></pre></td></tr></table></figure><a id="more"></a>
-
-
-
-
-<p>除 INC 指令不影响 CF 外，其余都影响标志位</p>
-<p><strong>减法指令</strong></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">SUB DST,SRC</span><br><span class="line"></span><br><span class="line">SBB DST,SRC</span><br><span class="line">;(DST) ← (DST)-(SRC)-CF</span><br><span class="line">;带借位减法指令</span><br><span class="line"></span><br><span class="line">DEC OPR</span><br><span class="line">;减 1 指令</span><br><span class="line"></span><br><span class="line">NEG OPR</span><br><span class="line">;类似 (OPR) ← 0FFFFH-(OPR)+1</span><br><span class="line">;求补指令</span><br><span class="line"></span><br><span class="line">CMP OPR1,OPR2</span><br><span class="line">;比较指令，执行 SUB 操作但不保存结果，只根据结果设置条件标志位</span><br><span class="line">;两操作数不能同时为存储器操作数</span><br></pre></td></tr></table></figure>
-
-<p><strong>乘法指令</strong><br>目操作数必须是累加器，字节运算为 AL，字运算为 AX<br>源操作数允许立即数外的寻址方式<br>两个 8 位数相乘得 16 位乘积存放在 AX；两个 16 位数相乘得 32 位乘积，高字位送 DX 低字位送 AX</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">MUL SRC</span><br><span class="line">;无符号数乘法指令</span><br><span class="line">;(AX) ← (AL)*(SRC)</span><br><span class="line">;(DX,AX) ← (AX)*(SRC)</span><br><span class="line"></span><br><span class="line">IMUL SRC</span><br><span class="line">;有符号数乘法指令</span><br></pre></td></tr></table></figure>
-
-<p>MUL 指令中，若高一半为 0，即字节操作的 (AH) 或字操作的 (DX) 为 0，则 CF OF 为 0，否则为 1，可以用于检查字节相乘的结果是字节还是字，或检查字相乘的结果是字还是双字<br>IMUL 指令中，若乘积的高一半是低一半的符号扩展，则 CF OF 均为 0，否则均为 1</p>
-<p><strong>除法指令</strong></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">DIV SRC</span><br><span class="line">;(AL) ← (AX)/(SRC) 的商</span><br><span class="line">;(AH) ← (AX)/(SRC) 的余数</span><br><span class="line">;源操作数为 8 位时，被除数必须 16 位</span><br><span class="line">;被除数必须预先存在 AX 中</span><br><span class="line">;(AX) ← (DX,AX)/(SRC) 的商</span><br><span class="line">;(DX) ← (DX,AX)/(SRC) 的余数</span><br><span class="line">;被除数必须预先存在 DX,AX 中</span><br><span class="line"></span><br><span class="line">IDIV SRC</span><br><span class="line">;有符号数除法指令</span><br></pre></td></tr></table></figure>
-
-<h1 id="逻辑操作指令"><a href="#逻辑操作指令" class="headerlink" title="逻辑操作指令"></a>逻辑操作指令</h1><p><strong>逻辑运算指令</strong></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">AND DST,SRC</span><br><span class="line">;(DST) ← (DST)∧(SRC)</span><br><span class="line">;逻辑与指令</span><br><span class="line">;源为立即数，需要清零的位为 0，不变的位设为 1</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">OR DST,SRC</span><br><span class="line">;(DST) ← (DST)V(SRC)</span><br><span class="line">;逻辑或指令</span><br><span class="line">;需要置一的位为 1，不变的位设为 0</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">NOT OPR</span><br><span class="line">;逻辑非指令，按位取反</span><br><span class="line"></span><br><span class="line">XOR DST,SRC</span><br><span class="line">;异或指令</span><br><span class="line">;需要取反的位设为 1，不变的位设为 0</span><br><span class="line">XOR AX,AX</span><br><span class="line">;给寄存器清零，同时使 CF 清零</span><br><span class="line"></span><br><span class="line">TEST OPR1,OPR2</span><br><span class="line">;用 AND 的结果设置条件标志位 ZF</span><br><span class="line">;可测试目的某些位是否为 0</span><br></pre></td></tr></table></figure>
-
-<p><strong>移位指令</strong></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">SHL OPR,CNT</span><br><span class="line">SAL OPR,CN</span><br><span class="line">;逻辑左移指令和算术左移指令</span><br></pre></td></tr></table></figure>
-
-<p>将操作数 OPR 向左移动 CNT 指定的次数，低位补入相应个数的 0，CF 的内容为 OPR 最后移出的数位值<br>若需要移位的次数大于 1 则需要把位移次数置于 CL 寄存器</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">SHR OPR,CNT</span><br><span class="line">;逻辑右移指令，参考逻辑左移</span><br><span class="line"></span><br><span class="line">SAR OPR,CNT</span><br><span class="line">;算术右移指令</span><br><span class="line">;最高位保持不变</span><br></pre></td></tr></table></figure>
-
-<p>上面四条移位指令都可作字或字节操作，当 CNT=1 时，且移位后最高有效位发生改变，则 OF 置 1，否则置 0<br>算术位移指令适用于有符号数，逻辑移位指令用于无符号数</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">ROL OPR,CNT</span><br><span class="line">ROR OPR,CNT</span><br><span class="line">;循环左移指令和循环右移指令</span><br><span class="line">;将操作数 OPR 的最高最低位连接</span><br><span class="line">;将环中所有位一起向左/右循环移动 CNT 次</span><br><span class="line">;CF 的内容为 OPR 中最后移出的数值位</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">RCL OPR,CNT</span><br><span class="line">RCR OPR,CNT</span><br><span class="line">;带进位循环左移指令和循环右移指令</span><br><span class="line">;将操作数 OPR 与 CF 标志位一起连接成环</span><br><span class="line">;CF 为 OPR 最后移到 CF 中的数值</span><br></pre></td></tr></table></figure>
-
-<p>这四条指令也只影响 OF(当 CNT=1 时) 和 CF 位，循环移位指令可以改变操作数中所有位的位置</p>
-<h1 id="串处理指令"><a href="#串处理指令" class="headerlink" title="串处理指令"></a>串处理指令</h1><p>将一组存放在存储器连续单元的数据称为数据串。而数据传送指令每次只能传送一个数据，故 CPU 为数据串提供了一组完成数据串传送的指令</p>
-<p>若加重复前缀则要求将数据串长度/重复次数送 CX<br>源串地址应设置在 (DS:SI) 中，可指定段跨越前缀；目的串地址应设置在 (ES:DI) 中，不能指定段跨越前缀<br>操作数不是串时只能使用累加器 (AL/AX)<br>所有串处理指令前都必先对方向标志 (DF) 置值</p>
-<ul>
-<li>CLD 使 DF=0，控制地址自动增加 1(字)/2(字节)</li>
-<li>STD 使 DF=1，控制地址自动减少 1(字)/2(字节)</li>
-</ul>
-<p><strong>重复前缀</strong><br>配合串处理指令的重复操作</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">REP 串指令</span><br><span class="line">;重复串操作</span><br><span class="line">;1. 如 (CX)=0，则退出串操作，否则继续执行</span><br><span class="line">;2. (CX) ← (CX)-1</span><br><span class="line">;3. 执行其后的串操作</span><br><span class="line">;4. 从 1 重复</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">REPE/REPZ 串指令</span><br><span class="line">;相等则重复串操作</span><br><span class="line">;即 (CX)=0 或 ZF=0 </span><br><span class="line">;增加了两个操作数不等则退出串操作</span><br><span class="line"></span><br><span class="line">REPNE/REPNZ 串指令</span><br><span class="line">;不相等则重复串操作</span><br><span class="line">;即 (CX)=0 或 ZF=1</span><br></pre></td></tr></table></figure>
-
-<p><strong>与 REP 配合的指令</strong></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">MOVS DST,SRC</span><br><span class="line">MOVSB</span><br><span class="line">MOVSW</span><br><span class="line">;串传送指令</span><br><span class="line">;((ES:DI)) ← ((DS:SI))</span><br><span class="line">;(SI) ← (SI) ±1/±2</span><br><span class="line">;(DI) ← (DI) ±1/±2</span><br></pre></td></tr></table></figure>
-
-<p>不影响标志位<br>执行前的准备工作：</p>
-<ul>
-<li>将存放于数据段的源串首地址(DF=0)或末地址(DF=1)放入 SI</li>
-<li>将存放于附加段的目的串首地址(DF=0)或末地址(DF=1)放入 SI</li>
-<li>将数据串长度放入 CX 寄存器</li>
-<li>建立方向标志</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">STOS DST</span><br><span class="line">STOSB</span><br><span class="line">STOSW</span><br><span class="line">;将数存入串指令</span><br><span class="line">;((ES:DI)) ← (AL) 或 (AX)</span><br><span class="line">;(DI) ← (DI) ±1/±2</span><br></pre></td></tr></table></figure>
-
-<p>与 REP 配合时可把 AL/AX 的内容存入长度为 (CX) 的缓冲区，常用于对一段数据区进行初始化，不影响标志位</p>
-<p><strong>与 REPE/REPZ REPNE/REPNZ 配合的指令</strong></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">CMPS SRC,DST</span><br><span class="line">CMPSB</span><br><span class="line">CMPSW</span><br><span class="line">;串比较指令</span><br><span class="line">;以 ((ES:DI)) - ((DS:SI)) 的结果设置标志位</span><br><span class="line">;(SI) ← (SI) ±1/±2</span><br><span class="line">;(DI) ← (DI) ±1/±2</span><br></pre></td></tr></table></figure>
-
-<p>可配合找出两组数据串中不同/相同的字符</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">SCAS DST</span><br><span class="line">SCASB</span><br><span class="line">SCASW</span><br><span class="line">;串查找指令</span><br><span class="line">;以 (AL) 或 (AX) - ((ES:DI)) 的结果设置标志位</span><br><span class="line">;(DI) ← (DI) ±1/±2</span><br></pre></td></tr></table></figure>
-
-<p>可配合找出两组数据串中与指定字符不同/相同的元素</p>
-<p><strong>不与重复前缀配合的指令</strong></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">LODS SRC</span><br><span class="line">LODSB</span><br><span class="line">LODSW</span><br><span class="line">;从串中取数指令</span><br><span class="line">;(AL) 或 (AX) ← ((DS:SI))</span><br><span class="line">;(SI) ← (SI) ±1/±2</span><br></pre></td></tr></table></figure>
+    <title>Padavan 添加 NameSilo DDNS 服务</title>
+    <url>/2020/09/11/Padavan-%E6%B7%BB%E5%8A%A0-NameSilo-DDNS-%E6%9C%8D%E5%8A%A1/</url>
+    <content><![CDATA[<p>步骤同之前 <a href="https://www.yuyurbq.icu/2020/03/15/Padavan-%E6%B7%BB%E5%8A%A0-GoDaddy-DDNS-%E6%9C%8D%E5%8A%A1/">Padavan 添加 GoDaddy DDNS 服务</a> ；</p>
+<p>apikey 到 <a href="https://www.namesilo.com/account/api-manager" target="_blank" rel="noopener">https://www.namesilo.com/account/api-manager</a> 创建；</p>
+<p>shell 脚本如下：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"></span><br><span class="line">MYAPIKEY=<span class="string">"填apikey"</span></span><br><span class="line">MYDOMAIN=<span class="string">"域名"</span></span><br><span class="line">MYHOST=<span class="string">"A记录名称"</span></span><br><span class="line">MYFULLDOMAIN=<span class="string">"<span class="variable">$MYHOST</span>.<span class="variable">$MYDOMAIN</span>"</span></span><br><span class="line"></span><br><span class="line">MYIP=`curl -s <span class="string">"https://api.ipify.org"</span>`</span><br><span class="line">OLDIP=$(tail -n 1 /home/root/iprecord.txt)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> [<span class="string">"<span class="variable">$OLDIP</span>"</span> == <span class="string">"<span class="variable">$MYIP</span>"</span>]; <span class="keyword">then</span></span><br><span class="line">  <span class="built_in">echo</span> <span class="string">"Nothing happened."</span></span><br><span class="line">  <span class="built_in">exit</span> 0</span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"<span class="variable">$MYIP</span>"</span> &gt; /home/root/iprecord.txt</span><br><span class="line"><span class="built_in">echo</span> <span class="string">"IP has changed."</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Fetch DNS record ID</span></span><br><span class="line">RESPONSE=<span class="string">"<span class="variable">$(curl -s "https://www.namesilo.com/api/dnsListRecords?version=1&amp;type=xml&amp;key=$MYAPIKEY&amp;domain=$MYDOMAIN")</span>"</span></span><br><span class="line">RECORD_ID=<span class="string">"<span class="variable">$(echo $RESPONSE | sed -n 's/^.*&lt;record_id&gt;\(.*\)&lt;\/record_id&gt;&lt;type&gt;A&lt;\/type&gt;&lt;host&gt;'$MYFULLDOMAIN'&lt;\/host&gt;.*$/\1/p')</span>"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Update</span></span><br><span class="line">RESPONSE=<span class="string">"<span class="variable">$(curl -s "https://www.namesilo.com/api/dnsUpdateRecord?version=1&amp;type=xml&amp;key=$MYAPIKEY&amp;domain=$MYDOMAIN&amp;rrid=$RECORD_ID&amp;rrhost=$MYHOST&amp;rrvalue=$MYIP&amp;rrttl=7207")</span>"</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">exit</span> 0</span><br></pre></td></tr></table></figure>
 
 ]]></content>
       <categories>
-        <category>汇编</category>
+        <category>瞎折腾</category>
       </categories>
       <tags>
-        <tag>指令系统</tag>
-        <tag>控制转移</tag>
-        <tag>算数运算</tag>
-        <tag>逻辑操作</tag>
-        <tag>串处理</tag>
+        <tag>DDNS</tag>
       </tags>
   </entry>
   <entry>
-    <title>Hello World</title>
-    <url>/2019/09/04/hello-world/</url>
-    <content><![CDATA[<center>九月四日，YUYU向宇宙发出的第一声啼鸣，以太阳为中心，以光速向宇宙深处飞驰......(x<center>
-</center></center>]]></content>
+    <title>MySQL 性能-查询</title>
+    <url>/2020/09/20/MySQL-%E6%80%A7%E8%83%BD-%E6%9F%A5%E8%AF%A2/</url>
+    <content><![CDATA[<p>优化查询，实际上要优化其子任务，要么消除其中一些子任务，要么减少子任务的执行次数，要么让子任务运行得更快。<br>查询的生命周期大致可以按照：从客户端，到服务器，然后在服务器上进行解析，生成执行计划，执行，并返回结果给客户端。</p><h1 id="优化数据访问"><a href="#优化数据访问" class="headerlink" title="优化数据访问"></a>优化数据访问</h1><h2 id="不要请求不需要的数据"><a href="#不要请求不需要的数据" class="headerlink" title="不要请求不需要的数据"></a>不要请求不需要的数据</h2><ol>
+<li><p>查询不需要的记录</p>
+<p> 例如在处理分页时，应该使用 limit 限制 MySQL 只返回一页的数据，而不是向应用程序返回全部数据后，再由应用程序过滤不需要的行。</p>
+</li>
+<li><p>多表关联时返回全部列</p>
+<p> 只取需要的列。</p>
+</li>
+<li><p>总是取出全部列</p>
+<p> select * 会让优化器无法完成索引覆盖扫描这类优化，带来额外的 I/O 内存 CPU 消耗。</p>
+</li>
+<li><p>重复查询相同的数据</p>
+<p> 当一行数据被多次使用时可以考虑缓存起来，避免每次使用都要到MySql查询。</p>
+</li>
+</ol><a id="more"></a>
+
+<h2 id="避免扫描额外的记录"><a href="#避免扫描额外的记录" class="headerlink" title="避免扫描额外的记录"></a>避免扫描额外的记录</h2><p>响应时间：数据库处理查询所用的服务时间，和服务器等待资源的排队时间。并无规律和公式，尝试上限估计法。</p>
+<p>扫描的行数：不是所有行的访问代价都相同；较短的行的访问速度更快，内存中的行也比磁盘中的行的访问速度要快得多。</p>
+<p>访问类型：explain 中的 type 列反应了访问类型，全表扫描，索引扫描，范围扫描，唯一索引扫描，常数引用，速度从慢到快；通常增加合适的索引。</p>
+<p>where 条件从好到坏：</p>
+<ul>
+<li>在索引中使用 where 条件来过滤不匹配的记录，在存储引擎层完成；</li>
+<li>使用索引覆盖扫描返回记录，直接从索引中过滤不需要的记录并返回命中结果，在服务器层完成但无需回表查询；</li>
+<li>从数据表中返回数据，然后过滤不满足条件的记录（Extra 列中出现 Using Where）</li>
+</ul>
+<p>若发现查询需要扫描大量数据但只返回少数的行：</p>
+<ul>
+<li>使用索引覆盖扫描（见索引）；</li>
+<li>改变库表结构，如使用单独的汇总表（见库表）；</li>
+<li>重写这个查询以适应优化器</li>
+</ul>
+<hr>
+<h1 id="重构查询的方式"><a href="#重构查询的方式" class="headerlink" title="重构查询的方式"></a>重构查询的方式</h1><h2 id="一个复杂查询-or-多个简单查询"><a href="#一个复杂查询-or-多个简单查询" class="headerlink" title="一个复杂查询 or 多个简单查询"></a>一个复杂查询 or 多个简单查询</h2><p>一些情况下分解很有必要，但不要对能够胜任的查询下手。</p>
+<h2 id="切分查询"><a href="#切分查询" class="headerlink" title="切分查询"></a>切分查询</h2><p>分治，将大查询切分成小查询，每个查询功能完全一样，只完成一小部分，每次只返回一小部分查询结果，可以避免锁住很多数据、占满事务日志、耗尽系统资源、阻塞很多小的但重要的查询。</p>
+<h2 id="分解关联查询"><a href="#分解关联查询" class="headerlink" title="分解关联查询"></a>分解关联查询</h2><p>对每个要关联的表进行单表查询，然后将结果在应用程序中进行关联：</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> tag</span><br><span class="line">-&gt;	<span class="keyword">join</span> tag_post <span class="keyword">on</span> tag_post.tag_id=tag.id</span><br><span class="line">-&gt;	<span class="keyword">join</span> post <span class="keyword">on</span> tag_post.post_id=post.id</span><br><span class="line"><span class="keyword">where</span> tag.tag=<span class="string">'mysql'</span>;</span><br></pre></td></tr></table></figure>
+
+<p>可以分解成：</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> tag <span class="keyword">where</span> tag=<span class="string">'mysql'</span>;</span><br><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> tag_post <span class="keyword">where</span> tag_id=<span class="number">1234</span>;</span><br><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> post <span class="keyword">where</span> post.id <span class="keyword">in</span>(<span class="number">123</span>,<span class="number">456</span>,<span class="number">789</span>);</span><br></pre></td></tr></table></figure>
+
+<p>优势：</p>
+<ul>
+<li>让缓存的效率更高。如果缓存的是关联查询的结果，那么其中的一个表发生变化，整个缓存就失效了。而拆分后，如果只是某个表很少的改动，并不会破坏所有的缓存；</li>
+<li>可以减少锁的竞争；</li>
+<li>应用层做关联，更容易对数据库进行拆分，做到高性能和可扩展；</li>
+<li>查询本身的效率也有可能会有所提升。例如用 in() 代替关联查询比随机的关联更加高效；</li>
+<li>可以减少冗余记录的查询，对于某条记录应用只需要查询一次；、、</li>
+<li>相当于在应用中实现了哈希关联，而不是使用 MySQL 的嵌套循环关联。</li>
+</ul>
+<p>场景：</p>
+<ul>
+<li>应用能够方便地缓存单个查询的结果的时候；</li>
+<li>数据分布到不同的 MySQL 服务器上的时候；</li>
+<li>能够使用 IN() 的方式代替关联查询的时候；</li>
+<li>查询中使用同一个数据表的时候。</li>
+</ul>
+<hr>
+<h1 id="查询执行基础"><a href="#查询执行基础" class="headerlink" title="查询执行基础"></a>查询执行基础</h1><ol>
+<li><p>客户端发送一条查询给服务器；</p>
+</li>
+<li><p>服务器先检查查询缓存，如果命中则立刻返回结果，否则进入下一阶段；</p>
+</li>
+<li><p>服务器端进行 SQL 解析、预处理，再由优化器生成对应的执行计划；</p>
+</li>
+<li><p>MySQL 根据优化器生成的执行计划，调用存储引擎的 API 来执行查询；</p>
+</li>
+<li><p>将结果返回给客户端。</p>
+</li>
+</ol>
+<h2 id="MySQL-CS间的通信"><a href="#MySQL-CS间的通信" class="headerlink" title="MySQL CS间的通信"></a>MySQL CS间的通信</h2><p>半双工，无法进行流量控制，一旦一端开始发生消息，另一端要接收完整个消息才能响应它。</p>
+<p>多数连接 MySQL 的库函数从 MySQL 获取数据时，实际是从这个库函数的缓存获取数据，这样可以尽早释放服务器的资源。</p>
+<p>查询连接/线程状态，SHOW FULL PROCESSLIST 命令 Command 列：</p>
+<ul>
+<li><p>Sleep，线程正在等待客户端发送新的请求；</p>
+</li>
+<li><p>Query，线程正在执行查询或者正在将结果发送给客户端；</p>
+</li>
+<li><p>Locked，在 MySQL 服务器层，该线程正在等待表锁。存储引擎级别的锁如 InnoDB 的行锁，不会体现在线程状态；</p>
+</li>
+<li><p>Analyzing and statistics，线程正在收集存储引擎的统计信息，并生成查询的执行计划；</p>
+</li>
+<li><p>Copying to tmp table [on disk]，线程正在执行查询，并且将其结果集都复制到一个临时表中，要么是在做 group by 操作，要么是文件排序操作，或者是 union 操作。on disk 则正在将内存临时表放到磁盘上；</p>
+</li>
+<li><p>Sorting result，线程正在对结果集进行排序；</p>
+</li>
+<li><p>Sending data，线程可能在多个状态之间传送数据，或者在生成结果集，或者在向客户端返回数据。</p>
+</li>
+</ul>
+<h2 id="查询缓存"><a href="#查询缓存" class="headerlink" title="查询缓存"></a>查询缓存</h2><p>若查询缓存是打开的，MySQL 通过一个对大小写敏感的哈希查找检查是否命中。若恰好命中，返回查询结果之前 MySQL 会检查一次用户权限。</p>
+<p>查询不会被解析，不用生成执行计划，不会被执行。</p>
+<h2 id="查询优化处理"><a href="#查询优化处理" class="headerlink" title="查询优化处理"></a>查询优化处理</h2><p>未匹配缓存时，查询的生命周期的下一步是将 SQL 转换成一个执行计划，MySQL 再依照执行计划和存储引擎交互。这些包括：解析 SQL，预处理，优化执行计划。</p>
+<p><strong>语法解析器和预处理</strong></p>
+<p>MySQL 解析器使用语法规则验证和解析查询，是否使用错误的关键字，其顺序是否正确，引号能否前后匹配等。</p>
+<p>预处理器则根据一些 MySQL 规则进一步检查是否合法。检查数据表和数据列是否存在，名字和别名是否有歧义等，然后验证权限。</p>
+<p><strong>查询优化器</strong></p>
+<p>一条查询可以有多种执行方式，优化器从中找到最好的执行计划。</p>
+<p>MySQL 使用基于成本的优化器，其尝试预测一个查询使用某种执行计划时的成本（不考虑任何缓存），并选择其中成本最小的一个。使用<code>show status like &#39;Last_query_cost&#39;;</code> 查看需要多少个数据页的随机查找。</p>
+<p>导致优化器选择错误的执行计划的原因：</p>
+<ul>
+<li><p>统计信息不准确，依赖存储引擎提供的统计信息进行评估，如 InnoDB 引擎不能维护一个数据表的行数的精确统计信息（因为 MVCC）；</p>
+</li>
+<li><p>执行计划中的成本估算不等同于实际执行的成本，无法得知真实的物理 I/O，比如顺序读或者在内存中；</p>
+</li>
+<li><p>MySQL 的最优基于成本模型，而不是时间尽可能短；</p>
+</li>
+<li><p>MySQL 从不考虑其他并发执行的查询；</p>
+</li>
+<li><p>MySQL 也并不是任何时候都是基于成本的优化，一些固定规则有更高优先级，如 match() 子句（即使别的索引或 where 条件更快，仍使用对应的全文索引）；</p>
+</li>
+<li><p>MySQL 不会考虑不受其控制的操作的成本，如执行存储过程或用户自定义函数；</p>
+</li>
+<li><p>优化器无法去估算所有可能的执行计划。</p>
+</li>
+</ul>
+<p>查询优化器的策略可以简单分为静态优化和动态优化。静态优化不依赖于特别的值，在第一次完成后就一直有效即使用不同的参数重复执行查询也不会发生变化，比如通过一些简单的代数变化将条件转换成另一种等价形式。动态优化和查询的上下文有关，每次执行都要重新评估，比如 where 条件中的取值，索引中条目对应的数据行数等。MySQL 可以处理：</p>
+<ul>
+<li><p>重新定义关联表的顺序；</p>
+</li>
+<li><p>将外连接转化成内连接，where 条件，库表结构等因素可能让外连接等价于一个内连接；</p>
+</li>
+<li><p>使用等价变换规则，合并和减少一些比较，移除一些恒成立和恒不成立的判断，比如 <code>(a&lt;b and b=c) and a=5</code> 会改写成 <code>b&gt;5 and b=c and a=5</code> 。</p>
+</li>
+<li><p>优化 count() min() max() ，要找到某一列的最小值，只需要查找对应 B-Tree 索引的最左端即直接获取第一行记录，查找最大值则是最后一条记录，在 explain 中可以看到 “Select tables optimized away”，表示优化器已经从执行计划中移除了该表，并以一个常数取而代之。类似的， count(*) 查询通常可以使用存储引擎提供的数据。</p>
+</li>
+<li><p>预估并转化为常数表达式，如一个用户自定义变量在查询中没有发生变化时就转换为一个常数。如果 where 子句中使用了索引的常数条件，MySQL 可以在查询开始阶段就先查找到这些值，优化器将其转换为常数表达式：</p>
+  <figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">   <span class="keyword">select</span> film.film_id, film_actor.actor_id</span><br><span class="line">   -&gt; <span class="keyword">from</span> film</span><br><span class="line">-&gt;     <span class="keyword">inner</span> <span class="keyword">join</span> film_actor <span class="keyword">using</span>(film_id)</span><br><span class="line">   -&gt; <span class="keyword">where</span> film.film_id=<span class="number">1</span>;</span><br></pre></td></tr></table></figure>
+
+
+</li>
+</ul>
+<pre><code>&gt; MySQL 会分成两步来执行这个查询，也就是上面的两行输出。第一步先从 film 表找到需要的行。因为在 film_id 字段上有主键索引，所以 MySQL 优化器知道这只会返回一行数据，优化器在生成执行计划的时候，就已经通过索引信息知道将返回多少行数据。因为优化器已经明确知道有多少个值（ WHERE 条件中的值）需要做索引查询，所以这里的表访问类型是 const 。
+在执行计划的第二步，MySQL 将第一步中返回的 film_id 列当作一个已知取值的列来处理。因为优化器清楚在第一步执行完后，该值就是明确的了。注意到正如第一步一样，使用film_actor字段对表的访问类型也是 coonst 。
+另一种会看到常数条件的情况是通过等式将常数值从一个表传到另一个表，这可以通过 WHERE、USING 或者 ON 语句来限制某列数的值为常数。在上面的例子中，因为使用了 USING 子句，优化器知道这也限制了 film_id 在整个查询过程中都始终是一个常量——因为他必须等于 WHERE 子句中的那个取值。</code></pre><ul>
+<li><p>覆盖索引扫描，当索引中的列包含所有查询中需要使用的列的时候，就可以使用索引返回需要的数据，而无须查询对应的数据行；</p>
+</li>
+<li><p>子查询优化，某些情况下 MySQL 将子查询转换为效率更高的形式，以减少多个查询多次对数据访问；</p>
+</li>
+<li><p>提前终止查询，在发现已经满足查询需求的时候，MySQL 能够立刻终止查询，如 limit 子句。若发现了一个不成立的条件，MySQL 会立刻返回一个空结果。当存储引擎需要检索不同取值或判断存在性时，会提前终止查询判断下一个，类似这种 不同值 不存在 的优化一般可用于 DISTINCT、NOT EXIST() 或者 LEFT JOIN 类型的查询；</p>
+</li>
+<li><p>等值传播，如果两个列的值通过等式关联，那么MySQL能够把其中一列的WHERE条件传递到另一列上：</p>
+  <figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> film.film_id</span><br><span class="line">-&gt; <span class="keyword">from</span> sakila.film</span><br><span class="line">-&gt;     <span class="keyword">inner</span> <span class="keyword">join</span> sakila.film_actor <span class="keyword">using</span>(film_id)</span><br><span class="line">-&gt; <span class="keyword">where</span> film.film_id &gt; <span class="number">500</span>;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>因为这里使用了film_id字段进行等值关联，MySQL知道这里的WHERE子句不仅适用于film表，而且对于film_actor表同样适用。</p>
+</blockquote>
+</li>
+<li><p>列表 in() 的比较，在 MySQL 中，in() 先将自己列表中的数据进行排序，然后通过二分查找的方式确定列的值是否在 in() 的列表中，这个时间复杂度是 O(logn) 。如果换成 or 操作，则时间复杂度是 O(n) 。所以，对于 in() 的列表中有大量取值的时候，用 in() 替换 or 操作将会更快。</p>
+</li>
+</ul>
+<p><strong>数据和索引的统计信息</strong></p>
+<p>服务器层有查询优化器，但不保存数据和索引的统计信息，统计信息由存储引擎实现，不同的存储引擎可能会存储不同的统计信息（甚至没有）。查询优化器在生成查询的执行计划时需要向存储引擎获取。</p>
+<p><strong>MySQL 执行关联查询 (join)</strong></p>
+<p>在 MySQL 中，任何一个查询都是一次关联，即使只有一个表的查询也是如此。</p>
+<p>对于 union 查询，MySQL 先将一系列的单个查询结果放到一个临时表中，然后再重新读出临时表数据来完成 union 查询。MySQL 读取结果临时表和普通表一样，也是采用的关联方式。</p>
+<p>当遇到子查询时，先执行子查询并将结果放到一个临时表中，然后再将这个临时表当做一个普通表对待。MySQL 的临时表是没有任何索引的，在编写复杂的子查询和关联查询的时候需要注意这一点，临时表也叫派生表。</p>
+<p>MySQL 对任何关联都执行嵌套循环关联操作，即先在一个表中循环取出单条数据，然后再嵌套到下一个表中寻找匹配的行，直到找到所有表中匹配的行为止。例如对于 SQL 语句：</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> tbl1.col1,tbl2.col2</span><br><span class="line">-&gt; <span class="keyword">FROM</span> tbl1 <span class="keyword">INNER</span> <span class="keyword">JOIN</span> tbl2 <span class="keyword">USING</span>(col3)</span><br><span class="line">-&gt; <span class="keyword">WHERE</span> tbl1.col1 <span class="keyword">IN</span>(<span class="number">5</span>,<span class="number">6</span>);</span><br></pre></td></tr></table></figure>
+
+<p>伪代码表示：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">out_iter = iterator over tbl1 where col1 IN(5,6)</span><br><span class="line">outer_row = out_iter.next</span><br><span class="line">while outer_row</span><br><span class="line">    inner_iter = iterator over tbl2 where col3 = outer_row.col3</span><br><span class="line">    inner_row = inner_iter.next</span><br><span class="line">    while inner_row</span><br><span class="line">        output[outer_row.col1, inner_row.col2]</span><br><span class="line">        inner_row = inner_iter.next</span><br><span class="line">    end</span><br><span class="line">    outer_row = outer_iter.next</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
+
+<p>对于单表查询，那么只需要完成外层的基本操作。</p>
+<p><strong>关联查询优化器</strong></p>
+<p>尝试在所有的关联顺序中选择一个成本最小的来生成执行计划树（MySQL 不生成查询字节码而是指令树）。</p>
+<p>如果可能，优化器会遍历每一个表然后逐个做嵌套循环计算每一棵可能的执行树的成本，最后返回一个最优的执行计划，如果有超过 n 个表的关联，那么需要检查 n 的阶乘关联顺序，此时搜索空间的增长速度非常快。一旦超过 optimizer_search_depth 的限制，优化器会选择贪婪搜索模式。</p>
+<p>有时各个查询的顺序不能随意安排，比如左连接等需要依赖前表的结果。这会大大减少搜索空间。</p>
+<p><strong>排序优化</strong></p>
+<p>应该尽量让 MySQL 使用索引进行排序。当不能使用索引生成排序结果的时候，如果数据量小于“排序缓冲区”的大小，则 MySQL 使用内存进行“快速排序”操作。如果数据量太大超过“排序缓冲区”的大小，那么 MySQL 会将数据分块，对每个块“快速排序”并将结果存放在磁盘上，最后合并返回。</p>
+<p>MySQL 文件排序操作使用的临时存储空间可能相当大，因为每一个排序记录都会分配一个足够长的定长空间，此空间必须能容纳其中最长的字符串（varchar 列需要分配完整长度，UTF-8 每个字符预留三字节）。</p>
+<h2 id="返回结果"><a href="#返回结果" class="headerlink" title="返回结果"></a>返回结果</h2><p>经查询执行引擎逐步执行指令后（并非字节码），将结果增量、逐步的返回客户端，比如服务器处理完最后一个关联表开始生成第一条结果时，就可以逐步返回结果集了。</p>
+<p>即使不需要返回结果集，MySQL 仍会返回查询的一些信息，比如影响到的行数。</p>
+<hr>
+<h1 id="查询优化器的局限性"><a href="#查询优化器的局限性" class="headerlink" title="查询优化器的局限性"></a>查询优化器的局限性</h1><h2 id="关联子查询"><a href="#关联子查询" class="headerlink" title="关联子查询"></a>关联子查询</h2><p>MySQL 的子查询实现的非常糟糕。最糟糕的一类查询是 where 条件中包含 in() 的子查询语句。MySQL 会将外层表压到子查询中，导致关联子查询，比如：</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> film</span><br><span class="line">-&gt; <span class="keyword">where</span> film_id <span class="keyword">in</span>(</span><br><span class="line">-&gt;     <span class="keyword">select</span> film_id <span class="keyword">from</span> film_actor <span class="keyword">where</span> actor_id=<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 预想的处理</span></span><br><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> film</span><br><span class="line">-&gt; <span class="keyword">where</span> film_id</span><br><span class="line">-&gt;     <span class="keyword">in</span>(<span class="number">1</span>,<span class="number">23</span>,<span class="number">25</span>,<span class="number">213</span>,<span class="number">344</span>,<span class="number">546</span>,<span class="number">788</span>,<span class="number">907</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 实际的处理</span></span><br><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> film</span><br><span class="line">-&gt; <span class="keyword">where</span> <span class="keyword">exists</span>(</span><br><span class="line">-&gt;     <span class="keyword">select</span> * <span class="keyword">from</span> film_actor <span class="keyword">where</span> actor_id=<span class="number">1</span></span><br><span class="line">-&gt;     <span class="keyword">and</span> film_actor.film_id = film.film_id);</span><br></pre></td></tr></table></figure>
+
+<p>MySQL 先对 film 表全表扫描，然后根据返回的 film_id 逐个执行子查询。</p>
+<p>应该尽可能用关联替换子查询，可以提高查询效率（如果使用MySQL5.6以上或MariaDB则可以忽略）。当然，子查询不一定是最慢的，应该用测试来验证。</p>
+<h2 id="union-的限制"><a href="#union-的限制" class="headerlink" title="union 的限制"></a>union 的限制</h2><p>如果希望 union 的各个子句能根据 limit 只取部分结果集，或先排好序再合并结果集的话，则需要在各个子句中分别使用 ：</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- 将 actor 和 customer 的所有记录存放在临时表</span></span><br><span class="line">(<span class="keyword">select</span> first_name, last_name <span class="keyword">from</span> actor <span class="keyword">order</span> <span class="keyword">by</span> last_name)</span><br><span class="line">-&gt; <span class="keyword">union</span> <span class="keyword">all</span></span><br><span class="line">-&gt; (<span class="keyword">select</span> first_name, last_name <span class="keyword">from</span> customer <span class="keyword">order</span> <span class="keyword">by</span> last_name)</span><br><span class="line">-&gt; <span class="keyword">limit</span> <span class="number">20</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 临时表只包含 40 条记录</span></span><br><span class="line">(<span class="keyword">select</span> first_name, last_name <span class="keyword">from</span> actor <span class="keyword">order</span> <span class="keyword">by</span> last_name <span class="keyword">limit</span> <span class="number">20</span>)</span><br><span class="line">-&gt; <span class="keyword">union</span> <span class="keyword">all</span></span><br><span class="line">-&gt; (<span class="keyword">select</span> first_name, last_name <span class="keyword">from</span> customer <span class="keyword">order</span> <span class="keyword">by</span> last_name <span class="keyword">limit</span> <span class="number">20</span>)</span><br><span class="line">-&gt; <span class="keyword">limit</span> <span class="number">20</span>;</span><br></pre></td></tr></table></figure>
+
+<h2 id="最大值最小值优化"><a href="#最大值最小值优化" class="headerlink" title="最大值最小值优化"></a>最大值最小值优化</h2><p>比如：</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- first_name 字段没有索引，将会全表扫描</span></span><br><span class="line"><span class="keyword">select</span> <span class="keyword">min</span>(actor_id) <span class="keyword">from</span> actor <span class="keyword">where</span> first_name=<span class="string">'xxx'</span>;</span><br></pre></td></tr></table></figure>
+
+<p>MySQL 读到第一个满足条件的记录时就是最小值了，因为 actor_id 上主键索引是按大小顺序排列的。曲线优化：</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> actor_id <span class="keyword">from</span> actor <span class="keyword">use</span> <span class="keyword">index</span>(primary)</span><br><span class="line">-&gt; <span class="keyword">where</span> first_name=<span class="string">'xxx'</span> <span class="keyword">limit</span> <span class="number">1</span>;</span><br></pre></td></tr></table></figure>
+
+<h2 id="在同一张表上查询和更新"><a href="#在同一张表上查询和更新" class="headerlink" title="在同一张表上查询和更新"></a>在同一张表上查询和更新</h2><p>MySQL 不允许同时进行：</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- 将表中相似行的数量记录到字段里</span></span><br><span class="line"><span class="keyword">update</span> tb1 <span class="keyword">as</span> outer_tb1</span><br><span class="line">-&gt;     <span class="keyword">set</span> cnt = (</span><br><span class="line">-&gt;         <span class="keyword">select</span> <span class="keyword">count</span>(*) <span class="keyword">from</span> tb1 <span class="keyword">as</span> inner_tb1</span><br><span class="line">-&gt;         <span class="keyword">where</span> inner_tb1.type = outer_tb1.type</span><br><span class="line">-&gt;     );</span><br></pre></td></tr></table></figure>
+
+<p>使用临时表来处理：</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">update</span> tb1</span><br><span class="line">-&gt;     <span class="keyword">inner</span> <span class="keyword">join</span>(</span><br><span class="line">-&gt;         <span class="keyword">select</span> <span class="keyword">type</span>, <span class="keyword">count</span>(*) <span class="keyword">as</span> cnt <span class="keyword">from</span> tb1</span><br><span class="line">-&gt;         <span class="keyword">group</span> <span class="keyword">by</span> <span class="keyword">type</span></span><br><span class="line">-&gt;     ) <span class="keyword">as</span> der <span class="keyword">using</span>(<span class="keyword">type</span>)</span><br><span class="line">-&gt; <span class="keyword">set</span> tb1.cnt = der.cnt;</span><br></pre></td></tr></table></figure>
+
+<p>子查询在 update 打开表之前完成，update 关联的表是一个临时表。</p>
+<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p>MySQL 无法利用多核特性来并行执行查询。</p>
+<p>MySQL 不支持哈希关联，其关联都是嵌套循环关联。</p>
+<p>MySQL 不支持松散索引扫描，5.0 后在分组查询中需要找到分组的最大值和最小值时可以使用。5.6 后通过<em>索引条件下推</em>的方式解决。</p>
+<hr>
+<h1 id="优化特定类型的查询"><a href="#优化特定类型的查询" class="headerlink" title="优化特定类型的查询"></a>优化特定类型的查询</h1><h2 id="count"><a href="#count" class="headerlink" title="count()"></a>count()</h2><p>count() 有两个不同的作用：</p>
+<ol>
+<li>统计某个列值的数量，即统计某列值不为 null 的个数。</li>
+<li>统计行数。</li>
+</ol>
+<p>当使用 count(*) 时，统计的是行数，它会忽略所有的列而直接统计所有的行数。而在括号中指定了一个列的话，则统计的是这个列上值不为 null 的个数。</p>
+<p>比如将条件反转：</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- 扫描记录较多</span></span><br><span class="line"><span class="keyword">select</span> <span class="keyword">count</span>(*) <span class="keyword">from</span> city <span class="keyword">where</span> <span class="keyword">id</span>&gt;<span class="number">5</span>;</span><br><span class="line"><span class="comment">-- 用总数减去</span></span><br><span class="line"><span class="comment">-- 子查询会直接作为常数处理</span></span><br><span class="line"><span class="keyword">select</span> (<span class="keyword">select</span> <span class="keyword">count</span>(*) <span class="keyword">from</span> city) - <span class="keyword">count</span>(*) <span class="keyword">from</span> city <span class="keyword">where</span> <span class="keyword">id</span>&lt;=<span class="number">5</span>;</span><br></pre></td></tr></table></figure>
+
+<h2 id="关联查询"><a href="#关联查询" class="headerlink" title="关联查询"></a>关联查询</h2><p>确保 on 或者 using 子句中的列上有索引。</p>
+<p>确保任何的 group by 和 order by 中的表达式只涉及到一个表中的列，这样 MySQL 才有可能使用索引优化这个过程。</p>
+<h2 id="limit-分页"><a href="#limit-分页" class="headerlink" title="limit 分页"></a>limit 分页</h2><p>处理分页会使用到 limit ，当翻页到非常靠后的页面的时候，偏移量会非常大，这时 limit 的效率会非常差。例如对于 <code>LIMIT 10000，20</code> 这样的查询，MySQL 需要查询 10020 条记录，将前面 10000 条记录抛弃，只返回最后的 20 条。这样的代价非常高，如果所有的页面被访问的频率都相同，那么这样的查询平均需要访问半个表的数据。</p>
+<p>优化此类分页查询的一个最简单的办法就是尽可能地使用索引覆盖扫描，而不是查询所有的列。然后根据需要与原表做一次关联操作返回所需的列。对于偏移量很大的时候，这样的效率会提升非常大。考虑下面的查询：</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> film_id, description <span class="keyword">FROM</span> sakila.film <span class="keyword">ORDER</span> <span class="keyword">BY</span> title <span class="keyword">LIMIT</span> <span class="number">50</span>, <span class="number">5</span>;</span><br></pre></td></tr></table></figure>
+
+<p>如果这个表非常大，那么这个查询最好改写成下面的这样子：</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> film.film_id, film.description <span class="keyword">FROM</span> film</span><br><span class="line">-&gt; <span class="keyword">INNER</span> <span class="keyword">JOIN</span> </span><br><span class="line">-&gt; (<span class="keyword">SELECT</span> film_id <span class="keyword">FROM</span> film <span class="keyword">ORDER</span> <span class="keyword">BY</span> title <span class="keyword">LIMIT</span> <span class="number">50</span>,<span class="number">5</span>) <span class="keyword">AS</span> lim</span><br><span class="line">-&gt; <span class="keyword">USING</span>(film_id);</span><br></pre></td></tr></table></figure>
+
+<p>注意优化中关联的子查询，因为只查询 film_id 一个列，数据量小，使得一个内存页可以容纳更多的数据，这让 MySQL 扫描尽可能少的页面。在获取到所需要的所有行之后再与原表进行关联以获得需要的全部列。<br>limit 的优化问题，其实是 offset 的问题，它会导致 MySQL 扫描大量不需要的行然后再抛弃掉。可以借助书签的思想记录上次取数据的位置，那么下次就可以直接从该书签记录的位置开始扫描，这样就避免了使用 offset 。可以把主键当做书签使用，例如下面的查询：</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> rental <span class="keyword">ORDER</span> <span class="keyword">BY</span> rental_id <span class="keyword">DESC</span> <span class="keyword">LIMIT</span> <span class="number">20</span>;</span><br></pre></td></tr></table></figure>
+
+<p>假设上面的查询返回的是主键为 16049 到 16030 的租借记录，那么下一页查询就可以直接从 16030 这个点开始：</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> rental <span class="keyword">WHERE</span> rental_id &lt; <span class="number">16030</span></span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> rental_id <span class="keyword">DESC</span> <span class="keyword">LIMIT</span> <span class="number">20</span>;</span><br></pre></td></tr></table></figure>
+
+<p>该技术的好处是无论翻页到多么后面，其性能都会很好。此外，也可以用关联到一个冗余表的方式提高 limit 的性能，冗余表只包含主键列和需要做排序的数据列。</p>
+<h2 id="union-查询"><a href="#union-查询" class="headerlink" title="union 查询"></a>union 查询</h2><p>除非确实需要服务器消除重复的行，否则一定要使用 union all 。如果没有 all 关键字，MySQL 会给临时表加上 distinct 选项，这会导致对整个临时表的数据做唯一性检查，这样做的代价非常高。</p>
+]]></content>
+      <categories>
+        <category>MySQL</category>
+      </categories>
+      <tags>
+        <tag>MySQL</tag>
+      </tags>
   </entry>
   <entry>
     <title>寂静之城</title>
