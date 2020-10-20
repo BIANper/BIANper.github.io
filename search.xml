@@ -2212,11 +2212,16 @@ tring&gt; comp = (first, second) -&gt; ... ;</code> ；如果方法只有一个�
     <url>/2020/09/11/MySQL-%E6%80%A7%E8%83%BD-%E5%BA%93%E8%A1%A8/</url>
     <content><![CDATA[<h1 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h1><blockquote>
 <p>更小通常更好 选择不会超过范围的最小类型</p>
-</blockquote><blockquote>
+</blockquote>
+<blockquote>
 <p>简单更好 简单数据类型操作代价低</p>
-</blockquote><blockquote>
+</blockquote>
+<blockquote>
 <p>尽量避免 NULL 值 索引会变得复杂，但不要极端</p>
-</blockquote><h2 id="整数类型"><a href="#整数类型" class="headerlink" title="整数类型"></a>整数类型</h2><table>
+</blockquote>
+<a id="more"></a>
+
+<h2 id="整数类型"><a href="#整数类型" class="headerlink" title="整数类型"></a>整数类型</h2><table>
 <thead>
 <tr>
 <th align="center">类型</th>
@@ -2243,10 +2248,7 @@ tring&gt; comp = (first, second) -&gt; ... ;</code> ；如果方法只有一个�
 <td align="center">bigint</td>
 <td align="center">64 bit</td>
 </tr>
-</tbody></table><a id="more"></a>
-
-
-
+</tbody></table>
 <p><code>UNSIGNED</code> 属性不影响性能。</p>
 <p>整数计算一般（某些聚合函数使用 decimal double）使用 64 位，与类型定义和环境无关。</p>
 <p>为整数类型指定宽度（<code>int(10)</code>）不会改变存储和计算的方式，不会限制值的合法范围。</p>
@@ -2541,7 +2543,11 @@ tring&gt; comp = (first, second) -&gt; ... ;</code> ；如果方法只有一个�
   <entry>
     <title>Tomcat 乱涂画</title>
     <url>/2020/10/08/Tomcat-%E4%B9%B1%E6%B6%82%E7%94%BB/</url>
-    <content><![CDATA[<p><img src="https://i.loli.net/2020/10/08/PmqflziGEUTnFSb.jpg" alt="01.jpg"></p>
+    <content><![CDATA[<a id="more"></a>
+
+
+
+<p><img src="https://i.loli.net/2020/10/08/PmqflziGEUTnFSb.jpg" alt="01.jpg"></p>
 <p><img src="https://i.loli.net/2020/10/08/DUshVk2iE68YHMA.jpg" alt="02.jpg"></p>
 ]]></content>
       <categories>
@@ -2829,12 +2835,14 @@ tring&gt; comp = (first, second) -&gt; ... ;</code> ；如果方法只有一个�
   <entry>
     <title>MySQL 性能-查询</title>
     <url>/2020/09/20/MySQL-%E6%80%A7%E8%83%BD-%E6%9F%A5%E8%AF%A2/</url>
-    <content><![CDATA[<p>优化查询，实际上要优化其子任务，要么消除其中一些子任务，要么减少子任务的执行次数，要么让子任务运行得更快。<br>查询的生命周期大致可以按照：从客户端，到服务器，然后在服务器上进行解析，生成执行计划，执行，并返回结果给客户端。</p><h1 id="优化数据访问"><a href="#优化数据访问" class="headerlink" title="优化数据访问"></a>优化数据访问</h1><h2 id="不要请求不需要的数据"><a href="#不要请求不需要的数据" class="headerlink" title="不要请求不需要的数据"></a>不要请求不需要的数据</h2><ol>
+    <content><![CDATA[<p>优化查询，实际上要优化其子任务，要么消除其中一些子任务，要么减少子任务的执行次数，要么让子任务运行得更快。<br>查询的生命周期大致可以按照：从客户端，到服务器，然后在服务器上进行解析，生成执行计划，执行，并返回结果给客户端。</p>
+<h1 id="优化数据访问"><a href="#优化数据访问" class="headerlink" title="优化数据访问"></a>优化数据访问</h1><h2 id="不要请求不需要的数据"><a href="#不要请求不需要的数据" class="headerlink" title="不要请求不需要的数据"></a>不要请求不需要的数据</h2><ol>
 <li><p>查询不需要的记录</p>
 <p> 例如在处理分页时，应该使用 limit 限制 MySQL 只返回一页的数据，而不是向应用程序返回全部数据后，再由应用程序过滤不需要的行。</p>
 </li>
 <li><p>多表关联时返回全部列</p>
 <p> 只取需要的列。</p>
+ <a id="more"></a>
 </li>
 <li><p>总是取出全部列</p>
 <p> select * 会让优化器无法完成索引覆盖扫描这类优化，带来额外的 I/O 内存 CPU 消耗。</p>
@@ -2842,8 +2850,7 @@ tring&gt; comp = (first, second) -&gt; ... ;</code> ；如果方法只有一个�
 <li><p>重复查询相同的数据</p>
 <p> 当一行数据被多次使用时可以考虑缓存起来，避免每次使用都要到MySql查询。</p>
 </li>
-</ol><a id="more"></a>
-
+</ol>
 <h2 id="避免扫描额外的记录"><a href="#避免扫描额外的记录" class="headerlink" title="避免扫描额外的记录"></a>避免扫描额外的记录</h2><p>响应时间：数据库处理查询所用的服务时间，和服务器等待资源的排队时间。并无规律和公式，尝试上限估计法。</p>
 <p>扫描的行数：不是所有行的访问代价都相同；较短的行的访问速度更快，内存中的行也比磁盘中的行的访问速度要快得多。</p>
 <p>访问类型：explain 中的 type 列反应了访问类型，全表扫描，索引扫描，范围扫描，唯一索引扫描，常数引用，速度从慢到快；通常增加合适的索引。</p>
