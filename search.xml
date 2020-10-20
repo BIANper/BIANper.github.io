@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Git 命令思维导图</title>
+    <url>/2020/02/02/Git-%E5%91%BD%E4%BB%A4%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE/</url>
+    <content><![CDATA[<p>没钱开 XMind… 理直气壮不去水印</p>
+<p><img src="https://i.loli.net/2020/03/06/UE3BOSHfsbQDtGd.png" alt="git.png"></p>
+]]></content>
+      <categories>
+        <category>Git</category>
+      </categories>
+      <tags>
+        <tag>思维导图</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Git-分支乱七八糟版</title>
     <url>/2019/12/07/Git-%E5%88%86%E6%94%AF%E4%B9%B1%E4%B8%83%E5%85%AB%E7%B3%9F%E7%89%88/</url>
     <content><![CDATA[<p>使用 git branch <name> 命令创建分支。git branch -d <name> 删除分支。git branch -v 命令查看每个分支的最后一次提交。git branch –no-merged 查看未合并的分支，未合并的分支 -D 才能删除。<br>切换到一个已存在的分支，使用 git checkout 命令。</name></name></p><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git checkout -b name</span><br><span class="line">等同于</span><br><span class="line">git branch name</span><br><span class="line">git checkout name</span><br></pre></td></tr></table></figure><a id="more"></a>
@@ -24,19 +37,6 @@
         <tag>版本控制系统</tag>
         <tag>分支</tag>
         <tag>变基</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Git 命令思维导图</title>
-    <url>/2020/02/02/Git-%E5%91%BD%E4%BB%A4%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE/</url>
-    <content><![CDATA[<p>没钱开 XMind… 理直气壮不去水印</p>
-<p><img src="https://i.loli.net/2020/03/06/UE3BOSHfsbQDtGd.png" alt="git.png"></p>
-]]></content>
-      <categories>
-        <category>Git</category>
-      </categories>
-      <tags>
-        <tag>思维导图</tag>
       </tags>
   </entry>
   <entry>
@@ -164,49 +164,6 @@
       </categories>
       <tags>
         <tag>版本控制系统</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Java 补丁-对象和类</title>
-    <url>/2019/12/08/Java-%E8%A1%A5%E4%B8%81-%E5%AF%B9%E8%B1%A1%E5%92%8C%E7%B1%BB/</url>
-    <content><![CDATA[<h1 id="预定义类部分"><a href="#预定义类部分" class="headerlink" title="预定义类部分"></a>预定义类部分</h1><p><strong>更改器和访问器</strong><br>更改器方法：调用方法后，会改变对象的状态。<br>访问器方法：只访问对象而不修改对象，通过生成新对象的方式应用改动。</p><h1 id="自定义类部分"><a href="#自定义类部分" class="headerlink" title="自定义类部分"></a>自定义类部分</h1><p><strong>封装</strong><br>注意是否返回了引用可变对象，即访问器方法返回了一个有更改器方法的对象；返回可变对象的引用时，应该先进行 clone。<br>Date 类有更改器方法 setTime，破坏了封装性：</p><a id="more"></a>
-
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">private Date hireDay;</span><br><span class="line">public Date getHireDay()&#123;</span><br><span class="line">	return hireDay;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>final</strong><br>将实例域定义为 final，则构建对象时必须初始化这样的域（在构造器之后），并且之后不能再修改。大多应用于不可变类的域，对于可变的类只表示变量中的对象引用不会再指向其他对象，但当前这个对象可以修改。</p>
-<ul>
-<li>不可变类：类中的的每个方法都不会改变其对象，如 String 类。<br>System.out 被声明为 final，但 System 类有 setOut 方法：本地方法不是用 Java 语言实现，可以绕过 Java 的存取控制机制。</li>
-</ul>
-<h1 id="静态部份"><a href="#静态部份" class="headerlink" title="静态部份"></a>静态部份</h1><p><strong>静态方法</strong><br>不能对对象实施操作，不使用其对象，即没有 this 参数的方法。使用：</p>
-<ul>
-<li>一个方法不需要访问对象状态，所需参数都通过显式参数提供。</li>
-<li>一个方法只需要访问类的静态域。</li>
-</ul>
-<h1 id="参数传递部分"><a href="#参数传递部分" class="headerlink" title="参数传递部分"></a>参数传递部分</h1><p>Java 总是采用按值调用。即方法得到的是参数值的一个拷贝。注意，Java 对对象采用的也是值调用，对象引用是按值传递的。</p>
-<ul>
-<li>一个方法不能修改一个基本数据类型的参数（数字型或布尔型）。</li>
-<li>一个方法可以改变一个对象参数的状态。</li>
-<li>一个方法不能让对象参数引用一个新的对象，因为方法结束后就被丢弃。</li>
-</ul>
-<h1 id="对象构造部分"><a href="#对象构造部分" class="headerlink" title="对象构造部分"></a>对象构造部分</h1><p><strong>重载</strong><br>方法的签名包含方法名和参数类型， 不包括返回类型和参数名。</p>
-<p><strong>无参数构造器</strong><br>当类没有提供任何构造器时，系统会提供一个无参数构造器，数值型设置为 0，布尔型设置为 false，对象变量设置为 null。</p>
-<p><strong>显式域初始化</strong><br>在类定义中直接将值赋给任何域，赋值操作会在 super(); 与构造器之间执行。可以调用方法进行初始化。</p>
-<p><strong>构造器执行步骤</strong><br>未包含继承部分。</p>
-<ol>
-<li>所有数据域初始化为默认值。</li>
-<li>按照在类声明中的出现次序，依次执行所有域初始化语句和初始化块。</li>
-<li>如果构造器第一行调用了第二个构造器，则执行第二个构造器主体。</li>
-<li>执行此构造器。</li>
-</ol>
-]]></content>
-      <categories>
-        <category>Java</category>
-      </categories>
-      <tags>
-        <tag>对象构造</tag>
-        <tag>静态</tag>
-        <tag>封装</tag>
-        <tag>call by</tag>
       </tags>
   </entry>
   <entry>
@@ -484,52 +441,46 @@
       </tags>
   </entry>
   <entry>
-    <title>Java 补丁-异常、断言和日志</title>
-    <url>/2019/12/23/Java-%E8%A1%A5%E4%B8%81-%E5%BC%82%E5%B8%B8%E3%80%81%E6%96%AD%E8%A8%80%E5%92%8C%E6%97%A5%E5%BF%97/</url>
-    <content><![CDATA[<h1 id="异常部分"><a href="#异常部分" class="headerlink" title="异常部分"></a>异常部分</h1><p><strong>概念</strong><br>非受查 unchecked 异常：派生于 Error 类或 RuntimeException 类的所有异常，其它的异常称为受查 checked 异常。</p><p><strong>创建异常类</strong><br>派生于 Exception 或其子类。应该包含两个构造器：默认构造器和带描述信息的构造器（超类 Throwable 的 toString 方法会打印出详细信息）。</p><a id="more"></a>
+    <title>Java 补丁-对象和类</title>
+    <url>/2019/12/08/Java-%E8%A1%A5%E4%B8%81-%E5%AF%B9%E8%B1%A1%E5%92%8C%E7%B1%BB/</url>
+    <content><![CDATA[<h1 id="预定义类部分"><a href="#预定义类部分" class="headerlink" title="预定义类部分"></a>预定义类部分</h1><p><strong>更改器和访问器</strong><br>更改器方法：调用方法后，会改变对象的状态。<br>访问器方法：只访问对象而不修改对象，通过生成新对象的方式应用改动。</p><h1 id="自定义类部分"><a href="#自定义类部分" class="headerlink" title="自定义类部分"></a>自定义类部分</h1><p><strong>封装</strong><br>注意是否返回了引用可变对象，即访问器方法返回了一个有更改器方法的对象；返回可变对象的引用时，应该先进行 clone。<br>Date 类有更改器方法 setTime，破坏了封装性：</p><a id="more"></a>
 
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class FileFormatException extends IOException &#123;</span><br><span class="line">public FileFormatException() &#123;&#125;</span><br><span class="line">public FileFormatException(String gripe) &#123; super(gripe) &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">private Date hireDay;</span><br><span class="line">public Date getHireDay()&#123;</span><br><span class="line">	return hireDay;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p><strong>finally 子句</strong><br>建议解耦合 try/catch 和 try/finally 语句块，以提高清晰度（且会报告 finaly 子句的错误）。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">try &#123;</span><br><span class="line">	try &#123;</span><br><span class="line">	&#125;</span><br><span class="line">	finally &#123;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">catch (Exception e) &#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>finally 子句中的 return 语句将会覆盖 try 中 return 的值。</p>
-<p><strong>带资源的 try 语句</strong></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">try (Resource res = ...; ...) &#123;</span><br><span class="line">	work with res</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>可以指定多个资源，try 块正常退出或存在异常时会自动调用 res.close()。catch 子句和 finally 子句将会在关闭资源后执行。</p>
-<p><strong>堆栈轨迹元素</strong><br>堆栈轨迹 stack trace：方法调用过程的列表。</p>
-<h1 id="断言部分"><a href="#断言部分" class="headerlink" title="断言部分"></a>断言部分</h1><p><strong>概念</strong></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">assert 条件 ;</span><br><span class="line">assert 条件 : 表达式 ;</span><br><span class="line"></span><br><span class="line">assert x&gt;=0 : x;</span><br></pre></td></tr></table></figure>
-
-<p>assert 关键词，测试期间向代码插入一些检查语句，发布时会自动移走。<br>对条件进行检测，如果结果是 false 则抛出 AssertionError 异常。第二种还会将表达式传到 AssertionError 转换成消息字符串输出。</p>
-<p><strong>启用和禁用</strong><br>运行程序时用 -ea -da 选项，可以指定某个类或某个包。没有类加载器的系统类需要用 -esa 启用。例：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">java -ea:MyClass -ea:com.mycom... -da:YmClass MyApp</span><br></pre></td></tr></table></figure>
-
-<p>程序中使用 <code>setDefaultAssertionSatus (boolean b)</code> 等完成。</p>
-<h1 id="日志部分"><a href="#日志部分" class="headerlink" title="日志部分"></a>日志部分</h1><p><strong>基本日志</strong><br>即全局日志记录器的 info 方法：<code>Logger.getGlobal().info(&quot; ... &quot;)</code> 。</p>
-<p><strong>高级日志</strong><br>即自定义日志记录器，调用 getLogger 方法创建或获取，具有类似包名的层次结构，因为未被任何变量引用的日志记录器可能会被垃圾回收，要用一个静态变量存储引用：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">private static final Logger myLogger = Logger.getLogger(&apos;&apos;com.mycom...&apos;&apos;);</span><br></pre></td></tr></table></figure>
-
-<p>日志记录器的父子间共享某些属性如日志级别：</p>
+<p><strong>final</strong><br>将实例域定义为 final，则构建对象时必须初始化这样的域（在构造器之后），并且之后不能再修改。大多应用于不可变类的域，对于可变的类只表示变量中的对象引用不会再指向其他对象，但当前这个对象可以修改。</p>
 <ul>
-<li>SEVERE</li>
-<li>WARNING</li>
-<li>INFO</li>
-<li>CONFIG</li>
-<li>FINE</li>
-<li>FINER</li>
-<li>FINEST</li>
+<li>不可变类：类中的的每个方法都不会改变其对象，如 String 类。<br>System.out 被声明为 final，但 System 类有 setOut 方法：本地方法不是用 Java 语言实现，可以绕过 Java 的存取控制机制。</li>
 </ul>
-<p>默认只记录前三个级别，通过 <code>logger.setLevel(Level.FINE);</code> 设置其他级别。</p>
+<h1 id="静态部份"><a href="#静态部份" class="headerlink" title="静态部份"></a>静态部份</h1><p><strong>静态方法</strong><br>不能对对象实施操作，不使用其对象，即没有 this 参数的方法。使用：</p>
+<ul>
+<li>一个方法不需要访问对象状态，所需参数都通过显式参数提供。</li>
+<li>一个方法只需要访问类的静态域。</li>
+</ul>
+<h1 id="参数传递部分"><a href="#参数传递部分" class="headerlink" title="参数传递部分"></a>参数传递部分</h1><p>Java 总是采用按值调用。即方法得到的是参数值的一个拷贝。注意，Java 对对象采用的也是值调用，对象引用是按值传递的。</p>
+<ul>
+<li>一个方法不能修改一个基本数据类型的参数（数字型或布尔型）。</li>
+<li>一个方法可以改变一个对象参数的状态。</li>
+<li>一个方法不能让对象参数引用一个新的对象，因为方法结束后就被丢弃。</li>
+</ul>
+<h1 id="对象构造部分"><a href="#对象构造部分" class="headerlink" title="对象构造部分"></a>对象构造部分</h1><p><strong>重载</strong><br>方法的签名包含方法名和参数类型， 不包括返回类型和参数名。</p>
+<p><strong>无参数构造器</strong><br>当类没有提供任何构造器时，系统会提供一个无参数构造器，数值型设置为 0，布尔型设置为 false，对象变量设置为 null。</p>
+<p><strong>显式域初始化</strong><br>在类定义中直接将值赋给任何域，赋值操作会在 super(); 与构造器之间执行。可以调用方法进行初始化。</p>
+<p><strong>构造器执行步骤</strong><br>未包含继承部分。</p>
+<ol>
+<li>所有数据域初始化为默认值。</li>
+<li>按照在类声明中的出现次序，依次执行所有域初始化语句和初始化块。</li>
+<li>如果构造器第一行调用了第二个构造器，则执行第二个构造器主体。</li>
+<li>执行此构造器。</li>
+</ol>
 ]]></content>
       <categories>
         <category>Java</category>
       </categories>
       <tags>
-        <tag>异常</tag>
-        <tag>断言</tag>
-        <tag>日志</tag>
+        <tag>对象构造</tag>
+        <tag>静态</tag>
+        <tag>封装</tag>
+        <tag>call by</tag>
       </tags>
   </entry>
   <entry>
@@ -773,6 +724,55 @@
       </tags>
   </entry>
   <entry>
+    <title>Java 补丁-异常、断言和日志</title>
+    <url>/2019/12/23/Java-%E8%A1%A5%E4%B8%81-%E5%BC%82%E5%B8%B8%E3%80%81%E6%96%AD%E8%A8%80%E5%92%8C%E6%97%A5%E5%BF%97/</url>
+    <content><![CDATA[<h1 id="异常部分"><a href="#异常部分" class="headerlink" title="异常部分"></a>异常部分</h1><p><strong>概念</strong><br>非受查 unchecked 异常：派生于 Error 类或 RuntimeException 类的所有异常，其它的异常称为受查 checked 异常。</p><p><strong>创建异常类</strong><br>派生于 Exception 或其子类。应该包含两个构造器：默认构造器和带描述信息的构造器（超类 Throwable 的 toString 方法会打印出详细信息）。</p><a id="more"></a>
+
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class FileFormatException extends IOException &#123;</span><br><span class="line">public FileFormatException() &#123;&#125;</span><br><span class="line">public FileFormatException(String gripe) &#123; super(gripe) &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>finally 子句</strong><br>建议解耦合 try/catch 和 try/finally 语句块，以提高清晰度（且会报告 finaly 子句的错误）。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">try &#123;</span><br><span class="line">	try &#123;</span><br><span class="line">	&#125;</span><br><span class="line">	finally &#123;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">catch (Exception e) &#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>finally 子句中的 return 语句将会覆盖 try 中 return 的值。</p>
+<p><strong>带资源的 try 语句</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">try (Resource res = ...; ...) &#123;</span><br><span class="line">	work with res</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>可以指定多个资源，try 块正常退出或存在异常时会自动调用 res.close()。catch 子句和 finally 子句将会在关闭资源后执行。</p>
+<p><strong>堆栈轨迹元素</strong><br>堆栈轨迹 stack trace：方法调用过程的列表。</p>
+<h1 id="断言部分"><a href="#断言部分" class="headerlink" title="断言部分"></a>断言部分</h1><p><strong>概念</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">assert 条件 ;</span><br><span class="line">assert 条件 : 表达式 ;</span><br><span class="line"></span><br><span class="line">assert x&gt;=0 : x;</span><br></pre></td></tr></table></figure>
+
+<p>assert 关键词，测试期间向代码插入一些检查语句，发布时会自动移走。<br>对条件进行检测，如果结果是 false 则抛出 AssertionError 异常。第二种还会将表达式传到 AssertionError 转换成消息字符串输出。</p>
+<p><strong>启用和禁用</strong><br>运行程序时用 -ea -da 选项，可以指定某个类或某个包。没有类加载器的系统类需要用 -esa 启用。例：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">java -ea:MyClass -ea:com.mycom... -da:YmClass MyApp</span><br></pre></td></tr></table></figure>
+
+<p>程序中使用 <code>setDefaultAssertionSatus (boolean b)</code> 等完成。</p>
+<h1 id="日志部分"><a href="#日志部分" class="headerlink" title="日志部分"></a>日志部分</h1><p><strong>基本日志</strong><br>即全局日志记录器的 info 方法：<code>Logger.getGlobal().info(&quot; ... &quot;)</code> 。</p>
+<p><strong>高级日志</strong><br>即自定义日志记录器，调用 getLogger 方法创建或获取，具有类似包名的层次结构，因为未被任何变量引用的日志记录器可能会被垃圾回收，要用一个静态变量存储引用：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">private static final Logger myLogger = Logger.getLogger(&apos;&apos;com.mycom...&apos;&apos;);</span><br></pre></td></tr></table></figure>
+
+<p>日志记录器的父子间共享某些属性如日志级别：</p>
+<ul>
+<li>SEVERE</li>
+<li>WARNING</li>
+<li>INFO</li>
+<li>CONFIG</li>
+<li>FINE</li>
+<li>FINER</li>
+<li>FINEST</li>
+</ul>
+<p>默认只记录前三个级别，通过 <code>logger.setLevel(Level.FINE);</code> 设置其他级别。</p>
+]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>异常</tag>
+        <tag>断言</tag>
+        <tag>日志</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Java 补丁-并发</title>
     <url>/2020/01/18/Java-%E8%A1%A5%E4%B8%81-%E5%B9%B6%E5%8F%91/</url>
     <content><![CDATA[<p>并发得专门开个分类 x</p><p>到时候把这篇删掉 x</p><h1 id="零碎"><a href="#零碎" class="headerlink" title="零碎"></a>零碎</h1><p>所有实例域、静态域和数组元素都储存在堆内存中，堆内存在线程之前共享。<br>JMM 定义了：线程之间的共享变量储存在主内存中，每个线程都有一个私有的本地内存，本地内存储存了该线程已读写共享变量的副本。</p><ul>
@@ -911,91 +911,6 @@ tring&gt; comp = (first, second) -&gt; ... ;</code> ；如果方法只有一个�
         <tag>内部类</tag>
         <tag>lambda</tag>
         <tag>泛型</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Java 补丁-泛型程序设计</title>
-    <url>/2019/12/24/Java-%E8%A1%A5%E4%B8%81-%E6%B3%9B%E5%9E%8B%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/</url>
-    <content><![CDATA[<p><strong>类型变量限定</strong><br>对类型变量 T 设置限定 <code>&lt;T extends BoundingType&gt;</code>。T 的绑定类型可以是类也可以是接口，只是 extends 关键词更接近子类概念，并非表达继承的意思。<br>一个类型变量或通配符可以有多个限定，限定类型用 &amp; 分隔，类型变量用逗号分隔。但限定中至多有一个类，并是限定列表的第一个。</p><a id="more"></a>
-<p><strong>继承规则</strong><br>Pair<manager> 不是 Pair<employee> 的子类，继承不延续进泛型类。<br>泛型类可以扩展或实现其他的泛型类。</employee></manager></p>
-<h1 id="虚拟机部分"><a href="#虚拟机部分" class="headerlink" title="虚拟机部分"></a>虚拟机部分</h1><p><strong>类型擦除</strong><br>虚拟机没有泛型类型对象，无论何时定义泛型类型都会自动提供相应的原始类型，即擦除类型变量并替换成限定类型（用第一个限定的类型变量替换，无限定的用 Object）。</p>
-<p><strong>翻译泛型表达式</strong><br>程序调用泛型方法时，擦除返回类型插入强制类型转换。存取泛型域时也会插入强制类型转换。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Pair&lt;Employee&gt; buddies = ... ;</span><br><span class="line">Employeee buddy = buddies.gettFirst();</span><br></pre></td></tr></table></figure>
-
-<p>编译器将方法调用翻译成两条虚拟机指令：</p>
-<ul>
-<li>对原始方法 Pair.getFirst 的调用。</li>
-<li>将返回的 Object 类型强制转换为 Employee 类型。</li>
-</ul>
-<p><strong>翻译泛型方法</strong></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class Father&lt;T&gt; &#123;</span><br><span class="line">	public void fun(T x) &#123;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">class Son extends Father&lt;String&gt; &#123;</span><br><span class="line">	public void fun(String x) &#123;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>Father 类和 Son 类经过类型擦除后变成：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class Father&lt;Object&gt; &#123;</span><br><span class="line">	public void fun(Object x) &#123;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">class Son extends Father &#123;</span><br><span class="line">	public void fun(String x) &#123;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>很显然，子类 Son 是想覆盖 Father 的 fun 方法，但是却出现了问题。<br>当出现：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Father&lt;String&gt; f = new Son();</span><br><span class="line">f.fun(x);</span><br></pre></td></tr></table></figure>
-
-<p>变量 f 声明为类型 Father<string> 而此类型的方法是 fun(Object)，虚拟机用 f 引用的对象调用此方法，即 Son 的 fun(Object)，这个方法是虚拟机合成的桥方法，会调用 Son 的 fun(String) 方法。<br>总之就是保证了不会调用之前被覆盖的超类方法。</string></p>
-<p>对于 get 方法等无参数的，子类会出现两个方法名相同，都无参数的方法：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">String get() &#123;&#125;</span><br><span class="line">Object get() &#123;&#125;</span><br></pre></td></tr></table></figure>
-
-<p>在编写中是不合法的，但虚拟机用参数类型和_返回类型_确定一个方法，故能正确处理。</p>
-<h1 id="约束与局限部分"><a href="#约束与局限部分" class="headerlink" title="约束与局限部分"></a>约束与局限部分</h1><p><strong>不能用基本类型实例化类型参数</strong><br>没有诸如 <double> 而应该是 <double>，因为类型擦除后 Object 无法存储基本类型。</double></double></p>
-<p><strong>类型查询的是原始类型</strong><br>虚拟机中的对象总是一个非泛型类型，比如 <code>if (a instanceof Pair&lt;String&gt;)</code> 仅仅测试 a 是否是任意类型的 Pair。getClass 方法总是返回原始类型，强制类型转换将 warning。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Pair&lt;String&gt; stringPair = ... ;</span><br><span class="line">Pair&lt;Employee&gt; employeePair = ... ;</span><br><span class="line">if (stringPair.getClass() == employeePair.getClass()) // true</span><br></pre></td></tr></table></figure>
-
-<p><strong>不能创建泛型数组</strong> 1.8 中存疑<br>类型擦除后使检查元素类型的机制无效，所以不允许创建泛型数组。声明泛型数组是合法的，但不能通过创建泛型数组来对其初始化。使用类似 ArrayList:ArrayList&lt;Pair<string>&gt;。</string></p>
-<p><strong>Varargs 警告</strong></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public static &lt;T&gt; void addAll(Collection&lt;T&gt; coll, T... ts) &#123;</span><br><span class="line">	for (t : ts) coll.add(t);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>当：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Collection&lt;Pair&lt;String&gt;&gt; table = ... ;</span><br><span class="line">Pair&lt;String&gt; Pair1 = ... ;</span><br><span class="line">Pair&lt;String&gt; Pair2 = ... ;</span><br><span class="line">addAll (table, pair1, pair2);</span><br></pre></td></tr></table></figure>
-
-<p>虚拟机不得不建立 Pair<string> 数组，违反了上一条。但这种情况规则有所放松只会得到警告，用 @SafeVarargs 标注来抑制。</string></p>
-<p><strong>不能实例化类型变量</strong><br>诸如 <code>new T(...)</code> <code>T.class</code> 是非法的。类型擦除将 T 改变成 Object 从而违反了本意。<br>通过反射调用 Class.newInstance 方法来构造泛型对象，例：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public static &lt;T&gt; Pair&lt;T&gt; makePair(Class&lt;T&gt; cl) &#123;</span><br><span class="line">	try &#123; return new Pair&lt;&gt;(cl.newInstance(), cl.newInstance()); &#125;</span><br><span class="line">	catch (Exception ex) &#123; return null; &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Pair&lt;String&gt; p = Pair.makePair(String.class);</span><br></pre></td></tr></table></figure>
-
-<p>Class 类本身是泛型，例 <code>String.calss</code> 是 <code>Class&lt;String&gt;</code> 的唯一实例，makePair 以此推断 Pair 类型。</p>
-<p><strong>泛型类的静态域和方法无效</strong><br>不能在静态域或方法中使用泛型，经过类型擦除后只有一个非泛型域，会引起歧义。</p>
-<p><strong>不能抛出或捕获泛型类的实例</strong><br>泛型类扩展 Throwable 都是不合法的，catch 子句中不能使用类型变量。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public class Problem&lt;T&gt; extends Exception &#123;&#125; // Error</span><br><span class="line"></span><br><span class="line">catch (T e) &#123;&#125; //Error</span><br></pre></td></tr></table></figure>
-
-<p>在异常规范中使用是允许的：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public static &lt;T extends Throwable&gt; void doWork(T t) throws T &#123;&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>擦除后的冲突</strong><br>当：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public class Pair&lt;T&gt; &#123;</span><br><span class="line">	public boolean equals(T value) &#123; return first.equals(value) &amp;&amp; second.equals(value); &#125;</span><br><span class="line">	...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>比如对于 Pai<string> 有两个 equals 方法：</string></p>
-<ul>
-<li>boolean equals(String) 由 Pair<t> 定义</t></li>
-<li>boolean equals(Object) 继承自 Object</li>
-</ul>
-<p>方法擦除 <code>boolean equals(T)</code> 后即 <code>boolean equals(Object)</code> 覆盖了继承的方法。</p>
-<p>一个类或类型变量不能同时成为两个接口类型的子类，这两个接口是同一接口的不同参数化（可能与桥方法产生冲突）：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class Employee implements Comparable&lt;Employee&gt; &#123; ... &#125;</span><br><span class="line">class mangeer extends Employee implements Comparable&lt;Manager&gt; &#123; ... &#125;</span><br><span class="line">// Error</span><br></pre></td></tr></table></figure>
-
-<h1 id="通配符部分"><a href="#通配符部分" class="headerlink" title="通配符部分"></a>通配符部分</h1><p><strong>子类型限定</strong><br>例：Pair<manager> 是 Pair&lt;? extends Employee&gt; 的子类型，即将 Pair 的类型限定于 Employee 及其子类。通配符的引用不会引起破坏：</manager></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Pair&lt;Manager&gt; managerBuddies = new Pair&lt;&gt;(ceo, cfo);</span><br><span class="line">Pair&lt;? extends Employee&gt; wildcardBuddies = managerBuddies; // OK</span><br><span class="line">wildcardBuddies.setFirst(lowlyEmployee); // error</span><br></pre></td></tr></table></figure>
-
-<p>因为对于方法而言：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">? extends Employee getFirst() &#123;&#125;</span><br><span class="line">void setFirst(? extends Employee) &#123;&#125;</span><br></pre></td></tr></table></figure>
-
-<p>编译器只知道 setFirst 需要某个 Employee 的子类型，不知道具体是什么类型，拒绝任何特定的类型。而对于 getFrist，将返回值赋给 Employee 的引用是合法的。</p>
-<p><strong>超类型限定</strong><br>诸如 <code>&lt;? super Manger&gt;</code> 。<br>与子类型限定相反，可以为方法提供参数但不能使用返回值。</p>
-<p>带有超类型限定的通配符可以向泛型对象写入，带有子类型限定的通配符可以从泛型读取。</p>
-<p><strong>无限定通配符</strong><br>get 的返回值只能赋给一个 Object 。setFirst 只允许 null 值（子类型限定同）。</p>
-<h1 id="反射部分"><a href="#反射部分" class="headerlink" title="反射部分"></a>反射部分</h1><p>对象是泛型类实例时，因为擦除，反射得不到太多信息。<br>详见 API</p>
-]]></content>
-      <categories>
-        <category>Java</category>
-      </categories>
-      <tags>
-        <tag>类型擦除</tag>
-        <tag>继承</tag>
-        <tag>通配符</tag>
-        <tag>泛型约束</tag>
       </tags>
   </entry>
   <entry>
@@ -1193,6 +1108,91 @@ tring&gt; comp = (first, second) -&gt; ... ;</code> ；如果方法只有一个�
       </categories>
   </entry>
   <entry>
+    <title>Java 补丁-泛型程序设计</title>
+    <url>/2019/12/24/Java-%E8%A1%A5%E4%B8%81-%E6%B3%9B%E5%9E%8B%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/</url>
+    <content><![CDATA[<p><strong>类型变量限定</strong><br>对类型变量 T 设置限定 <code>&lt;T extends BoundingType&gt;</code>。T 的绑定类型可以是类也可以是接口，只是 extends 关键词更接近子类概念，并非表达继承的意思。<br>一个类型变量或通配符可以有多个限定，限定类型用 &amp; 分隔，类型变量用逗号分隔。但限定中至多有一个类，并是限定列表的第一个。</p><a id="more"></a>
+<p><strong>继承规则</strong><br>Pair<manager> 不是 Pair<employee> 的子类，继承不延续进泛型类。<br>泛型类可以扩展或实现其他的泛型类。</employee></manager></p>
+<h1 id="虚拟机部分"><a href="#虚拟机部分" class="headerlink" title="虚拟机部分"></a>虚拟机部分</h1><p><strong>类型擦除</strong><br>虚拟机没有泛型类型对象，无论何时定义泛型类型都会自动提供相应的原始类型，即擦除类型变量并替换成限定类型（用第一个限定的类型变量替换，无限定的用 Object）。</p>
+<p><strong>翻译泛型表达式</strong><br>程序调用泛型方法时，擦除返回类型插入强制类型转换。存取泛型域时也会插入强制类型转换。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Pair&lt;Employee&gt; buddies = ... ;</span><br><span class="line">Employeee buddy = buddies.gettFirst();</span><br></pre></td></tr></table></figure>
+
+<p>编译器将方法调用翻译成两条虚拟机指令：</p>
+<ul>
+<li>对原始方法 Pair.getFirst 的调用。</li>
+<li>将返回的 Object 类型强制转换为 Employee 类型。</li>
+</ul>
+<p><strong>翻译泛型方法</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class Father&lt;T&gt; &#123;</span><br><span class="line">	public void fun(T x) &#123;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">class Son extends Father&lt;String&gt; &#123;</span><br><span class="line">	public void fun(String x) &#123;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Father 类和 Son 类经过类型擦除后变成：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class Father&lt;Object&gt; &#123;</span><br><span class="line">	public void fun(Object x) &#123;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">class Son extends Father &#123;</span><br><span class="line">	public void fun(String x) &#123;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>很显然，子类 Son 是想覆盖 Father 的 fun 方法，但是却出现了问题。<br>当出现：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Father&lt;String&gt; f = new Son();</span><br><span class="line">f.fun(x);</span><br></pre></td></tr></table></figure>
+
+<p>变量 f 声明为类型 Father<string> 而此类型的方法是 fun(Object)，虚拟机用 f 引用的对象调用此方法，即 Son 的 fun(Object)，这个方法是虚拟机合成的桥方法，会调用 Son 的 fun(String) 方法。<br>总之就是保证了不会调用之前被覆盖的超类方法。</string></p>
+<p>对于 get 方法等无参数的，子类会出现两个方法名相同，都无参数的方法：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">String get() &#123;&#125;</span><br><span class="line">Object get() &#123;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在编写中是不合法的，但虚拟机用参数类型和_返回类型_确定一个方法，故能正确处理。</p>
+<h1 id="约束与局限部分"><a href="#约束与局限部分" class="headerlink" title="约束与局限部分"></a>约束与局限部分</h1><p><strong>不能用基本类型实例化类型参数</strong><br>没有诸如 <double> 而应该是 <double>，因为类型擦除后 Object 无法存储基本类型。</double></double></p>
+<p><strong>类型查询的是原始类型</strong><br>虚拟机中的对象总是一个非泛型类型，比如 <code>if (a instanceof Pair&lt;String&gt;)</code> 仅仅测试 a 是否是任意类型的 Pair。getClass 方法总是返回原始类型，强制类型转换将 warning。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Pair&lt;String&gt; stringPair = ... ;</span><br><span class="line">Pair&lt;Employee&gt; employeePair = ... ;</span><br><span class="line">if (stringPair.getClass() == employeePair.getClass()) // true</span><br></pre></td></tr></table></figure>
+
+<p><strong>不能创建泛型数组</strong> 1.8 中存疑<br>类型擦除后使检查元素类型的机制无效，所以不允许创建泛型数组。声明泛型数组是合法的，但不能通过创建泛型数组来对其初始化。使用类似 ArrayList:ArrayList&lt;Pair<string>&gt;。</string></p>
+<p><strong>Varargs 警告</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public static &lt;T&gt; void addAll(Collection&lt;T&gt; coll, T... ts) &#123;</span><br><span class="line">	for (t : ts) coll.add(t);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>当：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Collection&lt;Pair&lt;String&gt;&gt; table = ... ;</span><br><span class="line">Pair&lt;String&gt; Pair1 = ... ;</span><br><span class="line">Pair&lt;String&gt; Pair2 = ... ;</span><br><span class="line">addAll (table, pair1, pair2);</span><br></pre></td></tr></table></figure>
+
+<p>虚拟机不得不建立 Pair<string> 数组，违反了上一条。但这种情况规则有所放松只会得到警告，用 @SafeVarargs 标注来抑制。</string></p>
+<p><strong>不能实例化类型变量</strong><br>诸如 <code>new T(...)</code> <code>T.class</code> 是非法的。类型擦除将 T 改变成 Object 从而违反了本意。<br>通过反射调用 Class.newInstance 方法来构造泛型对象，例：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public static &lt;T&gt; Pair&lt;T&gt; makePair(Class&lt;T&gt; cl) &#123;</span><br><span class="line">	try &#123; return new Pair&lt;&gt;(cl.newInstance(), cl.newInstance()); &#125;</span><br><span class="line">	catch (Exception ex) &#123; return null; &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Pair&lt;String&gt; p = Pair.makePair(String.class);</span><br></pre></td></tr></table></figure>
+
+<p>Class 类本身是泛型，例 <code>String.calss</code> 是 <code>Class&lt;String&gt;</code> 的唯一实例，makePair 以此推断 Pair 类型。</p>
+<p><strong>泛型类的静态域和方法无效</strong><br>不能在静态域或方法中使用泛型，经过类型擦除后只有一个非泛型域，会引起歧义。</p>
+<p><strong>不能抛出或捕获泛型类的实例</strong><br>泛型类扩展 Throwable 都是不合法的，catch 子句中不能使用类型变量。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public class Problem&lt;T&gt; extends Exception &#123;&#125; // Error</span><br><span class="line"></span><br><span class="line">catch (T e) &#123;&#125; //Error</span><br></pre></td></tr></table></figure>
+
+<p>在异常规范中使用是允许的：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public static &lt;T extends Throwable&gt; void doWork(T t) throws T &#123;&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>擦除后的冲突</strong><br>当：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public class Pair&lt;T&gt; &#123;</span><br><span class="line">	public boolean equals(T value) &#123; return first.equals(value) &amp;&amp; second.equals(value); &#125;</span><br><span class="line">	...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>比如对于 Pai<string> 有两个 equals 方法：</string></p>
+<ul>
+<li>boolean equals(String) 由 Pair<t> 定义</t></li>
+<li>boolean equals(Object) 继承自 Object</li>
+</ul>
+<p>方法擦除 <code>boolean equals(T)</code> 后即 <code>boolean equals(Object)</code> 覆盖了继承的方法。</p>
+<p>一个类或类型变量不能同时成为两个接口类型的子类，这两个接口是同一接口的不同参数化（可能与桥方法产生冲突）：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class Employee implements Comparable&lt;Employee&gt; &#123; ... &#125;</span><br><span class="line">class mangeer extends Employee implements Comparable&lt;Manager&gt; &#123; ... &#125;</span><br><span class="line">// Error</span><br></pre></td></tr></table></figure>
+
+<h1 id="通配符部分"><a href="#通配符部分" class="headerlink" title="通配符部分"></a>通配符部分</h1><p><strong>子类型限定</strong><br>例：Pair<manager> 是 Pair&lt;? extends Employee&gt; 的子类型，即将 Pair 的类型限定于 Employee 及其子类。通配符的引用不会引起破坏：</manager></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Pair&lt;Manager&gt; managerBuddies = new Pair&lt;&gt;(ceo, cfo);</span><br><span class="line">Pair&lt;? extends Employee&gt; wildcardBuddies = managerBuddies; // OK</span><br><span class="line">wildcardBuddies.setFirst(lowlyEmployee); // error</span><br></pre></td></tr></table></figure>
+
+<p>因为对于方法而言：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">? extends Employee getFirst() &#123;&#125;</span><br><span class="line">void setFirst(? extends Employee) &#123;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>编译器只知道 setFirst 需要某个 Employee 的子类型，不知道具体是什么类型，拒绝任何特定的类型。而对于 getFrist，将返回值赋给 Employee 的引用是合法的。</p>
+<p><strong>超类型限定</strong><br>诸如 <code>&lt;? super Manger&gt;</code> 。<br>与子类型限定相反，可以为方法提供参数但不能使用返回值。</p>
+<p>带有超类型限定的通配符可以向泛型对象写入，带有子类型限定的通配符可以从泛型读取。</p>
+<p><strong>无限定通配符</strong><br>get 的返回值只能赋给一个 Object 。setFirst 只允许 null 值（子类型限定同）。</p>
+<h1 id="反射部分"><a href="#反射部分" class="headerlink" title="反射部分"></a>反射部分</h1><p>对象是泛型类实例时，因为擦除，反射得不到太多信息。<br>详见 API</p>
+]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>继承</tag>
+        <tag>类型擦除</tag>
+        <tag>通配符</tag>
+        <tag>泛型约束</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Linux 命令思维导图</title>
     <url>/2020/01/30/Linux-%E5%91%BD%E4%BB%A4%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE/</url>
     <content><![CDATA[<p>没钱开 XMind… 理直气壮不去水印</p>
@@ -1203,6 +1203,91 @@ tring&gt; comp = (first, second) -&gt; ... ;</code> ；如果方法只有一个�
       </categories>
       <tags>
         <tag>思维导图</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Linux 文件与目录</title>
+    <url>/2019/09/08/Linux-%E6%96%87%E4%BB%B6%E4%B8%8E%E7%9B%AE%E5%BD%95/</url>
+    <content><![CDATA[<h1 id="文件属性"><a href="#文件属性" class="headerlink" title="文件属性"></a>文件属性</h1><h2 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">-rw-r--r-- 1 root root 63428 Sep 8 19:24 xxxxx.md</span><br></pre></td></tr></table></figure>
+
+<h3 id="第一列-第一位"><a href="#第一列-第一位" class="headerlink" title="第一列 第一位"></a>第一列 第一位</h3><ul>
+<li>[d] 目录</li>
+<li>[-] 文件</li>
+<li>[l] 连接文件 linkfile</li>
+<li>[b] 可供存储的设备 是设备文件</li>
+<li>[c] 串行端口设备 是设备文件<a id="more"></a>
+<h3 id="第一列-第二-九位"><a href="#第一列-第二-九位" class="headerlink" title="第一列 第二~九位"></a>第一列 第二~九位</h3>三个一组，分别为 </li>
+<li>文件所有者权限</li>
+<li>同用户组权限</li>
+<li>其他用户权限</li>
+</ul>
+<p>每组三个参数依次为 r读-4 w写-2 x执行-1<br>Linux 中文件的可执行性与文件名无绝对关系<br>文件与目录的权限<strong>意义不同</strong></p>
+<h3 id="第二列"><a href="#第二列" class="headerlink" title="第二列"></a>第二列</h3><p>链接到此节点 i-node 的不同文件名数<br>&ensp;&ensp;文件名集合权限与属性记录到文件系统的 i-node 中</p>
+<h3 id="第六列"><a href="#第六列" class="headerlink" title="第六列"></a>第六列</h3><p>创建日期或最近修改日期<br>显示完整时间格式：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># ls -l --full-time</span><br></pre></td></tr></table></figure>
+
+<p>&ensp;&ensp;中文无法在终端显示所以：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># LANG= en_US</span><br></pre></td></tr></table></figure>
+
+<h2 id="改变文件属性"><a href="#改变文件属性" class="headerlink" title="改变文件属性"></a>改变文件属性</h2><blockquote>
+<p>复制行为 cp 不会更改源文件的属性</p>
+</blockquote>
+<h3 id="chgrp-改变所属用户组"><a href="#chgrp-改变所属用户组" class="headerlink" title="chgrp 改变所属用户组"></a>chgrp 改变所属用户组</h3><p>change group</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># chgrp [-R] groupname dirname/filename</span><br></pre></td></tr></table></figure>
+
+<p>组名在 /etc/group 中，否则报错</p>
+<h3 id="chown-改变所有者"><a href="#chown-改变所有者" class="headerlink" title="chown 改变所有者"></a>chown 改变所有者</h3><p>change owner</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># chown [-R] ownername dirname/filename</span><br><span class="line"># chown [-R] ownername:groupname dirname/filename</span><br></pre></td></tr></table></figure>
+
+<p>组名在 /etc/passwd 中，否则报错<br>ownername:groupname 同时更改 owner 和 group，不要用 . 防止误判</p>
+<h3 id="chmod-改变权限"><a href="#chmod-改变权限" class="headerlink" title="chmod 改变权限"></a>chmod 改变权限</h3><p>change modify</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># chmod [-R] xyz dirname/filename</span><br><span class="line"># chmod u/g/o/a +/-/= r/w/x dirname/filename</span><br></pre></td></tr></table></figure>
+
+<h1 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h1><p>树状，记录文件名<strong>列表</strong></p>
+<h2 id="FHS"><a href="#FHS" class="headerlink" title="FHS"></a>FHS</h2><p>/<br>根目录，开机相关<br>FHS建议 / 所在分区应越小越好，但以下不应该与根目录分开：</p>
+<ul>
+<li>/etc 配置文件</li>
+<li>/bin 执行文件，可被 root 和一般用户共用</li>
+<li>/dev 设备文件</li>
+<li>/lib 函数库和内核所需模块</li>
+<li>/sbin 执行文件，多用于设定系统文件，root 限定<br>因为与开机过程有关，开机仅挂载根目录，其他分区在开机完成后进行<br>根目录也有 . 和 ..，但两者都是根目录本身</li>
+</ul>
+<p>/usr<br>UNIX software resourse 软件资源数据，可分享 shareable 不可变动 static</p>
+<p>/var<br>variable 常态性变动文件，缓存，登陆文件，软件运行产生的文件等</p>
+<h2 id="权限之于目录"><a href="#权限之于目录" class="headerlink" title="权限之于目录"></a>权限之于目录</h2><ul>
+<li>r read contents in directory<br>读取目录结构列表的权限，即<ul>
+<li>文件名数据，可利用 ls 查询内容列表</li>
+</ul>
+</li>
+<li>w modify contents in directory<br>读取目录结构列表的权限，即<ul>
+<li>新建新的文件和目录</li>
+<li>删除已存在的文件与目录（无视其它权限）</li>
+<li>重命名已存在的文件与目录</li>
+<li>转移目录内的文件与目录位置</li>
+</ul>
+</li>
+<li>x access directory<br>用户进入该目录成为工作目录的权限<ul>
+<li>目前所在的目录</li>
+</ul>
+</li>
+</ul>
+<p>例：r–（目录） 用户访问 root 的目录<br>仅可查询目录下的文件名列表但不能切换到此目录，无法执行任何该目录下的命令<br>例：rwx（目录） 用户访问 root 的 — 文件<br>不可读 编辑 执行 但可以删除</p>
+<h1 id="路径-PATH"><a href="#路径-PATH" class="headerlink" title="路径 PATH"></a>路径 PATH</h1><p>相对路径<br>相对于当前工作目录，shell scrits 下执行环境不同可能导致问题</p>
+<p>绝对路径<br>一定由根目录 / 写起，正确度更好</p>
+<p>系统依照 PATH 的设置去 PATH 定义的目录下查询对应文件名的可执行文件<br>不同用户默认 PATH 不同，故默认可直接执行指令也不同<br>但 PATH 可以修改，一般用户可通过修改 PATH 执行 /sbin 或 /usr/sbin 的命令来查询</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># echo $PATH                查询</span><br><span class="line"># PATH=&quot;$PATH&quot;:/dirname     添加目录进 PATH</span><br></pre></td></tr></table></figure>
+
+<p>相同命令在不同目录，先被查询到的目录先执行</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># basename 取文件名</span><br><span class="line"># dirname  取目录名</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>文件</tag>
+        <tag>目录</tag>
+        <tag>属性权限</tag>
       </tags>
   </entry>
   <entry>
@@ -1454,91 +1539,6 @@ tring&gt; comp = (first, second) -&gt; ... ;</code> ；如果方法只有一个�
       <tags>
         <tag>bash</tag>
         <tag>数据流</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Linux 文件与目录</title>
-    <url>/2019/09/08/Linux-%E6%96%87%E4%BB%B6%E4%B8%8E%E7%9B%AE%E5%BD%95/</url>
-    <content><![CDATA[<h1 id="文件属性"><a href="#文件属性" class="headerlink" title="文件属性"></a>文件属性</h1><h2 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">-rw-r--r-- 1 root root 63428 Sep 8 19:24 xxxxx.md</span><br></pre></td></tr></table></figure>
-
-<h3 id="第一列-第一位"><a href="#第一列-第一位" class="headerlink" title="第一列 第一位"></a>第一列 第一位</h3><ul>
-<li>[d] 目录</li>
-<li>[-] 文件</li>
-<li>[l] 连接文件 linkfile</li>
-<li>[b] 可供存储的设备 是设备文件</li>
-<li>[c] 串行端口设备 是设备文件<a id="more"></a>
-<h3 id="第一列-第二-九位"><a href="#第一列-第二-九位" class="headerlink" title="第一列 第二~九位"></a>第一列 第二~九位</h3>三个一组，分别为 </li>
-<li>文件所有者权限</li>
-<li>同用户组权限</li>
-<li>其他用户权限</li>
-</ul>
-<p>每组三个参数依次为 r读-4 w写-2 x执行-1<br>Linux 中文件的可执行性与文件名无绝对关系<br>文件与目录的权限<strong>意义不同</strong></p>
-<h3 id="第二列"><a href="#第二列" class="headerlink" title="第二列"></a>第二列</h3><p>链接到此节点 i-node 的不同文件名数<br>&ensp;&ensp;文件名集合权限与属性记录到文件系统的 i-node 中</p>
-<h3 id="第六列"><a href="#第六列" class="headerlink" title="第六列"></a>第六列</h3><p>创建日期或最近修改日期<br>显示完整时间格式：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># ls -l --full-time</span><br></pre></td></tr></table></figure>
-
-<p>&ensp;&ensp;中文无法在终端显示所以：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># LANG= en_US</span><br></pre></td></tr></table></figure>
-
-<h2 id="改变文件属性"><a href="#改变文件属性" class="headerlink" title="改变文件属性"></a>改变文件属性</h2><blockquote>
-<p>复制行为 cp 不会更改源文件的属性</p>
-</blockquote>
-<h3 id="chgrp-改变所属用户组"><a href="#chgrp-改变所属用户组" class="headerlink" title="chgrp 改变所属用户组"></a>chgrp 改变所属用户组</h3><p>change group</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># chgrp [-R] groupname dirname/filename</span><br></pre></td></tr></table></figure>
-
-<p>组名在 /etc/group 中，否则报错</p>
-<h3 id="chown-改变所有者"><a href="#chown-改变所有者" class="headerlink" title="chown 改变所有者"></a>chown 改变所有者</h3><p>change owner</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># chown [-R] ownername dirname/filename</span><br><span class="line"># chown [-R] ownername:groupname dirname/filename</span><br></pre></td></tr></table></figure>
-
-<p>组名在 /etc/passwd 中，否则报错<br>ownername:groupname 同时更改 owner 和 group，不要用 . 防止误判</p>
-<h3 id="chmod-改变权限"><a href="#chmod-改变权限" class="headerlink" title="chmod 改变权限"></a>chmod 改变权限</h3><p>change modify</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># chmod [-R] xyz dirname/filename</span><br><span class="line"># chmod u/g/o/a +/-/= r/w/x dirname/filename</span><br></pre></td></tr></table></figure>
-
-<h1 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h1><p>树状，记录文件名<strong>列表</strong></p>
-<h2 id="FHS"><a href="#FHS" class="headerlink" title="FHS"></a>FHS</h2><p>/<br>根目录，开机相关<br>FHS建议 / 所在分区应越小越好，但以下不应该与根目录分开：</p>
-<ul>
-<li>/etc 配置文件</li>
-<li>/bin 执行文件，可被 root 和一般用户共用</li>
-<li>/dev 设备文件</li>
-<li>/lib 函数库和内核所需模块</li>
-<li>/sbin 执行文件，多用于设定系统文件，root 限定<br>因为与开机过程有关，开机仅挂载根目录，其他分区在开机完成后进行<br>根目录也有 . 和 ..，但两者都是根目录本身</li>
-</ul>
-<p>/usr<br>UNIX software resourse 软件资源数据，可分享 shareable 不可变动 static</p>
-<p>/var<br>variable 常态性变动文件，缓存，登陆文件，软件运行产生的文件等</p>
-<h2 id="权限之于目录"><a href="#权限之于目录" class="headerlink" title="权限之于目录"></a>权限之于目录</h2><ul>
-<li>r read contents in directory<br>读取目录结构列表的权限，即<ul>
-<li>文件名数据，可利用 ls 查询内容列表</li>
-</ul>
-</li>
-<li>w modify contents in directory<br>读取目录结构列表的权限，即<ul>
-<li>新建新的文件和目录</li>
-<li>删除已存在的文件与目录（无视其它权限）</li>
-<li>重命名已存在的文件与目录</li>
-<li>转移目录内的文件与目录位置</li>
-</ul>
-</li>
-<li>x access directory<br>用户进入该目录成为工作目录的权限<ul>
-<li>目前所在的目录</li>
-</ul>
-</li>
-</ul>
-<p>例：r–（目录） 用户访问 root 的目录<br>仅可查询目录下的文件名列表但不能切换到此目录，无法执行任何该目录下的命令<br>例：rwx（目录） 用户访问 root 的 — 文件<br>不可读 编辑 执行 但可以删除</p>
-<h1 id="路径-PATH"><a href="#路径-PATH" class="headerlink" title="路径 PATH"></a>路径 PATH</h1><p>相对路径<br>相对于当前工作目录，shell scrits 下执行环境不同可能导致问题</p>
-<p>绝对路径<br>一定由根目录 / 写起，正确度更好</p>
-<p>系统依照 PATH 的设置去 PATH 定义的目录下查询对应文件名的可执行文件<br>不同用户默认 PATH 不同，故默认可直接执行指令也不同<br>但 PATH 可以修改，一般用户可通过修改 PATH 执行 /sbin 或 /usr/sbin 的命令来查询</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># echo $PATH                查询</span><br><span class="line"># PATH=&quot;$PATH&quot;:/dirname     添加目录进 PATH</span><br></pre></td></tr></table></figure>
-
-<p>相同命令在不同目录，先被查询到的目录先执行</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># basename 取文件名</span><br><span class="line"># dirname  取目录名</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>Linux</category>
-      </categories>
-      <tags>
-        <tag>文件</tag>
-        <tag>目录</tag>
-        <tag>属性权限</tag>
       </tags>
   </entry>
   <entry>
@@ -2008,32 +2008,6 @@ tring&gt; comp = (first, second) -&gt; ... ;</code> ；如果方法只有一个�
       </tags>
   </entry>
   <entry>
-    <title>Linux 磁盘管理</title>
-    <url>/2019/10/10/Linux-%E7%A3%81%E7%9B%98%E7%AE%A1%E7%90%86/</url>
-    <content><![CDATA[<h1 id="磁盘分区程序"><a href="#磁盘分区程序" class="headerlink" title="磁盘分区程序"></a>磁盘分区程序</h1><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># fdisk [-l] 设备名称</span><br><span class="line">-l ：输出对应设备的所有的分区，未指定设备则显示系统内能找到的所有分区</span><br><span class="line"></span><br><span class="line">相关命令 m 查看</span><br><span class="line">cylinder 可以通过 +sizeM 让系统自动分配</span><br><span class="line"></span><br><span class="line"># partprobe     &lt;==强制内核重新读取分区表（不重启更新分区表信息）</span><br></pre></td></tr></table></figure><p>无法处理 2TB 以上的磁盘分区，使用 parted 命令<br>设备名称不应该加上数字如 /dev/hdc1 因为分区针对的是整个硬盘设备</p><a id="more"></a>
-
-
-<h1 id="磁盘格式化"><a href="#磁盘格式化" class="headerlink" title="磁盘格式化"></a>磁盘格式化</h1><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># mkfs [-t 文件系统格式] 设备文件名</span><br></pre></td></tr></table></figure>
-
-<h1 id="磁盘检验"><a href="#磁盘检验" class="headerlink" title="磁盘检验"></a>磁盘检验</h1><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># fsck [-t 文件系统] [-ACay] 设备名称</span><br><span class="line">-t ：Linux 会通过 super block 分辨文件系统，可省略</span><br></pre></td></tr></table></figure>
-
-<p>检查文件系统是否出错，可能会造成部分损坏，故执行 fsck 时被检查分区需要在卸载状态</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># badblocks [-svw] 设备名称</span><br></pre></td></tr></table></figure>
-
-<p>检查扇区是否有坏轨</p>
-<h1 id="磁盘挂载与卸载"><a href="#磁盘挂载与卸载" class="headerlink" title="磁盘挂载与卸载"></a>磁盘挂载与卸载</h1><p>被挂载的目录理论上应该是空目录，否则原有内容会隐藏到新分区卸载</p>
-<blockquote>
-<p>放弃磁盘，这部分还是面向谷歌吧x</p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>Linux</category>
-      </categories>
-      <tags>
-        <tag>存储器</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Linux 正则和文件格式化</title>
     <url>/2019/11/28/Linux-%E6%AD%A3%E5%88%99%E5%92%8C%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F%E5%8C%96/</url>
     <content><![CDATA[<p>正则表达式即以行为单位，通过特殊符号查询删除替换某特定字符串的方法，在支持的工具里通用</p><h1 id="基础正则表达式"><a href="#基础正则表达式" class="headerlink" title="基础正则表达式"></a>基础正则表达式</h1><p><strong>语系</strong><br>避免编码造成的区别，建议使用特殊符号</p><table>
@@ -2167,6 +2141,32 @@ tring&gt; comp = (first, second) -&gt; ... ;</code> ；如果方法只有一个�
       <tags>
         <tag>文件</tag>
         <tag>正则表达式</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Linux 磁盘管理</title>
+    <url>/2019/10/10/Linux-%E7%A3%81%E7%9B%98%E7%AE%A1%E7%90%86/</url>
+    <content><![CDATA[<h1 id="磁盘分区程序"><a href="#磁盘分区程序" class="headerlink" title="磁盘分区程序"></a>磁盘分区程序</h1><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># fdisk [-l] 设备名称</span><br><span class="line">-l ：输出对应设备的所有的分区，未指定设备则显示系统内能找到的所有分区</span><br><span class="line"></span><br><span class="line">相关命令 m 查看</span><br><span class="line">cylinder 可以通过 +sizeM 让系统自动分配</span><br><span class="line"></span><br><span class="line"># partprobe     &lt;==强制内核重新读取分区表（不重启更新分区表信息）</span><br></pre></td></tr></table></figure><p>无法处理 2TB 以上的磁盘分区，使用 parted 命令<br>设备名称不应该加上数字如 /dev/hdc1 因为分区针对的是整个硬盘设备</p><a id="more"></a>
+
+
+<h1 id="磁盘格式化"><a href="#磁盘格式化" class="headerlink" title="磁盘格式化"></a>磁盘格式化</h1><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># mkfs [-t 文件系统格式] 设备文件名</span><br></pre></td></tr></table></figure>
+
+<h1 id="磁盘检验"><a href="#磁盘检验" class="headerlink" title="磁盘检验"></a>磁盘检验</h1><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># fsck [-t 文件系统] [-ACay] 设备名称</span><br><span class="line">-t ：Linux 会通过 super block 分辨文件系统，可省略</span><br></pre></td></tr></table></figure>
+
+<p>检查文件系统是否出错，可能会造成部分损坏，故执行 fsck 时被检查分区需要在卸载状态</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># badblocks [-svw] 设备名称</span><br></pre></td></tr></table></figure>
+
+<p>检查扇区是否有坏轨</p>
+<h1 id="磁盘挂载与卸载"><a href="#磁盘挂载与卸载" class="headerlink" title="磁盘挂载与卸载"></a>磁盘挂载与卸载</h1><p>被挂载的目录理论上应该是空目录，否则原有内容会隐藏到新分区卸载</p>
+<blockquote>
+<p>放弃磁盘，这部分还是面向谷歌吧x</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>存储器</tag>
       </tags>
   </entry>
   <entry>
@@ -2406,23 +2406,19 @@ tring&gt; comp = (first, second) -&gt; ... ;</code> ；如果方法只有一个�
       </tags>
   </entry>
   <entry>
-    <title>Hello World</title>
-    <url>/2019/09/04/hello-world/</url>
-    <content><![CDATA[<center>九月四日，YUYU向宇宙发出的第一声啼鸣，以太阳为中心，以光速向宇宙深处飞驰......(x<center>
-</center></center>]]></content>
-  </entry>
-  <entry>
-    <title>Vim 思维导图</title>
-    <url>/2020/02/02/Vim-%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE/</url>
-    <content><![CDATA[<p>没钱开 XMind… 理直气壮不去水印</p>
-<p><img src="https://i.loli.net/2020/03/06/nqQfTsWvU2C54hc.png" alt="vim.png"></p>
+    <title>Padavan 添加 NameSilo DDNS 服务</title>
+    <url>/2020/09/11/Padavan-%E6%B7%BB%E5%8A%A0-NameSilo-DDNS-%E6%9C%8D%E5%8A%A1/</url>
+    <content><![CDATA[<p>步骤同之前 <a href="https://www.yuyurbq.icu/2020/03/15/Padavan-%E6%B7%BB%E5%8A%A0-GoDaddy-DDNS-%E6%9C%8D%E5%8A%A1/">Padavan 添加 GoDaddy DDNS 服务</a> ；</p>
+<p>apikey 到 <a href="https://www.namesilo.com/account/api-manager" target="_blank" rel="noopener">https://www.namesilo.com/account/api-manager</a> 创建；</p>
+<p>shell 脚本如下：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"></span><br><span class="line">MYAPIKEY=<span class="string">"填apikey"</span></span><br><span class="line">MYDOMAIN=<span class="string">"域名"</span></span><br><span class="line">MYHOST=<span class="string">"A记录名称"</span></span><br><span class="line">MYFULLDOMAIN=<span class="string">"<span class="variable">$MYHOST</span>.<span class="variable">$MYDOMAIN</span>"</span></span><br><span class="line"></span><br><span class="line">MYIP=`curl -s <span class="string">"https://api.ipify.org"</span>`</span><br><span class="line">OLDIP=$(tail -n 1 /home/root/iprecord.txt)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> [<span class="string">"<span class="variable">$OLDIP</span>"</span> == <span class="string">"<span class="variable">$MYIP</span>"</span>]; <span class="keyword">then</span></span><br><span class="line">  <span class="built_in">echo</span> <span class="string">"Nothing happened."</span></span><br><span class="line">  <span class="built_in">exit</span> 0</span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"<span class="variable">$MYIP</span>"</span> &gt; /home/root/iprecord.txt</span><br><span class="line"><span class="built_in">echo</span> <span class="string">"IP has changed."</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Fetch DNS record ID</span></span><br><span class="line">RESPONSE=<span class="string">"<span class="variable">$(curl -s "https://www.namesilo.com/api/dnsListRecords?version=1&amp;type=xml&amp;key=$MYAPIKEY&amp;domain=$MYDOMAIN")</span>"</span></span><br><span class="line">RECORD_ID=<span class="string">"<span class="variable">$(echo $RESPONSE | sed -n 's/^.*&lt;record_id&gt;\(.*\)&lt;\/record_id&gt;&lt;type&gt;A&lt;\/type&gt;&lt;host&gt;'$MYFULLDOMAIN'&lt;\/host&gt;.*$/\1/p')</span>"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Update</span></span><br><span class="line">RESPONSE=<span class="string">"<span class="variable">$(curl -s "https://www.namesilo.com/api/dnsUpdateRecord?version=1&amp;type=xml&amp;key=$MYAPIKEY&amp;domain=$MYDOMAIN&amp;rrid=$RECORD_ID&amp;rrhost=$MYHOST&amp;rrvalue=$MYIP&amp;rrttl=7207")</span>"</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">exit</span> 0</span><br></pre></td></tr></table></figure>
+
 ]]></content>
       <categories>
-        <category>Linux</category>
+        <category>瞎折腾</category>
       </categories>
       <tags>
-        <tag>思维导图</tag>
-        <tag>vim</tag>
+        <tag>DDNS</tag>
       </tags>
   </entry>
   <entry>
@@ -2543,137 +2539,14 @@ tring&gt; comp = (first, second) -&gt; ... ;</code> ；如果方法只有一个�
       </tags>
   </entry>
   <entry>
-    <title>Padavan 添加 NameSilo DDNS 服务</title>
-    <url>/2020/09/11/Padavan-%E6%B7%BB%E5%8A%A0-NameSilo-DDNS-%E6%9C%8D%E5%8A%A1/</url>
-    <content><![CDATA[<p>步骤同之前 <a href="https://www.yuyurbq.icu/2020/03/15/Padavan-%E6%B7%BB%E5%8A%A0-GoDaddy-DDNS-%E6%9C%8D%E5%8A%A1/">Padavan 添加 GoDaddy DDNS 服务</a> ；</p>
-<p>apikey 到 <a href="https://www.namesilo.com/account/api-manager" target="_blank" rel="noopener">https://www.namesilo.com/account/api-manager</a> 创建；</p>
-<p>shell 脚本如下：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"></span><br><span class="line">MYAPIKEY=<span class="string">"填apikey"</span></span><br><span class="line">MYDOMAIN=<span class="string">"域名"</span></span><br><span class="line">MYHOST=<span class="string">"A记录名称"</span></span><br><span class="line">MYFULLDOMAIN=<span class="string">"<span class="variable">$MYHOST</span>.<span class="variable">$MYDOMAIN</span>"</span></span><br><span class="line"></span><br><span class="line">MYIP=`curl -s <span class="string">"https://api.ipify.org"</span>`</span><br><span class="line">OLDIP=$(tail -n 1 /home/root/iprecord.txt)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> [<span class="string">"<span class="variable">$OLDIP</span>"</span> == <span class="string">"<span class="variable">$MYIP</span>"</span>]; <span class="keyword">then</span></span><br><span class="line">  <span class="built_in">echo</span> <span class="string">"Nothing happened."</span></span><br><span class="line">  <span class="built_in">exit</span> 0</span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"<span class="variable">$MYIP</span>"</span> &gt; /home/root/iprecord.txt</span><br><span class="line"><span class="built_in">echo</span> <span class="string">"IP has changed."</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Fetch DNS record ID</span></span><br><span class="line">RESPONSE=<span class="string">"<span class="variable">$(curl -s "https://www.namesilo.com/api/dnsListRecords?version=1&amp;type=xml&amp;key=$MYAPIKEY&amp;domain=$MYDOMAIN")</span>"</span></span><br><span class="line">RECORD_ID=<span class="string">"<span class="variable">$(echo $RESPONSE | sed -n 's/^.*&lt;record_id&gt;\(.*\)&lt;\/record_id&gt;&lt;type&gt;A&lt;\/type&gt;&lt;host&gt;'$MYFULLDOMAIN'&lt;\/host&gt;.*$/\1/p')</span>"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Update</span></span><br><span class="line">RESPONSE=<span class="string">"<span class="variable">$(curl -s "https://www.namesilo.com/api/dnsUpdateRecord?version=1&amp;type=xml&amp;key=$MYAPIKEY&amp;domain=$MYDOMAIN&amp;rrid=$RECORD_ID&amp;rrhost=$MYHOST&amp;rrvalue=$MYIP&amp;rrttl=7207")</span>"</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">exit</span> 0</span><br></pre></td></tr></table></figure>
-
+    <title>Tomcat 乱涂画</title>
+    <url>/2020/10/08/Tomcat-%E4%B9%B1%E6%B6%82%E7%94%BB/</url>
+    <content><![CDATA[<p><img src="https://i.loli.net/2020/10/08/PmqflziGEUTnFSb.jpg" alt="01.jpg"></p>
+<p><img src="https://i.loli.net/2020/10/08/DUshVk2iE68YHMA.jpg" alt="02.jpg"></p>
 ]]></content>
       <categories>
-        <category>瞎折腾</category>
+        <category>Tomcat</category>
       </categories>
-      <tags>
-        <tag>DDNS</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>ssh 修改 iLO 的 SSL 端口</title>
-    <url>/2020/05/04/ssh%E4%BF%AE%E6%94%B9iLO%E7%9A%84SSL%E7%AB%AF%E5%8F%A3/</url>
-    <content><![CDATA[<p>问题：修改 iLO Web 服务器 SSL 端口到 <strong>21</strong> 后无法连接。</p><p>原因：浏览器认为不安全（http 访问 21）</p><p>解决：改回默认或者换个不冲突的。</p><hr><ol>
-<li><p>VPN 接入内网，ssh 登录 iLO。</p>
-</li>
-<li><p>不认 ls cat 什么的，<code>help</code> 说要用 <code>show</code> ，<em>system1</em> 目录是主机信息和 iLO 没啥关系。</p>
-<p> <img src="https://i.loli.net/2020/05/04/GRYOdgyHnFZmC1f.png" alt="0505-01.png"></p>
-</li>
-<li><p><code>show /map1</code> 能找到一个配置文件 <em>config1</em> ，<code>show /map1/config1</code> 看一下，果然有 <em>oemhp_sslport</em> 这项 (图片是修改后的) ：</p>
-<p> <img src="https://i.loli.net/2020/05/04/1KtHeNEFklS75PR.png" alt="0505-03.png"></p>
-</li>
-<li><p>最后 <code>cd /map1/config1</code> :</p>
- <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">&lt;/map1/config1&gt;hpiLO-&gt; set oemhp_sslport=443</span><br></pre></td></tr></table></figure>
-
-</li>
-</ol><a id="more"></a>
-
-
-
-
-<hr>
-<p>校园网访问家里的服务器要连上机场当跳板 (没有国内 vps) 。今天 ssh 居然裸连上了… 然后恶从胆边生 (不是) 试了隔壁的 FTP 端口 (x</p>
-<p>不过远程卡真的会用上 21 端口 <del>(某300页手册说) iLO 进入某个恢复模式时会自启一个 FTP 服务…</del>  </p>
-]]></content>
-      <categories>
-        <category>瞎折腾</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>vim 的乱七八糟</title>
-    <url>/2019/10/27/vim-%E7%9A%84%E4%B9%B1%E4%B8%83%E5%85%AB%E7%B3%9F/</url>
-    <content><![CDATA[<h1 id="文件"><a href="#文件" class="headerlink" title="文件"></a>文件</h1><p>vim 编辑文件时会新建 .filename.swp 文件，记录所作操作，当 vim 被不正常中断（或他人正在编辑<br>）时暂存文件不会消失，继续编辑时允许如下操作：</p><ul>
-<li>R 加载暂存文件的内容，恢复未保存的工作，记得离开 vim 后手动删掉暂存文件</li>
-<li>D 确定暂存文件无用，删除并新建本次使用的 .swp</li>
-<li>O 以只读打开，不进行编辑行为，用于他人正在编辑</li>
-</ul><a id="more"></a>
-
-<p>环境记录文件<br>~/.viminfo</p>
-<p>环境配置文件<br>/etc/vimrc，建议创建 ~/.vimrc</p>
-<table>
-<thead>
-<tr>
-<th align="center">-</th>
-<th align="center">-</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">:setnu :set nonu</td>
-<td align="center">行号</td>
-</tr>
-<tr>
-<td align="center">:set all</td>
-<td align="center">当前环境参数</td>
-</tr>
-<tr>
-<td align="center">:set</td>
-<td align="center">与默认不同的参数</td>
-</tr>
-</tbody></table>
-<h1 id="操作"><a href="#操作" class="headerlink" title="操作"></a>操作</h1><p>1.块选择</p>
-<p>一般模式下 [ctrl]-v 选择，y 复制，p 粘贴</p>
-<hr>
-<p>2.多窗口</p>
-<table>
-<thead>
-<tr>
-<th align="left">新窗口</th>
-<th align="right">光标向下</th>
-<th align="center">光标向上</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left">:sp / :sp{filename}</td>
-<td align="right">[ctrl]-w+j</td>
-<td align="center">[ctrl]-w+k</td>
-</tr>
-</tbody></table>
-<hr>
-<p>3.多文件<br>| 当前打开的文件  | 下一个 | 上一个   |<br>|—————|:————–|:————–:|<br>|  :files  | :n  | :N |</p>
-<h1 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h1><p>中文编码</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># LANG=zh_CN.xxx</span><br><span class="line"></span><br><span class="line"># iconv --list</span><br><span class="line"># iconv -f 原编码 -t 新编码 filename [-o newfile]</span><br><span class="line">-f from</span><br><span class="line">-t to</span><br><span class="line">-o newfile 保留原本文件</span><br></pre></td></tr></table></figure>
-
-<hr>
-<p>断行符<br>DOS ：^M$，即 CR 和 LF<br>Linux ：$，仅 LF</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># dos2UNIX [-kn] file [newfile]</span><br><span class="line"># UNIX2dos [-kn] file [newfile]</span><br><span class="line">-k 不修改 mtime</span><br><span class="line">-n 输出到新文件</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>Linux</category>
-      </categories>
-      <tags>
-        <tag>vim</tag>
-        <tag>环境配置</tag>
-        <tag>断行符</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>变量赋值与构造函数的执行顺序</title>
-    <url>/2019/09/06/%E5%8F%98%E9%87%8F%E8%B5%8B%E5%80%BC%E4%B8%8E%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E7%9A%84%E6%89%A7%E8%A1%8C%E9%A1%BA%E5%BA%8F/</url>
-    <content><![CDATA[<ol>
-<li>子类给成员变量分配空间，在栈中默认初始化成0</li>
-<li>调用子类构造函数，因为继承，调用 super();</li>
-<li>调用父类构造函数，因为覆盖，执行子类方法</li>
-<li>执行父类构造函数其他语句</li>
-<li>父类构造函数结束弹栈</li>
-<li>子类对成员变量显示初始化(赋值)</li>
-<li>调用子类构造函数其他语句   </li>
-</ol>
-<a id="more"></a>
-<p><strong>检验</strong></p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Fu</span></span>&#123;</span><br><span class="line">    Fu()</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">this</span>.getNum();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">getNum</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"父类"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Zi</span> <span class="keyword">extends</span> <span class="title">Fu</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> num=<span class="number">4</span>;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Zi</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>();</span><br><span class="line">        System.out.println(<span class="string">"子类构造函数中"</span>+<span class="keyword">this</span>.num);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">getNum</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"getNum方法"</span>+<span class="keyword">this</span>.num);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">learn</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">new</span> Zi();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>Java</category>
-      </categories>
-      <tags>
-        <tag>构造函数</tag>
-      </tags>
   </entry>
   <entry>
     <title>MySQL 性能-查询</title>
@@ -2909,6 +2782,101 @@ tring&gt; comp = (first, second) -&gt; ... ;</code> ；如果方法只有一个�
       </tags>
   </entry>
   <entry>
+    <title>ssh 修改 iLO 的 SSL 端口</title>
+    <url>/2020/05/04/ssh%E4%BF%AE%E6%94%B9iLO%E7%9A%84SSL%E7%AB%AF%E5%8F%A3/</url>
+    <content><![CDATA[<p>问题：修改 iLO Web 服务器 SSL 端口到 <strong>21</strong> 后无法连接。</p><p>原因：浏览器认为不安全（http 访问 21）</p><p>解决：改回默认或者换个不冲突的。</p><hr><ol>
+<li><p>VPN 接入内网，ssh 登录 iLO。</p>
+</li>
+<li><p>不认 ls cat 什么的，<code>help</code> 说要用 <code>show</code> ，<em>system1</em> 目录是主机信息和 iLO 没啥关系。</p>
+<p> <img src="https://i.loli.net/2020/05/04/GRYOdgyHnFZmC1f.png" alt="0505-01.png"></p>
+</li>
+<li><p><code>show /map1</code> 能找到一个配置文件 <em>config1</em> ，<code>show /map1/config1</code> 看一下，果然有 <em>oemhp_sslport</em> 这项 (图片是修改后的) ：</p>
+<p> <img src="https://i.loli.net/2020/05/04/1KtHeNEFklS75PR.png" alt="0505-03.png"></p>
+</li>
+<li><p>最后 <code>cd /map1/config1</code> :</p>
+ <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">&lt;/map1/config1&gt;hpiLO-&gt; set oemhp_sslport=443</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol><a id="more"></a>
+
+
+
+
+<hr>
+<p>校园网访问家里的服务器要连上机场当跳板 (没有国内 vps) 。今天 ssh 居然裸连上了… 然后恶从胆边生 (不是) 试了隔壁的 FTP 端口 (x</p>
+<p>不过远程卡真的会用上 21 端口 <del>(某300页手册说) iLO 进入某个恢复模式时会自启一个 FTP 服务…</del>  </p>
+]]></content>
+      <categories>
+        <category>瞎折腾</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>vim 的乱七八糟</title>
+    <url>/2019/10/27/vim-%E7%9A%84%E4%B9%B1%E4%B8%83%E5%85%AB%E7%B3%9F/</url>
+    <content><![CDATA[<h1 id="文件"><a href="#文件" class="headerlink" title="文件"></a>文件</h1><p>vim 编辑文件时会新建 .filename.swp 文件，记录所作操作，当 vim 被不正常中断（或他人正在编辑<br>）时暂存文件不会消失，继续编辑时允许如下操作：</p><ul>
+<li>R 加载暂存文件的内容，恢复未保存的工作，记得离开 vim 后手动删掉暂存文件</li>
+<li>D 确定暂存文件无用，删除并新建本次使用的 .swp</li>
+<li>O 以只读打开，不进行编辑行为，用于他人正在编辑</li>
+</ul><a id="more"></a>
+
+<p>环境记录文件<br>~/.viminfo</p>
+<p>环境配置文件<br>/etc/vimrc，建议创建 ~/.vimrc</p>
+<table>
+<thead>
+<tr>
+<th align="center">-</th>
+<th align="center">-</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">:setnu :set nonu</td>
+<td align="center">行号</td>
+</tr>
+<tr>
+<td align="center">:set all</td>
+<td align="center">当前环境参数</td>
+</tr>
+<tr>
+<td align="center">:set</td>
+<td align="center">与默认不同的参数</td>
+</tr>
+</tbody></table>
+<h1 id="操作"><a href="#操作" class="headerlink" title="操作"></a>操作</h1><p>1.块选择</p>
+<p>一般模式下 [ctrl]-v 选择，y 复制，p 粘贴</p>
+<hr>
+<p>2.多窗口</p>
+<table>
+<thead>
+<tr>
+<th align="left">新窗口</th>
+<th align="right">光标向下</th>
+<th align="center">光标向上</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">:sp / :sp{filename}</td>
+<td align="right">[ctrl]-w+j</td>
+<td align="center">[ctrl]-w+k</td>
+</tr>
+</tbody></table>
+<hr>
+<p>3.多文件<br>| 当前打开的文件  | 下一个 | 上一个   |<br>|—————|:————–|:————–:|<br>|  :files  | :n  | :N |</p>
+<h1 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h1><p>中文编码</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># LANG=zh_CN.xxx</span><br><span class="line"></span><br><span class="line"># iconv --list</span><br><span class="line"># iconv -f 原编码 -t 新编码 filename [-o newfile]</span><br><span class="line">-f from</span><br><span class="line">-t to</span><br><span class="line">-o newfile 保留原本文件</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p>断行符<br>DOS ：^M$，即 CR 和 LF<br>Linux ：$，仅 LF</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># dos2UNIX [-kn] file [newfile]</span><br><span class="line"># UNIX2dos [-kn] file [newfile]</span><br><span class="line">-k 不修改 mtime</span><br><span class="line">-n 输出到新文件</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>vim</tag>
+        <tag>环境配置</tag>
+        <tag>断行符</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>久久久远的2017</title>
     <url>/2020/01/30/%E4%B9%85%E4%B9%85%E4%B9%85%E8%BF%9C%E7%9A%842017/</url>
     <content><![CDATA[<p>图片已压缩… 阿里云 OSS 太贵了 qvq</p>
@@ -2941,37 +2909,25 @@ tring&gt; comp = (first, second) -&gt; ... ;</code> ；如果方法只有一个�
       </categories>
   </entry>
   <entry>
-    <title>Tomcat 乱涂画</title>
-    <url>/2020/10/08/Tomcat-%E4%B9%B1%E6%B6%82%E7%94%BB/</url>
-    <content><![CDATA[<p><img src="https://i.loli.net/2020/10/08/PmqflziGEUTnFSb.jpg" alt="01.jpg"></p>
-<p><img src="https://i.loli.net/2020/10/08/DUshVk2iE68YHMA.jpg" alt="02.jpg"></p>
-]]></content>
-      <categories>
-        <category>Tomcat</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>对象实例化过程</title>
-    <url>/2019/09/06/%E5%AF%B9%E8%B1%A1%E5%AE%9E%E4%BE%8B%E5%8C%96%E8%BF%87%E7%A8%8B/</url>
-    <content><![CDATA[<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Test t = <span class="keyword">new</span> Test;</span><br></pre></td></tr></table></figure>
-
-<ol>
-<li>JVM 读取 Test.class 文件并加载进内存，加载 Test 的父类(如果有)</li>
-<li>堆内存中开辟空间，分配地址</li>
-<li>在对象空间中，对对象中的属性进行默认初始化</li>
-<li>调用对应的构造函数进行初始化<a id="more"></a></li>
-<li>在构造函数中，先调用父类的构造函数进行初始化</li>
-<li>父类初始化完毕后，对子类的属性进行显示初始化<br>（ super(); 和第二句之间的动作）</li>
-<li>进行子类构造函数的特定初始化</li>
-<li>初始化完毕，将地址值赋值给引用变量</li>
+    <title>变量赋值与构造函数的执行顺序</title>
+    <url>/2019/09/06/%E5%8F%98%E9%87%8F%E8%B5%8B%E5%80%BC%E4%B8%8E%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E7%9A%84%E6%89%A7%E8%A1%8C%E9%A1%BA%E5%BA%8F/</url>
+    <content><![CDATA[<ol>
+<li>子类给成员变量分配空间，在栈中默认初始化成0</li>
+<li>调用子类构造函数，因为继承，调用 super();</li>
+<li>调用父类构造函数，因为覆盖，执行子类方法</li>
+<li>执行父类构造函数其他语句</li>
+<li>父类构造函数结束弹栈</li>
+<li>子类对成员变量显示初始化(赋值)</li>
+<li>调用子类构造函数其他语句   </li>
 </ol>
-]]></content>
+<a id="more"></a>
+<p><strong>检验</strong></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Fu</span></span>&#123;</span><br><span class="line">    Fu()</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">this</span>.getNum();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">getNum</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"父类"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Zi</span> <span class="keyword">extends</span> <span class="title">Fu</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> num=<span class="number">4</span>;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Zi</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>();</span><br><span class="line">        System.out.println(<span class="string">"子类构造函数中"</span>+<span class="keyword">this</span>.num);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">getNum</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"getNum方法"</span>+<span class="keyword">this</span>.num);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">learn</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">new</span> Zi();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
       <categories>
         <category>Java</category>
       </categories>
       <tags>
         <tag>构造函数</tag>
-        <tag>实例化</tag>
       </tags>
   </entry>
   <entry>
@@ -3048,6 +3004,30 @@ tring&gt; comp = (first, second) -&gt; ... ;</code> ；如果方法只有一个�
       <tags>
         <tag>命题逻辑</tag>
         <tag>谓词逻辑</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>对象实例化过程</title>
+    <url>/2019/09/06/%E5%AF%B9%E8%B1%A1%E5%AE%9E%E4%BE%8B%E5%8C%96%E8%BF%87%E7%A8%8B/</url>
+    <content><![CDATA[<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Test t = <span class="keyword">new</span> Test;</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>JVM 读取 Test.class 文件并加载进内存，加载 Test 的父类(如果有)</li>
+<li>堆内存中开辟空间，分配地址</li>
+<li>在对象空间中，对对象中的属性进行默认初始化</li>
+<li>调用对应的构造函数进行初始化<a id="more"></a></li>
+<li>在构造函数中，先调用父类的构造函数进行初始化</li>
+<li>父类初始化完毕后，对子类的属性进行显示初始化<br>（ super(); 和第二句之间的动作）</li>
+<li>进行子类构造函数的特定初始化</li>
+<li>初始化完毕，将地址值赋值给引用变量</li>
+</ol>
+]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>构造函数</tag>
+        <tag>实例化</tag>
       </tags>
   </entry>
   <entry>
@@ -3194,6 +3174,44 @@ tring&gt; comp = (first, second) -&gt; ... ;</code> ；如果方法只有一个�
       </tags>
   </entry>
   <entry>
+    <title>汇编课程记录 4</title>
+    <url>/2019/11/04/%E6%B1%87%E7%BC%96%E8%AF%BE%E7%A8%8B%E8%AE%B0%E5%BD%95-4/</url>
+    <content><![CDATA[<p>这篇里的指令都不影响标志位</p><h1 id="通用数据传送指令"><a href="#通用数据传送指令" class="headerlink" title="通用数据传送指令"></a>通用数据传送指令</h1><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">MOV DST,SRC ;传送指令</span><br></pre></td></tr></table></figure><p>目不能为 CS IP 或立即数<br>存储单元和段寄存器之间不能直接传送数据，要用通用寄存器为桥梁<br>立即数不能直接送到段寄存器，同样要用通用寄存器为桥梁</p><hr><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">PUSH SRC ;进栈指令</span><br><span class="line">;(SP) ⬅ (SP) -2</span><br><span class="line">;((SP+1), (SP)) ⬅ (SRC)</span><br><span class="line">POP DST ;出栈指令</span><br><span class="line">;(DST) ⬅ ((SP+1), (SP))</span><br><span class="line">;(SP) ⬅ (SP) +2</span><br></pre></td></tr></table></figure><a id="more"></a>
+
+
+
+
+
+
+<p>PUSH 操作数为 16 位的寄存器，存储器，不允许立即数，避免 PUSH SP，因为 8086/8088 和 80286 对此的处理方式不同<br>POP 目为 16 位的寄存器（不允许 CS 段寄存器），存储器<br>堆栈的存取必须以字为单位，PUSH 和 POP 只能做字操作</p>
+<hr>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">XCHG DST, SCR ;交换指令</span><br></pre></td></tr></table></figure>
+
+<p>两个操作数必须有一个在寄存器中，且不允许段寄存器，允许字或字节操作（长度 8/16 位），允许立即数寻址以外的寻址方式</p>
+<h1 id="累加器专用传送指令"><a href="#累加器专用传送指令" class="headerlink" title="累加器专用传送指令"></a>累加器专用传送指令</h1><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">IN AL, PORT ;长格式-字节</span><br><span class="line">IN AX, PORT ;长格式-字</span><br><span class="line">IN AL, DX ;短格式-字节</span><br><span class="line">IN AX, DX ;短格式-字</span><br></pre></td></tr></table></figure>
+
+<p>将外部设备的信息输入到 CPU 的累加器 AL/AX 中，源操作数是外部设备端口地址，通过 DX 寄存器指明的地址可以间接寻址 65536 个端口，而用立即数直接指明的地址只能寻址 256 个</p>
+<hr>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">OUT PORT, AL ;长格式-字节</span><br><span class="line">OUT PORT, AX ;长格式-字</span><br><span class="line">OUT DX, AL ;短格式-字节</span><br><span class="line">OUT DX, AX ;短格式-字</span><br></pre></td></tr></table></figure>
+
+<p>将 CPU 累加器中的信息输出到外部设备，基本和 IN 反过来</p>
+<h1 id="地址传送指令"><a href="#地址传送指令" class="headerlink" title="地址传送指令"></a>地址传送指令</h1><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">LEA REG, SRC ;有效地址送寄存器指令</span><br><span class="line"></span><br><span class="line">LEA BX, TABLE</span><br><span class="line">MOV BX, OFFSET TABLE</span><br><span class="line">;两个功能相同，MOV 执行速度比 LEA 快，但 OFFSET 只能用简单符号地址</span><br><span class="line">;与 MOV DST,SRC 区别，此处得到的是有效地址而非存储单元的内容</span><br></pre></td></tr></table></figure>
+
+<p>REG 表示寄存器，将源操作数的有效地址送到指定寄存器，且必须为 16 位通用寄存器</p>
+<hr>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">LDS REG, SRC ;送寄存器和 DS 指令</span><br><span class="line">LES REG, SRC ;送寄存器和 ES 指令</span><br><span class="line">;(REG) ⬅ (SRC)</span><br><span class="line">;(SREG) ⬅ (SRC+2)</span><br><span class="line">;将存储单元中存放的 16 位偏移地址（即 SRC 的内容）装入</span><br><span class="line">;指定寄存器，然后将（SRC+2）中的 16 位段地址装入指定的</span><br><span class="line">;段寄存器</span><br></pre></td></tr></table></figure>
+
+<p>SREG 表示 DS 或 ES，源操作数只能用存储器寻址，目不允许段寄存器</p>
+<h1 id="类型转换指令"><a href="#类型转换指令" class="headerlink" title="类型转换指令"></a>类型转换指令</h1><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">CBW ;字节转字</span><br><span class="line">;将 AL 中的内容扩展到 AH，若 (AL) 最高有效位为 0，</span><br><span class="line">;则 (AH) 为 0，为 1，则 (AH) =0FFH</span><br><span class="line">CWD ;字转双字</span><br><span class="line">;将 AX 中的内容扩展到 DX，形成 DX:AX 双字，</span><br><span class="line">;若 (AX) 最高有效位为 0，则 (DX) 为 0，为 1，则 (DX) =0FFFFH</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>汇编</category>
+      </categories>
+      <tags>
+        <tag>指令系统</tag>
+        <tag>数据传送</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>汇编课程记录 3</title>
     <url>/2019/10/27/%E6%B1%87%E7%BC%96%E8%AF%BE%E7%A8%8B%E8%AE%B0%E5%BD%95-3/</url>
     <content><![CDATA[<h1 id="数据寻址方式"><a href="#数据寻址方式" class="headerlink" title="数据寻址方式"></a>数据寻址方式</h1><p><strong>立即数寻址</strong><br>操作数直接存放于指令</p><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">MOV AX,1234H    ;即1234H</span><br></pre></td></tr></table></figure><p><strong>寄存器寻址</strong><br>操作数存放于 CPU 的某个寄存器中，不需访问存储器速度快<br>8 位操作数寄存器可以是 AH AL BH BL CH CL DH DL<br>16 位操作数寄存器可以是 AX BX CX DX SP BP SI DI</p><a id="more"></a>
@@ -3239,44 +3257,6 @@ tring&gt; comp = (first, second) -&gt; ... ;</code> ；如果方法只有一个�
         <tag>数据寻址</tag>
         <tag>程序转移寻址</tag>
         <tag>寻址方式</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>汇编课程记录 4</title>
-    <url>/2019/11/04/%E6%B1%87%E7%BC%96%E8%AF%BE%E7%A8%8B%E8%AE%B0%E5%BD%95-4/</url>
-    <content><![CDATA[<p>这篇里的指令都不影响标志位</p><h1 id="通用数据传送指令"><a href="#通用数据传送指令" class="headerlink" title="通用数据传送指令"></a>通用数据传送指令</h1><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">MOV DST,SRC ;传送指令</span><br></pre></td></tr></table></figure><p>目不能为 CS IP 或立即数<br>存储单元和段寄存器之间不能直接传送数据，要用通用寄存器为桥梁<br>立即数不能直接送到段寄存器，同样要用通用寄存器为桥梁</p><hr><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">PUSH SRC ;进栈指令</span><br><span class="line">;(SP) ⬅ (SP) -2</span><br><span class="line">;((SP+1), (SP)) ⬅ (SRC)</span><br><span class="line">POP DST ;出栈指令</span><br><span class="line">;(DST) ⬅ ((SP+1), (SP))</span><br><span class="line">;(SP) ⬅ (SP) +2</span><br></pre></td></tr></table></figure><a id="more"></a>
-
-
-
-
-
-
-<p>PUSH 操作数为 16 位的寄存器，存储器，不允许立即数，避免 PUSH SP，因为 8086/8088 和 80286 对此的处理方式不同<br>POP 目为 16 位的寄存器（不允许 CS 段寄存器），存储器<br>堆栈的存取必须以字为单位，PUSH 和 POP 只能做字操作</p>
-<hr>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">XCHG DST, SCR ;交换指令</span><br></pre></td></tr></table></figure>
-
-<p>两个操作数必须有一个在寄存器中，且不允许段寄存器，允许字或字节操作（长度 8/16 位），允许立即数寻址以外的寻址方式</p>
-<h1 id="累加器专用传送指令"><a href="#累加器专用传送指令" class="headerlink" title="累加器专用传送指令"></a>累加器专用传送指令</h1><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">IN AL, PORT ;长格式-字节</span><br><span class="line">IN AX, PORT ;长格式-字</span><br><span class="line">IN AL, DX ;短格式-字节</span><br><span class="line">IN AX, DX ;短格式-字</span><br></pre></td></tr></table></figure>
-
-<p>将外部设备的信息输入到 CPU 的累加器 AL/AX 中，源操作数是外部设备端口地址，通过 DX 寄存器指明的地址可以间接寻址 65536 个端口，而用立即数直接指明的地址只能寻址 256 个</p>
-<hr>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">OUT PORT, AL ;长格式-字节</span><br><span class="line">OUT PORT, AX ;长格式-字</span><br><span class="line">OUT DX, AL ;短格式-字节</span><br><span class="line">OUT DX, AX ;短格式-字</span><br></pre></td></tr></table></figure>
-
-<p>将 CPU 累加器中的信息输出到外部设备，基本和 IN 反过来</p>
-<h1 id="地址传送指令"><a href="#地址传送指令" class="headerlink" title="地址传送指令"></a>地址传送指令</h1><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">LEA REG, SRC ;有效地址送寄存器指令</span><br><span class="line"></span><br><span class="line">LEA BX, TABLE</span><br><span class="line">MOV BX, OFFSET TABLE</span><br><span class="line">;两个功能相同，MOV 执行速度比 LEA 快，但 OFFSET 只能用简单符号地址</span><br><span class="line">;与 MOV DST,SRC 区别，此处得到的是有效地址而非存储单元的内容</span><br></pre></td></tr></table></figure>
-
-<p>REG 表示寄存器，将源操作数的有效地址送到指定寄存器，且必须为 16 位通用寄存器</p>
-<hr>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">LDS REG, SRC ;送寄存器和 DS 指令</span><br><span class="line">LES REG, SRC ;送寄存器和 ES 指令</span><br><span class="line">;(REG) ⬅ (SRC)</span><br><span class="line">;(SREG) ⬅ (SRC+2)</span><br><span class="line">;将存储单元中存放的 16 位偏移地址（即 SRC 的内容）装入</span><br><span class="line">;指定寄存器，然后将（SRC+2）中的 16 位段地址装入指定的</span><br><span class="line">;段寄存器</span><br></pre></td></tr></table></figure>
-
-<p>SREG 表示 DS 或 ES，源操作数只能用存储器寻址，目不允许段寄存器</p>
-<h1 id="类型转换指令"><a href="#类型转换指令" class="headerlink" title="类型转换指令"></a>类型转换指令</h1><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">CBW ;字节转字</span><br><span class="line">;将 AL 中的内容扩展到 AH，若 (AL) 最高有效位为 0，</span><br><span class="line">;则 (AH) 为 0，为 1，则 (AH) =0FFH</span><br><span class="line">CWD ;字转双字</span><br><span class="line">;将 AX 中的内容扩展到 DX，形成 DX:AX 双字，</span><br><span class="line">;若 (AX) 最高有效位为 0，则 (DX) 为 0，为 1，则 (DX) =0FFFFH</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>汇编</category>
-      </categories>
-      <tags>
-        <tag>指令系统</tag>
-        <tag>数据传送</tag>
       </tags>
   </entry>
   <entry>
@@ -3544,6 +3524,26 @@ tring&gt; comp = (first, second) -&gt; ... ;</code> ；如果方法只有一个�
         <tag>指令系统</tag>
         <tag>控制转移</tag>
         <tag>处理器控制</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hello World</title>
+    <url>/2019/09/04/hello-world/</url>
+    <content><![CDATA[<center>九月四日，YUYU向宇宙发出的第一声啼鸣，以太阳为中心，以光速向宇宙深处飞驰......(x<center>
+</center></center>]]></content>
+  </entry>
+  <entry>
+    <title>Vim 思维导图</title>
+    <url>/2020/02/02/Vim-%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE/</url>
+    <content><![CDATA[<p>没钱开 XMind… 理直气壮不去水印</p>
+<p><img src="https://i.loli.net/2020/03/06/nqQfTsWvU2C54hc.png" alt="vim.png"></p>
+]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>思维导图</tag>
+        <tag>vim</tag>
       </tags>
   </entry>
   <entry>
