@@ -65,7 +65,7 @@
 <meta property="og:site_name" content="卑微的 YuYu">
 <meta property="og:description" content="文件vim 编辑文件时会新建 .filename.swp 文件，记录所作操作，当 vim 被不正常中断（或他人正在编辑）时暂存文件不会消失，继续编辑时允许如下操作： R 加载暂存文件的内容，恢复未保存的工作，记得离开 vim 后手动删掉暂存文件 D 确定暂存文件无用，删除并新建本次使用的 .swp O 以只读打开，不进行编辑行为，用于他人正在编辑">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-02-16T03:30:00.536Z">
+<meta property="og:updated_time" content="2020-11-14T13:25:30.620Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="vim 的乱七八糟">
 <meta name="twitter:description" content="文件vim 编辑文件时会新建 .filename.swp 文件，记录所作操作，当 vim 被不正常中断（或他人正在编辑）时暂存文件不会消失，继续编辑时允许如下操作： R 加载暂存文件的内容，恢复未保存的工作，记得离开 vim 后手动删掉暂存文件 D 确定暂存文件无用，删除并新建本次使用的 .swp O 以只读打开，不进行编辑行为，用于他人正在编辑">
@@ -300,7 +300,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-02-16 11:30:00" itemprop="dateModified" datetime="2020-02-16T11:30:00+08:00">2020-02-16</time>
+                <time title="修改时间：2020-11-14 21:25:30" itemprop="dateModified" datetime="2020-11-14T21:25:30+08:00">2020-11-14</time>
               </span>
             
           
@@ -378,11 +378,11 @@
 <hr>
 <p>3.多文件<br>| 当前打开的文件  | 下一个 | 上一个   |<br>|—————|:————–|:————–:|<br>|  :files  | :n  | :N |</p>
 <h1 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h1><p>中文编码</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># LANG=zh_CN.xxx</span><br><span class="line"></span><br><span class="line"># iconv --list</span><br><span class="line"># iconv -f 原编码 -t 新编码 filename [-o newfile]</span><br><span class="line">-f from</span><br><span class="line">-t to</span><br><span class="line">-o newfile 保留原本文件</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> LANG=zh_CN.xxx</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> iconv --list</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> iconv -f 原编码 -t 新编码 filename [-o newfile]</span></span><br><span class="line">-f from</span><br><span class="line">-t to</span><br><span class="line">-o newfile 保留原本文件</span><br></pre></td></tr></table></figure>
 
 <hr>
 <p>断行符<br>DOS ：^M$，即 CR 和 LF<br>Linux ：$，仅 LF</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># dos2UNIX [-kn] file [newfile]</span><br><span class="line"># UNIX2dos [-kn] file [newfile]</span><br><span class="line">-k 不修改 mtime</span><br><span class="line">-n 输出到新文件</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> dos2UNIX [-kn] file [newfile]</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> UNIX2dos [-kn] file [newfile]</span></span><br><span class="line">-k 不修改 mtime</span><br><span class="line">-n 输出到新文件</span><br></pre></td></tr></table></figure>
     </div>
 
     

@@ -65,7 +65,7 @@
 <meta property="og:site_name" content="卑微的 YuYu">
 <meta property="og:description" content="索引类型索引在存储引擎层实现。扫描索引本身很快，但按索引顺序读取数据的速度通常要比顺序的全表扫描慢，因为基本是随机 I/O。B-Tree 索引此处的 B 是平衡，而非二叉（演化自 AVLTree ）B-Tree 作为术语使用（即使是 T-Tree 结构），多数存储引擎其实是 B+Tree 。索引对多个值进行排序的依据是 create table 中定义索引时列的顺序。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-09-24T05:35:54.418Z">
+<meta property="og:updated_time" content="2020-11-14T13:08:42.268Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MySQL 性能-索引">
 <meta name="twitter:description" content="索引类型索引在存储引擎层实现。扫描索引本身很快，但按索引顺序读取数据的速度通常要比顺序的全表扫描慢，因为基本是随机 I/O。B-Tree 索引此处的 B 是平衡，而非二叉（演化自 AVLTree ）B-Tree 作为术语使用（即使是 T-Tree 结构），多数存储引擎其实是 B+Tree 。索引对多个值进行排序的依据是 create table 中定义索引时列的顺序。">
@@ -300,7 +300,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-09-24 13:35:54" itemprop="dateModified" datetime="2020-09-24T13:35:54+08:00">2020-09-24</time>
+                <time title="修改时间：2020-11-14 21:08:42" itemprop="dateModified" datetime="2020-11-14T21:08:42+08:00">2020-11-14</time>
               </span>
             
           
@@ -336,18 +336,12 @@
 
 <p>适合如下查询：</p>
 <ul>
-<li><p>匹配全值，即所有列；</p>
-</li>
-<li><p>匹配最左前缀，即索引第一列；</p>
-</li>
-<li><p>匹配列前缀，即列值的开头部分；</p>
-</li>
-<li><p>匹配范围值；</p>
-</li>
-<li><p>精确匹配某一列范围匹配另一列；</p>
-</li>
-<li><p>仅访问索引。</p>
-</li>
+<li>匹配全值，即所有列；</li>
+<li>匹配最左前缀，即索引第一列；</li>
+<li>匹配列前缀，即列值的开头部分；</li>
+<li>匹配范围值；</li>
+<li>精确匹配某一列范围匹配另一列；</li>
+<li>仅访问索引。</li>
 </ul>
 <p>因为索引树的节点有序，还可用于查询中的 order by 操作。</p>
 <p>限制：</p>
