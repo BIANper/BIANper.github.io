@@ -258,6 +258,122 @@
   
   
   <div class="post-block home">
+    <link itemprop="mainEntityOfPage" href="http://mirror.yuyurbq.icu:2048/2020/03/15/Padavan-添加-GoDaddy-DDNS-服务/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Sun YuYu">
+      <meta itemprop="description" content="虽然啥都没干，真是辛苦自己啦">
+      <meta itemprop="image" content="/images/logo.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="卑微的 YuYu">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+            
+            <a href="/2020/03/15/Padavan-添加-GoDaddy-DDNS-服务/" class="post-title-link" itemprop="url">Padavan 添加 GoDaddy DDNS 服务</a>
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2020-03-15 20:28:22" itemprop="dateCreated datePublished" datetime="2020-03-15T20:28:22+08:00">2020-03-15</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-04-04 19:22:53" itemprop="dateModified" datetime="2020-04-04T19:22:53+08:00">2020-04-04</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/瞎折腾/" itemprop="url" rel="index"><span itemprop="name">瞎折腾</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>04-04 更新，将历史 ip 保存在本地，不通过 api 获取（国内访问 Godaddy 太慢了）。</p>
+<ol>
+<li><p>到 DNS 管理中新增一条 A 记录，“指向” 随便填；</p>
+</li>
+<li><p>到 <a href="https://developer.godaddy.com/keys" target="_blank" rel="noopener">https://developer.godaddy.com/keys</a> 创建并记录 key 和 Secret；</p>
+</li>
+<li><p>创建 shell 脚本和本机记录文件，通过 GoDaddy 的 api 更新 ip 地址：</p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"></span><br><span class="line">mydomain=<span class="string">"填域名"</span></span><br><span class="line">myhostname=<span class="string">"填刚才那条A记录的名称"</span></span><br><span class="line">gdapikey=<span class="string">"填 key:secret 不要忘记中间冒号"</span></span><br><span class="line"></span><br><span class="line">myip=`curl -s <span class="string">"https://api.ipify.org"</span>`</span><br><span class="line">oldip=$(tail -n 1 /path/iprecord.txt)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> [<span class="string">"<span class="variable">$oldip</span>"</span> == <span class="string">"<span class="variable">$myip</span>"</span>]; <span class="keyword">then</span></span><br><span class="line">  <span class="built_in">echo</span> <span class="string">"Nothing happened."</span></span><br><span class="line">  <span class="built_in">exit</span> 0</span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"<span class="variable">$myip</span>"</span> &gt; /path/iprecord.txt</span><br><span class="line"><span class="built_in">echo</span> <span class="string">"IP has changed."</span></span><br><span class="line">curl -s -X PUT <span class="string">"https://api.godaddy.com/v1/domains/<span class="variable">$&#123;mydomain&#125;</span>/records/A/<span class="variable">$&#123;myhostname&#125;</span>"</span> -H <span class="string">"Authorization: sso-key <span class="variable">$&#123;gdapikey&#125;</span>"</span> -H <span class="string">"Content-Type: application/json"</span> -d <span class="string">"[&#123;\"data\": \"<span class="variable">$&#123;myip&#125;</span>\"&#125;]"</span></span><br><span class="line"><span class="built_in">exit</span> 0</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>chmod 777 ，然后在本机上测试下；</p>
+</li>
+<li><p>进入路由器管理页面启用 SSH 服务；</p>
+</li>
+<li><p>sftp 连接路由器把脚本文件放到 <code>/etc/storage</code> 目录下；</p>
+</li>
+<li><p>路由器管理界面 系统管理 -&gt; 恢复/导出/上传设置 -&gt; 保存 /etc/storage/ 内容到闪存，点击后没有反馈是正常的，右上角 log 里有执行情况；</p>
+</li>
+<li><p>路由器管理界面 系统管理 -&gt; 服务 -&gt; 计划任务：</p>
+ <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">*/10 * * * * /etc/storage/yours.sh</span><br><span class="line"><span class="meta">#</span><span class="bash">每十分钟执行</span></span><br></pre></td></tr></table></figure>
+
+<p> 点击 应用本页设置 完成。</p>
+</li>
+</ol>
+
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+        <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block home">
     <link itemprop="mainEntityOfPage" href="http://mirror.yuyurbq.icu:2048/2020/03/15/Java-补丁-网络/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1170,112 +1286,6 @@
   </article>
 
     
-        <article itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://mirror.yuyurbq.icu:2048/2020/01/18/Java-补丁-并发/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Sun YuYu">
-      <meta itemprop="description" content="虽然啥都没干，真是辛苦自己啦">
-      <meta itemprop="image" content="/images/logo.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="卑微的 YuYu">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-            
-            <a href="/2020/01/18/Java-补丁-并发/" class="post-title-link" itemprop="url">Java 补丁-并发</a>
-          
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              
-                
-              
-
-              <time title="创建时间：2020-01-18 20:10:17" itemprop="dateCreated datePublished" datetime="2020-01-18T20:10:17+08:00">2020-01-18</time>
-            </span>
-          
-            
-
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-02-16 11:30:00" itemprop="dateModified" datetime="2020-02-16T11:30:00+08:00">2020-02-16</time>
-              </span>
-            
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>并发得专门开个分类 x</p><p>到时候把这篇删掉 x</p><h1 id="零碎"><a href="#零碎" class="headerlink" title="零碎"></a>零碎</h1><p>所有实例域、静态域和数组元素都储存在堆内存中，堆内存在线程之前共享。<br>JMM 定义了：线程之间的共享变量储存在主内存中，每个线程都有一个私有的本地内存，本地内存储存了该线程已读写共享变量的副本。</p><ul>
-<li>线程 A 把本地内存 A 中的共享变量副本刷新到主内存中。</li>
-<li>线程 B 去读取主内存中线程 A 刷新过的共享变量。</li>
-<li>从整体来看，这两个步骤实质上是线程A向线程B发送消息，而通信必须经过主内存。JMM 通过控制主内存与每个线程的本地内存之间的交互，来提供内存可见性的保证。</li>
-</ul>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2020/01/18/Java-补丁-并发/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-          <div class="post-eof"></div>
-        
-      </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
   </div>
 
   
@@ -1328,7 +1338,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">49</span>
+          <span class="site-state-item-count">50</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

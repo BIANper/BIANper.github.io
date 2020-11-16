@@ -258,6 +258,112 @@
   
   
   <div class="post-block home">
+    <link itemprop="mainEntityOfPage" href="http://mirror.yuyurbq.icu:2048/2020/01/18/Java-补丁-并发/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Sun YuYu">
+      <meta itemprop="description" content="虽然啥都没干，真是辛苦自己啦">
+      <meta itemprop="image" content="/images/logo.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="卑微的 YuYu">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+            
+            <a href="/2020/01/18/Java-补丁-并发/" class="post-title-link" itemprop="url">Java 补丁-并发</a>
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2020-01-18 20:10:17" itemprop="dateCreated datePublished" datetime="2020-01-18T20:10:17+08:00">2020-01-18</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-02-16 11:30:00" itemprop="dateModified" datetime="2020-02-16T11:30:00+08:00">2020-02-16</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>并发得专门开个分类 x</p><p>到时候把这篇删掉 x</p><h1 id="零碎"><a href="#零碎" class="headerlink" title="零碎"></a>零碎</h1><p>所有实例域、静态域和数组元素都储存在堆内存中，堆内存在线程之前共享。<br>JMM 定义了：线程之间的共享变量储存在主内存中，每个线程都有一个私有的本地内存，本地内存储存了该线程已读写共享变量的副本。</p><ul>
+<li>线程 A 把本地内存 A 中的共享变量副本刷新到主内存中。</li>
+<li>线程 B 去读取主内存中线程 A 刷新过的共享变量。</li>
+<li>从整体来看，这两个步骤实质上是线程A向线程B发送消息，而通信必须经过主内存。JMM 通过控制主内存与每个线程的本地内存之间的交互，来提供内存可见性的保证。</li>
+</ul>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2020/01/18/Java-补丁-并发/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+        <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block home">
     <link itemprop="mainEntityOfPage" href="http://mirror.yuyurbq.icu:2048/2019/12/25/Java 补丁-集合/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1171,130 +1277,6 @@
   </article>
 
     
-        <article itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://mirror.yuyurbq.icu:2048/2019/12/01/Java-补丁-基本程序设计结构/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Sun YuYu">
-      <meta itemprop="description" content="虽然啥都没干，真是辛苦自己啦">
-      <meta itemprop="image" content="/images/logo.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="卑微的 YuYu">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-            
-            <a href="/2019/12/01/Java-补丁-基本程序设计结构/" class="post-title-link" itemprop="url">Java 补丁-基本程序设计结构</a>
-          
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              
-                
-              
-
-              <time title="创建时间：2019-12-01 19:16:02" itemprop="dateCreated datePublished" datetime="2019-12-01T19:16:02+08:00">2019-12-01</time>
-            </span>
-          
-            
-
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-08-30 17:02:00" itemprop="dateModified" datetime="2020-08-30T17:02:00+08:00">2020-08-30</time>
-              </span>
-            
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="数据类型部分"><a href="#数据类型部分" class="headerlink" title="数据类型部分"></a>数据类型部分</h1><p><strong>整型</strong><br>Java7 开始：允许通过加前缀 0b 写二进制数；允许为数字字面量加下划线：</p><ul>
-<li>1_000_000</li>
-<li>0b1111_0000_0100</li>
-</ul><p><strong>浮点型</strong><br>由于二进制系统无法精确表示分数 1/10，故浮点数值不适用金融计算，此时应使用 BigDecimal 类。</p><table>
-<thead>
-<tr>
-<th align="center">常量</th>
-<th align="center">数值</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">Double.POSITIVE_INFINITY</td>
-<td align="center">正无穷</td>
-</tr>
-<tr>
-<td align="center">Double.NEGATIVE_INFINITY</td>
-<td align="center">负无穷</td>
-</tr>
-<tr>
-<td align="center">Double.NaN</td>
-<td align="center">非数字</td>
-</tr>
-</tbody></table>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/12/01/Java-补丁-基本程序设计结构/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-          <div class="post-eof"></div>
-        
-      </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
   </div>
 
   
@@ -1347,7 +1329,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">49</span>
+          <span class="site-state-item-count">50</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

@@ -1,0 +1,858 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.4.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.4.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.4.0">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.4.0" color="#222">
+
+<link rel="stylesheet" href="/css/main.css?v=7.4.0">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-big-counter.min.css?v=1.0.2">
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.4.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":true},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":true,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
+    },
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="索引优化查询执行顺序123456789101112FROM &amp;lt;_table&amp;gt; -- 两个表的笛卡尔积 vt1			  -- 如果多于两个表就计算和 vt3 的笛卡尔积，重复ON &amp;lt;join_condition&amp;gt; -- 筛选出满足条件的行 vt2&amp;lt;join_type&amp;gt; JOIN &amp;lt;_table&amp;gt; -- 把主表被过滤的行添加回来 vt3						  -">
+<meta name="keywords" content="MySQL">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MySQL 总结">
+<meta property="og:url" content="http://mirror.yuyurbq.icu:2048/2020/11/16/MySQL-总结/index.html">
+<meta property="og:site_name" content="卑微的 YuYu">
+<meta property="og:description" content="索引优化查询执行顺序123456789101112FROM &amp;lt;_table&amp;gt; -- 两个表的笛卡尔积 vt1			  -- 如果多于两个表就计算和 vt3 的笛卡尔积，重复ON &amp;lt;join_condition&amp;gt; -- 筛选出满足条件的行 vt2&amp;lt;join_type&amp;gt; JOIN &amp;lt;_table&amp;gt; -- 把主表被过滤的行添加回来 vt3						  -">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2020-11-16T10:01:01.072Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="MySQL 总结">
+<meta name="twitter:description" content="索引优化查询执行顺序123456789101112FROM &amp;lt;_table&amp;gt; -- 两个表的笛卡尔积 vt1			  -- 如果多于两个表就计算和 vt3 的笛卡尔积，重复ON &amp;lt;join_condition&amp;gt; -- 筛选出满足条件的行 vt2&amp;lt;join_type&amp;gt; JOIN &amp;lt;_table&amp;gt; -- 把主表被过滤的行添加回来 vt3						  -">
+  <link rel="canonical" href="http://mirror.yuyurbq.icu:2048/2020/11/16/MySQL-总结/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>MySQL 总结 | 卑微的 YuYu</title>
+  <meta name="generator" content="Hexo 3.9.0">
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">卑微的 YuYu</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">人如域名 (</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+      
+      
+      
+        
+        <li class="menu-item menu-item-home">
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-archives">
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-tags">
+      
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-categories">
+      
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-about">
+      
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-smile-o"></i> <br>关于我</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a href="javascript:;" class="popup-trigger">
+        
+          <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+      </li>
+    
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+            
+
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+      <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block post">
+    <link itemprop="mainEntityOfPage" href="http://mirror.yuyurbq.icu:2048/2020/11/16/MySQL-总结/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Sun YuYu">
+      <meta itemprop="description" content="虽然啥都没干，真是辛苦自己啦">
+      <meta itemprop="image" content="/images/logo.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="卑微的 YuYu">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">MySQL 总结
+
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2020-11-16 17:57:00 / 修改时间：18:01:01" itemprop="dateCreated datePublished" datetime="2020-11-16T17:57:00+08:00">2020-11-16</time>
+            </span>
+          
+            
+
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/MySQL/" itemprop="url" rel="index"><span itemprop="name">MySQL</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="索引优化"><a href="#索引优化" class="headerlink" title="索引优化"></a>索引优化</h1><h2 id="查询执行顺序"><a href="#查询执行顺序" class="headerlink" title="查询执行顺序"></a>查询执行顺序</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">FROM &lt;_table&gt; -- 两个表的笛卡尔积 vt1</span><br><span class="line">			  <span class="comment">-- 如果多于两个表就计算和 vt3 的笛卡尔积，重复</span></span><br><span class="line">ON &lt;join_condition&gt; -- 筛选出满足条件的行 vt2</span><br><span class="line">&lt;join_type&gt; JOIN &lt;_table&gt; -- 把主表被过滤的行添加回来 vt3</span><br><span class="line">						  <span class="comment">-- 次表无匹配的部分补 NULL</span></span><br><span class="line">WHERE &lt;where_condition&gt; -- 在数据从磁盘进入内存前判断</span><br><span class="line">GROUP BY &lt;group_by_list&gt; -- 结果集中每个组只有一行</span><br><span class="line">						 <span class="comment">-- 开始允许使用别名</span></span><br><span class="line">HAVING &lt;having_condition&gt; -- 全部载入内存，在内存内部判断</span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">DISTINCT</span> &lt;select_list&gt;</span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> &lt;order_by_condition&gt;</span><br><span class="line"><span class="keyword">LIMIT</span> &lt;limit_number&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="EXPLAIN-字段"><a href="#EXPLAIN-字段" class="headerlink" title="EXPLAIN 字段"></a>EXPLAIN 字段</h2><a id="more"></a>
+
+<p><strong>type</strong></p>
+<ul>
+<li><code>system</code>：表只有一行记录（等于系统表），是 <code>const</code> 类型的特例。</li>
+<li><code>const</code>：表示索引了一次，只匹配一行数据。如将主键置于 WHERE 列表中，MySQL 就能将该查询转化为一个常量。</li>
+<li><code>eq_ref</code>：读取本表和关联表组合成的一行，查出来只有一条记录。</li>
+<li><code>ref</code>：返回本表和关联表某个值匹配的所有行，查出来有多条记录。</li>
+<li><code>range</code>：只检索给定范围的行，一般是在 WHERE 语句中出现了 BETWEEN 、&lt; &gt;、in 等的查询。只需要开始于索引树的某一点，而结束于另一点，不用扫描全部索引。</li>
+<li><code>index</code>：Full Index Scan，全索引扫描，遍历索引树。</li>
+<li><code>ALL</code>：Full Table Scan，没有用到索引，全表扫描。</li>
+</ul>
+<p><strong>key_len</strong></p>
+<p>索引字段的最大可能长度，其根据表定义计算而得，并非实际使用长度。</p>
+<blockquote>
+<p>char 和 varchar 类型计算:<br>varchr(N) 变长字段允许 NULL = N * ( utf8=3,gbk=2,latin1=1 )+2+1(NULL)<br>char(N) 固定字段允许 NULL = N * ( utf8=3,gbk=2,latin1=1 )+1(NULL)</p>
+<p>数值类型计算：<br>TINYINT 允许 NULL = 1+1(NULL)<br>SMALLINT 允许 NULL = 2+1(NULL)<br>INT 允许 NULL = 4+1(NULL)</p>
+<p>日期时间类型计算：（针对mysql5.5及之前版本）<br>DATETIME 允许 NULL = 8 + 1(NULL)<br>TIMESTAMP 允许 NULL = 4+1(NULL)</p>
+</blockquote>
+<p><strong>Extra</strong></p>
+<ul>
+<li><code>Using filesort</code>：无法利用索引完成的排序操作。对数据使用一个外部的索引排序，而不是按照表内的索引顺序进行读取。</li>
+<li><code>Using temporary</code>：排序时使用了临时表保存中间结果，常见于 ORDER BY 和 GROUP BY。</li>
+<li><code>Using index</code>：同时出现 <code>Using where</code> ，表示索引被用来执行索引键值的查找；如果没有同时出现 <code>Using where</code> ，表明索引用来读取数据而非执行查找动作，使用了索引覆盖。</li>
+</ul>
+<h2 id="JOIN-注意点"><a href="#JOIN-注意点" class="headerlink" title="JOIN 注意点"></a>JOIN 注意点</h2><ul>
+<li><p>以小的结果集驱动大的结果集。</p>
+</li>
+<li><p>优先优化 NestedLoop 的内层。</p>
+</li>
+<li><p>保证 JOIN 语句中次表的条件字段已经被索引。</p>
+  <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">INDEX</span> idx_book_card <span class="keyword">ON</span> book(card);</span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> book <span class="keyword">LEFT</span> <span class="keyword">JOIN</span> <span class="keyword">class</span> </span><br><span class="line"><span class="keyword">ON</span> book.card=class.card; <span class="comment">-- index + ALL</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">INDEX</span> idx_class_card <span class="keyword">ON</span> <span class="keyword">class</span>(card); <span class="comment">-- ALL + ref</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>当无法保证建立索引且内存资源充足，酌情设置 Join Buffer 。</p>
+</li>
+</ul>
+<h2 id="索引失效"><a href="#索引失效" class="headerlink" title="索引失效"></a>索引失效</h2><ul>
+<li><p>查询应该从复合索引的最左前列开始，并且不跳过索引中的字段（跳过则为部分索引）。</p>
+</li>
+<li><p>在索引列上进行计算会使索引失效。</p>
+</li>
+<li><p>范围之后的索引会失效：</p>
+  <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">INDEX</span> idx_article_ccv <span class="keyword">ON</span> article(category_id,comments,views);</span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">id</span>,author_id <span class="keyword">FROM</span> article </span><br><span class="line"><span class="keyword">WHERE</span> category_id = <span class="number">1</span> <span class="keyword">AND</span> comments &gt; <span class="number">1</span> </span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> views <span class="keyword">DESC</span> <span class="keyword">LIMIT</span> <span class="number">1</span>; <span class="comment">-- Using filesort</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">INDEX</span> idx_article_cv <span class="keyword">ON</span> article(category_id,views);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>尽量使用覆盖索引，用什么字段就查询什么字段。</p>
+</li>
+<li><p>使用 <code>!=</code> <code>&lt;&gt;</code> <code>IS NULL</code> <code>IS NOT NULL</code> 时无法使用索引。</p>
+</li>
+<li><p>LIKE 子句的百分应该加右边（此时 type = range，之后的会失效），但覆盖索引下加两边都行。</p>
+</li>
+<li><p>字符串要加单引号，防止数字/字符发生类型转换，索引也会失效。</p>
+</li>
+<li><p>使用 OR 连接时索引失效。</p>
+</li>
+</ul>
+<h1 id="查询优化"><a href="#查询优化" class="headerlink" title="查询优化"></a>查询优化</h1><h2 id="IN-和-EXISTS"><a href="#IN-和-EXISTS" class="headerlink" title="IN 和 EXISTS"></a>IN 和 EXISTS</h2><p>EXISTS：将主查询的数据放到子查询中做条件验证，根据验证结果决定主查询的数据结果是否得以保留。实际执行时会忽略 SELECT 列表。可以用条件表达式，子查询或者 JOIN 替代，具体问题具体分析。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- IN 适合 B 表比 A 表数据小的情况</span></span><br><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> <span class="string">`A`</span> <span class="keyword">WHERE</span> <span class="string">`id`</span> <span class="keyword">IN</span> (<span class="keyword">SELECT</span> <span class="string">`id`</span> <span class="keyword">FROM</span> <span class="string">`B`</span>)</span><br><span class="line"><span class="comment">-- EXISTS 适合 B 表比 A 表数据大的情况</span></span><br><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> <span class="string">`A`</span> <span class="keyword">WHERE</span> <span class="keyword">EXISTS</span> (<span class="keyword">SELECT</span> <span class="number">1</span> <span class="keyword">FROM</span> <span class="string">`B`</span> <span class="keyword">WHERE</span> <span class="string">`B`</span>.id = <span class="string">`A`</span>.id);</span><br></pre></td></tr></table></figure>
+
+<h2 id="排序"><a href="#排序" class="headerlink" title="排序"></a>排序</h2><p>尽量最佳左前缀，如果不在索引列上，FileSort 有两种算法：</p>
+<ol>
+<li>双路排序算法：MySQL4.1 之前默认。读取行指针和 ORDER BY 列在 buffer 中进行排序，然后按照排序好的列表读取对应的数据输出。</li>
+<li>单路排序算法：从磁盘读取查询需要的所有列，按照 ORDER BY 列在 buffer 中进行排序，然后扫描排序后的列表进行输出，避免了第二次读取数据。并且把随机 IO 变成了顺序 IO，但会使用更多的空间。</li>
+</ol>
+<p>单路排序算法效率好过双路排序。但如果 SortBuffer 缓冲区太小，导致从磁盘中读取所有的列不能完全保存在 SortBuffer 中，性能反而不如后者。</p>
+<ul>
+<li>增大 <code>sort_buffer_size</code> 参数的设置。</li>
+<li>增大 <code>max_length_for_sort_data</code> 参数的设置。query 字段大小总和小于其数值时将使用单路排序。过大易超出 <code>sort_buffer_size</code> 导致性能下降。</li>
+</ul>
+<p>GORUP BY 实质先排序后分组，优化排序。</p>
+<h2 id="慢查询"><a href="#慢查询" class="headerlink" title="慢查询"></a>慢查询</h2><p><code>long_query_time</code> 的默认值为10。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 重启失效</span></span><br><span class="line"><span class="keyword">SET</span> <span class="keyword">GLOBAL</span> slow_query_log = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">SET</span> <span class="keyword">GLOBAL</span> long_query_time = <span class="number">2</span>;</span><br><span class="line"><span class="keyword">SHOW</span> <span class="keyword">VARIABLES</span> <span class="keyword">LIKE</span> <span class="string">'%slow_query_log%'</span>;</span><br><span class="line"><span class="keyword">SHOW</span> <span class="keyword">VARIABLES</span> <span class="keyword">LIKE</span> <span class="string">'long_query_time%'</span>;</span><br><span class="line"><span class="keyword">SHOW</span> <span class="keyword">GLOBAL</span> <span class="keyword">STATUS</span> <span class="keyword">LIKE</span> <span class="string">'%Slow_queries%'</span>;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> my.cnf</span><br><span class="line">[mysqld]</span><br><span class="line">slow_query_log=ON</span><br><span class="line">slow_query_log_file=../slow.log</span><br><span class="line">long_query_time=2</span><br></pre></td></tr></table></figure>
+
+<p><strong>mysqldumpslow</strong> 工具</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">-s ORDER	what to sort by (al, at, ar, c, l, r, t), 'at' is default</span><br><span class="line">		al: average lock time # 平均锁定时间</span><br><span class="line">		ar: average rows sent # 平均返回记录数</span><br><span class="line">		at: average query time # 平均查询时间</span><br><span class="line">		c: count # 访问次数</span><br><span class="line">		l: lock time # 锁定时间</span><br><span class="line">		r: rows sent # 返回记录</span><br><span class="line">		t: query time # 查询时间</span><br><span class="line">-t NUM		just show the top n queries</span><br><span class="line">-g PATTERN	grep: only consider stmts that include this string</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> 返回记录集最多的10个SQL</span><br><span class="line">mysqldumpslow -s r -t 10 ../slow.log</span><br><span class="line"><span class="meta">#</span> 访问次数最多的10个SQL</span><br><span class="line">mysqldumpslow -s c -t 10 ../slow.log</span><br><span class="line"><span class="meta">#</span> 按照时间排序的前10条里面含有左连接的查询语句</span><br><span class="line">mysqldumpslow -s t -t 10 -g "left join" ../slow.log</span><br></pre></td></tr></table></figure>
+
+<h2 id="SHOW-PROFILE"><a href="#SHOW-PROFILE" class="headerlink" title="SHOW PROFILE"></a>SHOW PROFILE</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SET</span> profiling=<span class="keyword">ON</span>;</span><br><span class="line"><span class="keyword">SHOW</span> <span class="keyword">VARIABLES</span> <span class="keyword">LIKE</span> <span class="string">'profiling'</span>;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">SHOW PROFILE</span><br><span class="line">	ALL: 显示所有的开销信息。</span><br><span class="line">	BLOCK IO: 显示块IO相关开销（通用）。</span><br><span class="line">	CONTEXT SWITCHES: 上下文切换相关开销。</span><br><span class="line">	CPU: 显示CPU相关开销信息（通用）。</span><br><span class="line">	IPC: 显示发送和接收相关开销信息。</span><br><span class="line">	MEMORY: 显示内存相关开销信息。</span><br><span class="line">	PAGE FAULTS: 显示页面错误相关开销信息。</span><br><span class="line">	SOURCE: 显示和Source_function。</span><br><span class="line">	SWAPS: 显示交换次数相关开销的信息。</span><br><span class="line"></span><br><span class="line">SHOW PROFILES;</span><br><span class="line">SHOW PROFILE cpu, block io FOR QUERY &lt;Query_ID&gt;;</span><br></pre></td></tr></table></figure>
+
+<h1 id="锁"><a href="#锁" class="headerlink" title="锁"></a>锁</h1><h2 id="表锁"><a href="#表锁" class="headerlink" title="表锁"></a>表锁</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">SHOW OPEN TABLES;</span><br><span class="line">LOCK TABLE `readtable` READ, `writetable` WRITE;</span><br><span class="line">UNLOCK TABLES;</span><br><span class="line">SHOW STATUS LIKE &apos;table%&apos;;</span><br><span class="line">-- Table_locks_immediate: 可以立即获取锁的查询次数。</span><br><span class="line">-- Table_locks_waited: 出现表级锁定争用而发生等待的次数。</span><br></pre></td></tr></table></figure>
+
+<p>MyISAM 执行 SELECT 之前，给涉及到的所有表加读锁，在执行增删改之前，给涉及的表加写锁。</p>
+<p>MySQL 表级锁两种模式：</p>
+<ul>
+<li>表共享读锁（Table Read Lock）。不会阻塞其他线程対同一表的读操作，但是会阻塞其他线程対同一表的写操作</li>
+<li>表独占写锁（Table Write Lock）。阻塞其他线程対同一表的读和写操作。</li>
+</ul>
+<h2 id="行锁"><a href="#行锁" class="headerlink" title="行锁"></a>行锁</h2><p>行锁是通过索引实现的，没有索引和索引失效会使行锁变表锁。</p>
+<p><code>SELECT ... FOR UPDATE</code> 锁定某一行后其他写操作会被阻塞，直到锁定的行被 COMMIT。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SHOW</span> <span class="keyword">STATUS</span> <span class="keyword">LIKE</span> <span class="string">'innodb_row_lock%'</span>;</span><br><span class="line"><span class="comment">-- Innodb_row_lock_current_waits: 当前正在等待锁定的数量。</span></span><br><span class="line"><span class="comment">-- Innodb_row_lock_time: 从系统启动到现在锁定总时间长度（重要）。</span></span><br><span class="line"><span class="comment">-- Innodb_row_lock_time_avg: 每次等待所花的平均时间（重要）。</span></span><br><span class="line"><span class="comment">-- Innodb_row_lock_time_max: 从系统启动到现在等待最长的一次所花的时间。</span></span><br><span class="line"><span class="comment">-- Innodb_row_lock_waits: 系统启动后到现在总共等待的次数（重要）。</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>间隙锁</strong></p>
+<p>当使用范围条件检索数据并请求共享或者排他锁时，InnoDB 会给符合条件的已有数据记录的索引项加锁，对于键值在条件范围内但并不存在的记录，叫做 “间隙(GAP)”。InnoDB 也会对这个 “间隙” 加锁。<br>造成在锁定的时候无法插入锁定键值范围内的任何数据。</p>
+
+    </div>
+
+    
+    
+    
+        
+      
+
+      <footer class="post-footer">
+          
+            
+          
+          <div class="post-tags">
+            
+              <a href="/tags/MySQL/" rel="tag"># MySQL</a>
+            
+          </div>
+        
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+              
+                <a href="/2020/10/23/搞了一个镜像站/" rel="next" title="搞了一个镜像站">
+                  <i class="fa fa-chevron-left"></i> 搞了一个镜像站
+                </a>
+              
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+              
+            </div>
+          </div>
+        
+      </footer>
+    
+  </div>
+  
+  
+  
+  </article>
+
+  </div>
+
+
+          </div>
+          
+
+        </div>
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+        
+        
+        
+        
+      
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#索引优化"><span class="nav-number">1.</span> <span class="nav-text">索引优化</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#查询执行顺序"><span class="nav-number">1.1.</span> <span class="nav-text">查询执行顺序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#EXPLAIN-字段"><span class="nav-number">1.2.</span> <span class="nav-text">EXPLAIN 字段</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JOIN-注意点"><span class="nav-number">1.3.</span> <span class="nav-text">JOIN 注意点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#索引失效"><span class="nav-number">1.4.</span> <span class="nav-text">索引失效</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#查询优化"><span class="nav-number">2.</span> <span class="nav-text">查询优化</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#IN-和-EXISTS"><span class="nav-number">2.1.</span> <span class="nav-text">IN 和 EXISTS</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#排序"><span class="nav-number">2.2.</span> <span class="nav-text">排序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#慢查询"><span class="nav-number">2.3.</span> <span class="nav-text">慢查询</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SHOW-PROFILE"><span class="nav-number">2.4.</span> <span class="nav-text">SHOW PROFILE</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#锁"><span class="nav-number">3.</span> <span class="nav-text">锁</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#表锁"><span class="nav-number">3.1.</span> <span class="nav-text">表锁</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#行锁"><span class="nav-number">3.2.</span> <span class="nav-text">行锁</span></a></li></ol></li></ol></div>
+        
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image"
+      src="/images/logo.png"
+      alt="Sun YuYu">
+  <p class="site-author-name" itemprop="name">Sun YuYu</p>
+  <div class="site-description" itemprop="description">虽然啥都没干，真是辛苦自己啦</div>
+</div>
+  <nav class="site-state motion-element">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">50</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+          
+            <a href="/categories/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-name">分类</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-tags">
+        
+          
+            <a href="/tags/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">68</span>
+        <span class="site-state-item-name">标签</span>
+        </a>
+      </div>
+    
+  </nav>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="mailto:bmzsmd@gmail.com" title="E-Mail &rarr; mailto:bmzsmd@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+    
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="https://t.me/yuyurbq" title="Telegram &rarr; https://t.me/yuyurbq" rel="noopener" target="_blank"><i class="fa fa-fw fa-telegram"></i>Telegram</a>
+      </span>
+    
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="https://weibo.com/sunsun1" title="Weibo &rarr; https://weibo.com/sunsun1" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>Weibo</a>
+      </span>
+    
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="https://twitter.com/bianminzi" title="Twitter &rarr; https://twitter.com/bianminzi" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i>Twitter</a>
+      </span>
+    
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2019 – <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-transgender-alt"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Sun YuYu</span>
+</div>
+  <!--<div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0</div>-->
+  <div class="powered-by">Hexo & GitHub 用❤驱动</div>
+  <!--<span class="post-meta-divider">|</span>-->
+  <!--<div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.4.0</div>-->
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+
+
+    
+    
+  
+    
+    
+  
+    
+  
+  <script color='0,0,255' opacity='0.5' zIndex='-1' count='99' src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  <script src="/lib/anime.min.js?v=3.1.0"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  <script defer src="/lib/three/three.min.js"></script>
+  <script defer src="/lib/three/three-waves.min.js"></script>
+  <script defer src="/lib/three/canvas_lines.min.js"></script>
+<script src="/js/utils.js?v=7.4.0"></script><script src="/js/motion.js?v=7.4.0"></script>
+<script src="/js/schemes/pisces.js?v=7.4.0"></script>
+<script src="/js/next-boot.js?v=7.4.0"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+  <script src="/js/local-search.js?v=7.4.0"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+</body>
+</html>
