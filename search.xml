@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Git 命令思维导图</title>
+    <url>/2020/02/02/Git-%E5%91%BD%E4%BB%A4%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE/</url>
+    <content><![CDATA[<p>没钱开 XMind… 理直气壮不去水印</p>
+<p><img src="https://i.loli.net/2020/03/06/UE3BOSHfsbQDtGd.png" alt="git.png"></p>
+]]></content>
+      <categories>
+        <category>Git</category>
+      </categories>
+      <tags>
+        <tag>思维导图</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Git-分支乱七八糟版</title>
     <url>/2019/12/07/Git-%E5%88%86%E6%94%AF%E4%B9%B1%E4%B8%83%E5%85%AB%E7%B3%9F%E7%89%88/</url>
     <content><![CDATA[<p>使用 git branch <name> 命令创建分支。git branch -d <name> 删除分支。git branch -v 命令查看每个分支的最后一次提交。git branch –no-merged 查看未合并的分支，未合并的分支 -D 才能删除。<br>切换到一个已存在的分支，使用 git checkout 命令。</name></name></p><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git checkout -b name</span><br><span class="line">等同于</span><br><span class="line">git branch name</span><br><span class="line">git checkout name</span><br></pre></td></tr></table></figure><a id="more"></a>
@@ -27,19 +40,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Git 命令思维导图</title>
-    <url>/2020/02/02/Git-%E5%91%BD%E4%BB%A4%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE/</url>
-    <content><![CDATA[<p>没钱开 XMind… 理直气壮不去水印</p>
-<p><img src="https://i.loli.net/2020/03/06/UE3BOSHfsbQDtGd.png" alt="git.png"></p>
-]]></content>
-      <categories>
-        <category>Git</category>
-      </categories>
-      <tags>
-        <tag>思维导图</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Git 常用命令思维导图</title>
     <url>/2020/02/10/Git-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE/</url>
     <content><![CDATA[<p>没钱开 XMind… 理直气壮不去水印</p>
@@ -50,304 +50,6 @@
       </categories>
       <tags>
         <tag>思维导图</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Java 补丁-集合</title>
-    <url>/2019/12/25/Java%20%E8%A1%A5%E4%B8%81-%E9%9B%86%E5%90%88/</url>
-    <content><![CDATA[<h1 id="具体集合部分"><a href="#具体集合部分" class="headerlink" title="具体集合部分"></a>具体集合部分</h1><p><strong>链表 LinkedList</strong><br>List 接口描述有序集合，有两种访问元素的协议，迭代器或 get set 方法，后者更适合数组。链表对于删除插入元素很有效，允许对象有重复的值。<br>Java 中链表都是双向链接的，即每个结点存放前驱结点和下一个结点的引用。如果链表有 n 个元素则有 n+1 个位置可以插入新元素。<br>链表只跟踪结构性修改，set 方法不被视为结构性修改。<br>避免使用整数索引表示链表中位置的方法，如果需要对集合进行指定访问，就使用数组或 ArrayList 而非链表。</p><a id="more"></a>
-<p><strong>数组链表 ArrayList</strong><br>也实现了 List 接口，封装了动态再分配的对象数组。不需要同步时使用，若有多个线程访问，应使用 Vector类。</p>
-<p><strong>散列集 HashSet</strong><br>Set 的集合里不允许对象有重复的值。HashSet 仅仅存储对象（HashMap 储存键值对），基于 HashMap 实现。<br>散列表为每一个对象计算一个整数（hash code），Java 中用链表数组实现，每个表称为桶。<br>HashSet 类实现了基于散列表的集，散列集迭代器将依次访问所有桶，由于元素分散在表的各个位置上（散列码与桶的总数取余），所以访问的顺序是随机的。<br>对与集中的元素，如果元素的散列码发生了改变，在数据结构中的位置也会发生变化。</p>
-<p><strong>树集 TreeSet</strong><br>TreeSet 是一个有序集合，用红黑树实现，任意顺序将元素插入集合遍历时自动排序输出。树的排序必须是全序即任意两个元素是可比的，并且元素必须实现 Comparable 接口，或构造集时提供一个 Comparator 。<br> 添加元素比散列表慢但是检查重复元素快很多。</p>
-<p> <strong>双端队列</strong><br> 可以在头部和尾部同时添加或删除元素，不支持在队列中间添加元素。Deque 接口由 ArrayDeque 和 LinkedList 类实现，必要时可增加队列长度。</p>
-<p> <strong>优先级队列</strong><br> 使用堆。可以保存实现了 Comparable 接口的类对象，或在构造器中提供的 Comparator 对象。</p>
-<h1 id="映射部分"><a href="#映射部分" class="headerlink" title="映射部分"></a>映射部分</h1><p><strong>基本</strong><br>HashMap 和 TreeMap 类都实现了 Map 接口。散列映射对键进行散列，树映射用键的整体顺序对元素进行排序并组织成搜索树。<br>不能对同一个键存放两个值，若调用两次 put 方法，第二个值会取代第一个值并返回存储的上一个值。若要迭代处理映射的键值，可以使用 forEach 方法配合 lambda 表达式。<br>TreeMap保存了对象的排列次序。HashMap允许键和值为null。</p>
-<p><strong>更新映射项</strong><br>获得键关联的原值，更新后再放回如：<code>counts.put(word, counts.get(word) + 1)</code> 。当 word 没有预先存在的话，get 将返回 null 而 put 的值不能为 null 。可以使用：</p>
-<ul>
-<li>counts.put(word, counts.getOrDefault(word, 0) + 1);</li>
-<li>counts.putIfAbsent(word, 0); counts.put(word, counts.get(word) + 1);</li>
-<li>counts.merge(word, 1, Integer::sum);</li>
-</ul>
-<p><strong>映射视图</strong></p>
-<p>一共分为三种：</p>
-<ul>
-<li>键集 Set&lt;K&gt;  keySet()</li>
-<li>值集合 Collection&lt;V&gt;  values()</li>
-<li>键值对集 Set&lt;Map.Entry&lt;K,V&gt;&gt;  entrySet()</li>
-</ul>
-<p><strong>弱散列映射</strong></p>
-<p>WeakHashMap 类，当对键的唯一引用来自散列条目，将删除键值对。使用弱引用保存键，将引用保存到散列键对象中，垃圾回收会用特有方式处理此类对象。</p>
-<blockquote>
-<p>  新建WeakHashMap，将“键值对”添加到WeakHashMap中。 实际上，WeakHashMap是通过数组table保存Entry(键值对)；每一个Entry实际上是一个单向链表，即Entry是键值对链表。</p>
-<p>  当某“弱键”不再被其它对象引用，并被GC回收时。在GC回收该“弱键”时，这个“弱键”也同时会被添加到ReferenceQueue(queue)队列中。</p>
-<p>  当下一次需要操作WeakHashMap时，会先同步table和queue。table中保存了全部的键值对，而queue中保存被GC回收的键值对；同步它们，就是删除table中被GC回收的键值对。</p>
-</blockquote>
-<p><strong>链接散列集和映射</strong></p>
-<p>LinkedHashSet 和 LinkedHashMap 类会保留插入元素项的顺序。LinkedHashSet 是对 LinkedHashMap 的简单包装。LinkedHashMap 是 HashMap 的直接子类，二者唯一的区别是 LinkedHashMap 在 HashMap 的基础上，采用双向链表的形式将所有 entry 连接起来，保证元素的迭代顺序跟插入顺序相同。<br>会将 get 或 put 影响的条目移至链表尾部。</p>
-<p><strong>枚举集与映射</strong><br>EnumSet 内部用位序列实现，对应值在集中则相应位被置 1。使用静态方法构造这个集：<code>enum Weekday { ... };</code>，使用 Set 接口的方法修改 EnumSet。<br>EnumMap 是以键类型为枚举类型的映射，需要在构造时指定：<code>EunmMap&lt;Weekday, Employee&gt; test = new EnumMap&lt;&gt;{Weekday.class}</code>。</p>
-<p><strong>标识散列映射</strong><br>IdentityHsahMap 中键的散列值用 System.identityHashCode 方法计算，即根据内存地址计算。比较两对象时，IdentityHashMap 类使用 == 。<br>故不同的键对象即使内容相同，也视为不同对象。</p>
-<h1 id="视图与包装器"><a href="#视图与包装器" class="headerlink" title="视图与包装器"></a>视图与包装器</h1><p>视图可以获得其他实现了 Collection 接口和 Map 接口的对象，如 keySet 方法并没有创建新集，而是返回了一个实现 Set 接口的类对象，其方法对原映射进行操作。</p>
-<p><strong>轻量集合包装器</strong><br>Arrrays 类的静态方法 asList 返回一个包装了普通 Java 数组的 List 包装器而非 ArrayList 对象：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Card[] cardDeck = <span class="keyword">new</span> Card[<span class="number">52</span>];</span><br><span class="line">...</span><br><span class="line">List&lt;Card&gt; cardList = Arrays.asList(cardDeck);</span><br></pre></td></tr></table></figure>
-
-<p>改变数组大小的方法将抛出异常。</p>
-<p><strong>子范围视图</strong><br>如从列表 staff 中取出第 10-19 个元素：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">List group = staff.subList(<span class="number">10</span>, <span class="number">20</span>);</span><br></pre></td></tr></table></figure>
-
-<p>对于有序集和映射，可以使用排序顺序而非元素位置建立子范围。如 <code>SortedSet</code> <code>SortMap</code></p>
-<p><strong>不可修改的视图</strong><br>Collection 中一些方法用于产生不可修改视图，运行时检查到修改则抛出一个异常。</p>
-<p><strong>同步视图</strong><br>类库设计者使用视图确保集合的线程安全，而非实现线程安全的集合类。如将任何一个映射表转换成具有同步访问方法的 Map 视图：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Map&lt;String,, Employee&gt; map = Collections.synchronizedMap(<span class="keyword">new</span> HashMap&lt;String, Employee&gt;());</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>Java</category>
-      </categories>
-      <tags>
-        <tag>集合</tag>
-        <tag>队列</tag>
-        <tag>散列</tag>
-        <tag>映射</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Java 补丁-基本程序设计结构</title>
-    <url>/2019/12/01/Java-%E8%A1%A5%E4%B8%81-%E5%9F%BA%E6%9C%AC%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E7%BB%93%E6%9E%84/</url>
-    <content><![CDATA[<h1 id="数据类型部分"><a href="#数据类型部分" class="headerlink" title="数据类型部分"></a>数据类型部分</h1><p><strong>整型</strong><br>Java7 开始：允许通过加前缀 0b 写二进制数；允许为数字字面量加下划线：</p><ul>
-<li>1_000_000</li>
-<li>0b1111_0000_0100</li>
-</ul><p><strong>浮点型</strong><br>由于二进制系统无法精确表示分数 1/10，故浮点数值不适用金融计算，此时应使用 BigDecimal 类。</p><table>
-<thead>
-<tr>
-<th align="center">常量</th>
-<th align="center">数值</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">Double.POSITIVE_INFINITY</td>
-<td align="center">正无穷</td>
-</tr>
-<tr>
-<td align="center">Double.NEGATIVE_INFINITY</td>
-<td align="center">负无穷</td>
-</tr>
-<tr>
-<td align="center">Double.NaN</td>
-<td align="center">非数字</td>
-</tr>
-</tbody></table><a id="more"></a>
-
-
-
-<p>判断一个特定值是否为 Double.NaN ：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span>(x == Double.NaN) <span class="comment">// never true</span></span><br><span class="line"><span class="keyword">if</span>(Double.isNaN(x)) <span class="comment">// √</span></span><br></pre></td></tr></table></figure>
-
-<p><strong>char 类型</strong><br>char 数据类型是一个采用 UTF-16 编码表示 Unicode 码点的代码单元。<br>Unicode 转义序列会在解析代码前处理：</p>
-<ul>
-<li>“\u0022+\u0022” 会得到 “”+”” 即空串</li>
-<li>// \u00A0 is a newline 会替换成换行符</li>
-<li>// c:\users 会产生语法错误</li>
-</ul>
-<p><strong>枚举类型</strong><br>枚举类型的变量只能储存这个类型声明中给定的某个枚举值，或没有设置值 null</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">enum</span> Size &#123; SAMLL, MEDIUM, LARGE &#125;;</span><br><span class="line">Size s = Size.SMALL;</span><br></pre></td></tr></table></figure>
-
-<p>所有枚举类型都是 Enum 的子类，继承其方法。因为实际上是一个类，故比较时直接用 == 就好，也可以在枚举类型中添加构造器方法域。</p>
-<p><strong>相关：大数值</strong><br>java.math 包的 BigInteger 和 BigDecimal 类可以处理任意长度数字序列的数值，分别对应整数和浮点数运算。</p>
-<hr>
-<h1 id="运算符部分"><a href="#运算符部分" class="headerlink" title="运算符部分"></a>运算符部分</h1><p><strong>数学函数</strong><br>StrictMath 类使用 fdlibm 库实现算法，确保在所有平台上得到相同结果。</p>
-<p><strong>数值类型转换</strong><br>二元操作中的类型转换，以 double float long 的顺序进行判断，若都不是则两个操作数都转换成 int 型。<br>强制类型转换通过截断小数部分将浮点值转换为整型，若要得到最接近整型的数，使用 Math.round 对浮点数进行舍入：</p>
-<ul>
-<li><code>int newx = (int) Math.round(x);</code> // 返回的是 long 类型</li>
-</ul>
-<p>强制转换中若超出目标类型的表示范围，结果会截断成完全不同的值。<br>不要在 boolean 与任何数值类型间强制类型转换，转换为数值时可以使用条件表达式 boolean ? 1:0</p>
-<p><strong>自增自减和运算符级别</strong><br>自增自减中，用于表达式时前缀形式会先完成加减一：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> m = <span class="number">7</span>;</span><br><span class="line"><span class="keyword">int</span> n = <span class="number">7</span>;</span><br><span class="line"><span class="keyword">int</span> a = <span class="number">2</span> * ++m; <span class="comment">// a is 16, m is 8</span></span><br><span class="line"><span class="keyword">int</span> b = <span class="number">2</span> * n++; <span class="comment">// b is 14, n is 8</span></span><br></pre></td></tr></table></figure>
-
-<p>+= 是右结合运算符，所以 <code>a += b += c</code> 等价于 <code>a += (b += c)</code></p>
-<p><strong>位运算符</strong></p>
-<table>
-<thead>
-<tr>
-<th align="center">位运算符</th>
-<th align="center"></th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">&amp;</td>
-<td align="center">and</td>
-</tr>
-<tr>
-<td align="center">&#124;</td>
-<td align="center">or</td>
-</tr>
-<tr>
-<td align="center">^</td>
-<td align="center">xor</td>
-</tr>
-<tr>
-<td align="center">~</td>
-<td align="center">not</td>
-</tr>
-</tbody></table>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> fourthBit = (n &amp; <span class="number">0b1000</span>) / <span class="number">0b1000</span>;</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h1 id="字符串部分"><a href="#字符串部分" class="headerlink" title="字符串部分"></a>字符串部分</h1><p><strong>String API</strong><br>提取子串： substring 方法。<br>多个字符串放在一起用一个定界符分隔： String.join 方法。</p>
-<p><strong>不可变字符串</strong><br>String 类没有修改字符串的方法，可以先提取再拼接；编译器可以让字符串共享，即复制一个字符串变量，原始字符串与复制的字符串共享相同的字符。<br>但不要使用 == （此运算符确定是否在同一位置上）检测两个字符串是否相等，虚拟机实际上只有字符串常量是共享的，而 + 或 substring 等操作产生的结果并不共享。使用 equals equalsIgnoreCase 方法。</p>
-<p><strong>构建字符串</strong><br>用许多小段字符串构建时，字符串连接的方式效率较低，每次连接字符串都会构建一个新的 String 对象，应该 new 个空的字符串构造器：StringBuilder 类，相对 StringBuffer 类效率更高，但后者允许多线程方式执行操作。</p>
-<p><strong>Null 串</strong><br>null 上调用方法会出现错误，故检查字符串 null 和空 <code>if (str != null &amp;&amp; str.length() != 0)</code> ，空用 equals 也行。</p>
-<p><strong>码点和代码单元</strong><br>length 方法返回采用 UTF-16 编码表示的给定字符串所需要的代码单元数量（配合 char 数据类型食用）。大多数常用字符使用一个代码单元表示，辅助字符需要一对代码单元表示。故实际长度应该是码点数量：使用 codePointCount 方法获取。<br>如字符 𝕆 U+1D546 需要两个代码单元，若使用 <code>char ch = sentence.charAt(1)</code> 会返回第二个代码单元而非空格，所以此类不要用 char 类型。charAt 方法返回位置 n 的代码单元。</p>
-<blockquote>
-<p>一个 code point 可能由一个或多个 code unit(s) 表示。在 U+10000 之前的 code point 可以由一个 UTF-16 code unit 表示，U+10000 及之后的 code point 要由两个 UTF-16 code units 表示。</p>
-</blockquote>
-<hr>
-<h1 id="输入输出部分"><a href="#输入输出部分" class="headerlink" title="输入输出部分"></a>输入输出部分</h1><p><strong>格式化输出</strong></p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">System.out.printf(<span class="string">"%,.2f"</span>, <span class="number">10000.0</span> / <span class="number">3.0</span>);</span><br><span class="line"><span class="comment">// 3,333.33</span></span><br></pre></td></tr></table></figure>
-
-<p>用于 printf 的转换符：</p>
-<table>
-<thead>
-<tr>
-<th align="center">转换符</th>
-<th align="center">类型</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">d</td>
-<td align="center">十进制整数</td>
-</tr>
-<tr>
-<td align="center">x</td>
-<td align="center">十六进制整数</td>
-</tr>
-<tr>
-<td align="center">o</td>
-<td align="center">八进制整数</td>
-</tr>
-<tr>
-<td align="center">f</td>
-<td align="center">定点浮点数</td>
-</tr>
-<tr>
-<td align="center">e</td>
-<td align="center">指数浮点值</td>
-</tr>
-<tr>
-<td align="center">g</td>
-<td align="center">通用浮点数</td>
-</tr>
-<tr>
-<td align="center">a</td>
-<td align="center">十六进制浮点数</td>
-</tr>
-<tr>
-<td align="center">s</td>
-<td align="center">字符串</td>
-</tr>
-<tr>
-<td align="center">c</td>
-<td align="center">字符</td>
-</tr>
-<tr>
-<td align="center">b</td>
-<td align="center">布尔</td>
-</tr>
-<tr>
-<td align="center">h</td>
-<td align="center">散列码</td>
-</tr>
-<tr>
-<td align="center">%</td>
-<td align="center">百分号</td>
-</tr>
-<tr>
-<td align="center">n</td>
-<td align="center">平台有关的行分隔符</td>
-</tr>
-</tbody></table>
-<p>用于 printf 的标志：</p>
-<table>
-<thead>
-<tr>
-<th align="center">标志</th>
-<th align="center">目的</th>
-<th align="center">举例</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">+</td>
-<td align="center">打印正负数符号</td>
-<td align="center">+333</td>
-</tr>
-<tr>
-<td align="center">空格</td>
-<td align="center">在正数前加空格</td>
-<td align="center"></td>
-</tr>
-<tr>
-<td align="center">0</td>
-<td align="center">数字前面补 0</td>
-<td align="center">00333.3</td>
-</tr>
-<tr>
-<td align="center">-</td>
-<td align="center">左对齐</td>
-<td align="center"></td>
-</tr>
-<tr>
-<td align="center">(</td>
-<td align="center">将负数括在括号内</td>
-<td align="center">(3.3)</td>
-</tr>
-<tr>
-<td align="center">,</td>
-<td align="center">添加分组分隔符</td>
-<td align="center">3,333</td>
-</tr>
-<tr>
-<td align="center">#（f）</td>
-<td align="center">包含小数点</td>
-<td align="center">333.</td>
-</tr>
-<tr>
-<td align="center">#</td>
-<td align="center">添加前缀 0x 或 0</td>
-<td align="center">0xcafe</td>
-</tr>
-</tbody></table>
-<p><strong>文件输入和输出</strong><br>通过相对位置指定文件时，是 Java 虚拟机启动路径的相对位置。<br>记得捕获输入输出异常，以免文件不存在或不能被创建。</p>
-<p>读取通过构造 Scanner 对象，路径中要转义反斜杠；写入则构造 PrintWriter 对象。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Scanner in = <span class="keyword">new</span> Scanner(Paths.get(<span class="string">"c:\\my\\file"</span>), <span class="string">"UTF-8"</span>);</span><br><span class="line">Scanner in = <span class="keyword">new</span> Scanner(<span class="string">"c:\\my\\file"</span>); <span class="comment">// 允许但会变成字符数据</span></span><br></pre></td></tr></table></figure>
-
-<hr>
-<h1 id="控制流程部分"><a href="#控制流程部分" class="headerlink" title="控制流程部分"></a>控制流程部分</h1><p><strong>switch 语句</strong><br>Java7 开始，case 标签可以是字符串字面量。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">String input = ...;</span><br><span class="line"><span class="keyword">switch</span> (input.toLowerCase())&#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="string">"yes"</span>:</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>中断语句</strong><br>带标签 break 语句用于跳出多重循环。标签放在最外层循环之前，并紧跟冒号，break 将跳转到带标签的语句块结尾。只能跳出，不能跳入。<br>带标签 break 甚至可以用于 if 语句或语句块中：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">label:</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span> (condition) <span class="keyword">break</span> label;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>continue 语句将控制转移到最内层循环的首部，带标签 continue 语句将跳到与标签匹配的循环首部。</p>
-<hr>
-<h1 id="数组部分"><a href="#数组部分" class="headerlink" title="数组部分"></a>数组部分</h1><p>数字数组初始化为 0，boolean 数组初始化为 false，对象数组则为 null。数组创建后不能改变大小，需要扩展应选择数组列表 array list。<br>Java 允许数组长度为 0，与 null 不同。</p>
-<p><strong>for each 循环</strong></p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> (variable : collection) statement &#123;&#125;</span><br></pre></td></tr></table></figure>
-
-<p>collection 可以是数组或实现了 Iterable 接口的类对象。<br>打印数组所有值可以用 Arrays.toString 方法，元素被放在 [] 内，用逗号分隔。</p>
-<p><strong>初始化和匿名</strong><br>不创建变量初始化一个数组：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">arr = <span class="keyword">new</span> <span class="keyword">int</span>[] &#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>&#125;;</span><br><span class="line"><span class="comment">// 即下列语句简写</span></span><br><span class="line"><span class="keyword">int</span>[] temp = &#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>&#125;;</span><br><span class="line">arr = temp;</span><br></pre></td></tr></table></figure>
-
-<p><strong>拷贝</strong><br>将一个数组变量拷贝给另一个数组变量后，两个变量引用的是同一个数组，即更改在两者生效。若要拷贝到新数组，使用 Arrays.copyOf 方法，这个方法也用于增加数组大小：<code>arr = Arrays.copyOf(arr, 2 * arr.length)</code> 。</p>
-<p><strong>命令行参数</strong><br>main 的 String[] args 用于存储命令行参数，不包含程序名。</p>
-<p><strong>不规则数组</strong><br>Java 实际上只有一维数组，多维数组定义为“数组的数组”。所以可以让两行交换，或是每一行有不同的长度：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span>[][] odds = <span class="keyword">new</span> <span class="keyword">int</span>[NMAX +<span class="number">1</span>][];</span><br><span class="line"><span class="comment">//new 一个具有行数的数组</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> n = <span class="number">0</span>; n &lt;= NMAX; n++)</span><br><span class="line">    odds[n] = <span class="keyword">new</span> <span class="keyword">int</span>[n + <span class="number">1</span>];</span><br><span class="line">    <span class="comment">//然后为每行添加元素</span></span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>Java</category>
-      </categories>
-      <tags>
-        <tag>数据类型</tag>
-        <tag>控制流程</tag>
-        <tag>数组</tag>
-        <tag>运算符</tag>
       </tags>
   </entry>
   <entry>
@@ -407,46 +109,61 @@
       </tags>
   </entry>
   <entry>
-    <title>Java 补丁-对象和类</title>
-    <url>/2019/12/08/Java-%E8%A1%A5%E4%B8%81-%E5%AF%B9%E8%B1%A1%E5%92%8C%E7%B1%BB/</url>
-    <content><![CDATA[<h1 id="预定义类部分"><a href="#预定义类部分" class="headerlink" title="预定义类部分"></a>预定义类部分</h1><p><strong>更改器和访问器</strong><br>更改器方法：调用方法后，会改变对象的状态。<br>访问器方法：只访问对象而不修改对象，通过生成新对象的方式应用改动。</p><h1 id="自定义类部分"><a href="#自定义类部分" class="headerlink" title="自定义类部分"></a>自定义类部分</h1><p><strong>封装</strong><br>注意是否返回了引用可变对象，即访问器方法返回了一个有更改器方法的对象；返回可变对象的引用时，应该先进行 clone。<br>Date 类有更改器方法 setTime，破坏了封装性：</p><a id="more"></a>
+    <title>Java 补丁-集合</title>
+    <url>/2019/12/25/Java%20%E8%A1%A5%E4%B8%81-%E9%9B%86%E5%90%88/</url>
+    <content><![CDATA[<h1 id="具体集合部分"><a href="#具体集合部分" class="headerlink" title="具体集合部分"></a>具体集合部分</h1><p><strong>链表 LinkedList</strong><br>List 接口描述有序集合，有两种访问元素的协议，迭代器或 get set 方法，后者更适合数组。链表对于删除插入元素很有效，允许对象有重复的值。<br>Java 中链表都是双向链接的，即每个结点存放前驱结点和下一个结点的引用。如果链表有 n 个元素则有 n+1 个位置可以插入新元素。<br>链表只跟踪结构性修改，set 方法不被视为结构性修改。<br>避免使用整数索引表示链表中位置的方法，如果需要对集合进行指定访问，就使用数组或 ArrayList 而非链表。</p><a id="more"></a>
+<p><strong>数组链表 ArrayList</strong><br>也实现了 List 接口，封装了动态再分配的对象数组。不需要同步时使用，若有多个线程访问，应使用 Vector类。</p>
+<p><strong>散列集 HashSet</strong><br>Set 的集合里不允许对象有重复的值。HashSet 仅仅存储对象（HashMap 储存键值对），基于 HashMap 实现。<br>散列表为每一个对象计算一个整数（hash code），Java 中用链表数组实现，每个表称为桶。<br>HashSet 类实现了基于散列表的集，散列集迭代器将依次访问所有桶，由于元素分散在表的各个位置上（散列码与桶的总数取余），所以访问的顺序是随机的。<br>对与集中的元素，如果元素的散列码发生了改变，在数据结构中的位置也会发生变化。</p>
+<p><strong>树集 TreeSet</strong><br>TreeSet 是一个有序集合，用红黑树实现，任意顺序将元素插入集合遍历时自动排序输出。树的排序必须是全序即任意两个元素是可比的，并且元素必须实现 Comparable 接口，或构造集时提供一个 Comparator 。<br> 添加元素比散列表慢但是检查重复元素快很多。</p>
+<p> <strong>双端队列</strong><br> 可以在头部和尾部同时添加或删除元素，不支持在队列中间添加元素。Deque 接口由 ArrayDeque 和 LinkedList 类实现，必要时可增加队列长度。</p>
+<p> <strong>优先级队列</strong><br> 使用堆。可以保存实现了 Comparable 接口的类对象，或在构造器中提供的 Comparator 对象。</p>
+<h1 id="映射部分"><a href="#映射部分" class="headerlink" title="映射部分"></a>映射部分</h1><p><strong>基本</strong><br>HashMap 和 TreeMap 类都实现了 Map 接口。散列映射对键进行散列，树映射用键的整体顺序对元素进行排序并组织成搜索树。<br>不能对同一个键存放两个值，若调用两次 put 方法，第二个值会取代第一个值并返回存储的上一个值。若要迭代处理映射的键值，可以使用 forEach 方法配合 lambda 表达式。<br>TreeMap保存了对象的排列次序。HashMap允许键和值为null。</p>
+<p><strong>更新映射项</strong><br>获得键关联的原值，更新后再放回如：<code>counts.put(word, counts.get(word) + 1)</code> 。当 word 没有预先存在的话，get 将返回 null 而 put 的值不能为 null 。可以使用：</p>
+<ul>
+<li>counts.put(word, counts.getOrDefault(word, 0) + 1);</li>
+<li>counts.putIfAbsent(word, 0); counts.put(word, counts.get(word) + 1);</li>
+<li>counts.merge(word, 1, Integer::sum);</li>
+</ul>
+<p><strong>映射视图</strong></p>
+<p>一共分为三种：</p>
+<ul>
+<li>键集 Set&lt;K&gt;  keySet()</li>
+<li>值集合 Collection&lt;V&gt;  values()</li>
+<li>键值对集 Set&lt;Map.Entry&lt;K,V&gt;&gt;  entrySet()</li>
+</ul>
+<p><strong>弱散列映射</strong></p>
+<p>WeakHashMap 类，当对键的唯一引用来自散列条目，将删除键值对。使用弱引用保存键，将引用保存到散列键对象中，垃圾回收会用特有方式处理此类对象。</p>
+<blockquote>
+<p>  新建WeakHashMap，将“键值对”添加到WeakHashMap中。 实际上，WeakHashMap是通过数组table保存Entry(键值对)；每一个Entry实际上是一个单向链表，即Entry是键值对链表。</p>
+<p>  当某“弱键”不再被其它对象引用，并被GC回收时。在GC回收该“弱键”时，这个“弱键”也同时会被添加到ReferenceQueue(queue)队列中。</p>
+<p>  当下一次需要操作WeakHashMap时，会先同步table和queue。table中保存了全部的键值对，而queue中保存被GC回收的键值对；同步它们，就是删除table中被GC回收的键值对。</p>
+</blockquote>
+<p><strong>链接散列集和映射</strong></p>
+<p>LinkedHashSet 和 LinkedHashMap 类会保留插入元素项的顺序。LinkedHashSet 是对 LinkedHashMap 的简单包装。LinkedHashMap 是 HashMap 的直接子类，二者唯一的区别是 LinkedHashMap 在 HashMap 的基础上，采用双向链表的形式将所有 entry 连接起来，保证元素的迭代顺序跟插入顺序相同。<br>会将 get 或 put 影响的条目移至链表尾部。</p>
+<p><strong>枚举集与映射</strong><br>EnumSet 内部用位序列实现，对应值在集中则相应位被置 1。使用静态方法构造这个集：<code>enum Weekday { ... };</code>，使用 Set 接口的方法修改 EnumSet。<br>EnumMap 是以键类型为枚举类型的映射，需要在构造时指定：<code>EunmMap&lt;Weekday, Employee&gt; test = new EnumMap&lt;&gt;{Weekday.class}</code>。</p>
+<p><strong>标识散列映射</strong><br>IdentityHsahMap 中键的散列值用 System.identityHashCode 方法计算，即根据内存地址计算。比较两对象时，IdentityHashMap 类使用 == 。<br>故不同的键对象即使内容相同，也视为不同对象。</p>
+<h1 id="视图与包装器"><a href="#视图与包装器" class="headerlink" title="视图与包装器"></a>视图与包装器</h1><p>视图可以获得其他实现了 Collection 接口和 Map 接口的对象，如 keySet 方法并没有创建新集，而是返回了一个实现 Set 接口的类对象，其方法对原映射进行操作。</p>
+<p><strong>轻量集合包装器</strong><br>Arrrays 类的静态方法 asList 返回一个包装了普通 Java 数组的 List 包装器而非 ArrayList 对象：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Card[] cardDeck = <span class="keyword">new</span> Card[<span class="number">52</span>];</span><br><span class="line">...</span><br><span class="line">List&lt;Card&gt; cardList = Arrays.asList(cardDeck);</span><br></pre></td></tr></table></figure>
 
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">private Date hireDay;</span><br><span class="line">public Date getHireDay()&#123;</span><br><span class="line">	return hireDay;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>改变数组大小的方法将抛出异常。</p>
+<p><strong>子范围视图</strong><br>如从列表 staff 中取出第 10-19 个元素：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">List group = staff.subList(<span class="number">10</span>, <span class="number">20</span>);</span><br></pre></td></tr></table></figure>
 
-<p><strong>final</strong><br>将实例域定义为 final，则构建对象时必须初始化这样的域（在构造器之后），并且之后不能再修改。大多应用于不可变类的域，对于可变的类只表示变量中的对象引用不会再指向其他对象，但当前这个对象可以修改。</p>
-<ul>
-<li>不可变类：类中的的每个方法都不会改变其对象，如 String 类。<br>System.out 被声明为 final，但 System 类有 setOut 方法：本地方法不是用 Java 语言实现，可以绕过 Java 的存取控制机制。</li>
-</ul>
-<h1 id="静态部份"><a href="#静态部份" class="headerlink" title="静态部份"></a>静态部份</h1><p><strong>静态方法</strong><br>不能对对象实施操作，不使用其对象，即没有 this 参数的方法。使用：</p>
-<ul>
-<li>一个方法不需要访问对象状态，所需参数都通过显式参数提供。</li>
-<li>一个方法只需要访问类的静态域。</li>
-</ul>
-<h1 id="参数传递部分"><a href="#参数传递部分" class="headerlink" title="参数传递部分"></a>参数传递部分</h1><p>Java 总是采用按值调用。即方法得到的是参数值的一个拷贝。注意，Java 对对象采用的也是值调用，对象引用是按值传递的。</p>
-<ul>
-<li>一个方法不能修改一个基本数据类型的参数（数字型或布尔型）。</li>
-<li>一个方法可以改变一个对象参数的状态。</li>
-<li>一个方法不能让对象参数引用一个新的对象，因为方法结束后就被丢弃。</li>
-</ul>
-<h1 id="对象构造部分"><a href="#对象构造部分" class="headerlink" title="对象构造部分"></a>对象构造部分</h1><p><strong>重载</strong><br>方法的签名包含方法名和参数类型， 不包括返回类型和参数名。</p>
-<p><strong>无参数构造器</strong><br>当类没有提供任何构造器时，系统会提供一个无参数构造器，数值型设置为 0，布尔型设置为 false，对象变量设置为 null。</p>
-<p><strong>显式域初始化</strong><br>在类定义中直接将值赋给任何域，赋值操作会在 super(); 与构造器之间执行。可以调用方法进行初始化。</p>
-<p><strong>构造器执行步骤</strong><br>未包含继承部分。</p>
-<ol>
-<li>所有数据域初始化为默认值。</li>
-<li>按照在类声明中的出现次序，依次执行所有域初始化语句和初始化块。</li>
-<li>如果构造器第一行调用了第二个构造器，则执行第二个构造器主体。</li>
-<li>执行此构造器。</li>
-</ol>
+<p>对于有序集和映射，可以使用排序顺序而非元素位置建立子范围。如 <code>SortedSet</code> <code>SortMap</code></p>
+<p><strong>不可修改的视图</strong><br>Collection 中一些方法用于产生不可修改视图，运行时检查到修改则抛出一个异常。</p>
+<p><strong>同步视图</strong><br>类库设计者使用视图确保集合的线程安全，而非实现线程安全的集合类。如将任何一个映射表转换成具有同步访问方法的 Map 视图：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Map&lt;String,, Employee&gt; map = Collections.synchronizedMap(<span class="keyword">new</span> HashMap&lt;String, Employee&gt;());</span><br></pre></td></tr></table></figure>
+
 ]]></content>
       <categories>
         <category>Java</category>
       </categories>
       <tags>
-        <tag>对象构造</tag>
-        <tag>静态</tag>
-        <tag>封装</tag>
-        <tag>call by</tag>
+        <tag>集合</tag>
+        <tag>队列</tag>
+        <tag>散列</tag>
+        <tag>映射</tag>
       </tags>
   </entry>
   <entry>
@@ -724,6 +441,289 @@
       </tags>
   </entry>
   <entry>
+    <title>Java 补丁-基本程序设计结构</title>
+    <url>/2019/12/01/Java-%E8%A1%A5%E4%B8%81-%E5%9F%BA%E6%9C%AC%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E7%BB%93%E6%9E%84/</url>
+    <content><![CDATA[<h1 id="数据类型部分"><a href="#数据类型部分" class="headerlink" title="数据类型部分"></a>数据类型部分</h1><p><strong>整型</strong><br>Java7 开始：允许通过加前缀 0b 写二进制数；允许为数字字面量加下划线：</p><ul>
+<li>1_000_000</li>
+<li>0b1111_0000_0100</li>
+</ul><p><strong>浮点型</strong><br>由于二进制系统无法精确表示分数 1/10，故浮点数值不适用金融计算，此时应使用 BigDecimal 类。</p><table>
+<thead>
+<tr>
+<th align="center">常量</th>
+<th align="center">数值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">Double.POSITIVE_INFINITY</td>
+<td align="center">正无穷</td>
+</tr>
+<tr>
+<td align="center">Double.NEGATIVE_INFINITY</td>
+<td align="center">负无穷</td>
+</tr>
+<tr>
+<td align="center">Double.NaN</td>
+<td align="center">非数字</td>
+</tr>
+</tbody></table><a id="more"></a>
+
+
+
+<p>判断一个特定值是否为 Double.NaN ：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span>(x == Double.NaN) <span class="comment">// never true</span></span><br><span class="line"><span class="keyword">if</span>(Double.isNaN(x)) <span class="comment">// √</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>char 类型</strong><br>char 数据类型是一个采用 UTF-16 编码表示 Unicode 码点的代码单元。<br>Unicode 转义序列会在解析代码前处理：</p>
+<ul>
+<li>“\u0022+\u0022” 会得到 “”+”” 即空串</li>
+<li>// \u00A0 is a newline 会替换成换行符</li>
+<li>// c:\users 会产生语法错误</li>
+</ul>
+<p><strong>枚举类型</strong><br>枚举类型的变量只能储存这个类型声明中给定的某个枚举值，或没有设置值 null</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">enum</span> Size &#123; SAMLL, MEDIUM, LARGE &#125;;</span><br><span class="line">Size s = Size.SMALL;</span><br></pre></td></tr></table></figure>
+
+<p>所有枚举类型都是 Enum 的子类，继承其方法。因为实际上是一个类，故比较时直接用 == 就好，也可以在枚举类型中添加构造器方法域。</p>
+<p><strong>相关：大数值</strong><br>java.math 包的 BigInteger 和 BigDecimal 类可以处理任意长度数字序列的数值，分别对应整数和浮点数运算。</p>
+<hr>
+<h1 id="运算符部分"><a href="#运算符部分" class="headerlink" title="运算符部分"></a>运算符部分</h1><p><strong>数学函数</strong><br>StrictMath 类使用 fdlibm 库实现算法，确保在所有平台上得到相同结果。</p>
+<p><strong>数值类型转换</strong><br>二元操作中的类型转换，以 double float long 的顺序进行判断，若都不是则两个操作数都转换成 int 型。<br>强制类型转换通过截断小数部分将浮点值转换为整型，若要得到最接近整型的数，使用 Math.round 对浮点数进行舍入：</p>
+<ul>
+<li><code>int newx = (int) Math.round(x);</code> // 返回的是 long 类型</li>
+</ul>
+<p>强制转换中若超出目标类型的表示范围，结果会截断成完全不同的值。<br>不要在 boolean 与任何数值类型间强制类型转换，转换为数值时可以使用条件表达式 boolean ? 1:0</p>
+<p><strong>自增自减和运算符级别</strong><br>自增自减中，用于表达式时前缀形式会先完成加减一：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> m = <span class="number">7</span>;</span><br><span class="line"><span class="keyword">int</span> n = <span class="number">7</span>;</span><br><span class="line"><span class="keyword">int</span> a = <span class="number">2</span> * ++m; <span class="comment">// a is 16, m is 8</span></span><br><span class="line"><span class="keyword">int</span> b = <span class="number">2</span> * n++; <span class="comment">// b is 14, n is 8</span></span><br></pre></td></tr></table></figure>
+
+<p>+= 是右结合运算符，所以 <code>a += b += c</code> 等价于 <code>a += (b += c)</code></p>
+<p><strong>位运算符</strong></p>
+<table>
+<thead>
+<tr>
+<th align="center">位运算符</th>
+<th align="center"></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">&amp;</td>
+<td align="center">and</td>
+</tr>
+<tr>
+<td align="center">&#124;</td>
+<td align="center">or</td>
+</tr>
+<tr>
+<td align="center">^</td>
+<td align="center">xor</td>
+</tr>
+<tr>
+<td align="center">~</td>
+<td align="center">not</td>
+</tr>
+</tbody></table>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> fourthBit = (n &amp; <span class="number">0b1000</span>) / <span class="number">0b1000</span>;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="字符串部分"><a href="#字符串部分" class="headerlink" title="字符串部分"></a>字符串部分</h1><p><strong>String API</strong><br>提取子串： substring 方法。<br>多个字符串放在一起用一个定界符分隔： String.join 方法。</p>
+<p><strong>不可变字符串</strong><br>String 类没有修改字符串的方法，可以先提取再拼接；编译器可以让字符串共享，即复制一个字符串变量，原始字符串与复制的字符串共享相同的字符。<br>但不要使用 == （此运算符确定是否在同一位置上）检测两个字符串是否相等，虚拟机实际上只有字符串常量是共享的，而 + 或 substring 等操作产生的结果并不共享。使用 equals equalsIgnoreCase 方法。</p>
+<p><strong>构建字符串</strong><br>用许多小段字符串构建时，字符串连接的方式效率较低，每次连接字符串都会构建一个新的 String 对象，应该 new 个空的字符串构造器：StringBuilder 类，相对 StringBuffer 类效率更高，但后者允许多线程方式执行操作。</p>
+<p><strong>Null 串</strong><br>null 上调用方法会出现错误，故检查字符串 null 和空 <code>if (str != null &amp;&amp; str.length() != 0)</code> ，空用 equals 也行。</p>
+<p><strong>码点和代码单元</strong><br>length 方法返回采用 UTF-16 编码表示的给定字符串所需要的代码单元数量（配合 char 数据类型食用）。大多数常用字符使用一个代码单元表示，辅助字符需要一对代码单元表示。故实际长度应该是码点数量：使用 codePointCount 方法获取。<br>如字符 𝕆 U+1D546 需要两个代码单元，若使用 <code>char ch = sentence.charAt(1)</code> 会返回第二个代码单元而非空格，所以此类不要用 char 类型。charAt 方法返回位置 n 的代码单元。</p>
+<blockquote>
+<p>一个 code point 可能由一个或多个 code unit(s) 表示。在 U+10000 之前的 code point 可以由一个 UTF-16 code unit 表示，U+10000 及之后的 code point 要由两个 UTF-16 code units 表示。</p>
+</blockquote>
+<hr>
+<h1 id="输入输出部分"><a href="#输入输出部分" class="headerlink" title="输入输出部分"></a>输入输出部分</h1><p><strong>格式化输出</strong></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">System.out.printf(<span class="string">"%,.2f"</span>, <span class="number">10000.0</span> / <span class="number">3.0</span>);</span><br><span class="line"><span class="comment">// 3,333.33</span></span><br></pre></td></tr></table></figure>
+
+<p>用于 printf 的转换符：</p>
+<table>
+<thead>
+<tr>
+<th align="center">转换符</th>
+<th align="center">类型</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">d</td>
+<td align="center">十进制整数</td>
+</tr>
+<tr>
+<td align="center">x</td>
+<td align="center">十六进制整数</td>
+</tr>
+<tr>
+<td align="center">o</td>
+<td align="center">八进制整数</td>
+</tr>
+<tr>
+<td align="center">f</td>
+<td align="center">定点浮点数</td>
+</tr>
+<tr>
+<td align="center">e</td>
+<td align="center">指数浮点值</td>
+</tr>
+<tr>
+<td align="center">g</td>
+<td align="center">通用浮点数</td>
+</tr>
+<tr>
+<td align="center">a</td>
+<td align="center">十六进制浮点数</td>
+</tr>
+<tr>
+<td align="center">s</td>
+<td align="center">字符串</td>
+</tr>
+<tr>
+<td align="center">c</td>
+<td align="center">字符</td>
+</tr>
+<tr>
+<td align="center">b</td>
+<td align="center">布尔</td>
+</tr>
+<tr>
+<td align="center">h</td>
+<td align="center">散列码</td>
+</tr>
+<tr>
+<td align="center">%</td>
+<td align="center">百分号</td>
+</tr>
+<tr>
+<td align="center">n</td>
+<td align="center">平台有关的行分隔符</td>
+</tr>
+</tbody></table>
+<p>用于 printf 的标志：</p>
+<table>
+<thead>
+<tr>
+<th align="center">标志</th>
+<th align="center">目的</th>
+<th align="center">举例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">+</td>
+<td align="center">打印正负数符号</td>
+<td align="center">+333</td>
+</tr>
+<tr>
+<td align="center">空格</td>
+<td align="center">在正数前加空格</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">0</td>
+<td align="center">数字前面补 0</td>
+<td align="center">00333.3</td>
+</tr>
+<tr>
+<td align="center">-</td>
+<td align="center">左对齐</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">(</td>
+<td align="center">将负数括在括号内</td>
+<td align="center">(3.3)</td>
+</tr>
+<tr>
+<td align="center">,</td>
+<td align="center">添加分组分隔符</td>
+<td align="center">3,333</td>
+</tr>
+<tr>
+<td align="center">#（f）</td>
+<td align="center">包含小数点</td>
+<td align="center">333.</td>
+</tr>
+<tr>
+<td align="center">#</td>
+<td align="center">添加前缀 0x 或 0</td>
+<td align="center">0xcafe</td>
+</tr>
+</tbody></table>
+<p><strong>文件输入和输出</strong><br>通过相对位置指定文件时，是 Java 虚拟机启动路径的相对位置。<br>记得捕获输入输出异常，以免文件不存在或不能被创建。</p>
+<p>读取通过构造 Scanner 对象，路径中要转义反斜杠；写入则构造 PrintWriter 对象。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Scanner in = <span class="keyword">new</span> Scanner(Paths.get(<span class="string">"c:\\my\\file"</span>), <span class="string">"UTF-8"</span>);</span><br><span class="line">Scanner in = <span class="keyword">new</span> Scanner(<span class="string">"c:\\my\\file"</span>); <span class="comment">// 允许但会变成字符数据</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="控制流程部分"><a href="#控制流程部分" class="headerlink" title="控制流程部分"></a>控制流程部分</h1><p><strong>switch 语句</strong><br>Java7 开始，case 标签可以是字符串字面量。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">String input = ...;</span><br><span class="line"><span class="keyword">switch</span> (input.toLowerCase())&#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="string">"yes"</span>:</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>中断语句</strong><br>带标签 break 语句用于跳出多重循环。标签放在最外层循环之前，并紧跟冒号，break 将跳转到带标签的语句块结尾。只能跳出，不能跳入。<br>带标签 break 甚至可以用于 if 语句或语句块中：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">label:</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span> (condition) <span class="keyword">break</span> label;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>continue 语句将控制转移到最内层循环的首部，带标签 continue 语句将跳到与标签匹配的循环首部。</p>
+<hr>
+<h1 id="数组部分"><a href="#数组部分" class="headerlink" title="数组部分"></a>数组部分</h1><p>数字数组初始化为 0，boolean 数组初始化为 false，对象数组则为 null。数组创建后不能改变大小，需要扩展应选择数组列表 array list。<br>Java 允许数组长度为 0，与 null 不同。</p>
+<p><strong>for each 循环</strong></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> (variable : collection) statement &#123;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>collection 可以是数组或实现了 Iterable 接口的类对象。<br>打印数组所有值可以用 Arrays.toString 方法，元素被放在 [] 内，用逗号分隔。</p>
+<p><strong>初始化和匿名</strong><br>不创建变量初始化一个数组：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">arr = <span class="keyword">new</span> <span class="keyword">int</span>[] &#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>&#125;;</span><br><span class="line"><span class="comment">// 即下列语句简写</span></span><br><span class="line"><span class="keyword">int</span>[] temp = &#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>&#125;;</span><br><span class="line">arr = temp;</span><br></pre></td></tr></table></figure>
+
+<p><strong>拷贝</strong><br>将一个数组变量拷贝给另一个数组变量后，两个变量引用的是同一个数组，即更改在两者生效。若要拷贝到新数组，使用 Arrays.copyOf 方法，这个方法也用于增加数组大小：<code>arr = Arrays.copyOf(arr, 2 * arr.length)</code> 。</p>
+<p><strong>命令行参数</strong><br>main 的 String[] args 用于存储命令行参数，不包含程序名。</p>
+<p><strong>不规则数组</strong><br>Java 实际上只有一维数组，多维数组定义为“数组的数组”。所以可以让两行交换，或是每一行有不同的长度：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span>[][] odds = <span class="keyword">new</span> <span class="keyword">int</span>[NMAX +<span class="number">1</span>][];</span><br><span class="line"><span class="comment">//new 一个具有行数的数组</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> n = <span class="number">0</span>; n &lt;= NMAX; n++)</span><br><span class="line">    odds[n] = <span class="keyword">new</span> <span class="keyword">int</span>[n + <span class="number">1</span>];</span><br><span class="line">    <span class="comment">//然后为每行添加元素</span></span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>数据类型</tag>
+        <tag>控制流程</tag>
+        <tag>数组</tag>
+        <tag>运算符</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Java 补丁-对象和类</title>
+    <url>/2019/12/08/Java-%E8%A1%A5%E4%B8%81-%E5%AF%B9%E8%B1%A1%E5%92%8C%E7%B1%BB/</url>
+    <content><![CDATA[<h1 id="预定义类部分"><a href="#预定义类部分" class="headerlink" title="预定义类部分"></a>预定义类部分</h1><p><strong>更改器和访问器</strong><br>更改器方法：调用方法后，会改变对象的状态。<br>访问器方法：只访问对象而不修改对象，通过生成新对象的方式应用改动。</p><h1 id="自定义类部分"><a href="#自定义类部分" class="headerlink" title="自定义类部分"></a>自定义类部分</h1><p><strong>封装</strong><br>注意是否返回了引用可变对象，即访问器方法返回了一个有更改器方法的对象；返回可变对象的引用时，应该先进行 clone。<br>Date 类有更改器方法 setTime，破坏了封装性：</p><a id="more"></a>
+
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">private Date hireDay;</span><br><span class="line">public Date getHireDay()&#123;</span><br><span class="line">	return hireDay;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>final</strong><br>将实例域定义为 final，则构建对象时必须初始化这样的域（在构造器之后），并且之后不能再修改。大多应用于不可变类的域，对于可变的类只表示变量中的对象引用不会再指向其他对象，但当前这个对象可以修改。</p>
+<ul>
+<li>不可变类：类中的的每个方法都不会改变其对象，如 String 类。<br>System.out 被声明为 final，但 System 类有 setOut 方法：本地方法不是用 Java 语言实现，可以绕过 Java 的存取控制机制。</li>
+</ul>
+<h1 id="静态部份"><a href="#静态部份" class="headerlink" title="静态部份"></a>静态部份</h1><p><strong>静态方法</strong><br>不能对对象实施操作，不使用其对象，即没有 this 参数的方法。使用：</p>
+<ul>
+<li>一个方法不需要访问对象状态，所需参数都通过显式参数提供。</li>
+<li>一个方法只需要访问类的静态域。</li>
+</ul>
+<h1 id="参数传递部分"><a href="#参数传递部分" class="headerlink" title="参数传递部分"></a>参数传递部分</h1><p>Java 总是采用按值调用。即方法得到的是参数值的一个拷贝。注意，Java 对对象采用的也是值调用，对象引用是按值传递的。</p>
+<ul>
+<li>一个方法不能修改一个基本数据类型的参数（数字型或布尔型）。</li>
+<li>一个方法可以改变一个对象参数的状态。</li>
+<li>一个方法不能让对象参数引用一个新的对象，因为方法结束后就被丢弃。</li>
+</ul>
+<h1 id="对象构造部分"><a href="#对象构造部分" class="headerlink" title="对象构造部分"></a>对象构造部分</h1><p><strong>重载</strong><br>方法的签名包含方法名和参数类型， 不包括返回类型和参数名。</p>
+<p><strong>无参数构造器</strong><br>当类没有提供任何构造器时，系统会提供一个无参数构造器，数值型设置为 0，布尔型设置为 false，对象变量设置为 null。</p>
+<p><strong>显式域初始化</strong><br>在类定义中直接将值赋给任何域，赋值操作会在 super(); 与构造器之间执行。可以调用方法进行初始化。</p>
+<p><strong>构造器执行步骤</strong><br>未包含继承部分。</p>
+<ol>
+<li>所有数据域初始化为默认值。</li>
+<li>按照在类声明中的出现次序，依次执行所有域初始化语句和初始化块。</li>
+<li>如果构造器第一行调用了第二个构造器，则执行第二个构造器主体。</li>
+<li>执行此构造器。</li>
+</ol>
+]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>对象构造</tag>
+        <tag>静态</tag>
+        <tag>封装</tag>
+        <tag>call by</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Java 补丁-异常、断言和日志</title>
     <url>/2019/12/23/Java-%E8%A1%A5%E4%B8%81-%E5%BC%82%E5%B8%B8%E3%80%81%E6%96%AD%E8%A8%80%E5%92%8C%E6%97%A5%E5%BF%97/</url>
     <content><![CDATA[<h1 id="异常部分"><a href="#异常部分" class="headerlink" title="异常部分"></a>异常部分</h1><p><strong>概念</strong><br>非受查 unchecked 异常：派生于 Error 类或 RuntimeException 类的所有异常，其它的异常称为受查 checked 异常。</p><p><strong>创建异常类</strong><br>派生于 Exception 或其子类。应该包含两个构造器：默认构造器和带描述信息的构造器（超类 Throwable 的 toString 方法会打印出详细信息）。</p><a id="more"></a>
@@ -770,53 +770,6 @@
         <tag>异常</tag>
         <tag>断言</tag>
         <tag>日志</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Java 补丁-接口、lambda 和内部类</title>
-    <url>/2019/12/23/Java-%E8%A1%A5%E4%B8%81-%E6%8E%A5%E5%8F%A3%E3%80%81lambda-%E5%92%8C%E5%86%85%E9%83%A8%E7%B1%BB/</url>
-    <content><![CDATA[<h1 id="接口部分"><a href="#接口部分" class="headerlink" title="接口部分"></a>接口部分</h1><p><strong>特性</strong><br>可以使用 instanceof 检查一个对象是否实现某个接口：</p><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">if (anObject instanceof Comparable) &#123; ... &#125;</span><br></pre></td></tr></table></figure><p>接口中不能包含实例域或静态方法（ Java 8 支持静态方法），允许常量。接口中的方法默认为 public，域默认为 public static final。</p><a id="more"></a>
-
-
-
-<p> <strong>default 默认方法</strong><br>与超类冲突：超类的方法和接口的默认方法冲突时，超类优先。<br>与接口冲突：只要有一个接口有默认方法，就需要提供一个实现覆盖掉。若接口们都没有提供默认方法，则不存在冲突 - 全部实现或不实现（使自身抽象）。</p>
-<blockquote>
-<p>所以不要用接口的默认方法重新定义 Object 类中的方法如 equals 等，因为超类优先规则默认方法会永远被忽略。</p>
-</blockquote>
-<p><strong>clone 方法</strong><br>copy 一个新对象而不是引用。clone 方法是 Objects 的一个 protected 方法，子类只能克隆它自己的对象，会产生问题：若拷贝的是相同子对象的引用，原对象和克隆对象仍会共享一些信息。默认的拷贝是浅拷贝，若共享的子对象不可变（如 String 类），在生命周期里没有更改器改变它，也没有方法生成它的引用，则是安全的。</p>
-<p>若默认 clone 方法满足需求，需要实现 Cloneable 接口（标记接口），调用 <code>super.clone()</code>；若要在可变的子对象上调用 clone 进行修补，则还重新定义一个 public 的 clone 方法。</p>
-<h1 id="lambda-表达式部分"><a href="#lambda-表达式部分" class="headerlink" title="lambda 表达式部分 *"></a>lambda 表达式部分 *</h1><p><strong>规范</strong><br>一个可传递的代码块，以及其变量规范。即使 lambda 表达式没有参数仍然要提供空括号：<code>() -&gt; { ... }</code> ；如果可以推导出参数类型则可以忽略其类型：<code>Comparator&lt;S
-tring&gt; comp = (first, second) -&gt; ... ;</code> ；如果方法只有一个参数，且可以推导出类型，可以省略小括号：<code>ActionListener listener = event -&gt; ... ;</code> 。<br>lambda 表达式的返回类型会由上下文推导得出；只在某些分支返回一个值是不合法的。</p>
-<p><strong>函数式接口</strong><br>对于只有一个抽象方法的接口，需要其对象时，可以提供一个 lambda 表达式。Java 中对 lambda 表达式所能做的只是转换为函数式接口。</p>
-<p><strong>引用方法</strong><br>使用现有方法代替要传递的内容，用 :: 分隔方法名和对象名，允许使用 this 和 super。</p>
-<ul>
-<li>object::instanceMethod</li>
-<li>Class::staticMethod</li>
-<li>Class::instanceMethod</li>
-</ul>
-<p>前两种情况中方法引用等价于提供方法参数的 lambda 表达式，如 <code>System.out::println</code> 等价于 <code>x -&gt; System.out.println(x)</code> 。第三种情况第一个参数会成为方法的目标，如 <code>String::compareToIgnoreCase</code> 等价于 <code>(x,y) -&gt; x.compareToIgnoreCase(y)</code> 。</p>
-<p><strong>构造器引用</strong><br>构造器引用类似于方法引用，不过方法名为 new。编译器通过上下文选择构造器。<br>可以用数组类型建立构造器引用，如 <code>int[]::new</code> 有一个数组长度参数，等价于 <code>x -&gt; new int[x]</code>。但无法构造泛型类型 T 的数组，通过 Stream 接口的 toArray 方法调用构造器获得某类型的数组。</p>
-<p><strong>变量作用域</strong><br>lambda 表达式可以捕获外围方法或类中变量的值，即可以存储自由变量（非参数且不在表达式中定义）的值。<br>不能改变引用值，或在外部改变引用变量。即捕获的变量必须实际上是最终变量，初始化后就不会再为它赋新值。<br>this 关键字是指创建这个 lambda 表达式的方法的 this 参数。</p>
-<h1 id="内部类部分"><a href="#内部类部分" class="headerlink" title="内部类部分"></a>内部类部分</h1><p><strong>规则</strong><br>内部类的对象总有一个隐式引用（OuterClass.this）指向外部类对象，故可以访问创建它的外围类对象的实例域。<br>每个外部对象会分别有一个内部类实例，故内部类的静态域要加 final 确保唯一。而其方法不允许 static，可能因为弊大于利。</p>
-<p><strong>局部内部类</strong><br>定义在方法中，不能用 public 和 private 声明。对外部世界完全隐藏，外部类也不能访问它。</p>
-<p><strong>匿名内部类</strong></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">new SuperType(construction parameters)</span><br><span class="line">	&#123;</span><br><span class="line">		inner class methods and data</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
-
-<p>若构造一个数组列表并将其传递到方法后就不再需要，可以作为匿名列表：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">invite(new ArrayList&lt;String&gt;() &#123;&#123; add(&quot;A&quot;; add(&quot;B&quot;); )&#125;&#125;);</span><br></pre></td></tr></table></figure>
-
-<p>外层括号建立了 ArrayList 的一个匿名子类，内层括号为子类添加元素。</p>
-<p>调用 getClass() 是实际是 this.getClass() 而静态方法没有 this，所以应该：<code>new Object(){}.getClass().getEnclosingClass()</code> 。<code>new Object(){}</code> 会建立 Object 的一个匿名子类的匿名对象，<code>getEnclosingClass()</code> 则得到其外围类即包含对应静态方法的类。</p>
-<p><strong>静态内部类</strong><br>当使用内部类只是为了隐藏在另一个类内部，不引用外围类对象，可以声明成 static 以便取消产生的引用。（有时内部类对象在静态方法中构造）<br>可以有静态域和方法。</p>
-]]></content>
-      <categories>
-        <category>Java</category>
-      </categories>
-      <tags>
-        <tag>接口</tag>
-        <tag>内部类</tag>
-        <tag>lambda</tag>
-        <tag>泛型</tag>
       </tags>
   </entry>
   <entry>
@@ -914,64 +867,6 @@ tring&gt; comp = (first, second) -&gt; ... ;</code> ；如果方法只有一个�
       </tags>
   </entry>
   <entry>
-    <title>Java 补丁-继承</title>
-    <url>/2019/12/11/Java-%E8%A1%A5%E4%B8%81-%E7%BB%A7%E6%89%BF/</url>
-    <content><![CDATA[<h1 id="超类子类部分"><a href="#超类子类部分" class="headerlink" title="超类子类部分"></a>超类子类部分</h1><p><strong>this 和 super</strong></p><table>
-<thead>
-<tr>
-<th>this</th>
-<th>super</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>引用隐式参数</td>
-<td>调用超类方法</td>
-</tr>
-<tr>
-<td>调用该类其他构造器</td>
-<td>调用超类的构造器</td>
-</tr>
-</tbody></table><p>但是：super 不是一个对象的引用，只是一个指示编译器调用超类方法的<em>关键词</em></p><p><strong>is-a 规则</strong><br>出现超类对象的任何地方都可以通过子类对象置换。即置换法则。</p><p><strong>方法调用</strong><br>假设调用 x.f(args)，x 是类 C 的一个对象：</p><a id="more"></a>
-
-
-
-
-<ol>
-<li>编译器查看对象的声明类型和方法名。编译器会一一列举所有 C 类中名为 f 的方法和其超类中声明为 public 且名为 f 的方法。</li>
-<li>编译器查看调用方法时提供的参数类型，选择第一步中与提供的参数类型完全匹配的方法。即重载解析。这个过程允许类型转换，若没有找到或找到多个则报告错误。&lt;– 此时已获得需要调用的方法名和参数类型</li>
-<li>如果是 private static final 方法或者构造器，编译器已知道应该调用的方法，即静态绑定。若调用的方法依赖隐式参数的实际类型，称动态绑定。此例中编译器通过动态绑定确定调用 f(String) 方法。</li>
-<li>采用动态绑定调用方法时，虚拟机会调用与 x 所引对象_实际类型_最符合的那个类的方法。若 x 实际类型为 D，是 C 的子类。若 D 定义了 f(String) 方法就调用，否则在 D 的超类中寻找。</li>
-</ol>
-<p>为了应对搜索方法的时间开销，虚拟机预先为每个类创建方法表，列出所有方法签名和实际调用的方法。</p>
-<p><strong>绑定</strong><br>_静态绑定_：在程序执行以前已经被绑定（即在编译过程中就已经知道这个方法到底是哪个类中的方法）。<br>_动态绑定_：在运行时期根据具体对象的类型进行绑定。<br>Java 中重载的方法使用静态绑定，重写的方法使用动态绑定。</p>
-<p><strong>protected</strong><br>仅对本类可见，包括子类。谨慎使用于数据域，因为他人可能由这个类派生出新类并访问 protected，若要对此类进行修改就必须通知所有相关人员。更适合使用于方法。</p>
-<h1 id="Objects-部分"><a href="#Objects-部分" class="headerlink" title="Objects 部分"></a>Objects 部分</h1><p><strong>覆盖 equals</strong></p>
-<ol>
-<li>检测 this 与显式参数是否引用同一个对象。<code>if (this == otherObj) return true;</code></li>
-<li>检测显式参数是否为 null，因为 null 调用方法会报错。 <code>if (otherObj == null) return false;</code></li>
-<li>比较 this 与显式参数是否为同一类。为了保证 equals 的对称性，应该 <code>if (getClass() != otherObj.getclass()) return false;</code> 但是例如 AbstractSet 类拥有 TreeSet 和 HashSet 两个具体子类，实现了同样的操作。此时应该 <code>if (!(otherObj instanceof ClassName)) return false;</code></li>
-<li>将 otherObj 转换为相应的类类型变量。 <code>ClassName other = (ClassName) otherObj;</code></li>
-<li>对需要比较的域进行比较，== 比较基本域，Objects.equals 比较对象域。 <code>return field1 == other.field1 $$ Objects.equals(field2, other.field2);</code><br>如果在子类中重新定义了 equals，先调用 <code>super.equals(other);</code> 比较，再比较子类中的实例域。<br>覆盖 Objects 类的 equals 方法就不要弄错显式参数类型！可以用 @Override 进行标记。<br>对于数组类型，使用静态 Arrays.equals 方法。</li>
-</ol>
-<p><strong>覆盖 hashCode</strong><br>不同对象的散列码基本不会相同，最好使用 null 安全的 Objects.hashCode，参数为 null 时返回 0；使用静态方法避免创建对象。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public int hashCode()&#123;</span><br><span class="line">	return 7 * Objects.hashCode(name) + 11* Double.hashCode(salary);</span><br><span class="line">	// 或者</span><br><span class="line">	return Objects.hashCode(name, salary);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>覆盖 toString</strong><br>Objects 的 toString 输出对象所属的类名和散列码。有时候直接输出这个大概是设计者没覆盖…<br>比如数组继承了 Objects 的方法，所以用静态方法 Arrays.toString 比较好。</p>
-<h1 id="泛型数组列表部分"><a href="#泛型数组列表部分" class="headerlink" title="泛型数组列表部分"></a>泛型数组列表部分</h1><p><strong>数组长度</strong><br>确认数组列表不再发生变化时使用 trimToSize 方法，将存储区域的大小调整为当前，回收多余存储空间。不影响之后再添加元素，但和扩展一样，会自动创建更大的数组并拷贝进去。</p>
-<p><strong>参数数量可变方法</strong><br>… 代表当前方法可以接收任意数量的对象，相当于接收了对象数组。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public static double max(double... values)&#123;&#125;</span><br><span class="line">// 基本类型会自动装箱</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>Java</category>
-      </categories>
-      <tags>
-        <tag>数组</tag>
-        <tag>泛型</tag>
-        <tag>继承</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Java 补丁-泛型程序设计</title>
     <url>/2019/12/24/Java-%E8%A1%A5%E4%B8%81-%E6%B3%9B%E5%9E%8B%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/</url>
     <content><![CDATA[<p><strong>类型变量限定</strong><br>对类型变量 T 设置限定 <code>&lt;T extends BoundingType&gt;</code>。T 的绑定类型可以是类也可以是接口，只是 extends 关键词更接近子类概念，并非表达继承的意思。<br>一个类型变量或通配符可以有多个限定，限定类型用 &amp; 分隔，类型变量用逗号分隔。但限定中至多有一个类，并是限定列表的第一个。</p><a id="more"></a>
@@ -1050,314 +945,115 @@ tring&gt; comp = (first, second) -&gt; ... ;</code> ；如果方法只有一个�
         <category>Java</category>
       </categories>
       <tags>
-        <tag>继承</tag>
         <tag>类型擦除</tag>
+        <tag>继承</tag>
         <tag>通配符</tag>
         <tag>泛型约束</tag>
       </tags>
   </entry>
   <entry>
-    <title>Linux 命令思维导图</title>
-    <url>/2020/01/30/Linux-%E5%91%BD%E4%BB%A4%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE/</url>
-    <content><![CDATA[<p>没钱开 XMind… 理直气壮不去水印</p>
-<p><img src="https://i.loli.net/2020/03/06/tQxgWw3LKerF8YH.png" alt="linux.png"></p>
-]]></content>
-      <categories>
-        <category>Linux</category>
-      </categories>
-      <tags>
-        <tag>思维导图</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Java 补丁-网络</title>
-    <url>/2020/03/15/Java-%E8%A1%A5%E4%B8%81-%E7%BD%91%E7%BB%9C/</url>
-    <content><![CDATA[<h1 id="连接"><a href="#连接" class="headerlink" title="连接"></a>连接</h1><h2 id="简单示例"><a href="#简单示例" class="headerlink" title="简单示例"></a>简单示例</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Socket s = <span class="keyword">new</span> Socket(<span class="string">"yuyurbq.club"</span>, <span class="number">80</span>);</span><br><span class="line"><span class="comment">// 打开一个套接字</span></span><br><span class="line">Scanner in = <span class="keyword">new</span> Scanner(s.getInputStream(), <span class="string">"UTF-8"</span>);</span><br></pre></td></tr></table></figure><h2 id="套接字超时"><a href="#套接字超时" class="headerlink" title="套接字超时"></a>套接字超时</h2><p>对于读写操作没有数据可供访问而阻塞：使用 <code>SetSoTimeout</code> 方法设置（毫秒），若之后的读写操作在时间内没有完成将抛出 SocketTimeoutException 异常。</p><a id="more"></a>
+    <title>Java 补丁-接口、lambda 和内部类</title>
+    <url>/2019/12/23/Java-%E8%A1%A5%E4%B8%81-%E6%8E%A5%E5%8F%A3%E3%80%81lambda-%E5%92%8C%E5%86%85%E9%83%A8%E7%B1%BB/</url>
+    <content><![CDATA[<h1 id="接口部分"><a href="#接口部分" class="headerlink" title="接口部分"></a>接口部分</h1><p><strong>特性</strong><br>可以使用 instanceof 检查一个对象是否实现某个接口：</p><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">if (anObject instanceof Comparable) &#123; ... &#125;</span><br></pre></td></tr></table></figure><p>接口中不能包含实例域或静态方法（ Java 8 支持静态方法），允许常量。接口中的方法默认为 public，域默认为 public static final。</p><a id="more"></a>
 
 
-<p>对于一直无法建立到主机的连接而阻塞：先构建无连接的套接字，再通过有超时参数的方法进行连接：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Socket s = <span class="keyword">new</span> Socket();</span><br><span class="line">s.connect(<span class="keyword">new</span> InetSocketAddress(host, port), timeout);</span><br></pre></td></tr></table></figure>
 
-<h2 id="获取-ip"><a href="#获取-ip" class="headerlink" title="获取 ip"></a>获取 ip</h2><p>静态方法 <code>getByName</code> 方法将返回代表某主机的 InetAddress 对象，通过 <code>getAddress</code> 获取封装其中的 ip 字节序列：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">InetAddress address = InetAddress.getByName(host);</span><br><span class="line"><span class="keyword">byte</span>[] addressBytes = address.getAddress();</span><br></pre></td></tr></table></figure>
-
-<p>若主机名拥有多个地址，且希望获得所有这些：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">InetAddress[] addresses = InetAddress.getAllByName(host);</span><br></pre></td></tr></table></figure>
-
-<p>还有个 <code>getLocalHost</code> 避免获得 127.0.0.1 这样的本地地址。</p>
-<h1 id="服务端"><a href="#服务端" class="headerlink" title="服务端"></a>服务端</h1><h2 id="服务端套接字"><a href="#服务端套接字" class="headerlink" title="服务端套接字"></a>服务端套接字</h2><p>建立套接字：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">ServerSocket s = <span class="keyword">new</span> ServerSocker(port); <span class="comment">// port 不是字符串</span></span><br></pre></td></tr></table></figure>
-
-<p>监听这个端口，一旦有客户端连接上（连接已建立）这个端口，将返回一个 Socket 对象，并以此获得输入输出流：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Socket incoming = s.accept();</span><br><span class="line">InputStream inStream = incoming.getInputStream();</span><br><span class="line">OutputStream outStream = incoming.getOutputStream();</span><br></pre></td></tr></table></figure>
-
-<p>将流转换成扫描器和写入器：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Scanner in = <span class="keyword">new</span> Scanner(inStream, <span class="string">"UTF-8"</span>);</span><br><span class="line">PrintWrite out = <span class="keyword">new</span> PrintWriter(<span class="keyword">new</span> OutputStreamWriter(outStream, <span class="string">"UTF-8"</span>), <span class="keyword">true</span>);</span><br></pre></td></tr></table></figure>
-
-<p>通讯的最后关闭套接字：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">incoming.close();</span><br></pre></td></tr></table></figure>
-
-<h2 id="多个客户端"><a href="#多个客户端" class="headerlink" title="多个客户端"></a>多个客户端</h2><p>通过线程解决，类似：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">while</span> (<span class="keyword">true</span>) &#123;</span><br><span class="line">	Socket incoming = s.accept();</span><br><span class="line">	Runnable r = <span class="keyword">new</span> ThreadedEchoHandler(incoming);</span><br><span class="line">	Thread t = <span class="keyword">new</span> Thread(r);</span><br><span class="line">	t.start;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>ThreadedEchoHandler 实现 Runnable 接口，在 run 方法中包含与客户端通信的代码：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ThreadedEchoHandler</span> <span class="keyword">implements</span> <span class="title">Runnable</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">try</span> (InputStream inStream = incoming.get...) &#123;</span><br><span class="line">			...</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">catch</span>(IOException e) &#123;...&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="半关闭"><a href="#半关闭" class="headerlink" title="半关闭"></a>半关闭</h2><p>socket 对象的 <code>shutdownOutput()</code> 方法可以终止输出但保持接收，适合 HTTP 这种 one-shot 服务。</p>
-<h2 id="可中断套接字"><a href="#可中断套接字" class="headerlink" title="可中断套接字"></a>可中断套接字</h2><p>套接字读写数据时，当前线程将被阻塞至操作成功或超时为止，此时想取消连接的话，当线程因套接字无法响应而阻塞时，无法通过调用 interrupt 解除。</p>
-<p> 为了中断套接字操作：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">SocketChannel channel = SocketChannel.open(<span class="keyword">new</span> InetSocketAddress(host, port));</span><br><span class="line"><span class="comment">// 服务器端 host 用 localhost 即可</span></span><br></pre></td></tr></table></figure>
-
-<h1 id="WEB"><a href="#WEB" class="headerlink" title="WEB"></a>WEB</h1><h2 id="URL-和-URI"><a href="#URL-和-URI" class="headerlink" title="URL 和 URI"></a>URL 和 URI</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[scheme:]schemeSpecificPart[#fragment]</span><br><span class="line">分层 URI : schemeSpecificPart &gt; [//authority][path][?query]</span><br><span class="line">基于服务器的 URL : authority &gt; [user-info@]host[:port]</span><br></pre></td></tr></table></figure>
-
-<p>URI</p>
+<p> <strong>default 默认方法</strong><br>与超类冲突：超类的方法和接口的默认方法冲突时，超类优先。<br>与接口冲突：只要有一个接口有默认方法，就需要提供一个实现覆盖掉。若接口们都没有提供默认方法，则不存在冲突 - 全部实现或不实现（使自身抽象）。</p>
+<blockquote>
+<p>所以不要用接口的默认方法重新定义 Object 类中的方法如 equals 等，因为超类优先规则默认方法会永远被忽略。</p>
+</blockquote>
+<p><strong>clone 方法</strong><br>copy 一个新对象而不是引用。clone 方法是 Objects 的一个 protected 方法，子类只能克隆它自己的对象，会产生问题：若拷贝的是相同子对象的引用，原对象和克隆对象仍会共享一些信息。默认的拷贝是浅拷贝，若共享的子对象不可变（如 String 类），在生命周期里没有更改器改变它，也没有方法生成它的引用，则是安全的。</p>
+<p>若默认 clone 方法满足需求，需要实现 Cloneable 接口（标记接口），调用 <code>super.clone()</code>；若要在可变的子对象上调用 clone 进行修补，则还重新定义一个 public 的 clone 方法。</p>
+<h1 id="lambda-表达式部分"><a href="#lambda-表达式部分" class="headerlink" title="lambda 表达式部分 *"></a>lambda 表达式部分 *</h1><p><strong>规范</strong><br>一个可传递的代码块，以及其变量规范。即使 lambda 表达式没有参数仍然要提供空括号：<code>() -&gt; { ... }</code> ；如果可以推导出参数类型则可以忽略其类型：<code>Comparator&lt;S
+tring&gt; comp = (first, second) -&gt; ... ;</code> ；如果方法只有一个参数，且可以推导出类型，可以省略小括号：<code>ActionListener listener = event -&gt; ... ;</code> 。<br>lambda 表达式的返回类型会由上下文推导得出；只在某些分支返回一个值是不合法的。</p>
+<p><strong>函数式接口</strong><br>对于只有一个抽象方法的接口，需要其对象时，可以提供一个 lambda 表达式。Java 中对 lambda 表达式所能做的只是转换为函数式接口。</p>
+<p><strong>引用方法</strong><br>使用现有方法代替要传递的内容，用 :: 分隔方法名和对象名，允许使用 this 和 super。</p>
 <ul>
-<li>语法结构，指定 Web 资源的字符串；</li>
-<li>URI 类解析标识符并将其分解成组成部分，如 <code>getScheme</code> <code>getHost</code> <code>getPath</code> 等；</li>
-<li>还可以处理绝对和相对标识符，组合出绝对 URI 或相对化 URI，<code>relativize(combined)</code> <code>resolve(relative)</code> 。</li>
+<li>object::instanceMethod</li>
+<li>Class::staticMethod</li>
+<li>Class::instanceMethod</li>
 </ul>
-<p>URL</p>
-<ul>
-<li>URI 的一个特例，定位 Web 资源；</li>
-<li>从字符串构建 URL 对象：<code>URL url = new URL(urlString)</code> ;</li>
-<li>从 URL 类的 <code>openStream</code> 方法获得 InputStream 对象，随后正常处理。</li>
-</ul>
-<p>URN</p>
-<ul>
-<li>无法定位数据的 URI，统一资源名称。</li>
-</ul>
-<h2 id="从-URLConnection-获取信息"><a href="#从-URLConnection-获取信息" class="headerlink" title="从 URLConnection 获取信息"></a>从 URLConnection 获取信息</h2><p>能获得比基本 URL 类更多的控制功能。</p>
-<ol>
-<li><p>URL 类的 openConnection 方法获得对象：</p>
- <figure class="highlight java"><table><tr><td class="code"><pre><span class="line">URLConnection connection = url.openConnection();</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>设置任意的请求属性，如 <code>setDoInput</code> <code>setDoOutput</code> <code>setUseCaches</code> 等；</p>
-</li>
-<li><p>用 connect 方法连接：</p>
- <figure class="highlight java"><table><tr><td class="code"><pre><span class="line">connection.connect();</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>可以进行头信息的查询，<code>getHeaderFields</code> 返回一个包含消息头所有字段的 Map 对象，通过 <code>getContentType</code> <code>getDate</code> <code>getContentLength</code> 等查询字段；</p>
-</li>
-<li><p><code>getInputStream</code> 方法访问资源数据，和 openStream 返回的流相同。</p>
-</li>
-</ol>
-<p><strong>设置连接属性</strong></p>
-<p>默认建立的连接只产生读取信息的输入流，若要获得执行写操作的输出流（提交数据）使用：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">connection.setDoOutput(<span class="keyword">true</span>);</span><br></pre></td></tr></table></figure>
+<p>前两种情况中方法引用等价于提供方法参数的 lambda 表达式，如 <code>System.out::println</code> 等价于 <code>x -&gt; System.out.println(x)</code> 。第三种情况第一个参数会成为方法的目标，如 <code>String::compareToIgnoreCase</code> 等价于 <code>(x,y) -&gt; x.compareToIgnoreCase(y)</code> 。</p>
+<p><strong>构造器引用</strong><br>构造器引用类似于方法引用，不过方法名为 new。编译器通过上下文选择构造器。<br>可以用数组类型建立构造器引用，如 <code>int[]::new</code> 有一个数组长度参数，等价于 <code>x -&gt; new int[x]</code>。但无法构造泛型类型 T 的数组，通过 Stream 接口的 toArray 方法调用构造器获得某类型的数组。</p>
+<p><strong>变量作用域</strong><br>lambda 表达式可以捕获外围方法或类中变量的值，即可以存储自由变量（非参数且不在表达式中定义）的值。<br>不能改变引用值，或在外部改变引用变量。即捕获的变量必须实际上是最终变量，初始化后就不会再为它赋新值。<br>this 关键字是指创建这个 lambda 表达式的方法的 this 参数。</p>
+<h1 id="内部类部分"><a href="#内部类部分" class="headerlink" title="内部类部分"></a>内部类部分</h1><p><strong>规则</strong><br>内部类的对象总有一个隐式引用（OuterClass.this）指向外部类对象，故可以访问创建它的外围类对象的实例域。<br>每个外部对象会分别有一个内部类实例，故内部类的静态域要加 final 确保唯一。而其方法不允许 static，可能因为弊大于利。</p>
+<p><strong>局部内部类</strong><br>定义在方法中，不能用 public 和 private 声明。对外部世界完全隐藏，外部类也不能访问它。</p>
+<p><strong>匿名内部类</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">new SuperType(construction parameters)</span><br><span class="line">	&#123;</span><br><span class="line">		inner class methods and data</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
 
-<p>设置请求头：<code>setIfModifiedSince</code> 方法针对某特定日期以来的修改；<code>setUseCaches</code>  只作用于 Applet ；<code>setUseCaches</code> 方法命令浏览器先检查缓存；<code>setAllowUserInteraction</code> 用于访问密码保护资源时弹出对话框，等。</p>
-<p><strong>查询响应头</strong></p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">String key = connection.getHeaderfieldKey(n);</span><br></pre></td></tr></table></figure>
+<p>若构造一个数组列表并将其传递到方法后就不再需要，可以作为匿名列表：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">invite(new ArrayList&lt;String&gt;() &#123;&#123; add(&quot;A&quot;; add(&quot;B&quot;); )&#125;&#125;);</span><br></pre></td></tr></table></figure>
 
-<p>获得响应头的第 n 个键，n 从 1 开始，若 n 为 0 或大于消息头的字段总数则返回 null。此方法无法返回字段数量，只能遍历到 null 为止。类似的，<code>getHeaderField(n)</code> 获得第 n 个值。</p>
-<p><code>getHeaderFields</code> 方法返回封装了响应头字段的 Map 对象。还有获取常用消息头字段的方法：</p>
-<table>
-<thead>
-<tr>
-<th align="center">键</th>
-<th align="center">方法</th>
-<th align="center">返回类型</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">Date</td>
-<td align="center">getDate</td>
-<td align="center">long</td>
-</tr>
-<tr>
-<td align="center">Expires</td>
-<td align="center">getExpiration</td>
-<td align="center">long</td>
-</tr>
-<tr>
-<td align="center">LastModified</td>
-<td align="center">getLastModified</td>
-<td align="center">long</td>
-</tr>
-<tr>
-<td align="center">Content-Length</td>
-<td align="center">getContentLength</td>
-<td align="center">int</td>
-</tr>
-<tr>
-<td align="center">Content-Type</td>
-<td align="center">getContentType</td>
-<td align="center">String</td>
-</tr>
-<tr>
-<td align="center">Content-Encoding</td>
-<td align="center">getContent-Encoding</td>
-<td align="center">String</td>
-</tr>
-</tbody></table>
-<h2 id="提交表单数据"><a href="#提交表单数据" class="headerlink" title="提交表单数据"></a>提交表单数据</h2><p>首先创建 URLConnection 对象：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">URL url = <span class="keyword">new</span> URL(<span class="string">"http://host/path"</span>);</span><br><span class="line">URLConnection connection = url.openConnection();</span><br></pre></td></tr></table></figure>
-
-<p>使用 setDoOutput 方法建立用于输出的连接：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">connection.setDoOutput(<span class="keyword">true</span>);</span><br></pre></td></tr></table></figure>
-
-<p>然后用 getOutputStream 方法获得一个流，并包装在 PrintWriter 对象中：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">PrintWrite out = <span class="keyword">new</span> PrintWriter(connection.getOutputStream(),<span class="string">"UTF-8"</span>);</span><br></pre></td></tr></table></figure>
-
-<p>通过 out.print() 发送数据，最后 out.close() 关闭流。</p>
+<p>外层括号建立了 ArrayList 的一个匿名子类，内层括号为子类添加元素。</p>
+<p>调用 getClass() 是实际是 this.getClass() 而静态方法没有 this，所以应该：<code>new Object(){}.getClass().getEnclosingClass()</code> 。<code>new Object(){}</code> 会建立 Object 的一个匿名子类的匿名对象，<code>getEnclosingClass()</code> 则得到其外围类即包含对应静态方法的类。</p>
+<p><strong>静态内部类</strong><br>当使用内部类只是为了隐藏在另一个类内部，不引用外围类对象，可以声明成 static 以便取消产生的引用。（有时内部类对象在静态方法中构造）<br>可以有静态域和方法。</p>
 ]]></content>
       <categories>
         <category>Java</category>
       </categories>
-  </entry>
-  <entry>
-    <title>Linux 文件与目录</title>
-    <url>/2019/09/08/Linux-%E6%96%87%E4%BB%B6%E4%B8%8E%E7%9B%AE%E5%BD%95/</url>
-    <content><![CDATA[<h1 id="文件属性"><a href="#文件属性" class="headerlink" title="文件属性"></a>文件属性</h1><h2 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">-rw-r--r-- 1 root root 63428 Sep 8 19:24 xxxxx.md</span><br></pre></td></tr></table></figure>
-
-<h3 id="第一列-第一位"><a href="#第一列-第一位" class="headerlink" title="第一列 第一位"></a>第一列 第一位</h3><ul>
-<li>[d] 目录</li>
-<li>[-] 文件</li>
-<li>[l] 连接文件 linkfile</li>
-<li>[b] 可供存储的设备 是设备文件</li>
-<li>[c] 串行端口设备 是设备文件<a id="more"></a>
-<h3 id="第一列-第二-九位"><a href="#第一列-第二-九位" class="headerlink" title="第一列 第二~九位"></a>第一列 第二~九位</h3>三个一组，分别为 </li>
-<li>文件所有者权限</li>
-<li>同用户组权限</li>
-<li>其他用户权限</li>
-</ul>
-<p>每组三个参数依次为 r读-4 w写-2 x执行-1<br>Linux 中文件的可执行性与文件名无绝对关系<br>文件与目录的权限<strong>意义不同</strong></p>
-<h3 id="第二列"><a href="#第二列" class="headerlink" title="第二列"></a>第二列</h3><p>链接到此节点 i-node 的不同文件名数<br>&ensp;&ensp;文件名集合权限与属性记录到文件系统的 i-node 中</p>
-<h3 id="第六列"><a href="#第六列" class="headerlink" title="第六列"></a>第六列</h3><p>创建日期或最近修改日期<br>显示完整时间格式：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># ls -l --full-time</span><br></pre></td></tr></table></figure>
-
-<p>&ensp;&ensp;中文无法在终端显示所以：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># LANG= en_US</span><br></pre></td></tr></table></figure>
-
-<h2 id="改变文件属性"><a href="#改变文件属性" class="headerlink" title="改变文件属性"></a>改变文件属性</h2><blockquote>
-<p>复制行为 cp 不会更改源文件的属性</p>
-</blockquote>
-<h3 id="chgrp-改变所属用户组"><a href="#chgrp-改变所属用户组" class="headerlink" title="chgrp 改变所属用户组"></a>chgrp 改变所属用户组</h3><p>change group</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># chgrp [-R] groupname dirname/filename</span><br></pre></td></tr></table></figure>
-
-<p>组名在 /etc/group 中，否则报错</p>
-<h3 id="chown-改变所有者"><a href="#chown-改变所有者" class="headerlink" title="chown 改变所有者"></a>chown 改变所有者</h3><p>change owner</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># chown [-R] ownername dirname/filename</span><br><span class="line"># chown [-R] ownername:groupname dirname/filename</span><br></pre></td></tr></table></figure>
-
-<p>组名在 /etc/passwd 中，否则报错<br>ownername:groupname 同时更改 owner 和 group，不要用 . 防止误判</p>
-<h3 id="chmod-改变权限"><a href="#chmod-改变权限" class="headerlink" title="chmod 改变权限"></a>chmod 改变权限</h3><p>change modify</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># chmod [-R] xyz dirname/filename</span><br><span class="line"># chmod u/g/o/a +/-/= r/w/x dirname/filename</span><br></pre></td></tr></table></figure>
-
-<h1 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h1><p>树状，记录文件名<strong>列表</strong></p>
-<h2 id="FHS"><a href="#FHS" class="headerlink" title="FHS"></a>FHS</h2><p>/<br>根目录，开机相关<br>FHS建议 / 所在分区应越小越好，但以下不应该与根目录分开：</p>
-<ul>
-<li>/etc 配置文件</li>
-<li>/bin 执行文件，可被 root 和一般用户共用</li>
-<li>/dev 设备文件</li>
-<li>/lib 函数库和内核所需模块</li>
-<li>/sbin 执行文件，多用于设定系统文件，root 限定<br>因为与开机过程有关，开机仅挂载根目录，其他分区在开机完成后进行<br>根目录也有 . 和 ..，但两者都是根目录本身</li>
-</ul>
-<p>/usr<br>UNIX software resourse 软件资源数据，可分享 shareable 不可变动 static</p>
-<p>/var<br>variable 常态性变动文件，缓存，登陆文件，软件运行产生的文件等</p>
-<h2 id="权限之于目录"><a href="#权限之于目录" class="headerlink" title="权限之于目录"></a>权限之于目录</h2><ul>
-<li>r read contents in directory<br>读取目录结构列表的权限，即<ul>
-<li>文件名数据，可利用 ls 查询内容列表</li>
-</ul>
-</li>
-<li>w modify contents in directory<br>读取目录结构列表的权限，即<ul>
-<li>新建新的文件和目录</li>
-<li>删除已存在的文件与目录（无视其它权限）</li>
-<li>重命名已存在的文件与目录</li>
-<li>转移目录内的文件与目录位置</li>
-</ul>
-</li>
-<li>x access directory<br>用户进入该目录成为工作目录的权限<ul>
-<li>目前所在的目录</li>
-</ul>
-</li>
-</ul>
-<p>例：r–（目录） 用户访问 root 的目录<br>仅可查询目录下的文件名列表但不能切换到此目录，无法执行任何该目录下的命令<br>例：rwx（目录） 用户访问 root 的 — 文件<br>不可读 编辑 执行 但可以删除</p>
-<h1 id="路径-PATH"><a href="#路径-PATH" class="headerlink" title="路径 PATH"></a>路径 PATH</h1><p>相对路径<br>相对于当前工作目录，shell scrits 下执行环境不同可能导致问题</p>
-<p>绝对路径<br>一定由根目录 / 写起，正确度更好</p>
-<p>系统依照 PATH 的设置去 PATH 定义的目录下查询对应文件名的可执行文件<br>不同用户默认 PATH 不同，故默认可直接执行指令也不同<br>但 PATH 可以修改，一般用户可通过修改 PATH 执行 /sbin 或 /usr/sbin 的命令来查询</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># echo $PATH                查询</span><br><span class="line"># PATH=&quot;$PATH&quot;:/dirname     添加目录进 PATH</span><br></pre></td></tr></table></figure>
-
-<p>相同命令在不同目录，先被查询到的目录先执行</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># basename 取文件名</span><br><span class="line"># dirname  取目录名</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>Linux</category>
-      </categories>
       <tags>
-        <tag>文件</tag>
-        <tag>目录</tag>
-        <tag>属性权限</tag>
+        <tag>接口</tag>
+        <tag>内部类</tag>
+        <tag>lambda</tag>
+        <tag>泛型</tag>
       </tags>
   </entry>
   <entry>
-    <title>Linux 文件与目录操作</title>
-    <url>/2019/09/09/Linux-%E6%96%87%E4%BB%B6%E4%B8%8E%E7%9B%AE%E5%BD%95%E6%93%8D%E4%BD%9C/</url>
-    <content><![CDATA[<h1 id="目录处理"><a href="#目录处理" class="headerlink" title="目录处理"></a>目录处理</h1><p>cd change directory 切换目录</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># cd -          返回之前的目录</span><br></pre></td></tr></table></figure>
-
-<p>pwd print working directory 显示当前目录</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># pwd -p        获得实际路径而非连接路径</span><br></pre></td></tr></table></figure>
-
-<p>mkdir 新建目录</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># mkdir [-mp] dirname</span><br><span class="line">-m ：新建自定义权限的目录 如 mkdir -m xyz test</span><br><span class="line">-p ：递归创建 如 mkdir -p test1/test2/test3</span><br></pre></td></tr></table></figure>
-
-<p>rmdir 删除空目录</p>
-<a id="more"></a>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># rmdir [-p] dirname 同上</span><br></pre></td></tr></table></figure>
-
-<h1 id="文件处理"><a href="#文件处理" class="headerlink" title="文件处理"></a>文件处理</h1><p> cp copy</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># cp [-adfilprsu] source destination</span><br><span class="line">-a ：同-pdr</span><br><span class="line">-d ：若源文件是连接文件则复制连接文件而非本身</span><br><span class="line">-i ：若目标文件存在，询问是否覆盖</span><br><span class="line">-l ：创建硬连接的连接文件</span><br><span class="line">-p ：连同文件属性复制，常用于备份</span><br><span class="line">-r ：递归复制，用于目录的复制行为</span><br><span class="line">-s ：创建符号连接文件，即快捷方式</span><br><span class="line">-u ：源文件新才 update</span><br></pre></td></tr></table></figure>
-
-<p> 默认情况下目的文件的所有者是命令操作者<br> 没有参数时 cp 复制的是<strong>源文件</strong>而非连接文件</p>
-<p> rm remove<br> <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># rm [-fir] dirname/filename</span><br><span class="line">-f : force 强制，忽略不存在的文件且不警告</span><br><span class="line">-i ：删除前进行询问</span><br><span class="line">-r ：递归删除</span><br></pre></td></tr></table></figure></p>
-<p> 目录名以 - 开头会造成误判，可以用 ./ 避免</p>
-<p> mv move<br> <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># mv [-fiu] source destination</span><br><span class="line">-f ：force 若目标文件已存在则直接覆盖不询问</span><br><span class="line">-i ：若目标文件存在，询问是否覆盖</span><br><span class="line">-u ：源文件新才 update</span><br></pre></td></tr></table></figure></p>
-<p> 多个源文件或目录要移动时，最后一个（即目标文件）一定是目录 <font color="#D3D3D3">废话</font></p>
-<h1 id="文件内容查阅"><a href="#文件内容查阅" class="headerlink" title="文件内容查阅"></a>文件内容查阅</h1><h2 id="直接查看"><a href="#直接查看" class="headerlink" title="直接查看"></a>直接查看</h2><ul>
-<li><p>cat concatenate 从第一行开始显示文件内容</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># cat [-AbEnTv]</span><br><span class="line">-A ：相当 -vET 整合，特殊字符 断行字符$ Tab键＾I</span><br><span class="line">-b ：列出行号，空白行不标号</span><br><span class="line">-n ：列出行号，包括空白行</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>tac cat 反写，功能也是</p>
-</li>
-<li><p>nl 添加行号显示</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># nl [-bnw]</span><br><span class="line">-b ：行号的指定方式 </span><br><span class="line">     a 空行也显示，类似 cat -n</span><br><span class="line">     t 空行不显示行号，默认值</span><br><span class="line">-n ：行号的表示方法</span><br><span class="line">     ln 行号字段最左显示</span><br><span class="line">     rn 行号字段的最右显示，不加 0</span><br><span class="line">     rz 行号字段的最右显示，加 0</span><br><span class="line">-w ：行号字段的位数，默认六位</span><br></pre></td></tr></table></figure>
+    <title>Java 补丁-继承</title>
+    <url>/2019/12/11/Java-%E8%A1%A5%E4%B8%81-%E7%BB%A7%E6%89%BF/</url>
+    <content><![CDATA[<h1 id="超类子类部分"><a href="#超类子类部分" class="headerlink" title="超类子类部分"></a>超类子类部分</h1><p><strong>this 和 super</strong></p><table>
+<thead>
+<tr>
+<th>this</th>
+<th>super</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>引用隐式参数</td>
+<td>调用超类方法</td>
+</tr>
+<tr>
+<td>调用该类其他构造器</td>
+<td>调用超类的构造器</td>
+</tr>
+</tbody></table><p>但是：super 不是一个对象的引用，只是一个指示编译器调用超类方法的<em>关键词</em></p><p><strong>is-a 规则</strong><br>出现超类对象的任何地方都可以通过子类对象置换。即置换法则。</p><p><strong>方法调用</strong><br>假设调用 x.f(args)，x 是类 C 的一个对象：</p><a id="more"></a>
 
 
-</li>
-</ul>
-<h2 id="翻页查看"><a href="#翻页查看" class="headerlink" title="翻页查看"></a>翻页查看</h2><ul>
-<li>more<br>  Space ：向后翻一页<br>  Enter ：向下滚动一行<br>  /字符串 ：当前页向下查询，n 继续查询<br>  :f ：显示出文件名以及目前显示的行数<br>  b/ctrl+b ：回翻，仅限文件，FIFO无效</li>
-</ul>
-<ul>
-<li>less<br>   Space/PageDown ：向后翻一页<br>   PageUp ：向前翻一页<br>   ?字符串 ：当前页向上查询，n 继续查询<br>   N ：反向继续查询</li>
-</ul>
-<h2 id="数据选取"><a href="#数据选取" class="headerlink" title="数据选取"></a>数据选取</h2><p>head 取出前几行，默认显示十行</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># head [-n num] file      取前 num 行</span><br><span class="line"># head [-n -num] file     取 num 行之前，第二个是减号ao（x</span><br></pre></td></tr></table></figure>
 
-<p>tail 取后面几行</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># tail [-n num] file      取后 num 行</span><br><span class="line"># tail [-n +num] file     取 num 行之后</span><br><span class="line">-f 持续监测，应对数据随时写入</span><br></pre></td></tr></table></figure>
 
-<p>od 非纯文本文件</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># od [-t TYPE] 文件</span><br><span class="line">TYPE a ：默认字符输出</span><br><span class="line">     c ：ASCII 字符输出</span><br><span class="line">     dfox ：十进制 浮点数 八进制 十六进制</span><br></pre></td></tr></table></figure>
+<ol>
+<li>编译器查看对象的声明类型和方法名。编译器会一一列举所有 C 类中名为 f 的方法和其超类中声明为 public 且名为 f 的方法。</li>
+<li>编译器查看调用方法时提供的参数类型，选择第一步中与提供的参数类型完全匹配的方法。即重载解析。这个过程允许类型转换，若没有找到或找到多个则报告错误。&lt;– 此时已获得需要调用的方法名和参数类型</li>
+<li>如果是 private static final 方法或者构造器，编译器已知道应该调用的方法，即静态绑定。若调用的方法依赖隐式参数的实际类型，称动态绑定。此例中编译器通过动态绑定确定调用 f(String) 方法。</li>
+<li>采用动态绑定调用方法时，虚拟机会调用与 x 所引对象_实际类型_最符合的那个类的方法。若 x 实际类型为 D，是 C 的子类。若 D 定义了 f(String) 方法就调用，否则在 D 的超类中寻找。</li>
+</ol>
+<p>为了应对搜索方法的时间开销，虚拟机预先为每个类创建方法表，列出所有方法签名和实际调用的方法。</p>
+<p><strong>绑定</strong><br>_静态绑定_：在程序执行以前已经被绑定（即在编译过程中就已经知道这个方法到底是哪个类中的方法）。<br>_动态绑定_：在运行时期根据具体对象的类型进行绑定。<br>Java 中重载的方法使用静态绑定，重写的方法使用动态绑定。</p>
+<p><strong>protected</strong><br>仅对本类可见，包括子类。谨慎使用于数据域，因为他人可能由这个类派生出新类并访问 protected，若要对此类进行修改就必须通知所有相关人员。更适合使用于方法。</p>
+<h1 id="Objects-部分"><a href="#Objects-部分" class="headerlink" title="Objects 部分"></a>Objects 部分</h1><p><strong>覆盖 equals</strong></p>
+<ol>
+<li>检测 this 与显式参数是否引用同一个对象。<code>if (this == otherObj) return true;</code></li>
+<li>检测显式参数是否为 null，因为 null 调用方法会报错。 <code>if (otherObj == null) return false;</code></li>
+<li>比较 this 与显式参数是否为同一类。为了保证 equals 的对称性，应该 <code>if (getClass() != otherObj.getclass()) return false;</code> 但是例如 AbstractSet 类拥有 TreeSet 和 HashSet 两个具体子类，实现了同样的操作。此时应该 <code>if (!(otherObj instanceof ClassName)) return false;</code></li>
+<li>将 otherObj 转换为相应的类类型变量。 <code>ClassName other = (ClassName) otherObj;</code></li>
+<li>对需要比较的域进行比较，== 比较基本域，Objects.equals 比较对象域。 <code>return field1 == other.field1 $$ Objects.equals(field2, other.field2);</code><br>如果在子类中重新定义了 equals，先调用 <code>super.equals(other);</code> 比较，再比较子类中的实例域。<br>覆盖 Objects 类的 equals 方法就不要弄错显式参数类型！可以用 @Override 进行标记。<br>对于数组类型，使用静态 Arrays.equals 方法。</li>
+</ol>
+<p><strong>覆盖 hashCode</strong><br>不同对象的散列码基本不会相同，最好使用 null 安全的 Objects.hashCode，参数为 null 时返回 0；使用静态方法避免创建对象。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public int hashCode()&#123;</span><br><span class="line">	return 7 * Objects.hashCode(name) + 11* Double.hashCode(salary);</span><br><span class="line">	// 或者</span><br><span class="line">	return Objects.hashCode(name, salary);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h1 id="文件时间处理"><a href="#文件时间处理" class="headerlink" title="文件时间处理"></a>文件时间处理</h1><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># ls -l --time=?time filname</span><br></pre></td></tr></table></figure>
+<p><strong>覆盖 toString</strong><br>Objects 的 toString 输出对象所属的类名和散列码。有时候直接输出这个大概是设计者没覆盖…<br>比如数组继承了 Objects 的方法，所以用静态方法 Arrays.toString 比较好。</p>
+<h1 id="泛型数组列表部分"><a href="#泛型数组列表部分" class="headerlink" title="泛型数组列表部分"></a>泛型数组列表部分</h1><p><strong>数组长度</strong><br>确认数组列表不再发生变化时使用 trimToSize 方法，将存储区域的大小调整为当前，回收多余存储空间。不影响之后再添加元素，但和扩展一样，会自动创建更大的数组并拷贝进去。</p>
+<p><strong>参数数量可变方法</strong><br>… 代表当前方法可以接收任意数量的对象，相当于接收了对象数组。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public static double max(double... values)&#123;&#125;</span><br><span class="line">// 基本类型会自动装箱</span><br></pre></td></tr></table></figure>
 
-<ul>
-<li>mtime modification time<br>内容数据更改时更新，ls 默认值</li>
-<li>ctime status time<br>状态改变时更新，如权限与属性</li>
-<li>atime access time<br>内容被取用访问时更新</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># touch [-acdmt] file</span><br><span class="line">-a ：修改 atime</span><br><span class="line">-c ：修改文件时间，文件不存不创建新文件</span><br><span class="line">-d ：修改 atime mtime，ctime 不变</span><br><span class="line">-m ：修改 mtime</span><br><span class="line">-t ：修改 atime mtime，ctime 记录当前时间，格式 YYMMDDhhmm</span><br></pre></td></tr></table></figure>
-
-<p>默认将三个时间更新为当前，若文件不存在创建新文件</p>
-<h1 id="文件类型查看"><a href="#文件类型查看" class="headerlink" title="文件类型查看"></a>文件类型查看</h1><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># file filename</span><br></pre></td></tr></table></figure>]]></content>
+]]></content>
       <categories>
-        <category>Linux</category>
+        <category>Java</category>
       </categories>
       <tags>
-        <tag>文件</tag>
-        <tag>目录</tag>
+        <tag>数组</tag>
+        <tag>继承</tag>
+        <tag>泛型</tag>
       </tags>
   </entry>
   <entry>
@@ -1612,72 +1308,140 @@ tring&gt; comp = (first, second) -&gt; ... ;</code> ；如果方法只有一个�
       </tags>
   </entry>
   <entry>
-    <title>Linux 文件与目录补充</title>
-    <url>/2019/09/11/Linux-%E6%96%87%E4%BB%B6%E4%B8%8E%E7%9B%AE%E5%BD%95%E8%A1%A5%E5%85%85/</url>
-    <content><![CDATA[<h1 id="默认权限"><a href="#默认权限" class="headerlink" title="默认权限"></a>默认权限</h1><ul>
-<li>文件<br>默认没有可执行权限，即最大为 666</li>
-<li>目录<br>默认有所有权限，即 777</li>
-</ul>
-<p>umask 指定目前用户新建文件或目录时的权限默认值</p>
+    <title>Java 补丁-网络</title>
+    <url>/2020/03/15/Java-%E8%A1%A5%E4%B8%81-%E7%BD%91%E7%BB%9C/</url>
+    <content><![CDATA[<h1 id="连接"><a href="#连接" class="headerlink" title="连接"></a>连接</h1><h2 id="简单示例"><a href="#简单示例" class="headerlink" title="简单示例"></a>简单示例</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Socket s = <span class="keyword">new</span> Socket(<span class="string">"yuyurbq.club"</span>, <span class="number">80</span>);</span><br><span class="line"><span class="comment">// 打开一个套接字</span></span><br><span class="line">Scanner in = <span class="keyword">new</span> Scanner(s.getInputStream(), <span class="string">"UTF-8"</span>);</span><br></pre></td></tr></table></figure><h2 id="套接字超时"><a href="#套接字超时" class="headerlink" title="套接字超时"></a>套接字超时</h2><p>对于读写操作没有数据可供访问而阻塞：使用 <code>SetSoTimeout</code> 方法设置（毫秒），若之后的读写操作在时间内没有完成将抛出 SocketTimeoutException 异常。</p><a id="more"></a>
+
+
+<p>对于一直无法建立到主机的连接而阻塞：先构建无连接的套接字，再通过有超时参数的方法进行连接：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Socket s = <span class="keyword">new</span> Socket();</span><br><span class="line">s.connect(<span class="keyword">new</span> InetSocketAddress(host, port), timeout);</span><br></pre></td></tr></table></figure>
+
+<h2 id="获取-ip"><a href="#获取-ip" class="headerlink" title="获取 ip"></a>获取 ip</h2><p>静态方法 <code>getByName</code> 方法将返回代表某主机的 InetAddress 对象，通过 <code>getAddress</code> 获取封装其中的 ip 字节序列：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">InetAddress address = InetAddress.getByName(host);</span><br><span class="line"><span class="keyword">byte</span>[] addressBytes = address.getAddress();</span><br></pre></td></tr></table></figure>
+
+<p>若主机名拥有多个地址，且希望获得所有这些：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">InetAddress[] addresses = InetAddress.getAllByName(host);</span><br></pre></td></tr></table></figure>
+
+<p>还有个 <code>getLocalHost</code> 避免获得 127.0.0.1 这样的本地地址。</p>
+<h1 id="服务端"><a href="#服务端" class="headerlink" title="服务端"></a>服务端</h1><h2 id="服务端套接字"><a href="#服务端套接字" class="headerlink" title="服务端套接字"></a>服务端套接字</h2><p>建立套接字：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">ServerSocket s = <span class="keyword">new</span> ServerSocker(port); <span class="comment">// port 不是字符串</span></span><br></pre></td></tr></table></figure>
+
+<p>监听这个端口，一旦有客户端连接上（连接已建立）这个端口，将返回一个 Socket 对象，并以此获得输入输出流：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Socket incoming = s.accept();</span><br><span class="line">InputStream inStream = incoming.getInputStream();</span><br><span class="line">OutputStream outStream = incoming.getOutputStream();</span><br></pre></td></tr></table></figure>
+
+<p>将流转换成扫描器和写入器：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Scanner in = <span class="keyword">new</span> Scanner(inStream, <span class="string">"UTF-8"</span>);</span><br><span class="line">PrintWrite out = <span class="keyword">new</span> PrintWriter(<span class="keyword">new</span> OutputStreamWriter(outStream, <span class="string">"UTF-8"</span>), <span class="keyword">true</span>);</span><br></pre></td></tr></table></figure>
+
+<p>通讯的最后关闭套接字：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">incoming.close();</span><br></pre></td></tr></table></figure>
+
+<h2 id="多个客户端"><a href="#多个客户端" class="headerlink" title="多个客户端"></a>多个客户端</h2><p>通过线程解决，类似：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">while</span> (<span class="keyword">true</span>) &#123;</span><br><span class="line">	Socket incoming = s.accept();</span><br><span class="line">	Runnable r = <span class="keyword">new</span> ThreadedEchoHandler(incoming);</span><br><span class="line">	Thread t = <span class="keyword">new</span> Thread(r);</span><br><span class="line">	t.start;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>ThreadedEchoHandler 实现 Runnable 接口，在 run 方法中包含与客户端通信的代码：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ThreadedEchoHandler</span> <span class="keyword">implements</span> <span class="title">Runnable</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">try</span> (InputStream inStream = incoming.get...) &#123;</span><br><span class="line">			...</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">catch</span>(IOException e) &#123;...&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="半关闭"><a href="#半关闭" class="headerlink" title="半关闭"></a>半关闭</h2><p>socket 对象的 <code>shutdownOutput()</code> 方法可以终止输出但保持接收，适合 HTTP 这种 one-shot 服务。</p>
+<h2 id="可中断套接字"><a href="#可中断套接字" class="headerlink" title="可中断套接字"></a>可中断套接字</h2><p>套接字读写数据时，当前线程将被阻塞至操作成功或超时为止，此时想取消连接的话，当线程因套接字无法响应而阻塞时，无法通过调用 interrupt 解除。</p>
+<p> 为了中断套接字操作：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">SocketChannel channel = SocketChannel.open(<span class="keyword">new</span> InetSocketAddress(host, port));</span><br><span class="line"><span class="comment">// 服务器端 host 用 localhost 即可</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="WEB"><a href="#WEB" class="headerlink" title="WEB"></a>WEB</h1><h2 id="URL-和-URI"><a href="#URL-和-URI" class="headerlink" title="URL 和 URI"></a>URL 和 URI</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[scheme:]schemeSpecificPart[#fragment]</span><br><span class="line">分层 URI : schemeSpecificPart &gt; [//authority][path][?query]</span><br><span class="line">基于服务器的 URL : authority &gt; [user-info@]host[:port]</span><br></pre></td></tr></table></figure>
+
+<p>URI</p>
 <ul>
-<li><p>查看</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># umask [-S]</span><br><span class="line">-S ：以字母显示默认权限，否则是数字</span><br></pre></td></tr></table></figure>
-
-<p>其数字结果是该默认值要被拿掉的权限</p>
-<a id="more"></a></li>
-<li><p>设置</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># umask xyz</span><br></pre></td></tr></table></figure>
-
-<p>root 默认是 022，一般用户是 002<br>用字母进行计算更准确，如 (-rw-rw-rw-) - (——–wx) = -rw-rw-r–,而非 666 - 003 = 663</p>
-</li>
+<li>语法结构，指定 Web 资源的字符串；</li>
+<li>URI 类解析标识符并将其分解成组成部分，如 <code>getScheme</code> <code>getHost</code> <code>getPath</code> 等；</li>
+<li>还可以处理绝对和相对标识符，组合出绝对 URI 或相对化 URI，<code>relativize(combined)</code> <code>resolve(relative)</code> 。</li>
 </ul>
-<h1 id="隐藏属性"><a href="#隐藏属性" class="headerlink" title="隐藏属性"></a>隐藏属性</h1><h2 id="chattr"><a href="#chattr" class="headerlink" title="chattr"></a>chattr</h2><p>设置文件的隐藏属性<br>仅在 Ext2/Ext3 的文件系统生效</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># chattr [+-=][ASacdistu] dirname/filname</span><br><span class="line">+ ：仅增加某一个参数</span><br><span class="line">- ：仅减少某一个参数</span><br><span class="line">= ：仅有后面指定的参数</span><br><span class="line"></span><br><span class="line">A ：访问此文件/目录时，访问时间 atime 将不会被修改</span><br><span class="line">S ：对文件的修改将 同步 写入磁盘</span><br><span class="line">a ：root 限定，只能增加数据不能删改</span><br><span class="line">c ：文件将被自动压缩，读取时自动解压，存储时先压缩再存储</span><br><span class="line">d ：dump 程序被执行时，该文件/目录不会被 dump 备份</span><br><span class="line">i ：root 限定，该文件无法被增删改和设置连接</span><br></pre></td></tr></table></figure>
-
-<h2 id="lsattr"><a href="#lsattr" class="headerlink" title="lsattr"></a>lsattr</h2><p>显示文件的隐藏属性</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># lsattr [-adR] filname/dirname</span><br><span class="line">-a 包括隐藏文件</span><br><span class="line">-d 目录属性而非内容</span><br><span class="line">-R 递归，子目录数据也显示</span><br></pre></td></tr></table></figure>
-
-<h1 id="特殊权限"><a href="#特殊权限" class="headerlink" title="特殊权限"></a>特殊权限</h1><h2 id="SUID-4-u-s"><a href="#SUID-4-u-s" class="headerlink" title="SUID 4 u+s"></a>SUID 4 u+s</h2><p>SetUID 只对文件有效，文件所有者的 x 权限为 s</p>
+<p>URL</p>
 <ul>
-<li>仅对二进制程序有效，对于 shell script 无效，靠看其根本的二进制文件设置</li>
-<li>执行者对改程序有 x 权限 <font color="#D3D3D3">废话</font></li>
-<li>仅在执行过程 run-time 中有效</li>
-<li>执行者将拥有 owner 的权限</li>
+<li>URI 的一个特例，定位 Web 资源；</li>
+<li>从字符串构建 URL 对象：<code>URL url = new URL(urlString)</code> ;</li>
+<li>从 URL 类的 <code>openStream</code> 方法获得 InputStream 对象，随后正常处理。</li>
 </ul>
-<p>例：/etc/shadow 记录了所有账号的密码，<strong>-rwsr-xr-x root root</strong> 仅有 root 可读可强制写入，但用户也能修改自己的密码</p>
-<h2 id="SGID-2-g-s"><a href="#SGID-2-g-s" class="headerlink" title="SGID 2 g+s"></a>SGID 2 g+s</h2><p>SetGID 用户组的 x 权限为 s<br>文件同 SUID<br>目录</p>
+<p>URN</p>
 <ul>
-<li>用户对此目录有 r 与 x 权限时可进入</li>
-<li>用户在此目录下的有效用户组将变成该目录的用户组</li>
-<li>若在此目录下有 w 权限，则新文件的用户组和此目录的用户组相同</li>
-<li><h2 id="SBIT-1-o-t"><a href="#SBIT-1-o-t" class="headerlink" title="SBIT 1 o+t"></a>SBIT 1 o+t</h2>StickyBit 只对目录有效，other 的 x 的权限为 x，仅用户自己和 root 有权利删除该目录下的文件/目录</li>
+<li>无法定位数据的 URI，统一资源名称。</li>
 </ul>
-<h1 id="查询文件"><a href="#查询文件" class="headerlink" title="查询文件"></a>查询文件</h1><h2 id="脚本文件名"><a href="#脚本文件名" class="headerlink" title="脚本文件名"></a>脚本文件名</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># which [-a] command</span><br><span class="line">-a 列出所有 PATH 目录中可以找到的同名命令，否者显示找到的第一个</span><br></pre></td></tr></table></figure>
-
-<p>根据 PATH 环境变量规范的路径查找，查不到 bash 内置的命令</p>
-<h2 id="文件名"><a href="#文件名" class="headerlink" title="文件名"></a>文件名</h2><ul>
-<li><p>whereis寻找特定文件 数据库</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># whereis [-bmsu] filname/filname</span><br><span class="line">-b 仅找二进制文件</span><br><span class="line">-m 仅找说明文件 manual 路径下的文件</span><br><span class="line">-s 仅找 source 源文件</span><br><span class="line">-u 其它特殊文件</span><br></pre></td></tr></table></figure>
-
-<p>查找文件，故不在 PATH 中也能找到；利用数据库，速度快但结果有延迟</p>
+<h2 id="从-URLConnection-获取信息"><a href="#从-URLConnection-获取信息" class="headerlink" title="从 URLConnection 获取信息"></a>从 URLConnection 获取信息</h2><p>能获得比基本 URL 类更多的控制功能。</p>
+<ol>
+<li><p>URL 类的 openConnection 方法获得对象：</p>
+ <figure class="highlight java"><table><tr><td class="code"><pre><span class="line">URLConnection connection = url.openConnection();</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>locate 数据库</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># locate [-ir] keyword</span><br><span class="line">-i 忽略大小写</span><br><span class="line">-r 允许接正则表达式</span><br></pre></td></tr></table></figure>
-
-<p>可以只输入文件的部分名称(包括路径中)，根据 /var/lib/mlocate/ 中的数据，默认每天更新一次可能有延迟，可手动 updatedb 更新</p>
+<li><p>设置任意的请求属性，如 <code>setDoInput</code> <code>setDoOutput</code> <code>setUseCaches</code> 等；</p>
 </li>
-<li><p>find 硬盘</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># find [PATH] [option] [action]</span><br><span class="line">与时间有关的参数</span><br><span class="line">-mtime n 在 n 天前的 一天之内 被更改过的文件，前24小时即 0 </span><br><span class="line">-mtime +n 在 n 天之前被更改过的文件，不含本身 </span><br><span class="line">-mtime -n 在 n 天之内被更改过的文件，含本身 </span><br><span class="line">-newer file 列出比 file 更新的文件</span><br><span class="line"></span><br><span class="line">与用户或用户组名有关的参数</span><br><span class="line">-uid n 即 UID，记录在 /etc/passwd</span><br><span class="line">-gid n 即 GID，记录在 /etc/group</span><br><span class="line">-user name 用户账号名称</span><br><span class="line">-group name 用户组名</span><br><span class="line">-nouser 所有者不在 /etc/passwd 的文件</span><br><span class="line">-nogroup 所有用户组不在 /etc/passwd 的文件</span><br><span class="line"></span><br><span class="line">与文件权限及名称有关的参数</span><br><span class="line">-name filename 根据文件名查询</span><br><span class="line">-size [+-]SIZE 查找比 SIZE 大或小的文件 k代表1024bytes</span><br><span class="line">-type TYPE 查找文件类型为 TYPE 的；一般文件 f，设备文件 b c，目录 d，连接文件 1，socket s，FIFO p</span><br><span class="line">-perm mode 文件权限刚好是 mode 的文件，类似 chmod 的属性值</span><br><span class="line">-perm +-mode 文件权限全部包含/包含任意 mode 的文件</span><br><span class="line">    例</span><br><span class="line">    #find /bin /sbin -perm +6000</span><br><span class="line">    查找/bin /sbin 两个目录下具有 SUID SGID 的文件</span><br><span class="line">    </span><br><span class="line">其他操作</span><br><span class="line">-exec command 后面可以接其他命令处理查到的结果</span><br><span class="line">    #find / -perm +7000 -exec ls -l &#123;&#125;\;</span><br><span class="line">    &#123;&#125; 代表 find 查找到的内容，\; 转义 本身代表额外命令结束</span><br><span class="line">利用通配符查找</span><br><span class="line">    #find /etc -name &apos;*httpd*&apos;</span><br></pre></td></tr></table></figure></li>
-</ul>
+<li><p>用 connect 方法连接：</p>
+ <figure class="highlight java"><table><tr><td class="code"><pre><span class="line">connection.connect();</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>可以进行头信息的查询，<code>getHeaderFields</code> 返回一个包含消息头所有字段的 Map 对象，通过 <code>getContentType</code> <code>getDate</code> <code>getContentLength</code> 等查询字段；</p>
+</li>
+<li><p><code>getInputStream</code> 方法访问资源数据，和 openStream 返回的流相同。</p>
+</li>
+</ol>
+<p><strong>设置连接属性</strong></p>
+<p>默认建立的连接只产生读取信息的输入流，若要获得执行写操作的输出流（提交数据）使用：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">connection.setDoOutput(<span class="keyword">true</span>);</span><br></pre></td></tr></table></figure>
+
+<p>设置请求头：<code>setIfModifiedSince</code> 方法针对某特定日期以来的修改；<code>setUseCaches</code>  只作用于 Applet ；<code>setUseCaches</code> 方法命令浏览器先检查缓存；<code>setAllowUserInteraction</code> 用于访问密码保护资源时弹出对话框，等。</p>
+<p><strong>查询响应头</strong></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">String key = connection.getHeaderfieldKey(n);</span><br></pre></td></tr></table></figure>
+
+<p>获得响应头的第 n 个键，n 从 1 开始，若 n 为 0 或大于消息头的字段总数则返回 null。此方法无法返回字段数量，只能遍历到 null 为止。类似的，<code>getHeaderField(n)</code> 获得第 n 个值。</p>
+<p><code>getHeaderFields</code> 方法返回封装了响应头字段的 Map 对象。还有获取常用消息头字段的方法：</p>
+<table>
+<thead>
+<tr>
+<th align="center">键</th>
+<th align="center">方法</th>
+<th align="center">返回类型</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">Date</td>
+<td align="center">getDate</td>
+<td align="center">long</td>
+</tr>
+<tr>
+<td align="center">Expires</td>
+<td align="center">getExpiration</td>
+<td align="center">long</td>
+</tr>
+<tr>
+<td align="center">LastModified</td>
+<td align="center">getLastModified</td>
+<td align="center">long</td>
+</tr>
+<tr>
+<td align="center">Content-Length</td>
+<td align="center">getContentLength</td>
+<td align="center">int</td>
+</tr>
+<tr>
+<td align="center">Content-Type</td>
+<td align="center">getContentType</td>
+<td align="center">String</td>
+</tr>
+<tr>
+<td align="center">Content-Encoding</td>
+<td align="center">getContent-Encoding</td>
+<td align="center">String</td>
+</tr>
+</tbody></table>
+<h2 id="提交表单数据"><a href="#提交表单数据" class="headerlink" title="提交表单数据"></a>提交表单数据</h2><p>首先创建 URLConnection 对象：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">URL url = <span class="keyword">new</span> URL(<span class="string">"http://host/path"</span>);</span><br><span class="line">URLConnection connection = url.openConnection();</span><br></pre></td></tr></table></figure>
+
+<p>使用 setDoOutput 方法建立用于输出的连接：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">connection.setDoOutput(<span class="keyword">true</span>);</span><br></pre></td></tr></table></figure>
+
+<p>然后用 getOutputStream 方法获得一个流，并包装在 PrintWriter 对象中：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">PrintWrite out = <span class="keyword">new</span> PrintWriter(connection.getOutputStream(),<span class="string">"UTF-8"</span>);</span><br></pre></td></tr></table></figure>
+
+<p>通过 out.print() 发送数据，最后 out.close() 关闭流。</p>
 ]]></content>
       <categories>
-        <category>Linux</category>
+        <category>Java</category>
       </categories>
-      <tags>
-        <tag>文件</tag>
-        <tag>目录</tag>
-        <tag>属性权限</tag>
-      </tags>
   </entry>
   <entry>
     <title>Java 补丁-输入输出</title>
@@ -1906,6 +1670,242 @@ tring&gt; comp = (first, second) -&gt; ... ;</code> ；如果方法只有一个�
       </categories>
   </entry>
   <entry>
+    <title>Linux 命令思维导图</title>
+    <url>/2020/01/30/Linux-%E5%91%BD%E4%BB%A4%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE/</url>
+    <content><![CDATA[<p>没钱开 XMind… 理直气壮不去水印</p>
+<p><img src="https://i.loli.net/2020/03/06/tQxgWw3LKerF8YH.png" alt="linux.png"></p>
+]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>思维导图</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Linux 文件与目录</title>
+    <url>/2019/09/08/Linux-%E6%96%87%E4%BB%B6%E4%B8%8E%E7%9B%AE%E5%BD%95/</url>
+    <content><![CDATA[<h1 id="文件属性"><a href="#文件属性" class="headerlink" title="文件属性"></a>文件属性</h1><h2 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">-rw-r--r-- 1 root root 63428 Sep 8 19:24 xxxxx.md</span><br></pre></td></tr></table></figure>
+
+<h3 id="第一列-第一位"><a href="#第一列-第一位" class="headerlink" title="第一列 第一位"></a>第一列 第一位</h3><ul>
+<li>[d] 目录</li>
+<li>[-] 文件</li>
+<li>[l] 连接文件 linkfile</li>
+<li>[b] 可供存储的设备 是设备文件</li>
+<li>[c] 串行端口设备 是设备文件<a id="more"></a>
+<h3 id="第一列-第二-九位"><a href="#第一列-第二-九位" class="headerlink" title="第一列 第二~九位"></a>第一列 第二~九位</h3>三个一组，分别为 </li>
+<li>文件所有者权限</li>
+<li>同用户组权限</li>
+<li>其他用户权限</li>
+</ul>
+<p>每组三个参数依次为 r读-4 w写-2 x执行-1<br>Linux 中文件的可执行性与文件名无绝对关系<br>文件与目录的权限<strong>意义不同</strong></p>
+<h3 id="第二列"><a href="#第二列" class="headerlink" title="第二列"></a>第二列</h3><p>链接到此节点 i-node 的不同文件名数<br>&ensp;&ensp;文件名集合权限与属性记录到文件系统的 i-node 中</p>
+<h3 id="第六列"><a href="#第六列" class="headerlink" title="第六列"></a>第六列</h3><p>创建日期或最近修改日期<br>显示完整时间格式：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># ls -l --full-time</span><br></pre></td></tr></table></figure>
+
+<p>&ensp;&ensp;中文无法在终端显示所以：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># LANG= en_US</span><br></pre></td></tr></table></figure>
+
+<h2 id="改变文件属性"><a href="#改变文件属性" class="headerlink" title="改变文件属性"></a>改变文件属性</h2><blockquote>
+<p>复制行为 cp 不会更改源文件的属性</p>
+</blockquote>
+<h3 id="chgrp-改变所属用户组"><a href="#chgrp-改变所属用户组" class="headerlink" title="chgrp 改变所属用户组"></a>chgrp 改变所属用户组</h3><p>change group</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># chgrp [-R] groupname dirname/filename</span><br></pre></td></tr></table></figure>
+
+<p>组名在 /etc/group 中，否则报错</p>
+<h3 id="chown-改变所有者"><a href="#chown-改变所有者" class="headerlink" title="chown 改变所有者"></a>chown 改变所有者</h3><p>change owner</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># chown [-R] ownername dirname/filename</span><br><span class="line"># chown [-R] ownername:groupname dirname/filename</span><br></pre></td></tr></table></figure>
+
+<p>组名在 /etc/passwd 中，否则报错<br>ownername:groupname 同时更改 owner 和 group，不要用 . 防止误判</p>
+<h3 id="chmod-改变权限"><a href="#chmod-改变权限" class="headerlink" title="chmod 改变权限"></a>chmod 改变权限</h3><p>change modify</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># chmod [-R] xyz dirname/filename</span><br><span class="line"># chmod u/g/o/a +/-/= r/w/x dirname/filename</span><br></pre></td></tr></table></figure>
+
+<h1 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h1><p>树状，记录文件名<strong>列表</strong></p>
+<h2 id="FHS"><a href="#FHS" class="headerlink" title="FHS"></a>FHS</h2><p>/<br>根目录，开机相关<br>FHS建议 / 所在分区应越小越好，但以下不应该与根目录分开：</p>
+<ul>
+<li>/etc 配置文件</li>
+<li>/bin 执行文件，可被 root 和一般用户共用</li>
+<li>/dev 设备文件</li>
+<li>/lib 函数库和内核所需模块</li>
+<li>/sbin 执行文件，多用于设定系统文件，root 限定<br>因为与开机过程有关，开机仅挂载根目录，其他分区在开机完成后进行<br>根目录也有 . 和 ..，但两者都是根目录本身</li>
+</ul>
+<p>/usr<br>UNIX software resourse 软件资源数据，可分享 shareable 不可变动 static</p>
+<p>/var<br>variable 常态性变动文件，缓存，登陆文件，软件运行产生的文件等</p>
+<h2 id="权限之于目录"><a href="#权限之于目录" class="headerlink" title="权限之于目录"></a>权限之于目录</h2><ul>
+<li>r read contents in directory<br>读取目录结构列表的权限，即<ul>
+<li>文件名数据，可利用 ls 查询内容列表</li>
+</ul>
+</li>
+<li>w modify contents in directory<br>读取目录结构列表的权限，即<ul>
+<li>新建新的文件和目录</li>
+<li>删除已存在的文件与目录（无视其它权限）</li>
+<li>重命名已存在的文件与目录</li>
+<li>转移目录内的文件与目录位置</li>
+</ul>
+</li>
+<li>x access directory<br>用户进入该目录成为工作目录的权限<ul>
+<li>目前所在的目录</li>
+</ul>
+</li>
+</ul>
+<p>例：r–（目录） 用户访问 root 的目录<br>仅可查询目录下的文件名列表但不能切换到此目录，无法执行任何该目录下的命令<br>例：rwx（目录） 用户访问 root 的 — 文件<br>不可读 编辑 执行 但可以删除</p>
+<h1 id="路径-PATH"><a href="#路径-PATH" class="headerlink" title="路径 PATH"></a>路径 PATH</h1><p>相对路径<br>相对于当前工作目录，shell scrits 下执行环境不同可能导致问题</p>
+<p>绝对路径<br>一定由根目录 / 写起，正确度更好</p>
+<p>系统依照 PATH 的设置去 PATH 定义的目录下查询对应文件名的可执行文件<br>不同用户默认 PATH 不同，故默认可直接执行指令也不同<br>但 PATH 可以修改，一般用户可通过修改 PATH 执行 /sbin 或 /usr/sbin 的命令来查询</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># echo $PATH                查询</span><br><span class="line"># PATH=&quot;$PATH&quot;:/dirname     添加目录进 PATH</span><br></pre></td></tr></table></figure>
+
+<p>相同命令在不同目录，先被查询到的目录先执行</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># basename 取文件名</span><br><span class="line"># dirname  取目录名</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>文件</tag>
+        <tag>目录</tag>
+        <tag>属性权限</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Linux 文件与目录操作</title>
+    <url>/2019/09/09/Linux-%E6%96%87%E4%BB%B6%E4%B8%8E%E7%9B%AE%E5%BD%95%E6%93%8D%E4%BD%9C/</url>
+    <content><![CDATA[<h1 id="目录处理"><a href="#目录处理" class="headerlink" title="目录处理"></a>目录处理</h1><p>cd change directory 切换目录</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># cd -          返回之前的目录</span><br></pre></td></tr></table></figure>
+
+<p>pwd print working directory 显示当前目录</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># pwd -p        获得实际路径而非连接路径</span><br></pre></td></tr></table></figure>
+
+<p>mkdir 新建目录</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># mkdir [-mp] dirname</span><br><span class="line">-m ：新建自定义权限的目录 如 mkdir -m xyz test</span><br><span class="line">-p ：递归创建 如 mkdir -p test1/test2/test3</span><br></pre></td></tr></table></figure>
+
+<p>rmdir 删除空目录</p>
+<a id="more"></a>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># rmdir [-p] dirname 同上</span><br></pre></td></tr></table></figure>
+
+<h1 id="文件处理"><a href="#文件处理" class="headerlink" title="文件处理"></a>文件处理</h1><p> cp copy</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># cp [-adfilprsu] source destination</span><br><span class="line">-a ：同-pdr</span><br><span class="line">-d ：若源文件是连接文件则复制连接文件而非本身</span><br><span class="line">-i ：若目标文件存在，询问是否覆盖</span><br><span class="line">-l ：创建硬连接的连接文件</span><br><span class="line">-p ：连同文件属性复制，常用于备份</span><br><span class="line">-r ：递归复制，用于目录的复制行为</span><br><span class="line">-s ：创建符号连接文件，即快捷方式</span><br><span class="line">-u ：源文件新才 update</span><br></pre></td></tr></table></figure>
+
+<p> 默认情况下目的文件的所有者是命令操作者<br> 没有参数时 cp 复制的是<strong>源文件</strong>而非连接文件</p>
+<p> rm remove<br> <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># rm [-fir] dirname/filename</span><br><span class="line">-f : force 强制，忽略不存在的文件且不警告</span><br><span class="line">-i ：删除前进行询问</span><br><span class="line">-r ：递归删除</span><br></pre></td></tr></table></figure></p>
+<p> 目录名以 - 开头会造成误判，可以用 ./ 避免</p>
+<p> mv move<br> <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># mv [-fiu] source destination</span><br><span class="line">-f ：force 若目标文件已存在则直接覆盖不询问</span><br><span class="line">-i ：若目标文件存在，询问是否覆盖</span><br><span class="line">-u ：源文件新才 update</span><br></pre></td></tr></table></figure></p>
+<p> 多个源文件或目录要移动时，最后一个（即目标文件）一定是目录 <font color="#D3D3D3">废话</font></p>
+<h1 id="文件内容查阅"><a href="#文件内容查阅" class="headerlink" title="文件内容查阅"></a>文件内容查阅</h1><h2 id="直接查看"><a href="#直接查看" class="headerlink" title="直接查看"></a>直接查看</h2><ul>
+<li><p>cat concatenate 从第一行开始显示文件内容</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># cat [-AbEnTv]</span><br><span class="line">-A ：相当 -vET 整合，特殊字符 断行字符$ Tab键＾I</span><br><span class="line">-b ：列出行号，空白行不标号</span><br><span class="line">-n ：列出行号，包括空白行</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>tac cat 反写，功能也是</p>
+</li>
+<li><p>nl 添加行号显示</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># nl [-bnw]</span><br><span class="line">-b ：行号的指定方式 </span><br><span class="line">     a 空行也显示，类似 cat -n</span><br><span class="line">     t 空行不显示行号，默认值</span><br><span class="line">-n ：行号的表示方法</span><br><span class="line">     ln 行号字段最左显示</span><br><span class="line">     rn 行号字段的最右显示，不加 0</span><br><span class="line">     rz 行号字段的最右显示，加 0</span><br><span class="line">-w ：行号字段的位数，默认六位</span><br></pre></td></tr></table></figure>
+
+
+</li>
+</ul>
+<h2 id="翻页查看"><a href="#翻页查看" class="headerlink" title="翻页查看"></a>翻页查看</h2><ul>
+<li>more<br>  Space ：向后翻一页<br>  Enter ：向下滚动一行<br>  /字符串 ：当前页向下查询，n 继续查询<br>  :f ：显示出文件名以及目前显示的行数<br>  b/ctrl+b ：回翻，仅限文件，FIFO无效</li>
+</ul>
+<ul>
+<li>less<br>   Space/PageDown ：向后翻一页<br>   PageUp ：向前翻一页<br>   ?字符串 ：当前页向上查询，n 继续查询<br>   N ：反向继续查询</li>
+</ul>
+<h2 id="数据选取"><a href="#数据选取" class="headerlink" title="数据选取"></a>数据选取</h2><p>head 取出前几行，默认显示十行</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># head [-n num] file      取前 num 行</span><br><span class="line"># head [-n -num] file     取 num 行之前，第二个是减号ao（x</span><br></pre></td></tr></table></figure>
+
+<p>tail 取后面几行</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># tail [-n num] file      取后 num 行</span><br><span class="line"># tail [-n +num] file     取 num 行之后</span><br><span class="line">-f 持续监测，应对数据随时写入</span><br></pre></td></tr></table></figure>
+
+<p>od 非纯文本文件</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># od [-t TYPE] 文件</span><br><span class="line">TYPE a ：默认字符输出</span><br><span class="line">     c ：ASCII 字符输出</span><br><span class="line">     dfox ：十进制 浮点数 八进制 十六进制</span><br></pre></td></tr></table></figure>
+
+<h1 id="文件时间处理"><a href="#文件时间处理" class="headerlink" title="文件时间处理"></a>文件时间处理</h1><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># ls -l --time=?time filname</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>mtime modification time<br>内容数据更改时更新，ls 默认值</li>
+<li>ctime status time<br>状态改变时更新，如权限与属性</li>
+<li>atime access time<br>内容被取用访问时更新</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># touch [-acdmt] file</span><br><span class="line">-a ：修改 atime</span><br><span class="line">-c ：修改文件时间，文件不存不创建新文件</span><br><span class="line">-d ：修改 atime mtime，ctime 不变</span><br><span class="line">-m ：修改 mtime</span><br><span class="line">-t ：修改 atime mtime，ctime 记录当前时间，格式 YYMMDDhhmm</span><br></pre></td></tr></table></figure>
+
+<p>默认将三个时间更新为当前，若文件不存在创建新文件</p>
+<h1 id="文件类型查看"><a href="#文件类型查看" class="headerlink" title="文件类型查看"></a>文件类型查看</h1><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># file filename</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>文件</tag>
+        <tag>目录</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Linux 文件与目录补充</title>
+    <url>/2019/09/11/Linux-%E6%96%87%E4%BB%B6%E4%B8%8E%E7%9B%AE%E5%BD%95%E8%A1%A5%E5%85%85/</url>
+    <content><![CDATA[<h1 id="默认权限"><a href="#默认权限" class="headerlink" title="默认权限"></a>默认权限</h1><ul>
+<li>文件<br>默认没有可执行权限，即最大为 666</li>
+<li>目录<br>默认有所有权限，即 777</li>
+</ul>
+<p>umask 指定目前用户新建文件或目录时的权限默认值</p>
+<ul>
+<li><p>查看</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># umask [-S]</span><br><span class="line">-S ：以字母显示默认权限，否则是数字</span><br></pre></td></tr></table></figure>
+
+<p>其数字结果是该默认值要被拿掉的权限</p>
+<a id="more"></a></li>
+<li><p>设置</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># umask xyz</span><br></pre></td></tr></table></figure>
+
+<p>root 默认是 022，一般用户是 002<br>用字母进行计算更准确，如 (-rw-rw-rw-) - (——–wx) = -rw-rw-r–,而非 666 - 003 = 663</p>
+</li>
+</ul>
+<h1 id="隐藏属性"><a href="#隐藏属性" class="headerlink" title="隐藏属性"></a>隐藏属性</h1><h2 id="chattr"><a href="#chattr" class="headerlink" title="chattr"></a>chattr</h2><p>设置文件的隐藏属性<br>仅在 Ext2/Ext3 的文件系统生效</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># chattr [+-=][ASacdistu] dirname/filname</span><br><span class="line">+ ：仅增加某一个参数</span><br><span class="line">- ：仅减少某一个参数</span><br><span class="line">= ：仅有后面指定的参数</span><br><span class="line"></span><br><span class="line">A ：访问此文件/目录时，访问时间 atime 将不会被修改</span><br><span class="line">S ：对文件的修改将 同步 写入磁盘</span><br><span class="line">a ：root 限定，只能增加数据不能删改</span><br><span class="line">c ：文件将被自动压缩，读取时自动解压，存储时先压缩再存储</span><br><span class="line">d ：dump 程序被执行时，该文件/目录不会被 dump 备份</span><br><span class="line">i ：root 限定，该文件无法被增删改和设置连接</span><br></pre></td></tr></table></figure>
+
+<h2 id="lsattr"><a href="#lsattr" class="headerlink" title="lsattr"></a>lsattr</h2><p>显示文件的隐藏属性</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># lsattr [-adR] filname/dirname</span><br><span class="line">-a 包括隐藏文件</span><br><span class="line">-d 目录属性而非内容</span><br><span class="line">-R 递归，子目录数据也显示</span><br></pre></td></tr></table></figure>
+
+<h1 id="特殊权限"><a href="#特殊权限" class="headerlink" title="特殊权限"></a>特殊权限</h1><h2 id="SUID-4-u-s"><a href="#SUID-4-u-s" class="headerlink" title="SUID 4 u+s"></a>SUID 4 u+s</h2><p>SetUID 只对文件有效，文件所有者的 x 权限为 s</p>
+<ul>
+<li>仅对二进制程序有效，对于 shell script 无效，靠看其根本的二进制文件设置</li>
+<li>执行者对改程序有 x 权限 <font color="#D3D3D3">废话</font></li>
+<li>仅在执行过程 run-time 中有效</li>
+<li>执行者将拥有 owner 的权限</li>
+</ul>
+<p>例：/etc/shadow 记录了所有账号的密码，<strong>-rwsr-xr-x root root</strong> 仅有 root 可读可强制写入，但用户也能修改自己的密码</p>
+<h2 id="SGID-2-g-s"><a href="#SGID-2-g-s" class="headerlink" title="SGID 2 g+s"></a>SGID 2 g+s</h2><p>SetGID 用户组的 x 权限为 s<br>文件同 SUID<br>目录</p>
+<ul>
+<li>用户对此目录有 r 与 x 权限时可进入</li>
+<li>用户在此目录下的有效用户组将变成该目录的用户组</li>
+<li>若在此目录下有 w 权限，则新文件的用户组和此目录的用户组相同</li>
+<li><h2 id="SBIT-1-o-t"><a href="#SBIT-1-o-t" class="headerlink" title="SBIT 1 o+t"></a>SBIT 1 o+t</h2>StickyBit 只对目录有效，other 的 x 的权限为 x，仅用户自己和 root 有权利删除该目录下的文件/目录</li>
+</ul>
+<h1 id="查询文件"><a href="#查询文件" class="headerlink" title="查询文件"></a>查询文件</h1><h2 id="脚本文件名"><a href="#脚本文件名" class="headerlink" title="脚本文件名"></a>脚本文件名</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># which [-a] command</span><br><span class="line">-a 列出所有 PATH 目录中可以找到的同名命令，否者显示找到的第一个</span><br></pre></td></tr></table></figure>
+
+<p>根据 PATH 环境变量规范的路径查找，查不到 bash 内置的命令</p>
+<h2 id="文件名"><a href="#文件名" class="headerlink" title="文件名"></a>文件名</h2><ul>
+<li><p>whereis寻找特定文件 数据库</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># whereis [-bmsu] filname/filname</span><br><span class="line">-b 仅找二进制文件</span><br><span class="line">-m 仅找说明文件 manual 路径下的文件</span><br><span class="line">-s 仅找 source 源文件</span><br><span class="line">-u 其它特殊文件</span><br></pre></td></tr></table></figure>
+
+<p>查找文件，故不在 PATH 中也能找到；利用数据库，速度快但结果有延迟</p>
+</li>
+<li><p>locate 数据库</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># locate [-ir] keyword</span><br><span class="line">-i 忽略大小写</span><br><span class="line">-r 允许接正则表达式</span><br></pre></td></tr></table></figure>
+
+<p>可以只输入文件的部分名称(包括路径中)，根据 /var/lib/mlocate/ 中的数据，默认每天更新一次可能有延迟，可手动 updatedb 更新</p>
+</li>
+<li><p>find 硬盘</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># find [PATH] [option] [action]</span><br><span class="line">与时间有关的参数</span><br><span class="line">-mtime n 在 n 天前的 一天之内 被更改过的文件，前24小时即 0 </span><br><span class="line">-mtime +n 在 n 天之前被更改过的文件，不含本身 </span><br><span class="line">-mtime -n 在 n 天之内被更改过的文件，含本身 </span><br><span class="line">-newer file 列出比 file 更新的文件</span><br><span class="line"></span><br><span class="line">与用户或用户组名有关的参数</span><br><span class="line">-uid n 即 UID，记录在 /etc/passwd</span><br><span class="line">-gid n 即 GID，记录在 /etc/group</span><br><span class="line">-user name 用户账号名称</span><br><span class="line">-group name 用户组名</span><br><span class="line">-nouser 所有者不在 /etc/passwd 的文件</span><br><span class="line">-nogroup 所有用户组不在 /etc/passwd 的文件</span><br><span class="line"></span><br><span class="line">与文件权限及名称有关的参数</span><br><span class="line">-name filename 根据文件名查询</span><br><span class="line">-size [+-]SIZE 查找比 SIZE 大或小的文件 k代表1024bytes</span><br><span class="line">-type TYPE 查找文件类型为 TYPE 的；一般文件 f，设备文件 b c，目录 d，连接文件 1，socket s，FIFO p</span><br><span class="line">-perm mode 文件权限刚好是 mode 的文件，类似 chmod 的属性值</span><br><span class="line">-perm +-mode 文件权限全部包含/包含任意 mode 的文件</span><br><span class="line">    例</span><br><span class="line">    #find /bin /sbin -perm +6000</span><br><span class="line">    查找/bin /sbin 两个目录下具有 SUID SGID 的文件</span><br><span class="line">    </span><br><span class="line">其他操作</span><br><span class="line">-exec command 后面可以接其他命令处理查到的结果</span><br><span class="line">    #find / -perm +7000 -exec ls -l &#123;&#125;\;</span><br><span class="line">    &#123;&#125; 代表 find 查找到的内容，\; 转义 本身代表额外命令结束</span><br><span class="line">利用通配符查找</span><br><span class="line">    #find /etc -name &apos;*httpd*&apos;</span><br></pre></td></tr></table></figure></li>
+</ul>
+]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>文件</tag>
+        <tag>目录</tag>
+        <tag>属性权限</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Linux 文件系统操作</title>
     <url>/2019/09/28/Linux-%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E6%93%8D%E4%BD%9C/</url>
     <content><![CDATA[<h1 id="df-du"><a href="#df-du" class="headerlink" title="df du"></a>df du</h1><p>根据 super block 中的信息</p><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># df [-ahikHTm] [filenamedirname]</span><br><span class="line">-a : 列出所有文件系统，比默认多显示如内存中的</span><br><span class="line">-k : 以 KB 显示各文件系统</span><br><span class="line">-m : 同上</span><br><span class="line">-h : 自行以易阅读的单位显示</span><br><span class="line">-H : 以 1M=1000K 计算</span><br><span class="line">-T : 增加显示文件系统名称 type</span><br><span class="line">-i : 以 inode 数量显示</span><br></pre></td></tr></table></figure><a id="more"></a>
@@ -1938,28 +1938,72 @@ tring&gt; comp = (first, second) -&gt; ... ;</code> ；如果方法只有一个�
       </tags>
   </entry>
   <entry>
-    <title>Linux 磁盘管理</title>
-    <url>/2019/10/10/Linux-%E7%A3%81%E7%9B%98%E7%AE%A1%E7%90%86/</url>
-    <content><![CDATA[<h1 id="磁盘分区程序"><a href="#磁盘分区程序" class="headerlink" title="磁盘分区程序"></a>磁盘分区程序</h1><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># fdisk [-l] 设备名称</span><br><span class="line">-l ：输出对应设备的所有的分区，未指定设备则显示系统内能找到的所有分区</span><br><span class="line"></span><br><span class="line">相关命令 m 查看</span><br><span class="line">cylinder 可以通过 +sizeM 让系统自动分配</span><br><span class="line"></span><br><span class="line"># partprobe     &lt;==强制内核重新读取分区表（不重启更新分区表信息）</span><br></pre></td></tr></table></figure><p>无法处理 2TB 以上的磁盘分区，使用 parted 命令<br>设备名称不应该加上数字如 /dev/hdc1 因为分区针对的是整个硬盘设备</p><a id="more"></a>
+    <title>Linux 文件系统</title>
+    <url>/2019/09/18/Linux-%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F/</url>
+    <content><![CDATA[<h1 id="回顾硬盘"><a href="#回顾硬盘" class="headerlink" title="回顾硬盘"></a>回顾硬盘</h1><h2 id="分区"><a href="#分区" class="headerlink" title="分区"></a>分区</h2><p>磁盘分区指定分区的起始与结束<strong>柱面</strong>，分区的柱面范围记录在第一个扇区的分区表里面</p><p>硬盘的第一个扇区中有主引导记录 <strong>MBR 446bytes</strong> 和分区表 <strong>partition table 64bytes</strong>，由于大小限制最多只能记录四条分区的记录，即主分区或扩展分区</p><ul>
+<li>GPT + UEFI 则扫描整块磁盘上的分区，读取 EFI 分区里的引导文件，所以不再限制在扇区开头的 512bytes 中</li>
+</ul><a id="more"></a>
 
 
-<h1 id="磁盘格式化"><a href="#磁盘格式化" class="headerlink" title="磁盘格式化"></a>磁盘格式化</h1><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># mkfs [-t 文件系统格式] 设备文件名</span><br></pre></td></tr></table></figure>
+<p>硬盘限制主分区和扩展分区最多可以有四个，操作系统限制扩展分区只能有一个，无法被格式化即无法作为数据访问，但扩展分区可以再分出逻辑分区</p>
+<h2 id="格式化"><a href="#格式化" class="headerlink" title="格式化"></a>格式化</h2><p>文件系统通过格式化将 inode 和 block 规划好，并不再变动；不同文件系统格式化方法不同，所以不能相互识别利用</p>
+<ul>
+<li>inode 记录文件属性和此文件的数据所在的 block，一个文件占用一个 inode</li>
+<li>block 实际记录文件内容，可占用多个</li>
+<li>super block 记录此文件系统的整体信息，如 inode/block 总量使用量剩余量，文件系统的格式等</li>
+</ul>
+<p>碎片整理即因为文件写入的 block 过于离散，影响文件读取性能，需要将它们汇合到一起；这针对没有 inode 的 FAT 系统，Linux 的索引式文件系统基本不需要</p>
+<hr>
+<h1 id="文件系统"><a href="#文件系统" class="headerlink" title="文件系统"></a>文件系统</h1><p>当 inode 和 block 数量极大时不容易管理，Ext2 在格式化时区分为多个块组 block group，每个块组有独立的 inode/block/superblock 系统<br><img src="http://cn.linux.vbird.org/linux_basic/0230filesystem_files/ext2_filesystem.jpg" alt="avatar"><br>boot sector 启动扇区<br>在文件系统最前面，用于安装引导装载程序，这样不用覆盖整块硬盘唯一的 MBR，制作多重引导环境</p>
+<p>data block 数据块<br>放置文件内容，每个 block 最多放置一个文件的数据，若有剩余空间则浪费；Ext2 支持 1KB 2KB 4KB 三种 block 大小，其决定最大总容量和最大单一文件容量</p>
+<p>inodetable<br>至少记录访问模式 所有者和组 大小 ctime atime mtime 内容指向 文件特性，系统读取文件时会先分析 inode 所记录的权限与用户是否符合；每个文件占用一个inode，所以文件系统能创建的文件数量与 inode 数量有关<br>inode 大小固定为 128bytes，当文件较大则不足以记录下所有的 block 编号，故定义了 12 个直接，一个间接，一个双间接，一个三间接记录区</p>
+<ul>
+<li>用一个 block 来记录额外的编号，若依然不够则用一个 block 指出下一个记录编号的 block，依此最多三层；以 1KB 大小的 block 计算，12*1K + 256*1K + 256*256*1K + 256*256*256*1K = 16GB，即该文件系统最大容量</li>
+</ul>
+<p>superblock<br>一般为 1024bytes，除了第一个 blockgroup 中含有 superblock 外，后面的不一定含有，若有则为备份</p>
+<p>文件系统描述 File system Dscription<br>描述每个 blockgroup 的开始与结束编号，说明每个区段介于哪个 block 之间</p>
+<ul>
+<li>区段指 superblock bitmap inodemap datablock</li>
+<li>block bitmap 标记/修改某个 block 是否被使用</li>
+<li>inode bitmap同上</li>
+</ul>
+<p>查询文件系统</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># df         &lt;== 查询目前挂载的设备</span><br><span class="line"># dumpe2fs [-bh] devname</span><br><span class="line">-b ：列出坏道部分</span><br><span class="line">-h ：仅列出 superblock 数据</span><br></pre></td></tr></table></figure>
 
-<h1 id="磁盘检验"><a href="#磁盘检验" class="headerlink" title="磁盘检验"></a>磁盘检验</h1><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># fsck [-t 文件系统] [-ACay] 设备名称</span><br><span class="line">-t ：Linux 会通过 super block 分辨文件系统，可省略</span><br></pre></td></tr></table></figure>
-
-<p>检查文件系统是否出错，可能会造成部分损坏，故执行 fsck 时被检查分区需要在卸载状态</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># badblocks [-svw] 设备名称</span><br></pre></td></tr></table></figure>
-
-<p>检查扇区是否有坏轨</p>
-<h1 id="磁盘挂载与卸载"><a href="#磁盘挂载与卸载" class="headerlink" title="磁盘挂载与卸载"></a>磁盘挂载与卸载</h1><p>被挂载的目录理论上应该是空目录，否则原有内容会隐藏到新分区卸载</p>
-<blockquote>
-<p>放弃磁盘，这部分还是面向谷歌吧x</p>
-</blockquote>
+<p>新增文件的过程</p>
+<ul>
+<li>检查目录是否有 w 和 x 权限</li>
+<li>根据 inode bitmap 查找没有使用的 inode 编号并写入新文件的权限属性</li>
+<li>根据 block bitmap 查找没有使用的 block 编号并写入实际数据，更新 inode 的指向</li>
+<li>将 inode 和 block 信息更新到 inode bitmap 与 block bitmap，并更新 superblock</li>
+</ul>
+<p>由于 superblock inodebitmap blockbitmap 的数据经常变动，被称为 metadata 中间数据，而 inode table 和 data block 称为数据存放区域</p>
+<p>异步处理 asynchronoly<br>提高效率：系统加载一个文件到内存后，若文件没有被改动，则被设置成 <strong>clean</strong>，更改过则为 <strong>dirty</strong>，系统不定时将 dirty 数据写回硬盘</p>
+<ul>
+<li>可以 sync 命令手动写回</li>
+<li>正常关机会主动调用 sync 命令</li>
+</ul>
+<hr>
+<h1 id="与目录树的关系"><a href="#与目录树的关系" class="headerlink" title="与目录树的关系"></a>与目录树的关系</h1><p>ext2 中的目录<br>新建目录时，会分配一个 inode 和至少一块 block，inode 记录目录的相关权限，属性，和分配到的 block 编号；block 记录此目录下的文件名与文件名的 inode 编号数据</p>
+<p>ext2 中的文件<br>新建一般文件时，会分配一个 inode 和对应大小的 block 数量，由于只有 12 个直接指向，可能分配额外的 block 用来记录块编号</p>
+<p><strong>inode 本身不记录文件名，而是在目录的 block 中，所以增删改文件名与目录的 w 权限有关。<br>当读取某个文件时务必会经过目录的 inode 和 block，然后找到文件的 inode 最终获得 block 中的数据<br>系统通过挂载信息获得根目录的 inode 号码，并据此获得根目录 block 内的文件名数据，再一层层向下</strong></p>
+<hr>
+<h1 id="日志文件系统"><a href="#日志文件系统" class="headerlink" title="日志文件系统"></a>日志文件系统</h1><p>inconsistent 状态<br>文件在写入文件系统时发生中断，未同步更新 metadata 导致 metadata 的内容和实际数据存放区不一致</p>
+<p>避免 inconsistent 发生</p>
+<ul>
+<li>写入文件前先在日志记录块记录准备要写入的信息</li>
+<li>实际写入，包括更新 metadata 的数据</li>
+<li>在日志记录块中完成该文件的记录</li>
+</ul>
+<p>发生问题时通过检查日志记录块定位到文件，不必检查整个文件系统，Ext2 中没有文件日志系统，需要对比 metadata 区域和数据存放区</p>
 ]]></content>
       <categories>
         <category>Linux</category>
       </categories>
       <tags>
+        <tag>日志</tag>
+        <tag>文件系统</tag>
+        <tag>目录树</tag>
         <tag>存储器</tag>
       </tags>
   </entry>
@@ -2100,73 +2144,29 @@ tring&gt; comp = (first, second) -&gt; ... ;</code> ；如果方法只有一个�
       </tags>
   </entry>
   <entry>
-    <title>Linux 文件系统</title>
-    <url>/2019/09/18/Linux-%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F/</url>
-    <content><![CDATA[<h1 id="回顾硬盘"><a href="#回顾硬盘" class="headerlink" title="回顾硬盘"></a>回顾硬盘</h1><h2 id="分区"><a href="#分区" class="headerlink" title="分区"></a>分区</h2><p>磁盘分区指定分区的起始与结束<strong>柱面</strong>，分区的柱面范围记录在第一个扇区的分区表里面</p><p>硬盘的第一个扇区中有主引导记录 <strong>MBR 446bytes</strong> 和分区表 <strong>partition table 64bytes</strong>，由于大小限制最多只能记录四条分区的记录，即主分区或扩展分区</p><ul>
-<li>GPT + UEFI 则扫描整块磁盘上的分区，读取 EFI 分区里的引导文件，所以不再限制在扇区开头的 512bytes 中</li>
-</ul><a id="more"></a>
+    <title>Linux 磁盘管理</title>
+    <url>/2019/10/10/Linux-%E7%A3%81%E7%9B%98%E7%AE%A1%E7%90%86/</url>
+    <content><![CDATA[<h1 id="磁盘分区程序"><a href="#磁盘分区程序" class="headerlink" title="磁盘分区程序"></a>磁盘分区程序</h1><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># fdisk [-l] 设备名称</span><br><span class="line">-l ：输出对应设备的所有的分区，未指定设备则显示系统内能找到的所有分区</span><br><span class="line"></span><br><span class="line">相关命令 m 查看</span><br><span class="line">cylinder 可以通过 +sizeM 让系统自动分配</span><br><span class="line"></span><br><span class="line"># partprobe     &lt;==强制内核重新读取分区表（不重启更新分区表信息）</span><br></pre></td></tr></table></figure><p>无法处理 2TB 以上的磁盘分区，使用 parted 命令<br>设备名称不应该加上数字如 /dev/hdc1 因为分区针对的是整个硬盘设备</p><a id="more"></a>
 
 
-<p>硬盘限制主分区和扩展分区最多可以有四个，操作系统限制扩展分区只能有一个，无法被格式化即无法作为数据访问，但扩展分区可以再分出逻辑分区</p>
-<h2 id="格式化"><a href="#格式化" class="headerlink" title="格式化"></a>格式化</h2><p>文件系统通过格式化将 inode 和 block 规划好，并不再变动；不同文件系统格式化方法不同，所以不能相互识别利用</p>
-<ul>
-<li>inode 记录文件属性和此文件的数据所在的 block，一个文件占用一个 inode</li>
-<li>block 实际记录文件内容，可占用多个</li>
-<li>super block 记录此文件系统的整体信息，如 inode/block 总量使用量剩余量，文件系统的格式等</li>
-</ul>
-<p>碎片整理即因为文件写入的 block 过于离散，影响文件读取性能，需要将它们汇合到一起；这针对没有 inode 的 FAT 系统，Linux 的索引式文件系统基本不需要</p>
-<hr>
-<h1 id="文件系统"><a href="#文件系统" class="headerlink" title="文件系统"></a>文件系统</h1><p>当 inode 和 block 数量极大时不容易管理，Ext2 在格式化时区分为多个块组 block group，每个块组有独立的 inode/block/superblock 系统<br><img src="http://cn.linux.vbird.org/linux_basic/0230filesystem_files/ext2_filesystem.jpg" alt="avatar"><br>boot sector 启动扇区<br>在文件系统最前面，用于安装引导装载程序，这样不用覆盖整块硬盘唯一的 MBR，制作多重引导环境</p>
-<p>data block 数据块<br>放置文件内容，每个 block 最多放置一个文件的数据，若有剩余空间则浪费；Ext2 支持 1KB 2KB 4KB 三种 block 大小，其决定最大总容量和最大单一文件容量</p>
-<p>inodetable<br>至少记录访问模式 所有者和组 大小 ctime atime mtime 内容指向 文件特性，系统读取文件时会先分析 inode 所记录的权限与用户是否符合；每个文件占用一个inode，所以文件系统能创建的文件数量与 inode 数量有关<br>inode 大小固定为 128bytes，当文件较大则不足以记录下所有的 block 编号，故定义了 12 个直接，一个间接，一个双间接，一个三间接记录区</p>
-<ul>
-<li>用一个 block 来记录额外的编号，若依然不够则用一个 block 指出下一个记录编号的 block，依此最多三层；以 1KB 大小的 block 计算，12*1K + 256*1K + 256*256*1K + 256*256*256*1K = 16GB，即该文件系统最大容量</li>
-</ul>
-<p>superblock<br>一般为 1024bytes，除了第一个 blockgroup 中含有 superblock 外，后面的不一定含有，若有则为备份</p>
-<p>文件系统描述 File system Dscription<br>描述每个 blockgroup 的开始与结束编号，说明每个区段介于哪个 block 之间</p>
-<ul>
-<li>区段指 superblock bitmap inodemap datablock</li>
-<li>block bitmap 标记/修改某个 block 是否被使用</li>
-<li>inode bitmap同上</li>
-</ul>
-<p>查询文件系统</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># df         &lt;== 查询目前挂载的设备</span><br><span class="line"># dumpe2fs [-bh] devname</span><br><span class="line">-b ：列出坏道部分</span><br><span class="line">-h ：仅列出 superblock 数据</span><br></pre></td></tr></table></figure>
+<h1 id="磁盘格式化"><a href="#磁盘格式化" class="headerlink" title="磁盘格式化"></a>磁盘格式化</h1><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># mkfs [-t 文件系统格式] 设备文件名</span><br></pre></td></tr></table></figure>
 
-<p>新增文件的过程</p>
-<ul>
-<li>检查目录是否有 w 和 x 权限</li>
-<li>根据 inode bitmap 查找没有使用的 inode 编号并写入新文件的权限属性</li>
-<li>根据 block bitmap 查找没有使用的 block 编号并写入实际数据，更新 inode 的指向</li>
-<li>将 inode 和 block 信息更新到 inode bitmap 与 block bitmap，并更新 superblock</li>
-</ul>
-<p>由于 superblock inodebitmap blockbitmap 的数据经常变动，被称为 metadata 中间数据，而 inode table 和 data block 称为数据存放区域</p>
-<p>异步处理 asynchronoly<br>提高效率：系统加载一个文件到内存后，若文件没有被改动，则被设置成 <strong>clean</strong>，更改过则为 <strong>dirty</strong>，系统不定时将 dirty 数据写回硬盘</p>
-<ul>
-<li>可以 sync 命令手动写回</li>
-<li>正常关机会主动调用 sync 命令</li>
-</ul>
-<hr>
-<h1 id="与目录树的关系"><a href="#与目录树的关系" class="headerlink" title="与目录树的关系"></a>与目录树的关系</h1><p>ext2 中的目录<br>新建目录时，会分配一个 inode 和至少一块 block，inode 记录目录的相关权限，属性，和分配到的 block 编号；block 记录此目录下的文件名与文件名的 inode 编号数据</p>
-<p>ext2 中的文件<br>新建一般文件时，会分配一个 inode 和对应大小的 block 数量，由于只有 12 个直接指向，可能分配额外的 block 用来记录块编号</p>
-<p><strong>inode 本身不记录文件名，而是在目录的 block 中，所以增删改文件名与目录的 w 权限有关。<br>当读取某个文件时务必会经过目录的 inode 和 block，然后找到文件的 inode 最终获得 block 中的数据<br>系统通过挂载信息获得根目录的 inode 号码，并据此获得根目录 block 内的文件名数据，再一层层向下</strong></p>
-<hr>
-<h1 id="日志文件系统"><a href="#日志文件系统" class="headerlink" title="日志文件系统"></a>日志文件系统</h1><p>inconsistent 状态<br>文件在写入文件系统时发生中断，未同步更新 metadata 导致 metadata 的内容和实际数据存放区不一致</p>
-<p>避免 inconsistent 发生</p>
-<ul>
-<li>写入文件前先在日志记录块记录准备要写入的信息</li>
-<li>实际写入，包括更新 metadata 的数据</li>
-<li>在日志记录块中完成该文件的记录</li>
-</ul>
-<p>发生问题时通过检查日志记录块定位到文件，不必检查整个文件系统，Ext2 中没有文件日志系统，需要对比 metadata 区域和数据存放区</p>
+<h1 id="磁盘检验"><a href="#磁盘检验" class="headerlink" title="磁盘检验"></a>磁盘检验</h1><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># fsck [-t 文件系统] [-ACay] 设备名称</span><br><span class="line">-t ：Linux 会通过 super block 分辨文件系统，可省略</span><br></pre></td></tr></table></figure>
+
+<p>检查文件系统是否出错，可能会造成部分损坏，故执行 fsck 时被检查分区需要在卸载状态</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># badblocks [-svw] 设备名称</span><br></pre></td></tr></table></figure>
+
+<p>检查扇区是否有坏轨</p>
+<h1 id="磁盘挂载与卸载"><a href="#磁盘挂载与卸载" class="headerlink" title="磁盘挂载与卸载"></a>磁盘挂载与卸载</h1><p>被挂载的目录理论上应该是空目录，否则原有内容会隐藏到新分区卸载</p>
+<blockquote>
+<p>放弃磁盘，这部分还是面向谷歌吧x</p>
+</blockquote>
 ]]></content>
       <categories>
         <category>Linux</category>
       </categories>
       <tags>
-        <tag>日志</tag>
-        <tag>文件系统</tag>
         <tag>存储器</tag>
-        <tag>目录树</tag>
       </tags>
   </entry>
   <entry>
@@ -2336,6 +2336,114 @@ tring&gt; comp = (first, second) -&gt; ... ;</code> ；如果方法只有一个�
       </tags>
   </entry>
   <entry>
+    <title>MySQL 总结</title>
+    <url>/2020/11/16/MySQL-%E6%80%BB%E7%BB%93/</url>
+    <content><![CDATA[<h1 id="索引优化"><a href="#索引优化" class="headerlink" title="索引优化"></a>索引优化</h1><h2 id="查询执行顺序"><a href="#查询执行顺序" class="headerlink" title="查询执行顺序"></a>查询执行顺序</h2><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">FROM &lt;_table&gt;	-- 两个表的笛卡尔积 vt1</span><br><span class="line">				<span class="comment">-- 如果多于两个表就计算和 vt3 的笛卡尔积，重复</span></span><br><span class="line">ON &lt;join_condition&gt; -- 筛选出满足条件的行 vt2</span><br><span class="line">&lt;join_type&gt; JOIN &lt;_table&gt;	-- 把主表被过滤的行添加回来 vt3</span><br><span class="line">							<span class="comment">-- 次表无匹配的部分补 NULL</span></span><br><span class="line">WHERE &lt;where_condition&gt; -- 在数据从磁盘进入内存前判断</span><br><span class="line">GROUP BY &lt;group_by_list&gt;	-- 结果集中每个组只有一行</span><br><span class="line">							<span class="comment">-- 开始允许使用别名</span></span><br><span class="line">HAVING &lt;having_condition&gt; -- 全部载入内存，在内存内部判断</span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">DISTINCT</span> &lt;select_list&gt;</span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> &lt;order_by_condition&gt;</span><br><span class="line"><span class="keyword">LIMIT</span> &lt;limit_number&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="EXPLAIN-字段"><a href="#EXPLAIN-字段" class="headerlink" title="EXPLAIN 字段"></a>EXPLAIN 字段</h2><a id="more"></a>
+
+<p><strong>type</strong></p>
+<ul>
+<li><code>system</code>：表只有一行记录（等于系统表），是 <code>const</code> 类型的特例。</li>
+<li><code>const</code>：表示索引了一次，只匹配一行数据。如将主键置于 WHERE 列表中，MySQL 就能将该查询转化为一个常量。</li>
+<li><code>eq_ref</code>：读取本表和关联表组合成的一行，查出来只有一条记录。</li>
+<li><code>ref</code>：返回本表和关联表某个值匹配的所有行，查出来有多条记录。</li>
+<li><code>range</code>：只检索给定范围的行，一般是在 WHERE 语句中出现了 BETWEEN 、&lt; &gt;、in 等的查询。只需要开始于索引树的某一点，而结束于另一点，不用扫描全部索引。</li>
+<li><code>index</code>：Full Index Scan，全索引扫描，遍历索引树。</li>
+<li><code>ALL</code>：Full Table Scan，没有用到索引，全表扫描。</li>
+</ul>
+<p><strong>key_len</strong></p>
+<p>索引字段的最大可能长度，其根据表定义计算而得，并非实际使用长度。</p>
+<blockquote>
+<p>char 和 varchar 类型计算:<br>varchr(N) 变长字段允许 NULL = N * ( utf8=3,gbk=2,latin1=1 )+2+1(NULL)<br>char(N) 固定字段允许 NULL = N * ( utf8=3,gbk=2,latin1=1 )+1(NULL)</p>
+<p>数值类型计算：<br>TINYINT 允许 NULL = 1+1(NULL)<br>SMALLINT 允许 NULL = 2+1(NULL)<br>INT 允许 NULL = 4+1(NULL)</p>
+<p>日期时间类型计算：（针对mysql5.5及之前版本）<br>DATETIME 允许 NULL = 8 + 1(NULL)<br>TIMESTAMP 允许 NULL = 4+1(NULL)</p>
+</blockquote>
+<p><strong>Extra</strong></p>
+<ul>
+<li><code>Using filesort</code>：无法利用索引完成的排序操作。对数据使用一个外部的索引排序，而不是按照表内的索引顺序进行读取。</li>
+<li><code>Using temporary</code>：排序时使用了临时表保存中间结果，常见于 ORDER BY 和 GROUP BY。</li>
+<li><code>Using index</code>：同时出现 <code>Using where</code> ，表示索引被用来执行索引键值的查找；如果没有同时出现 <code>Using where</code> ，表明索引用来读取数据而非执行查找动作，使用了索引覆盖。</li>
+</ul>
+<h2 id="JOIN-注意点"><a href="#JOIN-注意点" class="headerlink" title="JOIN 注意点"></a>JOIN 注意点</h2><ul>
+<li><p>以小的结果集驱动大的结果集。</p>
+</li>
+<li><p>优先优化 NestedLoop 的内层。</p>
+</li>
+<li><p>保证 JOIN 语句中次表的条件字段已经被索引。</p>
+  <figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">INDEX</span> idx_book_card <span class="keyword">ON</span> book(card);</span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> book <span class="keyword">LEFT</span> <span class="keyword">JOIN</span> <span class="keyword">class</span> </span><br><span class="line"><span class="keyword">ON</span> book.card=class.card; <span class="comment">-- index + ALL</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">INDEX</span> idx_class_card <span class="keyword">ON</span> <span class="keyword">class</span>(card); <span class="comment">-- ALL + ref</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>当无法保证建立索引且内存资源充足，酌情设置 Join Buffer 。</p>
+</li>
+</ul>
+<h2 id="索引失效"><a href="#索引失效" class="headerlink" title="索引失效"></a>索引失效</h2><ul>
+<li><p>查询应该从复合索引的最左前列开始，并且不跳过索引中的字段（跳过则为部分索引）。</p>
+</li>
+<li><p>在索引列上进行计算会使索引失效。</p>
+</li>
+<li><p>范围之后的索引会失效：</p>
+  <figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">INDEX</span> idx_article_ccv <span class="keyword">ON</span> article(category_id,comments,views);</span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">id</span>,author_id <span class="keyword">FROM</span> article </span><br><span class="line"><span class="keyword">WHERE</span> category_id = <span class="number">1</span> <span class="keyword">AND</span> comments &gt; <span class="number">1</span> </span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> views <span class="keyword">DESC</span> <span class="keyword">LIMIT</span> <span class="number">1</span>; <span class="comment">-- Using filesort</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">INDEX</span> idx_article_cv <span class="keyword">ON</span> article(category_id,views);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>尽量使用覆盖索引，用什么字段就查询什么字段。</p>
+</li>
+<li><p>使用 <code>!=</code> <code>&lt;&gt;</code> <code>IS NULL</code> <code>IS NOT NULL</code> 时无法使用索引。</p>
+</li>
+<li><p>LIKE 子句的百分应该加右边（此时 type = range，之后的会失效），但覆盖索引下加两边都行。</p>
+</li>
+<li><p>字符串要加单引号，防止数字/字符发生类型转换，索引也会失效。</p>
+</li>
+<li><p>使用 OR 连接时索引失效。</p>
+</li>
+</ul>
+<h1 id="查询优化"><a href="#查询优化" class="headerlink" title="查询优化"></a>查询优化</h1><h2 id="IN-和-EXISTS"><a href="#IN-和-EXISTS" class="headerlink" title="IN 和 EXISTS"></a>IN 和 EXISTS</h2><p>EXISTS：将主查询的数据放到子查询中做条件验证，根据验证结果决定主查询的数据结果是否得以保留。实际执行时会忽略 SELECT 列表。可以用条件表达式，子查询或者 JOIN 替代，具体问题具体分析。</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- IN 适合 B 表比 A 表数据小的情况</span></span><br><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> <span class="string">`A`</span> <span class="keyword">WHERE</span> <span class="string">`id`</span> <span class="keyword">IN</span> (<span class="keyword">SELECT</span> <span class="string">`id`</span> <span class="keyword">FROM</span> <span class="string">`B`</span>)</span><br><span class="line"><span class="comment">-- EXISTS 适合 B 表比 A 表数据大的情况</span></span><br><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> <span class="string">`A`</span> <span class="keyword">WHERE</span> <span class="keyword">EXISTS</span> (<span class="keyword">SELECT</span> <span class="number">1</span> <span class="keyword">FROM</span> <span class="string">`B`</span> <span class="keyword">WHERE</span> <span class="string">`B`</span>.id = <span class="string">`A`</span>.id);</span><br></pre></td></tr></table></figure>
+
+<h2 id="排序"><a href="#排序" class="headerlink" title="排序"></a>排序</h2><p>尽量最佳左前缀，如果不在索引列上，FileSort 有两种算法：</p>
+<ol>
+<li>双路排序算法：MySQL4.1 之前默认。读取行指针和 ORDER BY 列在 buffer 中进行排序，然后按照排序好的列表读取对应的数据输出。</li>
+<li>单路排序算法：从磁盘读取查询需要的所有列，按照 ORDER BY 列在 buffer 中进行排序，然后扫描排序后的列表进行输出，避免了第二次读取数据。并且把随机 IO 变成了顺序 IO，但会使用更多的空间。</li>
+</ol>
+<p>单路排序算法效率好过双路排序。但如果 SortBuffer 缓冲区太小，导致从磁盘中读取所有的列不能完全保存在 SortBuffer 中，性能反而不如后者。</p>
+<ul>
+<li>增大 <code>sort_buffer_size</code> 参数的设置。</li>
+<li>增大 <code>max_length_for_sort_data</code> 参数的设置。query 字段大小总和小于其数值时将使用单路排序。过大易超出 <code>sort_buffer_size</code> 导致性能下降。</li>
+</ul>
+<p>GORUP BY 实质先排序后分组，优化排序。</p>
+<h2 id="慢查询"><a href="#慢查询" class="headerlink" title="慢查询"></a>慢查询</h2><p><code>long_query_time</code> 的默认值为10。</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- 重启失效</span></span><br><span class="line"><span class="keyword">SET</span> <span class="keyword">GLOBAL</span> slow_query_log = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">SET</span> <span class="keyword">GLOBAL</span> long_query_time = <span class="number">2</span>;</span><br><span class="line"><span class="keyword">SHOW</span> <span class="keyword">VARIABLES</span> <span class="keyword">LIKE</span> <span class="string">'%slow_query_log%'</span>;</span><br><span class="line"><span class="keyword">SHOW</span> <span class="keyword">VARIABLES</span> <span class="keyword">LIKE</span> <span class="string">'long_query_time%'</span>;</span><br><span class="line"><span class="keyword">SHOW</span> <span class="keyword">GLOBAL</span> <span class="keyword">STATUS</span> <span class="keyword">LIKE</span> <span class="string">'%Slow_queries%'</span>;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span> my.cnf</span><br><span class="line">[mysqld]</span><br><span class="line">slow_query_log=ON</span><br><span class="line">slow_query_log_file=../slow.log</span><br><span class="line">long_query_time=2</span><br></pre></td></tr></table></figure>
+
+<p><strong>mysqldumpslow</strong> 工具</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">-s ORDER	what to sort by (al, at, ar, c, l, r, t), 'at' is default</span><br><span class="line">		al: average lock time # 平均锁定时间</span><br><span class="line">		ar: average rows sent # 平均返回记录数</span><br><span class="line">		at: average query time # 平均查询时间</span><br><span class="line">		c: count # 访问次数</span><br><span class="line">		l: lock time # 锁定时间</span><br><span class="line">		r: rows sent # 返回记录</span><br><span class="line">		t: query time # 查询时间</span><br><span class="line">-t NUM		just show the top n queries</span><br><span class="line">-g PATTERN	grep: only consider stmts that include this string</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> 返回记录集最多的10个SQL</span><br><span class="line">mysqldumpslow -s r -t 10 ../slow.log</span><br><span class="line"><span class="meta">#</span> 访问次数最多的10个SQL</span><br><span class="line">mysqldumpslow -s c -t 10 ../slow.log</span><br><span class="line"><span class="meta">#</span> 按照时间排序的前10条里面含有左连接的查询语句</span><br><span class="line">mysqldumpslow -s t -t 10 -g "left join" ../slow.log</span><br></pre></td></tr></table></figure>
+
+<h2 id="SHOW-PROFILE"><a href="#SHOW-PROFILE" class="headerlink" title="SHOW PROFILE"></a>SHOW PROFILE</h2><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SET</span> profiling=<span class="keyword">ON</span>;</span><br><span class="line"><span class="keyword">SHOW</span> <span class="keyword">VARIABLES</span> <span class="keyword">LIKE</span> <span class="string">'profiling'</span>;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">SHOW PROFILE</span><br><span class="line">	ALL: 显示所有的开销信息。</span><br><span class="line">	BLOCK IO: 显示块IO相关开销（通用）。</span><br><span class="line">	CONTEXT SWITCHES: 上下文切换相关开销。</span><br><span class="line">	CPU: 显示CPU相关开销信息（通用）。</span><br><span class="line">	IPC: 显示发送和接收相关开销信息。</span><br><span class="line">	MEMORY: 显示内存相关开销信息。</span><br><span class="line">	PAGE FAULTS: 显示页面错误相关开销信息。</span><br><span class="line">	SOURCE: 显示和Source_function。</span><br><span class="line">	SWAPS: 显示交换次数相关开销的信息。</span><br><span class="line"></span><br><span class="line">SHOW PROFILES;</span><br><span class="line">SHOW PROFILE cpu, block io FOR QUERY &lt;Query_ID&gt;;</span><br></pre></td></tr></table></figure>
+
+<h1 id="锁"><a href="#锁" class="headerlink" title="锁"></a>锁</h1><h2 id="表锁"><a href="#表锁" class="headerlink" title="表锁"></a>表锁</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">SHOW OPEN TABLES;</span><br><span class="line">LOCK TABLE `readtable` READ, `writetable` WRITE;</span><br><span class="line">UNLOCK TABLES;</span><br><span class="line">SHOW STATUS LIKE &apos;table%&apos;;</span><br><span class="line">-- Table_locks_immediate: 可以立即获取锁的查询次数。</span><br><span class="line">-- Table_locks_waited: 出现表级锁定争用而发生等待的次数。</span><br></pre></td></tr></table></figure>
+
+<p>MyISAM 执行 SELECT 之前，给涉及到的所有表加读锁，在执行增删改之前，给涉及的表加写锁。</p>
+<p>MySQL 表级锁两种模式：</p>
+<ul>
+<li>表共享读锁（Table Read Lock）。不会阻塞其他线程対同一表的读操作，但是会阻塞其他线程対同一表的写操作</li>
+<li>表独占写锁（Table Write Lock）。阻塞其他线程対同一表的读和写操作。</li>
+</ul>
+<h2 id="行锁"><a href="#行锁" class="headerlink" title="行锁"></a>行锁</h2><p>行锁是通过索引实现的，没有索引和索引失效会使行锁变表锁。</p>
+<p><code>SELECT ... FOR UPDATE</code> 锁定某一行后其他写操作会被阻塞，直到锁定的行被 COMMIT。</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SHOW</span> <span class="keyword">STATUS</span> <span class="keyword">LIKE</span> <span class="string">'innodb_row_lock%'</span>;</span><br><span class="line"><span class="comment">-- Innodb_row_lock_current_waits: 当前正在等待锁定的数量。</span></span><br><span class="line"><span class="comment">-- Innodb_row_lock_time: 从系统启动到现在锁定总时间长度（重要）。</span></span><br><span class="line"><span class="comment">-- Innodb_row_lock_time_avg: 每次等待所花的平均时间（重要）。</span></span><br><span class="line"><span class="comment">-- Innodb_row_lock_time_max: 从系统启动到现在等待最长的一次所花的时间。</span></span><br><span class="line"><span class="comment">-- Innodb_row_lock_waits: 系统启动后到现在总共等待的次数（重要）。</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>间隙锁</strong></p>
+<p>当使用范围条件检索数据并请求共享或者排他锁时，InnoDB 会给符合条件的已有数据记录的索引项加锁，对于键值在条件范围内但并不存在的记录，叫做 “间隙(GAP)”。InnoDB 也会对这个 “间隙” 加锁。<br>造成在锁定的时候无法插入锁定键值范围内的任何数据。</p>
+]]></content>
+      <categories>
+        <category>MySQL</category>
+      </categories>
+      <tags>
+        <tag>MySQL</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>MySQL 性能-索引</title>
     <url>/2020/09/13/MySQL-%E6%80%A7%E8%83%BD-%E7%B4%A2%E5%BC%95/</url>
     <content><![CDATA[<h1 id="索引类型"><a href="#索引类型" class="headerlink" title="索引类型"></a>索引类型</h1><p>索引在存储引擎层实现。</p><p>扫描索引本身很快，但按索引顺序读取数据的速度通常要比顺序的全表扫描慢，因为基本是随机 I/O。</p><h2 id="B-Tree-索引"><a href="#B-Tree-索引" class="headerlink" title="B-Tree 索引"></a>B-Tree 索引</h2><p><em>此处的 B 是平衡，而非二叉（演化自 AVLTree ）</em></p><p>B-Tree 作为术语使用（即使是 T-Tree 结构），多数存储引擎其实是 B+Tree 。</p><p>索引对多个值进行排序的依据是 create table 中定义索引时列的顺序。</p><a id="more"></a>
@@ -2447,114 +2555,6 @@ tring&gt; comp = (first, second) -&gt; ... ;</code> ；如果方法只有一个�
       </tags>
   </entry>
   <entry>
-    <title>MySQL 总结</title>
-    <url>/2020/11/16/MySQL-%E6%80%BB%E7%BB%93/</url>
-    <content><![CDATA[<h1 id="索引优化"><a href="#索引优化" class="headerlink" title="索引优化"></a>索引优化</h1><h2 id="查询执行顺序"><a href="#查询执行顺序" class="headerlink" title="查询执行顺序"></a>查询执行顺序</h2><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">FROM &lt;_table&gt;	-- 两个表的笛卡尔积 vt1</span><br><span class="line">				<span class="comment">-- 如果多于两个表就计算和 vt3 的笛卡尔积，重复</span></span><br><span class="line">ON &lt;join_condition&gt; -- 筛选出满足条件的行 vt2</span><br><span class="line">&lt;join_type&gt; JOIN &lt;_table&gt;	-- 把主表被过滤的行添加回来 vt3</span><br><span class="line">							<span class="comment">-- 次表无匹配的部分补 NULL</span></span><br><span class="line">WHERE &lt;where_condition&gt; -- 在数据从磁盘进入内存前判断</span><br><span class="line">GROUP BY &lt;group_by_list&gt;	-- 结果集中每个组只有一行</span><br><span class="line">							<span class="comment">-- 开始允许使用别名</span></span><br><span class="line">HAVING &lt;having_condition&gt; -- 全部载入内存，在内存内部判断</span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">DISTINCT</span> &lt;select_list&gt;</span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> &lt;order_by_condition&gt;</span><br><span class="line"><span class="keyword">LIMIT</span> &lt;limit_number&gt;</span><br></pre></td></tr></table></figure>
-
-<h2 id="EXPLAIN-字段"><a href="#EXPLAIN-字段" class="headerlink" title="EXPLAIN 字段"></a>EXPLAIN 字段</h2><a id="more"></a>
-
-<p><strong>type</strong></p>
-<ul>
-<li><code>system</code>：表只有一行记录（等于系统表），是 <code>const</code> 类型的特例。</li>
-<li><code>const</code>：表示索引了一次，只匹配一行数据。如将主键置于 WHERE 列表中，MySQL 就能将该查询转化为一个常量。</li>
-<li><code>eq_ref</code>：读取本表和关联表组合成的一行，查出来只有一条记录。</li>
-<li><code>ref</code>：返回本表和关联表某个值匹配的所有行，查出来有多条记录。</li>
-<li><code>range</code>：只检索给定范围的行，一般是在 WHERE 语句中出现了 BETWEEN 、&lt; &gt;、in 等的查询。只需要开始于索引树的某一点，而结束于另一点，不用扫描全部索引。</li>
-<li><code>index</code>：Full Index Scan，全索引扫描，遍历索引树。</li>
-<li><code>ALL</code>：Full Table Scan，没有用到索引，全表扫描。</li>
-</ul>
-<p><strong>key_len</strong></p>
-<p>索引字段的最大可能长度，其根据表定义计算而得，并非实际使用长度。</p>
-<blockquote>
-<p>char 和 varchar 类型计算:<br>varchr(N) 变长字段允许 NULL = N * ( utf8=3,gbk=2,latin1=1 )+2+1(NULL)<br>char(N) 固定字段允许 NULL = N * ( utf8=3,gbk=2,latin1=1 )+1(NULL)</p>
-<p>数值类型计算：<br>TINYINT 允许 NULL = 1+1(NULL)<br>SMALLINT 允许 NULL = 2+1(NULL)<br>INT 允许 NULL = 4+1(NULL)</p>
-<p>日期时间类型计算：（针对mysql5.5及之前版本）<br>DATETIME 允许 NULL = 8 + 1(NULL)<br>TIMESTAMP 允许 NULL = 4+1(NULL)</p>
-</blockquote>
-<p><strong>Extra</strong></p>
-<ul>
-<li><code>Using filesort</code>：无法利用索引完成的排序操作。对数据使用一个外部的索引排序，而不是按照表内的索引顺序进行读取。</li>
-<li><code>Using temporary</code>：排序时使用了临时表保存中间结果，常见于 ORDER BY 和 GROUP BY。</li>
-<li><code>Using index</code>：同时出现 <code>Using where</code> ，表示索引被用来执行索引键值的查找；如果没有同时出现 <code>Using where</code> ，表明索引用来读取数据而非执行查找动作，使用了索引覆盖。</li>
-</ul>
-<h2 id="JOIN-注意点"><a href="#JOIN-注意点" class="headerlink" title="JOIN 注意点"></a>JOIN 注意点</h2><ul>
-<li><p>以小的结果集驱动大的结果集。</p>
-</li>
-<li><p>优先优化 NestedLoop 的内层。</p>
-</li>
-<li><p>保证 JOIN 语句中次表的条件字段已经被索引。</p>
-  <figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">INDEX</span> idx_book_card <span class="keyword">ON</span> book(card);</span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> book <span class="keyword">LEFT</span> <span class="keyword">JOIN</span> <span class="keyword">class</span> </span><br><span class="line"><span class="keyword">ON</span> book.card=class.card; <span class="comment">-- index + ALL</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">INDEX</span> idx_class_card <span class="keyword">ON</span> <span class="keyword">class</span>(card); <span class="comment">-- ALL + ref</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>当无法保证建立索引且内存资源充足，酌情设置 Join Buffer 。</p>
-</li>
-</ul>
-<h2 id="索引失效"><a href="#索引失效" class="headerlink" title="索引失效"></a>索引失效</h2><ul>
-<li><p>查询应该从复合索引的最左前列开始，并且不跳过索引中的字段（跳过则为部分索引）。</p>
-</li>
-<li><p>在索引列上进行计算会使索引失效。</p>
-</li>
-<li><p>范围之后的索引会失效：</p>
-  <figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">INDEX</span> idx_article_ccv <span class="keyword">ON</span> article(category_id,comments,views);</span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">id</span>,author_id <span class="keyword">FROM</span> article </span><br><span class="line"><span class="keyword">WHERE</span> category_id = <span class="number">1</span> <span class="keyword">AND</span> comments &gt; <span class="number">1</span> </span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> views <span class="keyword">DESC</span> <span class="keyword">LIMIT</span> <span class="number">1</span>; <span class="comment">-- Using filesort</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">INDEX</span> idx_article_cv <span class="keyword">ON</span> article(category_id,views);</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>尽量使用覆盖索引，用什么字段就查询什么字段。</p>
-</li>
-<li><p>使用 <code>!=</code> <code>&lt;&gt;</code> <code>IS NULL</code> <code>IS NOT NULL</code> 时无法使用索引。</p>
-</li>
-<li><p>LIKE 子句的百分应该加右边（此时 type = range，之后的会失效），但覆盖索引下加两边都行。</p>
-</li>
-<li><p>字符串要加单引号，防止数字/字符发生类型转换，索引也会失效。</p>
-</li>
-<li><p>使用 OR 连接时索引失效。</p>
-</li>
-</ul>
-<h1 id="查询优化"><a href="#查询优化" class="headerlink" title="查询优化"></a>查询优化</h1><h2 id="IN-和-EXISTS"><a href="#IN-和-EXISTS" class="headerlink" title="IN 和 EXISTS"></a>IN 和 EXISTS</h2><p>EXISTS：将主查询的数据放到子查询中做条件验证，根据验证结果决定主查询的数据结果是否得以保留。实际执行时会忽略 SELECT 列表。可以用条件表达式，子查询或者 JOIN 替代，具体问题具体分析。</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- IN 适合 B 表比 A 表数据小的情况</span></span><br><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> <span class="string">`A`</span> <span class="keyword">WHERE</span> <span class="string">`id`</span> <span class="keyword">IN</span> (<span class="keyword">SELECT</span> <span class="string">`id`</span> <span class="keyword">FROM</span> <span class="string">`B`</span>)</span><br><span class="line"><span class="comment">-- EXISTS 适合 B 表比 A 表数据大的情况</span></span><br><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> <span class="string">`A`</span> <span class="keyword">WHERE</span> <span class="keyword">EXISTS</span> (<span class="keyword">SELECT</span> <span class="number">1</span> <span class="keyword">FROM</span> <span class="string">`B`</span> <span class="keyword">WHERE</span> <span class="string">`B`</span>.id = <span class="string">`A`</span>.id);</span><br></pre></td></tr></table></figure>
-
-<h2 id="排序"><a href="#排序" class="headerlink" title="排序"></a>排序</h2><p>尽量最佳左前缀，如果不在索引列上，FileSort 有两种算法：</p>
-<ol>
-<li>双路排序算法：MySQL4.1 之前默认。读取行指针和 ORDER BY 列在 buffer 中进行排序，然后按照排序好的列表读取对应的数据输出。</li>
-<li>单路排序算法：从磁盘读取查询需要的所有列，按照 ORDER BY 列在 buffer 中进行排序，然后扫描排序后的列表进行输出，避免了第二次读取数据。并且把随机 IO 变成了顺序 IO，但会使用更多的空间。</li>
-</ol>
-<p>单路排序算法效率好过双路排序。但如果 SortBuffer 缓冲区太小，导致从磁盘中读取所有的列不能完全保存在 SortBuffer 中，性能反而不如后者。</p>
-<ul>
-<li>增大 <code>sort_buffer_size</code> 参数的设置。</li>
-<li>增大 <code>max_length_for_sort_data</code> 参数的设置。query 字段大小总和小于其数值时将使用单路排序。过大易超出 <code>sort_buffer_size</code> 导致性能下降。</li>
-</ul>
-<p>GORUP BY 实质先排序后分组，优化排序。</p>
-<h2 id="慢查询"><a href="#慢查询" class="headerlink" title="慢查询"></a>慢查询</h2><p><code>long_query_time</code> 的默认值为10。</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- 重启失效</span></span><br><span class="line"><span class="keyword">SET</span> <span class="keyword">GLOBAL</span> slow_query_log = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">SET</span> <span class="keyword">GLOBAL</span> long_query_time = <span class="number">2</span>;</span><br><span class="line"><span class="keyword">SHOW</span> <span class="keyword">VARIABLES</span> <span class="keyword">LIKE</span> <span class="string">'%slow_query_log%'</span>;</span><br><span class="line"><span class="keyword">SHOW</span> <span class="keyword">VARIABLES</span> <span class="keyword">LIKE</span> <span class="string">'long_query_time%'</span>;</span><br><span class="line"><span class="keyword">SHOW</span> <span class="keyword">GLOBAL</span> <span class="keyword">STATUS</span> <span class="keyword">LIKE</span> <span class="string">'%Slow_queries%'</span>;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span> my.cnf</span><br><span class="line">[mysqld]</span><br><span class="line">slow_query_log=ON</span><br><span class="line">slow_query_log_file=../slow.log</span><br><span class="line">long_query_time=2</span><br></pre></td></tr></table></figure>
-
-<p><strong>mysqldumpslow</strong> 工具</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">-s ORDER	what to sort by (al, at, ar, c, l, r, t), 'at' is default</span><br><span class="line">		al: average lock time # 平均锁定时间</span><br><span class="line">		ar: average rows sent # 平均返回记录数</span><br><span class="line">		at: average query time # 平均查询时间</span><br><span class="line">		c: count # 访问次数</span><br><span class="line">		l: lock time # 锁定时间</span><br><span class="line">		r: rows sent # 返回记录</span><br><span class="line">		t: query time # 查询时间</span><br><span class="line">-t NUM		just show the top n queries</span><br><span class="line">-g PATTERN	grep: only consider stmts that include this string</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> 返回记录集最多的10个SQL</span><br><span class="line">mysqldumpslow -s r -t 10 ../slow.log</span><br><span class="line"><span class="meta">#</span> 访问次数最多的10个SQL</span><br><span class="line">mysqldumpslow -s c -t 10 ../slow.log</span><br><span class="line"><span class="meta">#</span> 按照时间排序的前10条里面含有左连接的查询语句</span><br><span class="line">mysqldumpslow -s t -t 10 -g "left join" ../slow.log</span><br></pre></td></tr></table></figure>
-
-<h2 id="SHOW-PROFILE"><a href="#SHOW-PROFILE" class="headerlink" title="SHOW PROFILE"></a>SHOW PROFILE</h2><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SET</span> profiling=<span class="keyword">ON</span>;</span><br><span class="line"><span class="keyword">SHOW</span> <span class="keyword">VARIABLES</span> <span class="keyword">LIKE</span> <span class="string">'profiling'</span>;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">SHOW PROFILE</span><br><span class="line">	ALL: 显示所有的开销信息。</span><br><span class="line">	BLOCK IO: 显示块IO相关开销（通用）。</span><br><span class="line">	CONTEXT SWITCHES: 上下文切换相关开销。</span><br><span class="line">	CPU: 显示CPU相关开销信息（通用）。</span><br><span class="line">	IPC: 显示发送和接收相关开销信息。</span><br><span class="line">	MEMORY: 显示内存相关开销信息。</span><br><span class="line">	PAGE FAULTS: 显示页面错误相关开销信息。</span><br><span class="line">	SOURCE: 显示和Source_function。</span><br><span class="line">	SWAPS: 显示交换次数相关开销的信息。</span><br><span class="line"></span><br><span class="line">SHOW PROFILES;</span><br><span class="line">SHOW PROFILE cpu, block io FOR QUERY &lt;Query_ID&gt;;</span><br></pre></td></tr></table></figure>
-
-<h1 id="锁"><a href="#锁" class="headerlink" title="锁"></a>锁</h1><h2 id="表锁"><a href="#表锁" class="headerlink" title="表锁"></a>表锁</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">SHOW OPEN TABLES;</span><br><span class="line">LOCK TABLE `readtable` READ, `writetable` WRITE;</span><br><span class="line">UNLOCK TABLES;</span><br><span class="line">SHOW STATUS LIKE &apos;table%&apos;;</span><br><span class="line">-- Table_locks_immediate: 可以立即获取锁的查询次数。</span><br><span class="line">-- Table_locks_waited: 出现表级锁定争用而发生等待的次数。</span><br></pre></td></tr></table></figure>
-
-<p>MyISAM 执行 SELECT 之前，给涉及到的所有表加读锁，在执行增删改之前，给涉及的表加写锁。</p>
-<p>MySQL 表级锁两种模式：</p>
-<ul>
-<li>表共享读锁（Table Read Lock）。不会阻塞其他线程対同一表的读操作，但是会阻塞其他线程対同一表的写操作</li>
-<li>表独占写锁（Table Write Lock）。阻塞其他线程対同一表的读和写操作。</li>
-</ul>
-<h2 id="行锁"><a href="#行锁" class="headerlink" title="行锁"></a>行锁</h2><p>行锁是通过索引实现的，没有索引和索引失效会使行锁变表锁。</p>
-<p><code>SELECT ... FOR UPDATE</code> 锁定某一行后其他写操作会被阻塞，直到锁定的行被 COMMIT。</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SHOW</span> <span class="keyword">STATUS</span> <span class="keyword">LIKE</span> <span class="string">'innodb_row_lock%'</span>;</span><br><span class="line"><span class="comment">-- Innodb_row_lock_current_waits: 当前正在等待锁定的数量。</span></span><br><span class="line"><span class="comment">-- Innodb_row_lock_time: 从系统启动到现在锁定总时间长度（重要）。</span></span><br><span class="line"><span class="comment">-- Innodb_row_lock_time_avg: 每次等待所花的平均时间（重要）。</span></span><br><span class="line"><span class="comment">-- Innodb_row_lock_time_max: 从系统启动到现在等待最长的一次所花的时间。</span></span><br><span class="line"><span class="comment">-- Innodb_row_lock_waits: 系统启动后到现在总共等待的次数（重要）。</span></span><br></pre></td></tr></table></figure>
-
-<p><strong>间隙锁</strong></p>
-<p>当使用范围条件检索数据并请求共享或者排他锁时，InnoDB 会给符合条件的已有数据记录的索引项加锁，对于键值在条件范围内但并不存在的记录，叫做 “间隙(GAP)”。InnoDB 也会对这个 “间隙” 加锁。<br>造成在锁定的时候无法插入锁定键值范围内的任何数据。</p>
-]]></content>
-      <categories>
-        <category>MySQL</category>
-      </categories>
-      <tags>
-        <tag>MySQL</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>P420i 阵列卡开启 HBA 直通</title>
     <url>/2020/03/16/P420i-%E9%98%B5%E5%88%97%E5%8D%A1%E5%BC%80%E5%90%AF-HBA-%E7%9B%B4%E9%80%9A/</url>
     <content><![CDATA[<p>HP P420i 阵列卡 ESXi 下开启 HBA 直通：</p>
@@ -2590,185 +2590,6 @@ tring&gt; comp = (first, second) -&gt; ... ;</code> ；如果方法只有一个�
       <tags>
         <tag>ESXi</tag>
         <tag>HBA</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Vim 思维导图</title>
-    <url>/2020/02/02/Vim-%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE/</url>
-    <content><![CDATA[<p>没钱开 XMind… 理直气壮不去水印</p>
-<p><img src="https://i.loli.net/2020/03/06/nqQfTsWvU2C54hc.png" alt="vim.png"></p>
-]]></content>
-      <categories>
-        <category>Linux</category>
-      </categories>
-      <tags>
-        <tag>思维导图</tag>
-        <tag>vim</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Hello World</title>
-    <url>/2019/09/04/hello-world/</url>
-    <content><![CDATA[<center>九月四日，YUYU向宇宙发出的第一声啼鸣，以太阳为中心，以光速向宇宙深处飞驰......(x<center>
-</center></center>]]></content>
-  </entry>
-  <entry>
-    <title>修改 iLO 的 SSL 端口</title>
-    <url>/2020/05/04/ssh%E4%BF%AE%E6%94%B9iLO%E7%9A%84SSL%E7%AB%AF%E5%8F%A3/</url>
-    <content><![CDATA[<p>问题：远程修改 iLO Web 服务器 SSL 端口到 <strong>21</strong> 后无法连接。</p><p>原因：浏览器认为不安全（http 访问 21）</p><p>解决：改回默认或者换个不冲突的。</p><hr><ol>
-<li><p>VPN 接入内网，ssh 登录 iLO。</p>
-</li>
-<li><p>不认 ls cat 什么的，<code>help</code> 说要用 <code>show</code> ，<em>system1</em> 目录是主机信息和 iLO 没啥关系。</p>
-<p> <img src="https://i.loli.net/2020/05/04/GRYOdgyHnFZmC1f.png" alt="0505-01.png"></p>
-</li>
-<li><p><code>show /map1</code> 能找到一个配置文件 <em>config1</em> ，<code>show /map1/config1</code> 看一下，果然有 <em>oemhp_sslport</em> 这项 (图片是修改后的) ：</p>
-<p> <img src="https://i.loli.net/2020/05/04/1KtHeNEFklS75PR.png" alt="0505-03.png"></p>
-</li>
-<li><p>最后 <code>cd /map1/config1</code> :</p>
- <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">&lt;/map1/config1&gt;hpiLO-&gt; set oemhp_sslport=443</span><br></pre></td></tr></table></figure>
-
-</li>
-</ol><a id="more"></a>
-
-
-
-
-<hr>
-<p>校园网屏蔽非常规端口，访问家里的服务器要连上机场当跳板 (没有国内 vps) 。今天 ssh 居然裸连上了… 然后恶从胆边生 (不是) 试了下 FTP 端口 (x</p>
-<p>不过远程卡真的会用上 21 端口 <del>(某300页手册说) iLO 进入某个恢复模式时会自启一个 FTP 服务…</del>  </p>
-]]></content>
-      <categories>
-        <category>瞎折腾</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>久久久远的2017</title>
-    <url>/2020/01/30/%E4%B9%85%E4%B9%85%E4%B9%85%E8%BF%9C%E7%9A%842017/</url>
-    <content><![CDATA[<p>图片已压缩… 阿里云 OSS 太贵了 qvq</p>
-<p><img src="https://i.loli.net/2020/03/02/dHeotmyg2lCNqRF.jpg" alt="0212-01.jpg"></p>
-<p><em>那天和对象出来干啥来着的… 咱俩坐在水游城负一楼休息，正巧在扶梯那。</em></p>
-<p><em>相比另一张横幅的，这张更有气势，但内容有点乱。</em></p>
-<a id="more"></a>
-
-<hr>
-<p><img src="https://i.loli.net/2020/03/02/zcT5wmgXStBd7vf.jpg" alt="0212-02.jpg"></p>
-<p><em>和舍友们在玄武湖遇到的一只老猫，毛都秃了x 。</em></p>
-<p><em>emmm 比较…气质？</em></p>
-<hr>
-<p><img src="https://i.loli.net/2020/03/02/fBzIupQEiRSAxa1.jpg" alt="0212-03.jpg"></p>
-<p><em>学校图书馆，录完对比视频顺手合影。想表达锤子科技产品理念的更迭，好像失败了x ，现在看简直是对 M 系列的鞭尸。</em></p>
-<p><em>为了让 M 产生虚化两者前后距离实际相当远，用长焦压缩的距离。暖光比较符合 M 系列的性格和地位，也能和锐利的坚果产生冲突。对象打光穿帮了，应该挡一下坚果方向的，嗯对象的锅。</em></p>
-<hr>
-<p><img src="https://i.loli.net/2020/03/02/C3y4xmScps2hEdt.jpg" alt="0212-04.jpeg"></p>
-<p><em>17 年才摸到真机，比后面几代圆角怪x 好看多了。</em></p>
-<hr>
-<p><img src="https://i.loli.net/2020/03/02/5o1rHYLpjWNMZC3.jpg" alt="0212-05.jpeg"></p>
-<p><em>宿舍床上拍的，按使用时间算遗照。是个正经大法，不像后来某些 A25 A35 A45 A55 x</em></p>
-<hr>
-<p><img src="https://i.loli.net/2020/03/02/HoaDWZpUPduylYC.jpg" alt="0212-06.jpg"></p>
-<p><em>大晚上爬紫金山还吃了晚归，第一次拍全景弄拼接，嗯也就这一次。</em></p>
-<p><em>光污染没救回来，天空占比也多了。紫峰左边那部分截掉其实也可，当时为了长吧x ，左右下角一片黑是因为机位没选好，山坡和护栏把视野挡了。</em></p>
-]]></content>
-      <categories>
-        <category>碎碎念</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>vim 的乱七八糟</title>
-    <url>/2019/10/27/vim-%E7%9A%84%E4%B9%B1%E4%B8%83%E5%85%AB%E7%B3%9F/</url>
-    <content><![CDATA[<h1 id="文件"><a href="#文件" class="headerlink" title="文件"></a>文件</h1><p>vim 编辑文件时会新建 .filename.swp 文件，记录所作操作，当 vim 被不正常中断（或他人正在编辑<br>）时暂存文件不会消失，继续编辑时允许如下操作：</p><ul>
-<li>R 加载暂存文件的内容，恢复未保存的工作，记得离开 vim 后手动删掉暂存文件</li>
-<li>D 确定暂存文件无用，删除并新建本次使用的 .swp</li>
-<li>O 以只读打开，不进行编辑行为，用于他人正在编辑</li>
-</ul><a id="more"></a>
-
-<p>环境记录文件<br>~/.viminfo</p>
-<p>环境配置文件<br>/etc/vimrc，建议创建 ~/.vimrc</p>
-<table>
-<thead>
-<tr>
-<th align="center">-</th>
-<th align="center">-</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">:setnu :set nonu</td>
-<td align="center">行号</td>
-</tr>
-<tr>
-<td align="center">:set all</td>
-<td align="center">当前环境参数</td>
-</tr>
-<tr>
-<td align="center">:set</td>
-<td align="center">与默认不同的参数</td>
-</tr>
-</tbody></table>
-<h1 id="操作"><a href="#操作" class="headerlink" title="操作"></a>操作</h1><p>1.块选择</p>
-<p>一般模式下 [ctrl]-v 选择，y 复制，p 粘贴</p>
-<hr>
-<p>2.多窗口</p>
-<table>
-<thead>
-<tr>
-<th align="left">新窗口</th>
-<th align="right">光标向下</th>
-<th align="center">光标向上</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left">:sp / :sp{filename}</td>
-<td align="right">[ctrl]-w+j</td>
-<td align="center">[ctrl]-w+k</td>
-</tr>
-</tbody></table>
-<hr>
-<p>3.多文件<br>| 当前打开的文件  | 下一个 | 上一个   |<br>|—————|:————–|:————–:|<br>|  :files  | :n  | :N |</p>
-<h1 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h1><p>中文编码</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span> LANG=zh_CN.xxx</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> iconv --list</span><br><span class="line"><span class="meta">#</span> iconv -f 原编码 -t 新编码 filename [-o newfile]</span><br><span class="line">-f from</span><br><span class="line">-t to</span><br><span class="line">-o newfile 保留原本文件</span><br></pre></td></tr></table></figure>
-
-<hr>
-<p>断行符<br>DOS ：^M$，即 CR 和 LF<br>Linux ：$，仅 LF</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span> dos2UNIX [-kn] file [newfile]</span><br><span class="line"><span class="meta">#</span> UNIX2dos [-kn] file [newfile]</span><br><span class="line">-k 不修改 mtime</span><br><span class="line">-n 输出到新文件</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>Linux</category>
-      </categories>
-      <tags>
-        <tag>vim</tag>
-        <tag>环境配置</tag>
-        <tag>断行符</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>关于 Java 标签404</title>
-    <url>/2019/12/08/%E5%85%B3%E4%BA%8E-Java-%E6%A0%87%E7%AD%BE404/</url>
-    <content><![CDATA[<p><del>之前的标签名是 JAVA，后来改了小写，hexo 好像没有对标签的文件夹 <code>git mv</code>，有时间再手动改吧…</del></p>
-<p><del>干脆直接戳 <a href="https://www.yuyurbq.club/categories/JAVA/" target="_blank" rel="noopener">https://www.yuyurbq.club/categories/JAVA/</a> 吧…</del></p>
-<p>没事了</p>
-]]></content>
-  </entry>
-  <entry>
-    <title>对象实例化过程</title>
-    <url>/2019/09/06/%E5%AF%B9%E8%B1%A1%E5%AE%9E%E4%BE%8B%E5%8C%96%E8%BF%87%E7%A8%8B/</url>
-    <content><![CDATA[<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Test t = <span class="keyword">new</span> Test;</span><br></pre></td></tr></table></figure>
-
-<ol>
-<li>JVM 读取 Test.class 文件并加载进内存，加载 Test 的父类(如果有)</li>
-<li>堆内存中开辟空间，分配地址</li>
-<li>在对象空间中，对对象中的属性进行默认初始化</li>
-<li>调用对应的构造函数进行初始化<a id="more"></a></li>
-<li>在构造函数中，先调用父类的构造函数进行初始化</li>
-<li>父类初始化完毕后，对子类的属性进行显示初始化<br>（ super(); 和第二句之间的动作）</li>
-<li>进行子类构造函数的特定初始化</li>
-<li>初始化完毕，将地址值赋值给引用变量</li>
-</ol>
-]]></content>
-      <categories>
-        <category>Java</category>
-      </categories>
-      <tags>
-        <tag>实例化</tag>
-        <tag>构造函数</tag>
       </tags>
   </entry>
   <entry>
@@ -2992,6 +2813,209 @@ tring&gt; comp = (first, second) -&gt; ... ;</code> ；如果方法只有一个�
       </tags>
   </entry>
   <entry>
+    <title>Vim 思维导图</title>
+    <url>/2020/02/02/Vim-%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE/</url>
+    <content><![CDATA[<p>没钱开 XMind… 理直气壮不去水印</p>
+<p><img src="https://i.loli.net/2020/03/06/nqQfTsWvU2C54hc.png" alt="vim.png"></p>
+]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>思维导图</tag>
+        <tag>vim</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Padavan 添加 GoDaddy DDNS 服务</title>
+    <url>/2020/03/15/Padavan-%E6%B7%BB%E5%8A%A0-GoDaddy-DDNS-%E6%9C%8D%E5%8A%A1/</url>
+    <content><![CDATA[<p>04-04 更新，将历史 ip 保存在本地，不通过 api 获取（国内访问 Godaddy 太慢了）。</p>
+<ol>
+<li><p>到 DNS 管理中新增一条 A 记录，“指向” 随便填；</p>
+</li>
+<li><p>到 <a href="https://developer.godaddy.com/keys" target="_blank" rel="noopener">https://developer.godaddy.com/keys</a> 创建并记录 key 和 Secret；</p>
+</li>
+<li><p>创建 shell 脚本和本机记录文件，通过 GoDaddy 的 api 更新 ip 地址：</p>
+ <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"></span><br><span class="line">mydomain=<span class="string">"填域名"</span></span><br><span class="line">myhostname=<span class="string">"填刚才那条A记录的名称"</span></span><br><span class="line">gdapikey=<span class="string">"填 key:secret 不要忘记中间冒号"</span></span><br><span class="line"></span><br><span class="line">myip=`curl -s <span class="string">"https://api.ipify.org"</span>`</span><br><span class="line">oldip=$(tail -n 1 /path/iprecord.txt)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> [<span class="string">"<span class="variable">$oldip</span>"</span> == <span class="string">"<span class="variable">$myip</span>"</span>]; <span class="keyword">then</span></span><br><span class="line">  <span class="built_in">echo</span> <span class="string">"Nothing happened."</span></span><br><span class="line">  <span class="built_in">exit</span> 0</span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"<span class="variable">$myip</span>"</span> &gt; /path/iprecord.txt</span><br><span class="line"><span class="built_in">echo</span> <span class="string">"IP has changed."</span></span><br><span class="line">curl -s -X PUT <span class="string">"https://api.godaddy.com/v1/domains/<span class="variable">$&#123;mydomain&#125;</span>/records/A/<span class="variable">$&#123;myhostname&#125;</span>"</span> -H <span class="string">"Authorization: sso-key <span class="variable">$&#123;gdapikey&#125;</span>"</span> -H <span class="string">"Content-Type: application/json"</span> -d <span class="string">"[&#123;\"data\": \"<span class="variable">$&#123;myip&#125;</span>\"&#125;]"</span></span><br><span class="line"><span class="built_in">exit</span> 0</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>chmod 777 ，然后在本机上测试下；</p>
+</li>
+<li><p>进入路由器管理页面启用 SSH 服务；</p>
+</li>
+<li><p>sftp 连接路由器把脚本文件放到 <code>/etc/storage</code> 目录下；</p>
+</li>
+<li><p>路由器管理界面 系统管理 -&gt; 恢复/导出/上传设置 -&gt; 保存 /etc/storage/ 内容到闪存，点击后没有反馈是正常的，右上角 log 里有执行情况；</p>
+</li>
+<li><p>路由器管理界面 系统管理 -&gt; 服务 -&gt; 计划任务：</p>
+ <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">*/10 * * * * /etc/storage/yours.sh</span><br><span class="line"><span class="meta">#</span><span class="bash">每十分钟执行</span></span><br></pre></td></tr></table></figure>
+
+<p> 点击 应用本页设置 完成。</p>
+</li>
+</ol>
+]]></content>
+      <categories>
+        <category>瞎折腾</category>
+      </categories>
+      <tags>
+        <tag>DDNS</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Tomcat 乱涂画</title>
+    <url>/2020/10/08/Tomcat-%E4%B9%B1%E6%B6%82%E7%94%BB/</url>
+    <content><![CDATA[<p>结构之类的…</p>
+<a id="more"></a>
+
+<p><img src="https://i.loli.net/2020/10/08/PmqflziGEUTnFSb.jpg" alt="01.jpg"></p>
+<p><img src="https://i.loli.net/2020/10/08/DUshVk2iE68YHMA.jpg" alt="02.jpg"></p>
+<p><img src="https://i.loli.net/2020/10/25/WteSHXamEA3NByP.jpg" alt="03.jpg"></p>
+]]></content>
+      <categories>
+        <category>Tomcat</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>修改 iLO 的 SSL 端口</title>
+    <url>/2020/05/04/ssh%E4%BF%AE%E6%94%B9iLO%E7%9A%84SSL%E7%AB%AF%E5%8F%A3/</url>
+    <content><![CDATA[<p>问题：远程修改 iLO Web 服务器 SSL 端口到 <strong>21</strong> 后无法连接。</p><p>原因：浏览器认为不安全（http 访问 21）</p><p>解决：改回默认或者换个不冲突的。</p><hr><ol>
+<li><p>VPN 接入内网，ssh 登录 iLO。</p>
+</li>
+<li><p>不认 ls cat 什么的，<code>help</code> 说要用 <code>show</code> ，<em>system1</em> 目录是主机信息和 iLO 没啥关系。</p>
+<p> <img src="https://i.loli.net/2020/05/04/GRYOdgyHnFZmC1f.png" alt="0505-01.png"></p>
+</li>
+<li><p><code>show /map1</code> 能找到一个配置文件 <em>config1</em> ，<code>show /map1/config1</code> 看一下，果然有 <em>oemhp_sslport</em> 这项 (图片是修改后的) ：</p>
+<p> <img src="https://i.loli.net/2020/05/04/1KtHeNEFklS75PR.png" alt="0505-03.png"></p>
+</li>
+<li><p>最后 <code>cd /map1/config1</code> :</p>
+ <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">&lt;/map1/config1&gt;hpiLO-&gt; set oemhp_sslport=443</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol><a id="more"></a>
+
+
+
+
+<hr>
+<p>校园网屏蔽非常规端口，访问家里的服务器要连上机场当跳板 (没有国内 vps) 。今天 ssh 居然裸连上了… 然后恶从胆边生 (不是) 试了下 FTP 端口 (x</p>
+<p>不过远程卡真的会用上 21 端口 <del>(某300页手册说) iLO 进入某个恢复模式时会自启一个 FTP 服务…</del>  </p>
+]]></content>
+      <categories>
+        <category>瞎折腾</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>Hello World</title>
+    <url>/2019/09/04/hello-world/</url>
+    <content><![CDATA[<center>九月四日，YUYU向宇宙发出的第一声啼鸣，以太阳为中心，以光速向宇宙深处飞驰......(x<center>
+</center></center>]]></content>
+  </entry>
+  <entry>
+    <title>vim 的乱七八糟</title>
+    <url>/2019/10/27/vim-%E7%9A%84%E4%B9%B1%E4%B8%83%E5%85%AB%E7%B3%9F/</url>
+    <content><![CDATA[<h1 id="文件"><a href="#文件" class="headerlink" title="文件"></a>文件</h1><p>vim 编辑文件时会新建 .filename.swp 文件，记录所作操作，当 vim 被不正常中断（或他人正在编辑<br>）时暂存文件不会消失，继续编辑时允许如下操作：</p><ul>
+<li>R 加载暂存文件的内容，恢复未保存的工作，记得离开 vim 后手动删掉暂存文件</li>
+<li>D 确定暂存文件无用，删除并新建本次使用的 .swp</li>
+<li>O 以只读打开，不进行编辑行为，用于他人正在编辑</li>
+</ul><a id="more"></a>
+
+<p>环境记录文件<br>~/.viminfo</p>
+<p>环境配置文件<br>/etc/vimrc，建议创建 ~/.vimrc</p>
+<table>
+<thead>
+<tr>
+<th align="center">-</th>
+<th align="center">-</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">:setnu :set nonu</td>
+<td align="center">行号</td>
+</tr>
+<tr>
+<td align="center">:set all</td>
+<td align="center">当前环境参数</td>
+</tr>
+<tr>
+<td align="center">:set</td>
+<td align="center">与默认不同的参数</td>
+</tr>
+</tbody></table>
+<h1 id="操作"><a href="#操作" class="headerlink" title="操作"></a>操作</h1><p>1.块选择</p>
+<p>一般模式下 [ctrl]-v 选择，y 复制，p 粘贴</p>
+<hr>
+<p>2.多窗口</p>
+<table>
+<thead>
+<tr>
+<th align="left">新窗口</th>
+<th align="right">光标向下</th>
+<th align="center">光标向上</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">:sp / :sp{filename}</td>
+<td align="right">[ctrl]-w+j</td>
+<td align="center">[ctrl]-w+k</td>
+</tr>
+</tbody></table>
+<hr>
+<p>3.多文件<br>| 当前打开的文件  | 下一个 | 上一个   |<br>|—————|:————–|:————–:|<br>|  :files  | :n  | :N |</p>
+<h1 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h1><p>中文编码</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> LANG=zh_CN.xxx</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> iconv --list</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> iconv -f 原编码 -t 新编码 filename [-o newfile]</span></span><br><span class="line">-f from</span><br><span class="line">-t to</span><br><span class="line">-o newfile 保留原本文件</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p>断行符<br>DOS ：^M$，即 CR 和 LF<br>Linux ：$，仅 LF</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> dos2UNIX [-kn] file [newfile]</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> UNIX2dos [-kn] file [newfile]</span></span><br><span class="line">-k 不修改 mtime</span><br><span class="line">-n 输出到新文件</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>vim</tag>
+        <tag>环境配置</tag>
+        <tag>断行符</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>关于 Java 标签404</title>
+    <url>/2019/12/08/%E5%85%B3%E4%BA%8E-Java-%E6%A0%87%E7%AD%BE404/</url>
+    <content><![CDATA[<p><del>之前的标签名是 JAVA，后来改了小写，hexo 好像没有对标签的文件夹 <code>git mv</code>，有时间再手动改吧…</del></p>
+<p><del>干脆直接戳 <a href="https://www.yuyurbq.club/categories/JAVA/" target="_blank" rel="noopener">https://www.yuyurbq.club/categories/JAVA/</a> 吧…</del></p>
+<p>没事了</p>
+]]></content>
+  </entry>
+  <entry>
+    <title>久久久远的2017</title>
+    <url>/2020/01/30/%E4%B9%85%E4%B9%85%E4%B9%85%E8%BF%9C%E7%9A%842017/</url>
+    <content><![CDATA[<p>图片已压缩… 阿里云 OSS 太贵了 qvq</p>
+<p><img src="https://i.loli.net/2020/03/02/dHeotmyg2lCNqRF.jpg" alt="0212-01.jpg"></p>
+<p><em>那天和对象出来干啥来着的… 咱俩坐在水游城负一楼休息，正巧在扶梯那。</em></p>
+<p><em>相比另一张横幅的，这张更有气势，但内容有点乱。</em></p>
+<a id="more"></a>
+
+<hr>
+<p><img src="https://i.loli.net/2020/03/02/zcT5wmgXStBd7vf.jpg" alt="0212-02.jpg"></p>
+<p><em>和舍友们在玄武湖遇到的一只老猫，毛都秃了x 。</em></p>
+<p><em>emmm 比较…气质？</em></p>
+<hr>
+<p><img src="https://i.loli.net/2020/03/02/fBzIupQEiRSAxa1.jpg" alt="0212-03.jpg"></p>
+<p><em>学校图书馆，录完对比视频顺手合影。想表达锤子科技产品理念的更迭，好像失败了x ，现在看简直是对 M 系列的鞭尸。</em></p>
+<p><em>为了让 M 产生虚化两者前后距离实际相当远，用长焦压缩的距离。暖光比较符合 M 系列的性格和地位，也能和锐利的坚果产生冲突。对象打光穿帮了，应该挡一下坚果方向的，嗯对象的锅。</em></p>
+<hr>
+<p><img src="https://i.loli.net/2020/03/02/C3y4xmScps2hEdt.jpg" alt="0212-04.jpeg"></p>
+<p><em>17 年才摸到真机，比后面几代圆角怪x 好看多了。</em></p>
+<hr>
+<p><img src="https://i.loli.net/2020/03/02/5o1rHYLpjWNMZC3.jpg" alt="0212-05.jpeg"></p>
+<p><em>宿舍床上拍的，按使用时间算遗照。是个正经大法，不像后来某些 A25 A35 A45 A55 x</em></p>
+<hr>
+<p><img src="https://i.loli.net/2020/03/02/HoaDWZpUPduylYC.jpg" alt="0212-06.jpg"></p>
+<p><em>大晚上爬紫金山还吃了晚归，第一次拍全景弄拼接，嗯也就这一次。</em></p>
+<p><em>光污染没救回来，天空占比也多了。紫峰左边那部分截掉其实也可，当时为了长吧x ，左右下角一片黑是因为机位没选好，山坡和护栏把视野挡了。</em></p>
+]]></content>
+      <categories>
+        <category>碎碎念</category>
+      </categories>
+  </entry>
+  <entry>
     <title>变量赋值与构造函数的执行顺序</title>
     <url>/2019/09/06/%E5%8F%98%E9%87%8F%E8%B5%8B%E5%80%BC%E4%B8%8E%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E7%9A%84%E6%89%A7%E8%A1%8C%E9%A1%BA%E5%BA%8F/</url>
     <content><![CDATA[<ol>
@@ -3014,6 +3038,30 @@ tring&gt; comp = (first, second) -&gt; ... ;</code> ；如果方法只有一个�
       </tags>
   </entry>
   <entry>
+    <title>对象实例化过程</title>
+    <url>/2019/09/06/%E5%AF%B9%E8%B1%A1%E5%AE%9E%E4%BE%8B%E5%8C%96%E8%BF%87%E7%A8%8B/</url>
+    <content><![CDATA[<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Test t = <span class="keyword">new</span> Test;</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>JVM 读取 Test.class 文件并加载进内存，加载 Test 的父类(如果有)</li>
+<li>堆内存中开辟空间，分配地址</li>
+<li>在对象空间中，对对象中的属性进行默认初始化</li>
+<li>调用对应的构造函数进行初始化<a id="more"></a></li>
+<li>在构造函数中，先调用父类的构造函数进行初始化</li>
+<li>父类初始化完毕后，对子类的属性进行显示初始化<br>（ super(); 和第二句之间的动作）</li>
+<li>进行子类构造函数的特定初始化</li>
+<li>初始化完毕，将地址值赋值给引用变量</li>
+</ol>
+]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>构造函数</tag>
+        <tag>实例化</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>搞了一个镜像站</title>
     <url>/2020/10/23/%E6%90%9E%E4%BA%86%E4%B8%80%E4%B8%AA%E9%95%9C%E5%83%8F%E7%AB%99/</url>
     <content><![CDATA[<p>国内访问 GitHub Page 实在太慢了，Git 私服 + Nginx 搭了个镜像（mirror.yuyurbq.icu:2048）。<del>宽带商屏蔽 80 443</del> </p>
@@ -3023,22 +3071,6 @@ tring&gt; comp = (first, second) -&gt; ... ;</code> ；如果方法只有一个�
       <categories>
         <category>碎碎念</category>
       </categories>
-  </entry>
-  <entry>
-    <title>Padavan 添加 NameSilo DDNS 服务</title>
-    <url>/2020/09/11/Padavan-%E6%B7%BB%E5%8A%A0-NameSilo-DDNS-%E6%9C%8D%E5%8A%A1/</url>
-    <content><![CDATA[<p>步骤同之前 <a href="https://www.yuyurbq.icu/2020/03/15/Padavan-%E6%B7%BB%E5%8A%A0-GoDaddy-DDNS-%E6%9C%8D%E5%8A%A1/" target="_blank" rel="noopener">Padavan 添加 GoDaddy DDNS 服务</a> ；</p>
-<p>apikey 到 <a href="https://www.namesilo.com/account/api-manager" target="_blank" rel="noopener">https://www.namesilo.com/account/api-manager</a> 创建；</p>
-<p>shell 脚本如下：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"></span><br><span class="line">MYAPIKEY=<span class="string">"填apikey"</span></span><br><span class="line">MYDOMAIN=<span class="string">"域名"</span></span><br><span class="line">MYHOST=<span class="string">"A记录名称"</span></span><br><span class="line">MYFULLDOMAIN=<span class="string">"<span class="variable">$MYHOST</span>.<span class="variable">$MYDOMAIN</span>"</span></span><br><span class="line"></span><br><span class="line">MYIP=`curl -s <span class="string">"https://api.ipify.org"</span>`</span><br><span class="line">OLDIP=$(tail -n 1 /home/root/iprecord.txt)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> [<span class="string">"<span class="variable">$OLDIP</span>"</span> == <span class="string">"<span class="variable">$MYIP</span>"</span>]; <span class="keyword">then</span></span><br><span class="line">  <span class="built_in">echo</span> <span class="string">"Nothing happened."</span></span><br><span class="line">  <span class="built_in">exit</span> 0</span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"<span class="variable">$MYIP</span>"</span> &gt; /home/root/iprecord.txt</span><br><span class="line"><span class="built_in">echo</span> <span class="string">"IP has changed."</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Fetch DNS record ID</span></span><br><span class="line">RESPONSE=<span class="string">"<span class="variable">$(curl -s "https://www.namesilo.com/api/dnsListRecords?version=1&amp;type=xml&amp;key=$MYAPIKEY&amp;domain=$MYDOMAIN")</span>"</span></span><br><span class="line">RECORD_ID=<span class="string">"<span class="variable">$(echo $RESPONSE | sed -n 's/^.*&lt;record_id&gt;\(.*\)&lt;\/record_id&gt;&lt;type&gt;A&lt;\/type&gt;&lt;host&gt;'$MYFULLDOMAIN'&lt;\/host&gt;.*$/\1/p')</span>"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Update</span></span><br><span class="line">RESPONSE=<span class="string">"<span class="variable">$(curl -s "https://www.namesilo.com/api/dnsUpdateRecord?version=1&amp;type=xml&amp;key=$MYAPIKEY&amp;domain=$MYDOMAIN&amp;rrid=$RECORD_ID&amp;rrhost=$MYHOST&amp;rrvalue=$MYIP&amp;rrttl=7207")</span>"</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">exit</span> 0</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>瞎折腾</category>
-      </categories>
-      <tags>
-        <tag>DDNS</tag>
-      </tags>
   </entry>
   <entry>
     <title>数理逻辑名词</title>
@@ -3605,31 +3637,13 @@ tring&gt; comp = (first, second) -&gt; ... ;</code> ；如果方法只有一个�
       </tags>
   </entry>
   <entry>
-    <title>Padavan 添加 GoDaddy DDNS 服务</title>
-    <url>/2020/03/15/Padavan-%E6%B7%BB%E5%8A%A0-GoDaddy-DDNS-%E6%9C%8D%E5%8A%A1/</url>
-    <content><![CDATA[<p>04-04 更新，将历史 ip 保存在本地，不通过 api 获取（国内访问 Godaddy 太慢了）。</p>
-<ol>
-<li><p>到 DNS 管理中新增一条 A 记录，“指向” 随便填；</p>
-</li>
-<li><p>到 <a href="https://developer.godaddy.com/keys" target="_blank" rel="noopener">https://developer.godaddy.com/keys</a> 创建并记录 key 和 Secret；</p>
-</li>
-<li><p>创建 shell 脚本和本机记录文件，通过 GoDaddy 的 api 更新 ip 地址：</p>
- <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"></span><br><span class="line">mydomain=<span class="string">"填域名"</span></span><br><span class="line">myhostname=<span class="string">"填刚才那条A记录的名称"</span></span><br><span class="line">gdapikey=<span class="string">"填 key:secret 不要忘记中间冒号"</span></span><br><span class="line"></span><br><span class="line">myip=`curl -s <span class="string">"https://api.ipify.org"</span>`</span><br><span class="line">oldip=$(tail -n 1 /path/iprecord.txt)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> [<span class="string">"<span class="variable">$oldip</span>"</span> == <span class="string">"<span class="variable">$myip</span>"</span>]; <span class="keyword">then</span></span><br><span class="line">  <span class="built_in">echo</span> <span class="string">"Nothing happened."</span></span><br><span class="line">  <span class="built_in">exit</span> 0</span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"<span class="variable">$myip</span>"</span> &gt; /path/iprecord.txt</span><br><span class="line"><span class="built_in">echo</span> <span class="string">"IP has changed."</span></span><br><span class="line">curl -s -X PUT <span class="string">"https://api.godaddy.com/v1/domains/<span class="variable">$&#123;mydomain&#125;</span>/records/A/<span class="variable">$&#123;myhostname&#125;</span>"</span> -H <span class="string">"Authorization: sso-key <span class="variable">$&#123;gdapikey&#125;</span>"</span> -H <span class="string">"Content-Type: application/json"</span> -d <span class="string">"[&#123;\"data\": \"<span class="variable">$&#123;myip&#125;</span>\"&#125;]"</span></span><br><span class="line"><span class="built_in">exit</span> 0</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>chmod 777 ，然后在本机上测试下；</p>
-</li>
-<li><p>进入路由器管理页面启用 SSH 服务；</p>
-</li>
-<li><p>sftp 连接路由器把脚本文件放到 <code>/etc/storage</code> 目录下；</p>
-</li>
-<li><p>路由器管理界面 系统管理 -&gt; 恢复/导出/上传设置 -&gt; 保存 /etc/storage/ 内容到闪存，点击后没有反馈是正常的，右上角 log 里有执行情况；</p>
-</li>
-<li><p>路由器管理界面 系统管理 -&gt; 服务 -&gt; 计划任务：</p>
- <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">*/10 * * * * /etc/storage/yours.sh</span><br><span class="line"><span class="meta">#</span><span class="bash">每十分钟执行</span></span><br></pre></td></tr></table></figure>
+    <title>Padavan 添加 NameSilo DDNS 服务</title>
+    <url>/2020/09/11/Padavan-%E6%B7%BB%E5%8A%A0-NameSilo-DDNS-%E6%9C%8D%E5%8A%A1/</url>
+    <content><![CDATA[<p>步骤同之前 <a href="https://www.yuyurbq.icu/2020/03/15/Padavan-%E6%B7%BB%E5%8A%A0-GoDaddy-DDNS-%E6%9C%8D%E5%8A%A1/">Padavan 添加 GoDaddy DDNS 服务</a> ；</p>
+<p>apikey 到 <a href="https://www.namesilo.com/account/api-manager" target="_blank" rel="noopener">https://www.namesilo.com/account/api-manager</a> 创建；</p>
+<p>shell 脚本如下：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"></span><br><span class="line">MYAPIKEY=<span class="string">"填apikey"</span></span><br><span class="line">MYDOMAIN=<span class="string">"域名"</span></span><br><span class="line">MYHOST=<span class="string">"A记录名称"</span></span><br><span class="line">MYFULLDOMAIN=<span class="string">"<span class="variable">$MYHOST</span>.<span class="variable">$MYDOMAIN</span>"</span></span><br><span class="line"></span><br><span class="line">MYIP=`curl -s <span class="string">"https://api.ipify.org"</span>`</span><br><span class="line">OLDIP=$(tail -n 1 /home/root/iprecord.txt)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> [<span class="string">"<span class="variable">$OLDIP</span>"</span> == <span class="string">"<span class="variable">$MYIP</span>"</span>]; <span class="keyword">then</span></span><br><span class="line">  <span class="built_in">echo</span> <span class="string">"Nothing happened."</span></span><br><span class="line">  <span class="built_in">exit</span> 0</span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"<span class="variable">$MYIP</span>"</span> &gt; /home/root/iprecord.txt</span><br><span class="line"><span class="built_in">echo</span> <span class="string">"IP has changed."</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Fetch DNS record ID</span></span><br><span class="line">RESPONSE=<span class="string">"<span class="variable">$(curl -s "https://www.namesilo.com/api/dnsListRecords?version=1&amp;type=xml&amp;key=$MYAPIKEY&amp;domain=$MYDOMAIN")</span>"</span></span><br><span class="line">RECORD_ID=<span class="string">"<span class="variable">$(echo $RESPONSE | sed -n 's/^.*&lt;record_id&gt;\(.*\)&lt;\/record_id&gt;&lt;type&gt;A&lt;\/type&gt;&lt;host&gt;'$MYFULLDOMAIN'&lt;\/host&gt;.*$/\1/p')</span>"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Update</span></span><br><span class="line">RESPONSE=<span class="string">"<span class="variable">$(curl -s "https://www.namesilo.com/api/dnsUpdateRecord?version=1&amp;type=xml&amp;key=$MYAPIKEY&amp;domain=$MYDOMAIN&amp;rrid=$RECORD_ID&amp;rrhost=$MYHOST&amp;rrvalue=$MYIP&amp;rrttl=7207")</span>"</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">exit</span> 0</span><br></pre></td></tr></table></figure>
 
-<p> 点击 应用本页设置 完成。</p>
-</li>
-</ol>
 ]]></content>
       <categories>
         <category>瞎折腾</category>
@@ -3637,20 +3651,6 @@ tring&gt; comp = (first, second) -&gt; ... ;</code> ；如果方法只有一个�
       <tags>
         <tag>DDNS</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>Tomcat 乱涂画</title>
-    <url>/2020/10/08/Tomcat-%E4%B9%B1%E6%B6%82%E7%94%BB/</url>
-    <content><![CDATA[<p>结构之类的…</p>
-<a id="more"></a>
-
-<p><img src="https://i.loli.net/2020/10/08/PmqflziGEUTnFSb.jpg" alt="01.jpg"></p>
-<p><img src="https://i.loli.net/2020/10/08/DUshVk2iE68YHMA.jpg" alt="02.jpg"></p>
-<p><img src="https://i.loli.net/2020/10/25/WteSHXamEA3NByP.jpg" alt="03.jpg"></p>
-]]></content>
-      <categories>
-        <category>Tomcat</category>
-      </categories>
   </entry>
   <entry>
     <title>寂静之城</title>
