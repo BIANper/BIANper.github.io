@@ -64,13 +64,13 @@
 <meta property="og:site_name" content="卑微的 YuYu">
 <meta property="og:description" content="问题：远程修改 iLO Web 服务器 SSL 端口到 21 后无法连接。原因：浏览器认为不安全（http 访问 21）解决：改回默认或者换个不冲突的。 VPN 接入内网，ssh 登录 iLO。  不认 ls cat 什么的，help 说要用 show ，system1 目录是主机信息和 iLO 没啥关系。    show /map1 能找到一个配置文件 config1 ，show /map1/c">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://i.loli.net/2020/05/04/GRYOdgyHnFZmC1f.png">
-<meta property="og:image" content="https://i.loli.net/2020/05/04/1KtHeNEFklS75PR.png">
-<meta property="og:updated_time" content="2020-11-14T13:24:47.676Z">
+<meta property="og:image" content="http://pic.yuyurbq.icu/2020/20200504_1.png">
+<meta property="og:image" content="http://pic.yuyurbq.icu/2020/20200504_2.png">
+<meta property="og:updated_time" content="2020-11-19T15:39:24.634Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="修改 iLO 的 SSL 端口">
 <meta name="twitter:description" content="问题：远程修改 iLO Web 服务器 SSL 端口到 21 后无法连接。原因：浏览器认为不安全（http 访问 21）解决：改回默认或者换个不冲突的。 VPN 接入内网，ssh 登录 iLO。  不认 ls cat 什么的，help 说要用 show ，system1 目录是主机信息和 iLO 没啥关系。    show /map1 能找到一个配置文件 config1 ，show /map1/c">
-<meta name="twitter:image" content="https://i.loli.net/2020/05/04/GRYOdgyHnFZmC1f.png">
+<meta name="twitter:image" content="http://pic.yuyurbq.icu/2020/20200504_1.png">
   <link rel="canonical" href="http://mirror.yuyurbq.icu:2048/2020/05/04/ssh修改iLO的SSL端口/">
 
 
@@ -302,7 +302,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-11-14 21:24:47" itemprop="dateModified" datetime="2020-11-14T21:24:47+08:00">2020-11-14</time>
+                <time title="修改时间：2020-11-19 23:39:24" itemprop="dateModified" datetime="2020-11-19T23:39:24+08:00">2020-11-19</time>
               </span>
             
           
@@ -335,10 +335,10 @@
 <li><p>VPN 接入内网，ssh 登录 iLO。</p>
 </li>
 <li><p>不认 ls cat 什么的，<code>help</code> 说要用 <code>show</code> ，<em>system1</em> 目录是主机信息和 iLO 没啥关系。</p>
-<p> <img src="https://i.loli.net/2020/05/04/GRYOdgyHnFZmC1f.png" alt="0505-01.png"></p>
+<p> <img src="http://pic.yuyurbq.icu/2020/20200504_1.png" alt="20200504_1"></p>
 </li>
 <li><p><code>show /map1</code> 能找到一个配置文件 <em>config1</em> ，<code>show /map1/config1</code> 看一下，果然有 <em>oemhp_sslport</em> 这项 (图片是修改后的) ：</p>
-<p> <img src="https://i.loli.net/2020/05/04/1KtHeNEFklS75PR.png" alt="0505-03.png"></p>
+<p> <img src="http://pic.yuyurbq.icu/2020/20200504_2.png" alt="20200504_2"></p>
 </li>
 <li><p>最后 <code>cd /map1/config1</code> :</p>
  <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;/map1/config1&gt;hpiLO-&gt; set oemhp_sslport=443</span><br></pre></td></tr></table></figure>

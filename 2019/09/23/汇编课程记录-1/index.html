@@ -65,12 +65,12 @@
 <meta property="og:site_name" content="卑微的 YuYu">
 <meta property="og:description" content="存储器为了区分不同的内存单元（一字节），每个单元会分配一个存储器地址；地址在计算机中用无符号二进制数表示，可简写成十六进制而字，双字，四字数据类型占用多个单元，在低地址中存放低位字节数据，高地址存放高位字节数据，访问时根据最低单元的地址依此存取后续字节">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://i.loli.net/2019/09/24/kiIS2B8DAxwZdWy.jpg">
-<meta property="og:updated_time" content="2020-02-16T03:30:00.536Z">
+<meta property="og:image" content="http://pic.yuyurbq.icu/2019/20190923_1.jpg">
+<meta property="og:updated_time" content="2020-11-19T15:41:21.758Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="汇编课程记录 1">
 <meta name="twitter:description" content="存储器为了区分不同的内存单元（一字节），每个单元会分配一个存储器地址；地址在计算机中用无符号二进制数表示，可简写成十六进制而字，双字，四字数据类型占用多个单元，在低地址中存放低位字节数据，高地址存放高位字节数据，访问时根据最低单元的地址依此存取后续字节">
-<meta name="twitter:image" content="https://i.loli.net/2019/09/24/kiIS2B8DAxwZdWy.jpg">
+<meta name="twitter:image" content="http://pic.yuyurbq.icu/2019/20190923_1.jpg">
   <link rel="canonical" href="http://mirror.yuyurbq.icu:2048/2019/09/23/汇编课程记录-1/">
 
 
@@ -302,7 +302,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-02-16 11:30:00" itemprop="dateModified" datetime="2020-02-16T11:30:00+08:00">2020-02-16</time>
+                <time title="修改时间：2020-11-19 23:41:21" itemprop="dateModified" datetime="2020-11-19T23:41:21+08:00">2020-11-19</time>
               </span>
             
           
@@ -334,7 +334,7 @@
         <h1 id="存储器"><a href="#存储器" class="headerlink" title="存储器"></a>存储器</h1><p>为了区分不同的内存单元（一字节），每个单元会分配一个存储器地址；地址在计算机中用无符号二进制数表示，可简写成十六进制<br>而字，双字，四字数据类型占用多个单元，在低地址中存放低位字节数据，高地址存放高位字节数据，访问时根据最低单元的地址依此存取后续字节</p>
 <a id="more"></a>
 <blockquote>
-<p>MSB (Most Significant Byte)，最高有效字节，是一个数据中权值最大的那一个字节<br>LSB (Least Significant Byte)，最低有效字节，是一个数据中权值最小的那一个字节<br>Little-Endian，是指数据的高字节(MSB)保存在内存的高地址中，而数据的低字节(LSB)保存在内存的低地址中，这种存储模式将地址的高低和数据位权有效地结合起来，高地址部分权值高，低地址部分权值低<br>例如：整型数 0x1A2B3C4D 在内存中存储的方式如下:<br><img src="https://i.loli.net/2019/09/24/kiIS2B8DAxwZdWy.jpg" alt="ram.jpg"></p>
+<p>MSB (Most Significant Byte)，最高有效字节，是一个数据中权值最大的那一个字节<br>LSB (Least Significant Byte)，最低有效字节，是一个数据中权值最小的那一个字节<br>Little-Endian，是指数据的高字节(MSB)保存在内存的高地址中，而数据的低字节(LSB)保存在内存的低地址中，这种存储模式将地址的高低和数据位权有效地结合起来，高地址部分权值高，低地址部分权值低<br>例如：整型数 0x1A2B3C4D 在内存中存储的方式如下:<br><img src="http://pic.yuyurbq.icu/2019/20190923_1.jpg" alt="20190923_1"></p>
 </blockquote>
 <h1 id="实模式"><a href="#实模式" class="headerlink" title="实模式"></a>实模式</h1><p>本身意义是代表真实的物理地址<br>8086CPU 的数据总线为 16 位，一次最多读取 2^16=64KB 数据（故实模式每个段最大64KB），但地址总线为 20 位，最大寻址能力是 2^20=1MB<br>实模式下存储器物理地址由段基址和偏移量给出。段基址必须定位在 16 的整数倍上，使得在十六进制表示的地址中最低位为 0，于是 1MB 空间的的 20 位地址的低 4 位可以不表示，而高 16 位就可以放进段寄存器。偏移地址虽然是四位但放在十六位寄存器，即可能跨越本身的分段，所以同一个物理地址可以有不同表示。<br><strong>10H × 段基址 + 偏移量 = 物理地址</strong></p>
 <ul>

@@ -287,7 +287,7 @@
                 
               
 
-              <time title="创建时间：2020-11-16 17:57:00 / 修改时间：18:07:52" itemprop="dateCreated datePublished" datetime="2020-11-16T17:57:00+08:00">2020-11-16</time>
+              <time title="创建时间：2020-11-16 17:57:00 / 修改时间：18:09:40" itemprop="dateCreated datePublished" datetime="2020-11-16T17:57:00+08:00">2020-11-16</time>
             </span>
           
             
@@ -319,7 +319,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="索引优化"><a href="#索引优化" class="headerlink" title="索引优化"></a>索引优化</h1><h2 id="查询执行顺序"><a href="#查询执行顺序" class="headerlink" title="查询执行顺序"></a>查询执行顺序</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">FROM &lt;_table&gt;	-- 两个表的笛卡尔积 vt1</span><br><span class="line">		<span class="comment">-- 如果多于两个表就计算和 vt3 的笛卡尔积，重复</span></span><br><span class="line">ON &lt;join_condition&gt; -- 筛选出满足条件的行 vt2</span><br><span class="line">&lt;join_type&gt; JOIN &lt;_table&gt;	-- 把主表被过滤的行添加回来 vt3</span><br><span class="line">					<span class="comment">-- 次表无匹配的部分补 NULL</span></span><br><span class="line">WHERE &lt;where_condition&gt; -- 在数据从磁盘进入内存前判断</span><br><span class="line">GROUP BY &lt;group_by_list&gt;	-- 结果集中每个组只有一行</span><br><span class="line">					<span class="comment">-- 开始允许使用别名</span></span><br><span class="line">HAVING &lt;having_condition&gt; -- 全部载入内存，在内存内部判断</span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">DISTINCT</span> &lt;select_list&gt;</span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> &lt;order_by_condition&gt;</span><br><span class="line"><span class="keyword">LIMIT</span> &lt;limit_number&gt;</span><br></pre></td></tr></table></figure>
+          <h1 id="索引优化"><a href="#索引优化" class="headerlink" title="索引优化"></a>索引优化</h1><h2 id="查询执行顺序"><a href="#查询执行顺序" class="headerlink" title="查询执行顺序"></a>查询执行顺序</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">FROM &lt;_table&gt;	-- 两个表的笛卡尔积 vt1</span><br><span class="line">		<span class="comment">-- 如果多于两个表就计算和 vt3 的笛卡尔积，重复</span></span><br><span class="line">ON &lt;join_condition&gt; -- 筛选出满足条件的行 vt2</span><br><span class="line">&lt;join_type&gt; JOIN &lt;_table&gt;	-- 把主表被过滤的行添加回来 vt3</span><br><span class="line">				<span class="comment">-- 次表无匹配的部分补 NULL</span></span><br><span class="line">WHERE &lt;where_condition&gt; -- 在数据从磁盘进入内存前判断</span><br><span class="line">GROUP BY &lt;group_by_list&gt;	-- 结果集中每个组只有一行</span><br><span class="line">				<span class="comment">-- 开始允许使用别名</span></span><br><span class="line">HAVING &lt;having_condition&gt; -- 全部载入内存，在内存内部判断</span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">DISTINCT</span> &lt;select_list&gt;</span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> &lt;order_by_condition&gt;</span><br><span class="line"><span class="keyword">LIMIT</span> &lt;limit_number&gt;</span><br></pre></td></tr></table></figure>
 
 <h2 id="EXPLAIN-字段"><a href="#EXPLAIN-字段" class="headerlink" title="EXPLAIN 字段"></a>EXPLAIN 字段</h2>
           <!--noindex-->
@@ -490,7 +490,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-10-25 15:30:44" itemprop="dateModified" datetime="2020-10-25T15:30:44+08:00">2020-10-25</time>
+                <time title="修改时间：2020-11-19 23:49:32" itemprop="dateModified" datetime="2020-11-19T23:49:32+08:00">2020-11-19</time>
               </span>
             
           
@@ -1002,7 +1002,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-11-14 21:24:47" itemprop="dateModified" datetime="2020-11-14T21:24:47+08:00">2020-11-14</time>
+                <time title="修改时间：2020-11-19 23:39:24" itemprop="dateModified" datetime="2020-11-19T23:39:24+08:00">2020-11-19</time>
               </span>
             
           
@@ -1035,10 +1035,10 @@
 <li><p>VPN 接入内网，ssh 登录 iLO。</p>
 </li>
 <li><p>不认 ls cat 什么的，<code>help</code> 说要用 <code>show</code> ，<em>system1</em> 目录是主机信息和 iLO 没啥关系。</p>
-<p> <img src="https://i.loli.net/2020/05/04/GRYOdgyHnFZmC1f.png" alt="0505-01.png"></p>
+<p> <img src="http://pic.yuyurbq.icu/2020/20200504_1.png" alt="20200504_1"></p>
 </li>
 <li><p><code>show /map1</code> 能找到一个配置文件 <em>config1</em> ，<code>show /map1/config1</code> 看一下，果然有 <em>oemhp_sslport</em> 这项 (图片是修改后的) ：</p>
-<p> <img src="https://i.loli.net/2020/05/04/1KtHeNEFklS75PR.png" alt="0505-03.png"></p>
+<p> <img src="http://pic.yuyurbq.icu/2020/20200504_2.png" alt="20200504_2"></p>
 </li>
 <li><p>最后 <code>cd /map1/config1</code> :</p>
  <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;/map1/config1&gt;hpiLO-&gt; set oemhp_sslport=443</span><br></pre></td></tr></table></figure>

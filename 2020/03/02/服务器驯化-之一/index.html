@@ -65,16 +65,16 @@
 <meta property="og:site_name" content="卑微的 YuYu">
 <meta property="og:description" content="选择Ivy Bridge EP制程比上一代新，价格也够便宜，可惜没有 AVX2 指令集。撇掉高功耗也没啥可选的了：   E5-2650V2 E5-2630V2    8C 16 T 6C 12T   95 W 80 W   2.60 GHz 2.60 GHz  服务器多是 2012-2015 年的机器，大概来自测试机房；">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://i.loli.net/2020/03/03/mFD9CbKB1lncjaH.jpg">
-<meta property="og:image" content="https://i.loli.net/2020/03/02/ycJSb8j9k2wCvqR.jpg">
-<meta property="og:image" content="https://i.loli.net/2020/03/02/Wz4mpvOTIXM8lNB.jpg">
-<meta property="og:image" content="https://i.loli.net/2020/03/03/rgO5WuoY7J1UDhE.png">
-<meta property="og:image" content="https://i.loli.net/2020/03/02/wFQKfha3RUCsIkx.jpg">
-<meta property="og:updated_time" content="2020-08-03T07:20:48.393Z">
+<meta property="og:image" content="http://pic.yuyurbq.icu/2020/20200303_1.jpg">
+<meta property="og:image" content="http://pic.yuyurbq.icu/2020/20200303_2.jpg">
+<meta property="og:image" content="http://pic.yuyurbq.icu/2020/20200303_3.jpg">
+<meta property="og:image" content="http://pic.yuyurbq.icu/2020/20200303_4.jpg">
+<meta property="og:image" content="http://pic.yuyurbq.icu/2020/20200303_5.jpg">
+<meta property="og:updated_time" content="2020-11-19T15:31:16.350Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="服务器驯化-之一">
 <meta name="twitter:description" content="选择Ivy Bridge EP制程比上一代新，价格也够便宜，可惜没有 AVX2 指令集。撇掉高功耗也没啥可选的了：   E5-2650V2 E5-2630V2    8C 16 T 6C 12T   95 W 80 W   2.60 GHz 2.60 GHz  服务器多是 2012-2015 年的机器，大概来自测试机房；">
-<meta name="twitter:image" content="https://i.loli.net/2020/03/03/mFD9CbKB1lncjaH.jpg">
+<meta name="twitter:image" content="http://pic.yuyurbq.icu/2020/20200303_1.jpg">
   <link rel="canonical" href="http://mirror.yuyurbq.icu:2048/2020/03/02/服务器驯化-之一/">
 
 
@@ -306,7 +306,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-08-03 15:20:48" itemprop="dateModified" datetime="2020-08-03T15:20:48+08:00">2020-08-03</time>
+                <time title="修改时间：2020-11-19 23:31:16" itemprop="dateModified" datetime="2020-11-19T23:31:16+08:00">2020-11-19</time>
               </span>
             
           
@@ -362,18 +362,18 @@
 <p>最后选择 HP，因为同系列下还有一款 MicroServer Gen8，因为造型小巧玩家群体很广，有问题时可以进行参考，况且：风扇实在太好看了。</p>
 <h1 id="风扇"><a href="#风扇" class="headerlink" title="风扇"></a>风扇</h1><p>再好看的风扇都难逃卸载 [，___________都 ________ ]。</p>
 <p>定义如下：</p>
-<img src="https://i.loli.net/2020/03/03/mFD9CbKB1lncjaH.jpg" alt="IMG_20200303_110558.jpg" style="zoom: 25%;">
+<img src="http://pic.yuyurbq.icu/2020/20200303_1.jpg" alt="20200303_1" style="zoom:33%;">
 
 <h2 id="降噪"><a href="#降噪" class="headerlink" title="降噪"></a>降噪</h2><p>1U 服务器的改造空间有限，要保持整机结构不变得从原装风扇位上动手：替换 or 优化，替换明显比改造代价要大，对于结果没有预期，可以在整机可用后再考虑。</p>
 <p>现有手段分两种，减速和移除，减速即串联电阻降低风扇供电，网上有教程可以自己做，TB 上也有现成的减速线卖，而金钱与物理双缺失下的我选择了移除。ps：服务器风扇一般 20W+，务必关注电阻发热情况。</p>
 <p>服务器主板通过独立硬件监控风扇状态，在损坏或缺失情况下会执行关机。所以只好找方法欺骗主板插槽上仍有风扇在运行：</p>
 <ul>
 <li><p><del>由在线风扇提供转速信号，短接地线</del>：</p>
-<p>  <img src="https://i.loli.net/2020/03/02/ycJSb8j9k2wCvqR.jpg" alt="0302-06.jpeg"></p>
+<p>  <img src="http://pic.yuyurbq.icu/2020/20200303_2.jpg" alt="20200303_2"></p>
 <p>  流行且省事的方法，要注意主板对每个模组的转速是动态调整的，借用其他风扇的信号可能会（因为转速不符）触发保护机制。HP 虽然是动态但不存在这个顾虑，原因下面说；</p>
 </li>
 <li><p>推荐：短接地线和测速线：</p>
-<p>  <img src="https://i.loli.net/2020/03/02/Wz4mpvOTIXM8lNB.jpg" alt="0302-05.jpeg"></p>
+<p>  <img src="http://pic.yuyurbq.icu/2020/20200303_3.jpg" alt="20200303_3"></p>
 <p>  来自 <a href="https://homeservershow.com/" target="_blank" rel="noopener">https://homeservershow.com/</a> Microserver Gen 8 版的方法，不出意外在 DL360p 上也通用：</p>
 <p>  原贴：<a href="https://homeservershow.com/forums/topic/7294-faking-the-fan-signal/" target="_blank" rel="noopener">Faking the fan signal</a></p>
 <blockquote>
@@ -392,9 +392,9 @@
 </li>
 </ul>
 <h2 id="散热"><a href="#散热" class="headerlink" title="散热"></a>散热</h2><p>当前安装的 HPE 定制版 ESXi6.0U3，气温 10℃，风扇基础转速 19%，我的方案是保留 #2 #6 #7 三个风扇，发热大户都在右边，整机控制如下。</p>
-<p><img src="https://i.loli.net/2020/03/03/rgO5WuoY7J1UDhE.png" alt="2020-03-03 11-14.png"></p>
+<p><img src="http://pic.yuyurbq.icu/2020/20200303_4.jpg" alt="20200303_4"></p>
 <p>需要特别注意 HD Controller 的温度：</p>
-<p><img src="https://i.loli.net/2020/03/02/wFQKfha3RUCsIkx.jpg" alt="0302-04.jpeg"></p>
+<p><img src="http://pic.yuyurbq.icu/2020/20200303_5.jpg" alt="20200303_5"></p>
 <p>↑开机后从 60 ℃ 起步；风扇没留几个的话建议单独给一个 4010/2010 风扇，供电可以从主板内的 USB 口引。</p>
 
     </div>
